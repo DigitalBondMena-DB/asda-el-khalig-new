@@ -1,0 +1,141 @@
+header {
+  background: linear-gradient(
+      rgba(255, 255, 255, 75%),
+      rgba(255, 255, 255, 75%)
+    ),
+    url("/assets/images/pages/home/1.png");
+  background-position: center, 105% 50%;
+  background-size: 100%, auto;
+  background-repeat: no-repeat;
+}
+.main-bg {
+  background: linear-gradient(
+      rgba(255, 255, 255, 75%),
+      rgba(255, 255, 255, 75%)
+    ),
+    url("/assets/images/pages/home/2.png");
+  background-size: 100%, 50% 80%;
+  background-position: center, right bottom;
+  background-repeat: no-repeat;
+}
+.third-bg {
+  background: linear-gradient(
+      rgba(255, 255, 255, 75%),
+      rgba(255, 255, 255, 75%)
+    ),
+    url("/assets/images/pages/home/4.png");
+  background-size: 100%, 90% 90%;
+  background-position: center, center 130px;
+  background-repeat: no-repeat;
+}
+
+/* Custom Styles */
+.min-w-392px {
+  min-width: 392px;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-description-size {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .md-h-392px {
+    height: 392px;
+  }
+
+  .md-flex-row {
+    flex-direction: row !important;
+  }
+
+  .md-justify-end {
+    justify-content: flex-end !important;
+  }
+
+  .md-w-50 {
+    width: 50% !important;
+  }
+  .md-w-40 {
+    width: 45% !important;
+  }
+  .md-w-60 {
+    width: 55% !important;
+  }
+
+  .md-absolute {
+    position: absolute !important;
+  }
+
+  .md-d-flex {
+    display: flex !important;
+  }
+
+  .md-items-end {
+    align-items: flex-end !important;
+  }
+}
+
+.titles {
+  @media (max-width: 350px) {
+    h2,
+    h3,
+    h4 {
+      font-size: 14px !important;
+      font-weight: 500;
+    }
+  }
+
+  // @media (min-width: 351px) and (max-width: 650px) {
+  //   h2,
+  //   h3,
+  //   h4 {
+  //     font-size: 14px !important;
+  //     font-weight: 500;
+  //   }
+  // }
+
+  @media (min-width: 351px) and (max-width: 1400px) {
+    h2,
+    h3,
+    h4 {
+      font-size: 28px !important;
+      font-weight: 700;
+    }
+  }
+  @media (min-width: 1401px) {
+    h2,
+    h3,
+    h4 {
+      font-size: 25px !important;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .logo-image {
+    width: 50% !important;
+  }
+}
+
+.main-color {
+  background-color: #314b98;
+}
+
+.alt-color {
+  background-color: #cfcece;
+}

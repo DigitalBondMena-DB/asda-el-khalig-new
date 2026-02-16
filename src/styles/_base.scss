@@ -1,0 +1,608 @@
+@import "variables";
+
+// website direction
+html,
+body {
+  direction: rtl;
+  // overflow-x: hidden;
+}
+// cards
+.card {
+  border: 1px solid transparent;
+  transition: 0.5s all;
+}
+
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
+}
+.rtl-g,
+.rtl-g * {
+  direction: rtl !important;
+}
+.card:hover {
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.27);
+  border: 1px solid #334f97;
+}
+.drop-down-container {
+  &:hover {
+    .drop-down-nav {
+      display: flex;
+    }
+  }
+  .drop-down-nav {
+    // box model
+    width: 150px;
+    display: none;
+    // height: 104px;
+    li {
+      // other
+      transition: 0.5s all;
+      a {
+        color: black !important;
+        text-decoration: none !important;
+      }
+      &:hover {
+        background-color: #cfcfcf;
+      }
+    }
+  }
+}
+
+// navbar
+.navbar {
+  a,
+  a:hover,
+  a:active {
+    color: $text-light !important;
+  }
+}
+.grid .col-12 {
+  flex: 0 0 auto !important;
+  padding: 0.5rem !important;
+  width: 100% !important;
+}
+@media screen and (min-width: 992px) {
+  .grid .lg\:col-8 {
+    flex: 0 0 auto !important;
+    padding: 0.5rem !important;
+    width: 66.6667% !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .grid .lg\:col-6 {
+    flex: 0 0 auto !important;
+    padding: 0.5rem !important;
+    width: 50% !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .grid .lg\:col-4 {
+    flex: 0 0 auto !important;
+    padding: 0.5rem !important;
+    width: 33.3333% !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .grid .xl\:col-3 {
+    flex: 0 0 auto !important;
+    padding: 0.5rem !important;
+    width: 25% !important;
+  }
+}
+
+.Logo_Water_Mark {
+  &::selection {
+    background-color: none;
+  }
+  position: relative;
+  &::after {
+    &::selection {
+      background-color: none;
+    }
+    content: "";
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    // margin: 16px;
+    background-image: url("/assets/images/logo_light.png");
+    background-size: 100% 100%;
+  }
+}
+.Logo_youtube_Mark {
+  &::selection {
+    background-color: none;
+  }
+  position: relative;
+  &::after {
+    &::selection {
+      background-color: none;
+    }
+    content: "";
+    cursor: pointer;
+    display: inline-block;
+    width: 53px;
+    height: 52px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("/assets/images/youtube.png");
+    background-size: 100% 100%;
+  }
+}
+.Logo_Water_Mark.small::after {
+  width: 30px;
+  height: 30px;
+}
+.section__title {
+  color: #000;
+
+  font-family: Cairo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.btn-large a {
+  padding-inline: 50px !important;
+}
+
+img {
+  object-position: top;
+}
+
+.lightBox {
+  display: flex;
+  // animation: lightBox_hide 0.1s 10s forwards;
+}
+.lightBox-details {
+  display: flex;
+  // animation: lightBox_hide 0.1s 10s forwards;
+}
+
+@keyframes lightBox_hide {
+  0% {
+    display: flex;
+  }
+  100% {
+    display: none;
+  }
+}
+
+.p-paginator {
+  direction: ltr !important;
+}
+
+.pi {
+  margin-inline: 0.5rem !important;
+}
+
+.p-toast-message-content {
+  align-items: start;
+  .p-element.p-icon-wrapper {
+    align-items: start;
+    margin-left: 0.5rem;
+  }
+}
+
+.hyper_link {
+  text-decoration: none !important;
+}
+
+.toast-top-left {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999; /* Ensure it appears above other content */
+}
+
+.title_section {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+
+.title_section h3,
+.title_section p,
+.title_section h2,
+.title_section h4,
+.title_section h1,
+.title_section h5,
+.title_section h6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Apply the same rule to all headers */
+  line-clamp: 2; /* Apply the same rule to all headers */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2);
+}
+
+.title_section strong {
+  font-weight: 400 !important;
+}
+
+.collapse,
+.collapsing,
+.collapsed,
+.collapse.hide,
+.collapse.show {
+  transition: none !important;
+  opacity: 1;
+  height: auto !important;
+}
+@media screen and (min-width: 992px) {
+}
+
+.vh-90 {
+  height: 90vh !important;
+}
+
+// .main_section_bg {
+//   background-image: url("/assets/images/pattern.png");
+//   background-size: 50%;
+//   background-position: bottom left;
+//   background-repeat: no-repeat;
+// }
+
+iframe {
+  min-height: 500px !important;
+  object-fit: cover !important;
+  object-position: center;
+  display: block;
+  // margin-inline: auto;
+  border-radius: 10px;
+}
+
+.title_section_Blogs {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  text-align: justify;
+}
+
+.title_section_Blogs h3,
+.title_section_Blogs p,
+.title_section_Blogs h2,
+.title_section_Blogs h4,
+.title_section_Blogs h1,
+.title_section_Blogs h5,
+.title_section_Blogs h6 {
+  display: -webkit-box;
+  line-clamp: 2; /* Apply the same rule to all headers */
+  -webkit-line-clamp: 2; /* Apply the same rule to all headers */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2);
+  text-align: justify;
+}
+
+.title_section_slider {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px !important;
+  color: $text-light !important;
+  font-weight: 400;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+.title_section_slider_header {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: $text-light !important;
+  font-weight: 400;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+.title_section_slider_article {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: 45px; /* Ensure it doesn't exceed two lines */
+  min-height: 45px; /* Ensure it doesn't exceed two lines */
+}
+.title_section_slider_home_para {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: $text-lighter !important;
+  font-weight: 400;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+
+// delete styles
+.init-parg {
+  & *:empty,
+  & *:blank {
+    display: none;
+  }
+  ::ng-deep & p,
+  ::ng-deep & *,
+  ::ng-deep & b {
+    font-weight: 400 !important;
+    margin-bottom: 0px !important;
+  }
+}
+
+.title_section_slider_home_Titles {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  text-align: start !important;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+.title_section_slider_home_news {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  text-align: start !important;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+}
+
+.title_section-articles {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Apply the same rule to all headers */
+  line-clamp: 3; /* Apply the same rule to all headers */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4;
+  max-height: 55px;
+}
+
+.title-line-clamp-2 {
+  display: -webkit-box;
+  line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  text-align: start !important;
+  line-height: 1.4; /* Adjust for better readability */
+  max-height: 50px; /* Ensure it doesn't exceed two lines */
+}
+
+@media screen and (max-width: 767px) {
+  .title_section_Blogs {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+    text-align: justify;
+  }
+
+  .title_section_Blogs h3,
+  .title_section_Blogs p,
+  .title_section_Blogs h2,
+  .title_section_Blogs h4,
+  .title_section_Blogs h1,
+  .title_section_Blogs h5,
+  .title_section_Blogs h6 {
+    display: -webkit-box;
+    line-clamp: 2; /* Apply the same rule to all headers */
+    -webkit-line-clamp: 2; /* Apply the same rule to all headers */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    line-height: 1.4;
+    max-height: calc(1.4em * 2);
+    text-align: justify;
+  }
+
+  .title_section_slider {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: $text-light !important;
+    font-weight: 400;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  }
+  .title_section_slider_header {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: $text-light !important;
+    font-weight: 400;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  }
+  .title_section_slider_article {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: 38px; /* Ensure it doesn't exceed two lines */
+    min-height: 38px; /* Ensure it doesn't exceed two lines */
+  }
+  .title_section_slider_home_para {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px !important;
+    color: $text-lighter !important;
+    font-weight: 400;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  }
+
+  // delete styles
+  .init-parg {
+    & *:empty,
+    & *:blank {
+      display: none;
+    }
+    ::ng-deep & p,
+    ::ng-deep & *,
+    ::ng-deep & b {
+      font-weight: 400 !important;
+      margin-bottom: 0px !important;
+    }
+  }
+
+  .title_section_slider_home_Titles {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    text-align: start !important;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  }
+  .title_section_slider_home_news {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    text-align: start !important;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: calc(1.4em * 2); /* Ensure it doesn't exceed two lines */
+  }
+
+  .title_section-articles {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Apply the same rule to all headers */
+    line-clamp: 3; /* Apply the same rule to all headers */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    line-height: 1.4;
+    max-height: 55px;
+  }
+
+  .title-line-clamp-2 {
+    display: -webkit-box;
+    line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-line-clamp: 2; /* Limit text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    color: #000 !important;
+    font-weight: 400;
+    text-align: start !important;
+    line-height: 1.4; /* Adjust for better readability */
+    max-height: 50px; /* Ensure it doesn't exceed two lines */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Logo_Water_Mark + div,
+  .title_section_Blogs + div {
+    flex-wrap: wrap;
+  }
+}

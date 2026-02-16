@@ -1,0 +1,27 @@
+<div class="card mb-0 h-100">
+  <div class="flex justify-content-between mb-3">
+    <div>
+      <span class="block text-500 font-medium mb-3">إجمالي زيارات الموقع</span>
+      <div class="text-900 font-medium text-xl">{{ totalViews }}</div>
+    </div>
+    <div
+      class="flex align-items-center justify-content-center bg-blue-100 border-round"
+      [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+    >
+      <i class="pi pi-eye text-blue-500 text-xl"></i>
+    </div>
+  </div>
+  @if (message.length > 0) {
+  <span class="text-green-500 font-medium">{{ message }}</span>
+  } @else {
+  <span class="text-green-500 font-medium">لا يوجد تغيرات</span>
+  }
+  <span class="text-500">
+    <img
+      class="ms-1 align-middle"
+      role="presentation"
+      src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png"
+    />
+    منذ آخر زيارة</span
+  >
+</div>

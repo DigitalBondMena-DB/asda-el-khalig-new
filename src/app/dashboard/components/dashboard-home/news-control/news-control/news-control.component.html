@@ -1,0 +1,189 @@
+@if (blogs) {
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-toast></p-toast>
+
+      <p-table
+        #dt
+        [value]="selectedBlogs"
+        responsiveLayout="scroll"
+        [rows]="100"
+        [globalFilterFields]="[
+          'post_title',
+          'author_name',
+          'category',
+          'id',
+          'post_date'
+        ]"
+        [paginator]="true"
+        [rowsPerPageOptions]="getPagesArray()"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="عرض {first} إلى {last} من {totalRecords} إدخالات"
+        [(selection)]="selectedBlogs"
+        selectionMode="multiple"
+        [rowHover]="true"
+        dataKey="post_id"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex"></div>
+        </ng-template>
+        <ng-template pTemplate="caption">
+          <div
+            class="flex md:flex-row md:justify-content-between md:align-items-center"
+          >
+            <h5 class="m-0">إدارة الموضوع</h5>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <div >
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="onGlobalFilter(dt, $event)"
+                  placeholder="ابحث..."
+                  class="w-full sm:w-auto"
+                />
+              </div>
+              @if(searchLoading) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+              }
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id" class="text-center">
+              معرف <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th>العنوان</th>
+            <th>المؤلف</th>
+            <th pSortableColumn="post_date">
+              التاريخ <p-sortIcon field="post_date"></p-sortIcon>
+            </th>
+            <th class="d-flex align-items-center">
+              <!-- Normal Dropdown without filter icon or overlay -->
+              <p-dropdown
+                #Dd
+                [ngModel]="selectedStatus"
+                [options]="categories"
+                optionValue="label"
+                (onChange)="onFilterChange($event.value); Dd.showClear = true"
+                placeholder="اختار القسم"
+                [showClear]="false"
+                [autoZIndex]="true"
+              ></p-dropdown>
+            </th>
+            <th class="text-center">التعديل</th>
+            <th pSortableColumn="publish_status" class="text-center">
+              الحالة <p-sortIcon field="publish_status"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+          <ng-template pTemplate="body" let-blog>
+            <tr>
+              <td class="col-1 text-center">
+                <span class="p-column-title">معرف</span>
+                {{ blog.id }}
+              </td>
+              <td
+                class="col-4"
+                style="
+                  max-width: 250px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+                pTooltip="{{ blog.post_title }}"
+                tooltipPosition="top"
+              >
+                <span class="p-column-title">العنوان</span>
+                {{ blog.post_title }}
+              </td>
+  
+              <td
+                class="col-1"
+                pTooltip="{{ blog.author_name }}"
+                tooltipPosition="top"
+              >
+                <span class="p-column-title">المؤلف</span>
+                {{ blog.author_name | slice : 0 : 25 }}
+                <!-- Trim to first 25 characters -->
+              </td>
+  
+              <td class="col-2">
+                <span class="p-column-title">التاريخ</span>
+                <!-- {{ blog.post_date | hijriDate }} -->
+                {{ blog.post_date }}
+              </td>
+              <td
+                class="col-1"
+                pTooltip="{{ formatToolTip(blog.category, blog.categorynew) }}"
+                tooltipPosition="top"
+                style="
+                  max-width: 250px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+                <span class="p-column-title">القسم</span>
+                {{ formatToolTip(blog.category, blog.categorynew) }}
+              </td>
+              <td class="col-1">
+                <div class="flex justify-content-center gap-2">
+                  <!-- Edit Button -->
+                  <button
+                    pButton
+                    pRipple
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-success"
+                    [routerLink]="['/dashboard/news-add', blog.id]"
+                  ></button>
+                </div>
+              </td>
+              <td class="col-1">
+                <div class="flex justify-content-center align-items-center gap-2">
+                  <!-- Switch Input to Publish/Archive -->
+                  <div #btn_container>
+                    <p-inputSwitch
+                      #btn
+                      styleClass="d-flex"
+                      [(ngModel)]="blog.publish_status"
+                      [trueValue]="1"
+                      [falseValue]="0"
+                      (onChange)="
+                        toggleBlogStatus(blog, spinner, btn_container, btn)
+                      "
+                    ></p-inputSwitch>
+                  </div>
+                  <span #spinner class="opacity-0"
+                    ><i class="fas fa-spin fa-spinner"></i
+                  ></span>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <div class="w-100 min-h-50vh d-flex justify-content-center align-items-center">
+  جار تحميل البيانات ... <i class="pi pi-spin pi-spinner"></i>
+</div>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" style="height: 50vh">
+              <div
+                class="w-100 h-100 d-flex justify-content-center align-items-center"
+              >
+                لا يوجد موضوعات ... <i class="pi pi-filter-slash"></i>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+} @else {
+<div class="w-100 min-h-50vh d-flex justify-content-center align-items-center">
+  جار تحميل البيانات ... <i class="pi pi-spin pi-spinner"></i>
+</div>
+}

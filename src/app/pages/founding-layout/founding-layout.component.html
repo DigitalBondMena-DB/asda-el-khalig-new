@@ -1,0 +1,40 @@
+<div class="founding-layout">
+  <app-founding-navbar [isNational]="false"></app-founding-navbar>
+  <app-founding-hero [isNational]="false"></app-founding-hero>
+  <div class="position-relative z-1">
+    <div class="position-relative z-2 first-bg">
+      <img
+        src="/assets/images/founding-day/003.png"
+        class="animate-circle"
+        alt=""
+        role="presentation"
+      />
+      <app-founding-about [isNational]="false"></app-founding-about>
+    </div>
+    <div class="position-relative z-2">
+      <div class="decoration d-left"></div>
+      <app-founding-banner [isNational]="false"></app-founding-banner>
+    </div>
+    <img
+      class="bg-image"
+      src="./assets/images/founding-day/bg-op5.png"
+      alt="يوم التأسيس"
+    />
+  </div>
+  <div class="position-relative z-2">
+    <div class="decoration"></div>
+    <div class="decoration d-left"></div>
+    <app-founding-news
+      [isNational]="false"
+      [isDesktop]="isDesktop"
+    ></app-founding-news>
+  </div>
+  <div class="last-bg">
+    <app-founding-articles [isNational]="false"></app-founding-articles>
+    <app-founding-investigations
+      [isDesktop]="isDesktop"
+      [isNational]="false"
+    ></app-founding-investigations>
+    <app-founding-footer [isNational]="false"></app-founding-footer>
+  </div>
+</div>

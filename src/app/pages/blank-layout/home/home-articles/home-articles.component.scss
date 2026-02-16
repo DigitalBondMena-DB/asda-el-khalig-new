@@ -1,0 +1,13 @@
+.title_section *:empty,
+.title_section *:blank {
+  display: none;
+}
+::ng-deep .text-lighter p,
+::ng-deep .text-lighter *,
+::ng-deep .text-lighter b {
+  font-weight: 400 !important;
+  margin: 0px !important;
+  display: inline !important;
+  padding: 0;
+  padding-left: 1px;
+}

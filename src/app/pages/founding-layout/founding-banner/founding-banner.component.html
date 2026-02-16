@@ -1,0 +1,20 @@
+<div class="container p-4 position-relative">
+  <div class="overflow-hidden position-relative">
+    @if (!isNational) {
+      <img
+        src="./assets/images/founding-day/bg-op5.png"
+        alt=""
+        class="animate-circle"
+      />
+    }
+    <img
+      class="w-100 rounded"
+      [src]="
+        isNational
+          ? './assets/images/national-day/home-third-banner.png'
+          : './assets/images/founding-day/founding-banner.png'
+      "
+      [alt]="isNational ? 'يوم الوطن' : 'يوم التأسيس'"
+    />
+  </div>
+</div>

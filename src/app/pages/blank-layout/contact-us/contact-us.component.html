@@ -1,0 +1,99 @@
+<app-blank-navbar />
+<section id="Contact__Us" class="my-5">
+  <div class="container">
+    <h2 class="text-center"><span>تواصل معنا</span> نحن لدينا فريق دعم مميز</h2>
+    <div class="row text-center g-4 my-5 flex-row-reverse">
+      <div class="col-lg-4">
+        <div class="card position-relative py-4 box-shadow-contact h-100">
+          <img
+            class="logo"
+            src="./assets/images/about_us/support-online-center.png"
+            alt="support online center"
+          />
+          <h3 class="my-3">الدعم</h3>
+          <ul>
+            <li class="d-inline-block">
+              @if (socialMediaLinks) {
+              <a
+                class="text-decoration-none text-dark stretched-link"
+                href="mailto:{{
+                  socialMediaLinks.contact.main_email ??
+                    'info@asda-alkhaleej.com'
+                }}"
+                aria-label="Send email to the contact address"
+              >
+                البريد الإلكتروني:
+                <div>
+                  {{
+                    socialMediaLinks.contact.main_email ??
+                      "info@asda-alkhaleej.com"
+                  }}
+                </div>
+              </a>
+              }
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card position-relative py-4 box-shadow-contact h-100">
+          <img
+            class="logo"
+            src="./assets/images/about_us/earth.png"
+            alt="support online center"
+          />
+          <h3 class="my-3">الموقع</h3>
+          <ul>
+            <li class="d-inline-block">
+              @if (socialMediaLinks) {
+              <a
+                class="text-decoration-none text-dark stretched-link"
+                [href]="socialMediaLinks.contact.location"
+                target="_blank"
+                aria-label="Open location in Google Maps"
+              >
+                <span class="d-block">العنوان:</span>
+                المملكة العربية السعودية – المنطقة الشرقية
+              </a>
+              }
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card position-relative py-4 box-shadow-contact h-100">
+          <img
+            class="logo"
+            src="./assets/images/about_us/Group.png"
+            alt="support online center"
+          />
+          <h3 class="my-3">الدعم و المساعدة</h3>
+          <ul>
+            <li class="d-inline-block">
+              @if (socialMediaLinks) {
+              <a
+                class="text-decoration-none text-dark stretched-link"
+                href="tel:+{{
+                  socialMediaLinks.contact.phone_number ?? '966531964880'
+                }}"
+                aria-label="Call the contact phone number"
+              >
+                الهاتف:
+                <div>
+                  {{ socialMediaLinks.contact.phone_number ?? "966531964880" }}
+                  +
+                </div>
+              </a>
+              }
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <app-contact-us-form />
+    </div>
+  </div>
+</section>

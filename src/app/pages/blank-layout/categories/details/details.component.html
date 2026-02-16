@@ -1,0 +1,397 @@
+<div class="position-relative z-1">
+  <div id="main_section_bg" class="main_section_bg">
+    <app-blank-navbar />
+    <section id="Hero__Section" class="mt-4">
+      <div class="container">
+        <div class="row g-4 g-lg-3 align-items-stretch">
+          <div class="p-2 col-12 col-lg-8">
+            @if (!isShowSkeleton &&IBlogs) {
+            <div>
+              <div>
+                <figure class="Logo_Water_Mark">
+                  <img
+                    style="object-position: top"
+                    class="w-100 object-fit-cover border-radius-10 article-image"
+                    [src]="
+                      IBlogs.blog.post_image ||
+                        './assets/images/not_found_image.jpg' | imagesSrc
+                    "
+                    [alt]="IBlogs.blog.post_title"
+                  />
+                </figure>
+
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2 mt-3"
+                >
+                  <p class="mb-0 date_color fw-bold fs-13">
+                    <img
+                      width="35px"
+                      height="35px"
+                      src="./assets/images/new_logos/logo_blue_no_text.png"
+                      alt="أصداء الخليج"
+                    />
+                    {{
+                      IBlogs.blog.author_name === "admin"
+                        ? ""
+                        : IBlogs.blog.author_name
+                        ? IBlogs.blog.author_name
+                        : "أصداء الخليج"
+                    }}
+                  </p>
+                  <div class="d-flex gap-2 social-icons">
+                    <share-buttons
+                      [exclude]="[
+                        'print',
+                        'viber',
+                        'vk',
+                        'tumblr',
+                        'pinterest',
+                        'xing',
+                        'line',
+                        'mix',
+                        'reddit',
+                        'linkedin',
+                        'sms'
+                      ]"
+                      [url]="currentUrl"
+                      show="11"
+                      [image]="
+                        IBlogs.blog.post_image ||
+                          './assets/images/not_found_image.jpg' | imagesSrc
+                      "
+                      [title]="IBlogs.blog.post_title"
+                      [description]="decodeHtml(IBlogs.blog.post_content)"
+                    />
+                  </div>
+                </div>
+
+                <h1 class="text-main fs-13 fw-bold my-3 mb-1 fs-5">
+                  {{ IBlogs.blog.post_title }}
+                </h1>
+                <h2
+                  class="text-dark text-opacity-75 fs-13 fw-bold my-3 mb-1 fs-5"
+                >
+                  {{
+                    IBlogs.blog.post_subtitle != "null"
+                      ? IBlogs.blog.post_subtitle
+                      : ""
+                  }}
+                </h2>
+
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2 mt-3"
+                >
+                  <span></span>
+                  <p class="mb-0 date_color fw-bold fs-5">
+                    {{ IBlogs.blog.post_date | hijriDate }}
+                  </p>
+                </div>
+
+                <div>
+                  <p
+                    #content
+                    id="content"
+                    class="mb-0 fs-13 desc_color fw-bold content"
+                    [innerHTML]="
+                      IBlogs.blog.post_content | removeInlineStyles | safeHtml
+                    "
+                  ></p>
+                </div>
+              </div>
+            </div>
+            @if (IBlogs.comments) {
+            <div class="p-2 col-12 order-0 order-lg-1 my-4">
+              <form [formGroup]="userDataForm" (ngSubmit)="onSubmitComment()">
+                <div class="row">
+                  <!-- name -->
+                  <div class="col-12 col-md-6 position-relative">
+                    <div class="mb-3">
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            (userNameForm?.getError('required') ||
+                              userNameForm?.getError('minlength')) &&
+                            userNameForm?.touched
+                        }"
+                        placeholder="قم بكتابة اسمك كامل"
+                        class="form-control border-radius-10 py-3"
+                        type="text"
+                        formControlName="userName"
+                        autocomplete="name"
+                      />
+                      @if (userNameForm?.getError('minlength') &&
+                      userNameForm?.touched) {
+                      <small
+                        class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0 fs-13 mb-1"
+                        >لا يمكن كتابة اقل من 5 حروف</small
+                      >
+                      } @if (userNameForm?.getError('required') &&
+                      userNameForm?.touched) {
+                      <small
+                        class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0 fs-13 mb-1"
+                        >مطلوب*</small
+                      >
+                      }
+                    </div>
+                  </div>
+                  <!-- email -->
+                  <div class="col-12 col-md-6">
+                    <div class="mb-3 position-relative">
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            (userEmailForm?.getError('required') ||
+                              userEmailForm?.getError('email')) &&
+                            userEmailForm?.touched
+                        }"
+                        placeholder="قم بكتابة البريد الالكترونى الصحيح"
+                        class="form-control border-radius-10 py-3"
+                        type="email"
+                        formControlName="userEmail"
+                        autocomplete="email"
+                      />
+                      @if (userEmailForm?.getError('email') &&
+                      userEmailForm?.touched) {
+                      <small
+                        class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0 fs-13 mb-1"
+                        >ايميل غير صالح*</small
+                      >
+                      } @if (userEmailForm?.getError('required') &&
+                      userEmailForm?.touched) {
+                      <small
+                        class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0 fs-13 mb-1"
+                        >مطلوب*</small
+                      >
+                      }
+                    </div>
+                  </div>
+                  <!-- comments -->
+                  <div class="col-12 mb-3">
+                    <div class="position-relative">
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            (userCommentForm?.getError('minlength') ||
+                              userCommentForm?.getError('maxlength') ||
+                              userCommentForm?.getError('required')) &&
+                            userCommentForm?.touched
+                        }"
+                        (input)="userComments = userData.value"
+                        #userData
+                        placeholder="اكتب تعليقك هنا"
+                        class="form-control border-radius-10 py-3 commentInput"
+                        type="text"
+                        formControlName="userComment"
+                      />
+                      <button
+                        [disabled]="userComments.length > 150 && !isLoading"
+                        class="btn btn-main py-2 px-4 position-absolute start-0 top-50 translate-middle-y ms-2 border-radius-10 z-1"
+                      >
+                        اضف تعليق @if (isLoading) {<i
+                          class="pi pi-spinner pi-spin"
+                        ></i
+                        >}
+                      </button>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center mt-1"
+                    >
+                      <small
+                        [ngClass]="{
+                          'text-danger align-self-start':
+                            userComments.length > 150
+                        }"
+                        >150/{{ userComments.length }}</small
+                      >
+                      @if (userCommentForm?.getError('maxlength') &&
+                      userCommentForm?.touched) {
+                      <small class="text-danger"
+                        >لا يمكن كتابة اكثر من 150 حرف</small
+                      >
+                      } @if (userCommentForm?.getError('minlength') &&
+                      userCommentForm?.touched) {
+                      <small class="text-danger"
+                        >لا يمكن كتابة اقل من 10 حرف</small
+                      >
+                      } @if (userCommentForm?.getError('required') &&
+                      userCommentForm?.touched) {
+                      <small class="text-danger">مطلوب</small>
+                      }
+                    </div>
+                  </div>
+                  <!-- save data -->
+                  <div class="col-12">
+                    <div class="d-flex align-items-center">
+                      <input
+                        #isStoreDataInput
+                        (change)="saveData($event)"
+                        id="saveData"
+                        class="form-check-input ms-3 mt-0"
+                        type="checkbox"
+                        style="width: 24px; height: 24px"
+                      />
+                      <label
+                        style="color: #f00"
+                        class="form-check-label fs-13"
+                        for="saveData"
+                        >احفظ اسمي، بريدي الإلكتروني، لاستخدامها المرة المقبلة
+                        في تعليقي.</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="mt-4">
+                @if (IBlogs.comments && IBlogs.comments.length > 0 ) {
+                <div class="d-flex justify-content-between align-items-center">
+                  <p>التعليقات</p>
+                  <p class="text-danger" style="font-size: 13px !important">
+                    {{ IBlogs.comments.length }} تعليقات
+                  </p>
+                </div>
+                @for (item of IBlogs.comments; track $index) {
+                <div class="box-shadow border-radius-10 p-3 mb-3">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span
+                      class="d-flex justify-content-center align-items-center rounded-circle"
+                      style="
+                        width: 25px;
+                        height: 25px;
+                        background-color: #d9d9d9;
+                      "
+                    >
+                      <i class="pi pi-user"></i>
+                    </span>
+                    <p class="mb-0">{{ item.comment_name }}</p>
+                    <p
+                      class="mb-0"
+                      style="font-size: 10px !important; color: #878787"
+                    >
+                      منذ {{ item.comment_date | hijriDate }}
+                    </p>
+                  </div>
+                  <p class="me-4 mb-0">
+                    {{ item.comment_text }}
+                  </p>
+                </div>
+                } }
+              </div>
+            </div>
+            } }
+            <!-- skeleton -->
+            @defer { @if (isShowSkeleton) {
+            <div>
+              <figure class="Logo_Water_Mark">
+                <ngx-skeleton-loader
+                  [theme]="{
+                    width: '100%',
+                    height: '650px',
+                    background: 'lightgray'
+                  }"
+                />
+              </figure>
+              <h3 class="text-main fs-13 fw-bold mt-2 mb-1 fs-5">
+                <ngx-skeleton-loader
+                  [theme]="{
+                    width: '100%',
+                    height: '20px',
+                    background: 'lightgray'
+                  }"
+                />
+              </h3>
+              <div
+                class="d-flex justify-content-between align-items-center mb-2 mt-3"
+              >
+                <p class="mb-0 date_color fw-bold fs-13">
+                  <ngx-skeleton-loader
+                    [theme]="{
+                      width: '150px',
+                      height: '20px',
+                      background: 'lightgray'
+                    }"
+                  />
+                </p>
+                <p class="mb-0 date_color fw-bold fs-13">
+                  <ngx-skeleton-loader
+                    [theme]="{
+                      width: '50px',
+                      height: '20px',
+                      background: 'lightgray'
+                    }"
+                  />
+                </p>
+              </div>
+              <div>
+                <ngx-skeleton-loader
+                  [theme]="{
+                    width: '100%',
+                    height: '60px',
+                    background: 'lightgray'
+                  }"
+                />
+              </div>
+            </div>
+            } }
+          </div>
+          <div class="p-2 col-12 col-lg-4 order-0 order-lg-1">
+            <div class="d-flex flex-column h-100">
+              <div class="">
+                <div>
+                  <a
+                    class="text-decoration-none"
+                    [routerLink]="[
+                      masterBlog?.blogs[0]?.old_status
+                        ? '/archives'
+                        : '/article',
+                      masterBlog?.blogs[0]?.post_id
+                    ]"
+                    href="#"
+                  >
+                    <div
+                      class="hero_height border-radius-10 overflow-hidden Logo_Water_Mark"
+                    >
+                      <img
+                        class="w-100 object-fit-cover main_animation"
+                        src="./assets/images/pages/home/Hero_Section/سلمان-بن-أحمد-العيد.jpg"
+                        alt="carousel"
+                      />
+                    </div>
+                  </a>
+                </div>
+
+                <div class="main-content">
+                  <p class="fw-bold fs-13 my-2">
+                    {{ masterBlog?.blogs[0]?.post_title }}
+                  </p>
+                  <a [routerLink]="['/archives/blogs', '10']" href="#">
+                    <p
+                      style="text-align: center !important"
+                      class="cr fw-bold text-center fs-13 text-main border-color-main border border-2 border-radius-10 p-3 text-center fs-13"
+                    >
+                      زاوية رئيس التحرير : سلمان بن أحمد العيد
+                    </p>
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex-grow-1 my-3">
+                <div class="h-500 sticky_content-20">
+                  <app-advertising-area
+                    [positionClasses]="
+                      'd-flex justify-content-center flex-column fs-4  align-items-center gap-5 vh-90 btn-large '
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    @if (IBlogs) {<app-related-content
+      [isRandom]="false"
+      [currentRelatedContentId]="IBlogs.blog.category_slug"
+    />}
+  </div>
+  <!-- <img src="/assets/images/bg-details.png" class="bg_details" alt="" /> -->
+</div>

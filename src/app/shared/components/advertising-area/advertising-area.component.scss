@@ -1,0 +1,22 @@
+@import "variables";
+
+.logo {
+  width: 43px;
+  height: 44px;
+}
+.advertising__container {
+  background-color: $fourth-color;
+  border-radius: $border-radius;
+  height: 90px;
+  border: 1.5px dashed rgba(0, 0, 0, 0.5);
+}
+.parent {
+  max-width: 728px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.img-logo {
+  max-width: 43px;
+  height: 44px;
+}

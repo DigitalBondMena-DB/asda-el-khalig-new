@@ -1,0 +1,21 @@
+#About_Us {
+  & * {
+    font-size: 20px;
+  }
+  & p {
+    color: #4b5563 !important;
+  }
+}
+// section {
+//   background-image: url("/assets/images/about_us/footer.png"),
+//     url("/assets/images/about_us/logo.png");
+//   background-repeat: no-repeat;
+//   background-position: right bottom, center;
+//   background-size: 100% 40%, 250px;
+// }
+section {
+  background-image: url("/assets/images/about_us/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 250px;
+}

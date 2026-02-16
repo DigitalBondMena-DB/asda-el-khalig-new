@@ -1,0 +1,47 @@
+@import "variables";
+
+.founding_day {
+  background: url("/assets/images/founding-day/3.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 100%;
+}
+.main-founding {
+  background-color: $found-color;
+}
+
+.animate_image {
+  animation: animate_image 2.5s forwards infinite ease-in-out;
+  transform: rotate(0deg);
+}
+@keyframes animate_image {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  95% {
+    transform: rotate(340deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.h-md-250 {
+  height: 200px;
+}
+@media screen and (min-width: 992px) {
+  .h-md-250 {
+    height: 120px;
+  }
+}
+
+.x {
+  background-color: #e1e0e0;
+  border-radius: 10px;
+  height: 90px;
+  border: 1.5px dashed rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}

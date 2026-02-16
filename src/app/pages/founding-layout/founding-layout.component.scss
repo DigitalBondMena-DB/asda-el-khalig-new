@@ -1,0 +1,66 @@
+@import "variables";
+
+.founding-layout {
+  background-color: #f2d7bd !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.last-bg {
+  background-image: url("/assets/images/founding-day/founding-bg.png");
+  background-position: bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+.animate-circle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  z-index: 0;
+  animation: animate_image 2.5s forwards infinite ease-in-out;
+  transform: rotate(0deg);
+}
+.bg-image {
+  position: absolute;
+  z-index: 0;
+  top: -15%;
+  left: -5%;
+  // transform: ;
+  z-index: 0;
+  animation: animate_image 2.5s forwards infinite ease-in-out;
+  transform: rotate(0deg);
+}
+
+@keyframes animate_image {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  95% {
+    transform: rotate(340deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.decoration {
+  background-image: url("/assets/images/founding-day/decoration.png");
+  background-position: bottom;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  height: 100%;
+  z-index: 0;
+  &.d-left {
+    left: 0;
+    right: auto;
+  }
+}

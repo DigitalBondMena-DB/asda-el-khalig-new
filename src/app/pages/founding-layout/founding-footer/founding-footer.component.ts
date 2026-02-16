@@ -1,0 +1,107 @@
+import { NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Contact } from '../../../core/interfaces/ISocialMedia';
+import { SocialMediaService } from '../../../core/services/content/social-media.service';
+import { StaticCategoriesService } from '../../../core/services/content/static-categories.service';
+
+@Component({
+  selector: 'app-founding-footer',
+  standalone: true,
+  imports: [RouterLink, NgClass],
+  templateUrl: './founding-footer.component.html',
+  styleUrl: './founding-footer.component.scss',
+})
+export class FoundingFooterComponent {
+  @Input({ required: true }) isNational: boolean = false;
+
+  socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];
+
+  constructor(
+    private _StaticCategoriesService: StaticCategoriesService,
+    private _SocialMediaService: SocialMediaService
+  ) {}
+  ngOnInit(): void {
+    this.getSocialMediaLinks();
+    this._StaticCategoriesService.increaseView().subscribe({
+      next: (response) => {},
+    });
+  }
+
+  getSocialMediaLinks(): void {
+    this._SocialMediaService.getSocialMediaLinks().subscribe({
+      next: (response) => {
+        const contact = response?.contact as Contact;
+        const linksMapping: Record<
+          string,
+          { label: string; icon: string; alt: string }
+        > = {
+          face_url: {
+            label: 'Facebook',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/facebook.svg'
+              : './assets/images/national-day/FB.png',
+            alt: 'اصداء الخليج فيسبوك',
+          },
+          tweet_url: {
+            label: 'Twitter',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/x-twitter-brands-solid.svg'
+              : './assets/images/national-day/x.png',
+            alt: 'اصداء الخليج اكس',
+          },
+          instgram_url: {
+            label: 'Instagram',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/instagram.svg'
+              : './assets/images/national-day/IG.png',
+            alt: 'اصداء الخليج انستجرام',
+          },
+          tiktok_url: {
+            label: 'TikTok',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/tiktok.svg'
+              : './assets/images/national-day/TikTok.png',
+            alt: 'اصداء الخليج تيك توك',
+          },
+          snapchat_url: {
+            label: 'Snapchat',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/snapchat.svg'
+              : './assets/images/national-day/Snap.png',
+            alt: 'اصداء الخليج سناب شات',
+          },
+          telegram_url: {
+            label: 'Telegram',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/telegram.svg'
+              : './assets/images/national-day/Telegram.png',
+            alt: 'اصداء الخليج تيليجرام',
+          },
+          watus_number: {
+            label: 'WhatsApp',
+            icon: !this.isNational
+              ? './assets/images/social_meida_icons/whatsapp.svg'
+              : './assets/images/national-day/WA.png',
+            alt: 'اصداء الخليج واتساب',
+          },
+        };
+        // Filter non-null social media links
+        if (contact) {
+          for (const [key, value] of Object.entries(contact)) {
+            this.socialLinks.push({
+              url: value as string,
+              ...linksMapping[key],
+            });
+            // if (value !== 'null' && linksMapping[key]) {
+            //   this.socialLinks.push({
+            //     url: value as string,
+            //     ...linksMapping[key],
+            //   });
+            // }
+          }
+        }
+      },
+    });
+  }
+}

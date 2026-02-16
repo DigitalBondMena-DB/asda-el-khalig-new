@@ -1,0 +1,565 @@
+@if (!isShowSkeleton && specificCategories) {
+<section>
+  <div class="row g-4">
+    @for (card of specificCategories.blogs.data | paginate: { id:'some_id',
+    itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems }; track
+    $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
+        <div>
+          <figure class="Logo_Water_Mark cr h-250">
+            <img
+              class="w-100 h-100 object-fit-cover border-radius-10"
+              [src]="
+                card?.post_image || './assets/images/not_found_image.jpg'
+                  | imagesSrc
+              "
+              (load)="imageLoaded($event)"
+              alt="card.author"
+            />
+            @if (!imageLoadedFlag) {
+            <div
+              class="placeholder opacity-100 bd-placeholder-img card-img-top position-absolute top-0 start-0 w-100 border-radius-10"
+              style="height: 250px; background-color: #868e96"
+            ></div>
+            }
+          </figure>
+          <h3 class="text-main fs-13 fw-bold mt-2 mb-1 cr title_section">
+            {{ card.post_title | stringSlice : 70 }}
+          </h3>
+          <div
+            class="d-flex justify-content-between align-items-center mb-2 mt-3"
+          >
+            <h4 class="fs-13 fw-bold mb-0 title_section">
+              {{
+                card.author_name == "admin"
+                  ? ""
+                  : card.author_name
+                  ? card.author_name
+                  : "أصداء الخليج"
+              }}
+            </h4>
+            <p class="mb-0 date_color fw-bold fs-13 text-main">
+              {{ card.post_date | hijriDate }}
+            </p>
+          </div>
+          <div>
+            <p
+              class="mb-0 fs-13 desc_color fw-bold title_section"
+              [innerHTML]="card.post_content | stringSlice : 100 | safeHtml"
+            ></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    } @empty {
+    <div class="col-12 my-5" style="min-height: 50vh">
+      <h2
+        class="text-main fs-13 fw-bold text-center h-100 d-flex justify-content-center align-items-center"
+      >
+        <span class="bg-light-subtle rounded-2 p-5">لا يوجد بيانات</span>
+      </h2>
+    </div>
+    }
+  </div>
+
+  <div class="d-flex justify-content-center my-4">
+    <pagination-controls
+      id="some_id"
+      (pageChange)="pageChanged($event)"
+      [directionLinks]="true"
+      [autoHide]="false"
+      [maxSize]="8"
+      [responsive]="true"
+      previousLabel="السابق"
+      nextLabel="التالي"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="صفحة"
+      screenReaderCurrentLabel="انت الان في الصفحة رقم"
+    >
+    </pagination-controls>
+  </div>
+</section>
+} @defer { @if (isShowSkeleton) {
+<section>
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div>
+        <figure class="Logo_Water_Mark cr h-250">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '250px',
+              background: 'lightgray'
+            }"
+          />
+        </figure>
+        <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </h3>
+        <div
+          class="d-flex justify-content-between align-items-center mb-2 mt-3"
+        >
+          <h4 class="fs-13 fw-bold">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h4>
+          <p class="mb-0 date_color fw-bold fs-13">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '50px',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </p>
+        </div>
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+              width: '100%',
+              height: '20px',
+              background: 'lightgray'
+            }"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+} }

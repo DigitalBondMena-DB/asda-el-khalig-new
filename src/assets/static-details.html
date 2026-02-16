@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <script>
+    // Extract parameters from URL
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get('title');
+    const description = params.get('description');
+    const image = params.get('image');
+
+    if (title) {
+      document.title = title;
+      document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+      document.querySelector('meta[name="twitter:title"]').setAttribute("content", title);
+    }
+
+    if (description) {
+      document.querySelector('meta[property="og:description"]').setAttribute("content", description);
+      document.querySelector('meta[name="twitter:description"]').setAttribute("content", description);
+    }
+
+    if (image) {
+      document.querySelector('meta[property="og:image"]').setAttribute("content", image);
+      document.querySelector('meta[name="twitter:image"]').setAttribute("content", image);
+    }
+
+    document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+</body>
+</html>

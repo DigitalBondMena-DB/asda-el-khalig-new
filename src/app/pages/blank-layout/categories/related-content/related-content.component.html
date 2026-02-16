@@ -1,0 +1,239 @@
+@if ( !isShowSkeleton && relatedContent) {
+<section id="Home__Articles" class="bg-white py-5">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <h2 class="section__title fs-30">أخبار ذات صلة</h2>
+      @if (relatedContent.category) {
+      <a
+        [routerLink]="['/archives/blogs', relatedContent.category.slug]"
+        href="#"
+        class="btn btn-show-all"
+        >عرض الكل</a
+      >
+      }
+    </header>
+    
+    <div class="row flex-row-reverse g-4">
+      <div class="col-12 col-lg-3">
+        <div class="bg-third border-radius-10 p-2">
+          <app-advertising-area
+            [positionClasses]="
+              'd-flex flex-column justify-content-center gap-3 h-300 mb-3 p-5 fs-5 fw-semibold'
+            "
+          />
+@if (relatedContent.blogs.data[2]) {
+
+  <a
+    [routerLink]="[relatedContent.blogs.data[2].old_status?'/archives':'/article', relatedContent.blogs.data[2].post_id]"
+    href="#"
+  >
+    <div>
+      <figure class="cr Logo_Water_Mark mb-0 small">
+        <img
+          class="w-100 object-fit-cover h-300 border-radius-10"
+          [src]="
+            relatedContent.blogs.data[2].post_image ||
+              './assets/images/not_found_image.jpg' | imagesSrc
+          "
+          [alt]="relatedContent.blogs.data[2].post_title"
+        />
+      </figure>
+      <h3 class="my-2 fs-13 fw-bold mb-1 cr title_section">
+        {{ relatedContent.blogs.data[2].post_title }}
+      </h3>
+    </div>
+  </a>
+}
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-3">
+        @if (relatedContent.blogs.data[5]) {
+
+          <a
+            [routerLink]="[relatedContent.blogs.data[5].old_status?'/archives':'/article', relatedContent.blogs.data[5].post_id]"
+            href="#"
+          >
+            <div class="mb-3">
+              <figure class="Logo_Water_Mark small cr mb-3">
+                <img
+                  class="w-100 object-fit-cover border-radius-10 h-277px cr"
+                  [src]="
+                    relatedContent.blogs.data[5].post_image ||
+                      './assets/images/not_found_image.jpg' | imagesSrc
+                  "
+                  [alt]="relatedContent.blogs.data[5].post_title"
+                />
+              </figure>
+              <h3 class="my-2 fs-13 fw-bold mb-1 cr title_section">
+                {{ relatedContent.blogs.data[5].post_title }}
+              </h3>
+            </div>
+          </a>
+        }
+        @if (relatedContent.blogs.data[6]) {
+
+          <a
+            [routerLink]="[relatedContent.blogs.data[6].old_status?'/archives':'/article', relatedContent.blogs.data[6].post_id]"
+            href="#"
+          >
+            <div>
+              <figure class="Logo_Water_Mark small cr mb-0">
+                <img
+                  class="w-100 object-fit-cover h-277px border-radius-10"
+                  [src]="
+                    relatedContent.blogs.data[6].post_image ||
+                      './assets/images/not_found_image.jpg' | imagesSrc
+                  "
+                  [alt]="relatedContent.blogs.data[6].post_title"
+                />
+              </figure>
+              <h3 class="my-2 fs-13 fw-bold mb-1 cr title_section">
+                {{ relatedContent.blogs.data[6].post_title }}
+              </h3>
+            </div>
+          </a>
+        }
+      </div>
+
+      <div class="col-12 col-lg-6">
+        @if (relatedContent.blogs.data[4]) {
+
+          <a
+            [routerLink]="[relatedContent.blogs.data[4].old_status?'/archives':'/article', relatedContent.blogs.data[4].post_id]"
+            href="#"
+          >
+            <div>
+              <figure class="Logo_Water_Mark small cr mb-0">
+                <img
+                  class="w-100 object-fit-cover border-radius-10 h-620"
+                  [src]="
+                    relatedContent.blogs.data[4].post_image ||
+                      './assets/images/not_found_image.jpg' | imagesSrc
+                  "
+                  [alt]="relatedContent.blogs.data[4].post_title"
+                />
+              </figure>
+              <h3 class="my-2 fs-13 fw-bold mb-1 cr title_section">
+                {{ relatedContent.blogs.data[4].post_title }}
+              </h3>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+}
+<!-- skeleton -->
+@defer { @if (isShowSkeleton) {
+<section id="Home__Articles" class="bg-white py-5">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <h2 class="section__title fs-30">أخبار ذات صلة</h2>
+    </header>
+    <div class="row flex-row-reverse g-4">
+      <div class="col-12 col-lg-3">
+        <div class="bg-third border-radius-10 p-2">
+          <app-advertising-area
+            [positionClasses]="
+              'd-flex flex-column justify-content-center mb-3 gap-3 h-300 p-5 fs-5 fw-semibold'
+            "
+          />
+
+          <div>
+            <figure class="cr Logo_Water_Mark mb-0 small">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '285px',
+                  background: 'lightgray'
+                }"
+              />
+            </figure>
+            <h3 class="my-2 fs-13 fw-bold mb-1">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray',
+                  marginTop: '4px'
+                }"
+              />
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-3">
+        <div>
+          <figure class="Logo_Water_Mark small cr">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '285px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="my-2 fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray',
+                marginTop: '4px'
+              }"
+            />
+          </h3>
+        </div>
+        <div>
+          <figure class="Logo_Water_Mark small cr">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '285px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="my-2 fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray',
+                marginTop: '4px'
+              }"
+            />
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div>
+          <figure class="Logo_Water_Mark small cr">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '620px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="my-2 fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray',
+                marginTop: '4px'
+              }"
+            />
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+} }

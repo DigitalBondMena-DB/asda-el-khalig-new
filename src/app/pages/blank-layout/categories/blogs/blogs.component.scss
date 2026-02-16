@@ -1,0 +1,17 @@
+@import "variables";
+
+::ng-deep .current {
+  background-color: $main-color !important;
+  border-radius: 10px !important;
+}
+
+::ng-deep .skeleton-loader.progress {
+  margin-bottom: 0px !important;
+}
+
+::ng-deep .desc_color {
+  margin: 0;
+  img {
+    display: none;
+  }
+}

@@ -1,0 +1,58 @@
+
+
+input,
+textarea,
+::ng-deep .iti .input,
+input:focus,
+textarea:focus,
+::ng-deep .iti input {
+  border-radius: 10px;
+  border: 1px solid #454444;
+  background: #fff;
+}
+::ng-deep .form-control {
+  padding-inline: 50px 12px !important;
+}
+input:focus,
+textarea:focus,
+::ng-deep .form-control:focus,
+::ng-deep .input:focus {
+  box-shadow: 0 0 0 0.1rem #454444 !important;
+}
+input,
+textarea,
+i {
+  direction: rtl;
+}
+::ng-deep .form-control.is-invalid,
+::ng-deep .was-validated .form-control:invalid {
+  padding-right: calc(1.5em + 0.75rem) !important;
+
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+::ng-deep .iti {
+  border: none !important;
+}
+
+::ng-deep .iti__selected-flag.dropdown-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+
+::ng-deep .iti__selected-flag {
+  cursor: pointer;
+}
+
+::ng-deep .iti__country-list {
+  max-height: 250px !important;
+
+}
+

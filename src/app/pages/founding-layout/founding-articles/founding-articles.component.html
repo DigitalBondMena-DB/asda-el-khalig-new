@@ -1,0 +1,168 @@
+@if (specificCategory ) {
+<section id="Home__articles" class="py-4 position-relative z-2">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      @if (isNational) {
+      <h2 style="color: #002225" class="section__title fs-30">
+        مقالات يوم الوطني
+      </h2>
+      } @else {
+      <h2 class="section__title fs-30">مقالات يوم التأسيس</h2>
+      }
+      <!-- <a
+        [routerLink]="['/archives/article', '08']"
+        href="#"
+        class="btn btn-show-all"
+        >عرض الكل</a
+      > -->
+    </header>
+    <div class="row g-4 g-lg-3">
+      @for (blog of specificCategory.blogs.data| paginate: { id:'some_id',
+      itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems } |
+      slice:0:8; track $index) {
+      <div class="col-md-6 col-lg-3">
+        <a
+          [routerLink]="[
+            blog.old_status ? '/archives' : '/article',
+            blog.post_id
+          ]"
+          class="text-decoration-none"
+          href="#"
+        >
+          <article
+            [ngClass]="{
+              isNational: isNational,
+              notNational: !isNational
+            }"
+            class="card cr p-3 justify-content-between flex-column"
+          >
+            <div class="d-flex flex-column justify-content-between">
+              <h3
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-main fs-13 fw-bold cr title_section_slider_article"
+              >
+                {{ blog.post_title }}
+              </h3>
+              <p
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="fs-13 text-lighter mb-4 title_section title_section-articles"
+                [innerHTML]="blog.post_content | removeInlineStyles | safeHtml"
+              ></p>
+            </div>
+
+            <h4 class="text-end mt-0">
+              <img
+                width="80px"
+                height="80px"
+                class="align-middle rounded-circle object-fit-cover ms-3"
+                [src]="
+                  blog.post_image || './assets/images/not_found_image.jpg'
+                    | imagesSrc
+                "
+                alt="tweet"
+              />
+              <span
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="subtitle align-middle fs-13"
+                >{{
+                  blog.author_name ? blog.author_name : "أصداء الخليج"
+                }}</span
+              >
+            </h4>
+          </article>
+        </a>
+      </div>
+      } @empty { لا يوجد محتوي الان }
+    </div>
+  </div>
+</section>
+
+} @defer { @if (!specificCategory) {
+<section id="Home__articles" class="py-4">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      @if (isNational) {
+      <h2 class="section__title fs-30">مقالات يوم الوطني</h2>
+      } @else {
+      <h2 class="section__title fs-30">مقالات يوم التأسيس</h2>
+      }
+    </header>
+    <div class="row g-4 g-lg-3">
+      @for (item of article; track $index) {
+      <div class="col-md-6 col-lg-3">
+        <article class="card cr p-3 h-250 justify-content-between flex-column">
+          <div class="d-flex flex-column justify-content-between">
+            <h3 class="text-main fs-13 fw-bold">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '80px',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </h3>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '40px',
+                background: 'lightgray'
+              }"
+            />
+          </div>
+          <div class="text-start">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '30px',
+                height: '30px',
+                background: 'lightgray'
+              }"
+              [appearance]="'circle'"
+            />
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '120px',
+                height: '15px',
+                background: 'lightgray'
+              }"
+              [appearance]="'line'"
+            />
+          </div>
+        </article>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+} } @if (specificCategory && specificCategory!.blogs!.last_page > 1) {
+<div
+  [ngClass]="{
+    isNational: isNational,
+    notNational: !isNational
+  }"
+  class="d-flex justify-content-center my-4"
+>
+  <pagination-controls
+    id="some_id"
+    (pageChange)="pageChanged($event)"
+    [directionLinks]="true"
+    [autoHide]="false"
+    [maxSize]="8"
+    [responsive]="true"
+    previousLabel="السابق"
+    nextLabel="التالي"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="صفحة"
+    screenReaderCurrentLabel="انت الان في الصفحة رقم"
+  >
+  </pagination-controls>
+</div>
+}

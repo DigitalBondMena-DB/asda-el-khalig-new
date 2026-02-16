@@ -1,0 +1,22 @@
+section {
+  background-image: url("/assets/images/about_us/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 250px;
+}
+
+::ng-deep .ql-toolbar {
+  text-align: left !important;
+}
+::ng-deep .ql-editor {
+  text-align: right !important;
+}
+#About_Us {
+  & * {
+    font-size: 20px;
+  }
+}
+
+::ng-deep .jodit-status-bar-link {
+  display: none;
+}

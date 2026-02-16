@@ -1,0 +1,140 @@
+<section id="Home__News">
+  <div class="container">
+    @if (allNews ) {
+    <header class="d-flex justify-content-between align-items-center">
+      @if (isNational) {
+      <h2 style="color: #002225" class="section__title fs-30 mb-0">
+        أخبار اليوم الوطني
+      </h2>
+      } @else {
+      <h2 class="section__title fs-30 mb-0">أخبار يوم التأسيس</h2>
+      }
+    </header>
+    <div class="row my-2 g-4">
+      @for (card of allNews.blogs.data| paginate: { id:'some_id2', itemsPerPage:
+      9, currentPage: currentPage,totalItems: totalItems } | slice:0:8; track
+      $index) {
+      <div [class]="{ 'col-6': isDesktop }" class="col-lg-3 h-350">
+        <a
+          [routerLink]="[
+            card.old_status ? '/archives' : '/article',
+            card.post_id
+          ]"
+          href="#"
+        >
+          <div class="cr">
+            <figure class="Logo_Water_Mark">
+              <img
+                (load)="imageLoaded($event)"
+                class="w-100 object-fit-cover h-250 border-radius-10"
+                [src]="
+                  card?.post_image || './assets/images/not_found_image.jpg'
+                    | imagesSrc
+                "
+                [alt]="card.post_title"
+              />
+              <div
+                class="placeholder opacity-100 bd-placeholder-img card-img-top position-absolute top-0 start-0 w-100 border-radius-10"
+                style="height: 250px; background-color: #868e96"
+              ></div>
+            </figure>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="fs-13 fw-bold mb-0">
+                {{
+                  (card.author_name === "admin"
+                    ? ""
+                    : card.author_name
+                    ? card.author_name
+                    : "أصداء الخليج"
+                  ) | stringSpliter
+                }}
+              </h3>
+              <p class="fs-13 text-founding-light fw-bold mb-0">
+                {{ card.post_date | hijriDate }} هـ
+              </p>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center mb-2 mt-3"
+            >
+              <h4 class="fs-13 fw-bold cr title_section_slider_home_news">
+                {{ card.post_title }}
+              </h4>
+            </div>
+          </div>
+        </a>
+      </div>
+      } @empty { لا يوجد محتوي الان }
+    </div>
+    } @defer { @if (!allNews ) {
+    <div #PlaceHolder class="row my-2 g-4">
+      @for (item of skeltonArray; track $index) {
+      <div class="col-12 col-md-6 col-lg-3 h-350">
+        <div>
+          <figure class="Logo_Water_Mark">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '250px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+
+          <div>
+            <h3 class="fs-13 fw-bold mb-0">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </h3>
+            <p class="text-main fs-13 fw-bold mb-0">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center mb-2 mt-3"
+          ></div>
+        </div>
+      </div>
+      }
+    </div>
+    } }
+  </div>
+</section>
+
+@if (allNews && allNews!.blogs!.last_page > 1) {
+
+<div
+  [ngClass]="{
+    isNational: isNational,
+    notNational: !isNational
+  }"
+  class="d-flex justify-content-center my-4"
+>
+  <pagination-controls
+    id="some_id2"
+    (pageChange)="pageChanged($event)"
+    [directionLinks]="true"
+    [autoHide]="false"
+    [maxSize]="8"
+    [responsive]="true"
+    previousLabel="السابق"
+    nextLabel="التالي"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="صفحة"
+    screenReaderCurrentLabel="انت الان في الصفحة رقم"
+  >
+  </pagination-controls>
+</div>
+
+}

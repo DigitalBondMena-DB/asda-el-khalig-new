@@ -1,0 +1,23 @@
+@defer (on timer(500) ) {
+<p-dialog
+  [modal]="true"
+  [closable]="true"
+  styleClass="custom-dialog"
+  draggable="false"
+  styleClass="bg-transparent"
+  [(visible)]="showTimeDiv"
+  [position]="position"
+  [style]="{ width: 'auto', background: 'transparent' }"
+  #dialog
+  (click)="closeTimer()"
+>
+  <ng-template pTemplate="headless">
+    <!-- Speech Bubble -->
+    <div class="speech-bubble">
+      <p>{{ message }}</p>
+    </div>
+    <img src="./assets/images/ai/ai-02.png" role="presentation" width="500px" />
+  </ng-template>
+</p-dialog>
+
+}

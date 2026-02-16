@@ -1,0 +1,47 @@
+.h-600 {
+  height: 600px !important;
+}
+.left-side {
+  background-color: #d7c1aa !important;
+  border-radius: 10px;
+  background-image: url("/assets/images/founding-day/2.png");
+  background-repeat: no-repeat;
+  background-position: 15px 15px;
+}
+
+.main-image {
+  position: absolute;
+  bottom: 0;
+  left: -80px;
+}
+.main-image02 {
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  width: 250px;
+}
+
+.bg-image {
+  position: absolute;
+  z-index: 0;
+  top: 30%;
+  left: 10%;
+  // transform: ;
+  animation: animate_image 2.5s forwards infinite ease-in-out;
+  transform: rotate(0deg);
+}
+
+@keyframes animate_image {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  95% {
+    transform: rotate(340deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

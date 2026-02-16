@@ -1,0 +1,73 @@
+<p-card header=" أحدث رسائل اتصل بنا">
+  <p-table [value]="latestContact" [rows]="5">
+    <ng-template pTemplate="header">
+      <tr>
+        <th><i class="pi pi-user"></i> الاسم</th>
+        <th><i class="pi pi-map"></i> العنوان</th>
+        <th class="text-center"><i class="pi pi-calendar"></i> التاريخ</th>
+        <th class="text-center"><i class="pi pi-envelope"></i> عرض الرسالة</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-email>
+      <tr>
+        <td class="col-3">
+          <strong>{{ email.name }}</strong>
+        </td>
+        <td class="col-3" pTooltip="{{ email.message }}" tooltipPosition="top">
+          {{ email.message }}
+        </td>
+        <td class="col-3 text-center">{{ email.created_at | hijriDate }}</td>
+        <td class="col-3 text-center">
+          <button
+            (click)="showDetails(email)"
+            class="p-button p-component p-button-text p-button-icon-only email-icon-button"
+            pTooltip="عرض الرسالة"
+            tooltipPosition="top"
+          >
+            <i class="pi pi-envelope" style="font-size: 1.5rem"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">
+          <div
+            class="w-100 h-100 d-flex justify-content-center align-items-center"
+          >
+            لا يوجد بيانات ... <i class="pi pi-filter-slash"></i>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+<!-- Modal for Email Details -->
+<p-dialog
+  [(visible)]="emailDialogVisible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  header="تفاصيل الرسالة"
+  [closable]="true"
+  [responsive]="true"
+  [closeOnEscape]="true"
+>
+  @if (selectedEmail) {
+  <div>
+    <h3>الاسم: {{ selectedEmail.name }}</h3>
+    <h5>البريد الإلكتروني: {{ selectedEmail.email }}</h5>
+    <p><strong>التاريخ:</strong> {{ selectedEmail.created_at | hijriDate }}</p>
+    <p><strong>رقم الهاتف:</strong> {{ selectedEmail.phone }}</p>
+    <p><strong>المحتوى:</strong></p>
+    <p>{{ selectedEmail.message }}</p>
+    <p-footer>
+      <button
+        pButton
+        label="إغلاق"
+        icon="pi pi-times"
+        (click)="emailDialogVisible = false"
+      ></button>
+    </p-footer>
+  </div>
+  }
+</p-dialog>

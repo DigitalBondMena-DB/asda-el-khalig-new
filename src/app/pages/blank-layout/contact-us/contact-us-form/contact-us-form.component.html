@@ -1,0 +1,178 @@
+<div class="p-3">
+  <form [formGroup]="messagesForm" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <!-- input field: userName  -->
+      <div class="col-md-6">
+        <div class="position-relative mb-3">
+          <div class="text-start">
+            @if (messagesForm.get('name')?.getError("required") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >مطلوب*</small
+            >
+            } @else if (messagesForm.get('name')?.getError("minlength") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >اقل عدد احرف 3*</small
+            >
+            } @else if (messagesForm.get('name')?.getError("pattern") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >احرف فقط</small
+            >
+            }
+          </div>
+          <div>
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (messagesForm.get('name')?.getError('required') ||
+                    messagesForm.get('name')?.getError('pattern'))
+              }"
+              type="text"
+              class="form-control h-100 py-3"
+              id="name"
+              placeholder="الاسم"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- input field: userPhone  -->
+      <div class="col-md-6">
+        <div class="position-relative mb-3">
+          <div class="text-start">
+            @if (messagesForm.get('phone')?.getError("required") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >مطلوب*</small
+            >
+            } @else if (messagesForm.get('phone')?.errors && startValidation &&
+            phone.value?.length || 0 > 0) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >رقم هاتف غير صالح*</small
+            >
+            }
+          </div>
+          <ngx-intl-tel-input
+            #phone
+            [cssClass]="
+              startValidation && messagesForm.get('phone')?.errors
+                ? 'form-control h-100 py-3 is-invalid text-end'
+                : 'form-control h-100 py-3 text-end'
+            "
+            [preferredCountries]="[CountryISO.SaudiArabia]"
+            [enableAutoCountrySelect]="false"
+            [enablePlaceholder]="false"
+            customPlaceholder="الهاتف"
+            [searchCountryFlag]="true"
+            [searchCountryField]="[
+              SearchCountryField.Iso2,
+              SearchCountryField.Name
+            ]"
+            dir="ltr"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.SaudiArabia"
+            [maxLength]="15"
+            [phoneValidation]="true"
+            name="phone"
+            formControlName="phone"
+          ></ngx-intl-tel-input>
+          <!-- [dir]="'rtl'" -->
+        </div>
+      </div>
+      <!-- input field: userEmail  -->
+      <div class="col-md-12">
+        <div class="position-relative mb-3">
+          <div class="text-start">
+            @if (messagesForm.get('email')?.getError("required") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >مطلوب*</small
+            >
+            } @else if (messagesForm.get('email')?.getError("pattern") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >ايميل غير صالح*</small
+            >
+            }
+          </div>
+          <div>
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (messagesForm.get('email')?.getError('required') ||
+                    messagesForm.get('email')?.getError('pattern'))
+              }"
+              type="email"
+              class="form-control py-3"
+              id="email"
+              formControlName="email"
+              placeholder="الايميل"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- input field: userMessage  -->
+      <div class="col-md-12">
+        <div class="position-relative mb-3">
+          <div class="text-start">
+            @if (messagesForm.get('message')?.getError("required") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >مطلوب*</small
+            >
+            } @else if (messagesForm.get('message')?.getError("minlength") &&
+            startValidation) {
+            <small
+              class="text-danger fst-italic fw-bold position-absolute bottom-100 start-0"
+              >اقل عدد احرف 10*</small
+            >
+            }
+          </div>
+          <div>
+            <textarea
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (messagesForm.get('message')?.getError('required') ||
+                    messagesForm.get('message')?.getError('pattern'))
+              }"
+              style="height: 150px"
+              class="form-control py-3"
+              placeholder="اكتب رسالتك"
+              id="message"
+              formControlName="message"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- submit button  -->
+      <div class="text-center col-md-12">
+        <button
+          [disabled]="isLoading"
+          class="btn-main btn rounded-3 mx-auto col-6 px-4 title__fonts fw-bold py-3 text-uppercase fs-14"
+        >
+          <span class="position-relative">
+            ارسال الرسالة
+            <i
+              [ngClass]="{ 'd-none': !isLoading }"
+              class="position-absolute top-25 pi pi-spin pi-spinner mx-2"
+              style="font-size: 13px"
+            ></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

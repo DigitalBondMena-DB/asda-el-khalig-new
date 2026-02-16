@@ -1,0 +1,128 @@
+::ng-deep .content img,
+::ng-deep .content iframe,
+content img,
+content iframe {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+*:not(br),
+::ng-deep *:not(br) {
+  line-height: 1.5 !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+::ng-deep .content p,
+::ng-deep .content strong,
+.content strong p,
+h2 {
+  line-height: 2.4 !important;
+  font-size: 20px !important;
+  text-align: justify !important;
+  // word-spacing: 0.2em;
+}
+h1 {
+  font-size: 26px !important;
+}
+input,
+input:focus,
+input:active {
+  border: 1px solid #494848;
+  box-shadow: none;
+  font-size: 16px !important;
+}
+::ng-deep #main_section_bg .content *:not(br),
+::ng-deep #main_section_bg .content p,
+::ng-deep #main_section_bg .content span,
+#main_section_bg .content *:not(br),
+#main_section_bg .content p,
+#main_section_bg .content span {
+  background-color: transparent !important;
+  line-height: 2.4 !important;
+  font-size: 20px !important;
+}
+.commentInput {
+  padding-left: 150px;
+}
+
+/* social media links */
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+}
+.social-icons a.facebook-icon {
+  background-color: #4267b2;
+}
+.social-icons a.twitter-icon {
+  background-color: #1da1f2;
+}
+.social-icons a.whatsapp-icon {
+  background-color: #25d366;
+}
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+share-buttons ::ng-deep button {
+  min-width: auto !important;
+  width: 35px !important;
+  height: 35px;
+  border-radius: 50%;
+}
+
+::ng-deep #Home__Articles {
+  background-color: transparent !important;
+}
+
+.bg_details {
+  position: fixed;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+}
+
+@media screen and (max-width:767px) {
+  ::ng-deep .content p,
+::ng-deep .content strong,
+.content strong p,
+h2 {
+  line-height: 2.4 !important;
+  font-size: 16px !important;
+  text-align: justify !important;
+  // word-spacing: 0.2em;
+}
+h1 {
+  font-size: 16px !important;
+}
+input,
+input:focus,
+input:active {
+  border: 1px solid #494848;
+  box-shadow: none;
+  font-size: 14px !important;
+}
+::ng-deep #main_section_bg .content *:not(br),
+::ng-deep #main_section_bg .content p,
+::ng-deep #main_section_bg .content span,
+#main_section_bg .content *:not(br),
+#main_section_bg .content p,
+#main_section_bg .content span {
+  background-color: transparent !important;
+  line-height: 2.4 !important;
+  font-size: 14px !important;
+}
+}
+.article-image {
+  height: 300px;
+  @media screen and (min-width:992px) {
+    height: 600px;
+  }
+}

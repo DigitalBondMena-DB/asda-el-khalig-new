@@ -1,0 +1,19 @@
+.animate-circle {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    z-index: 10;
+    mix-blend-mode: color-burn;
+    animation: animate_image 2.5s linear infinite;
+}
+@keyframes animate_image {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

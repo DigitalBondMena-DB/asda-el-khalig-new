@@ -1,0 +1,30 @@
+<app-blank-navbar />
+@if (aboutUsContent) {
+<section id="About_Us" class="py-5">
+  <div class="container">
+    <h1
+      class="fs-20 text-main"
+      [innerHTML]="aboutUsContent.about_title | safeHtml"
+    ></h1>
+    <p class="my-4" [innerHTML]="aboutUsContent.about_text | safeHtml"></p>
+    <h3
+      class="fw-bold my-4 text-main"
+      [innerHTML]="aboutUsContent.about_second_title | safeHtml"
+    ></h3>
+    <p
+      class="fs-20"
+      [innerHTML]="aboutUsContent.about_second_text | safeHtml"
+    ></p>
+    <h4
+      class="fw-bold my-4 text-main"
+      [innerHTML]="aboutUsContent.about_third_title | safeHtml"
+    ></h4>
+    <P [innerHTML]="aboutUsContent.about_third_text | safeHtml"></P>
+    <h6
+      class="fw-bold my-4 text-main"
+      [innerHTML]="aboutUsContent.about_fourth_title | safeHtml"
+    ></h6>
+    <p [innerHTML]="aboutUsContent.about_fourth_text | safeHtml"></p>
+  </div>
+</section>
+}

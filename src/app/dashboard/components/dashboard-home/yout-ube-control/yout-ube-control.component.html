@@ -1,0 +1,28 @@
+@if (socialMediaLinks.length > 0) {
+<div class="social-media-control">
+  <h2>إدارة فيديو الرئيسية</h2>
+
+  <div class="social-media-item">
+    <i [class]="'pi ' + socialMediaLinks[6].icon" class="social-icon"></i>
+    <label>{{ socialMediaLinks[6].label }}</label>
+    <input
+      type="text"
+      [(ngModel)]="socialMediaLinks[6].url"
+      placeholder="أدخل الرابط هنا"
+    />
+  </div>
+
+  <p-toast />
+  <button
+    pButton
+    [disabled]="isLoading"
+    (click)="saveChanges()"
+    [icon]="isLoading ? 'pi pi-spin pi-spinner mx-2' : ''"
+    label="حفظ التغييرات"
+  ></button>
+</div>
+} @else {
+<div class="w-100 min-h-50vh d-flex justify-content-center align-items-center">
+  جار تحميل البيانات ... <i class="pi pi-spin pi-spinner"></i>
+</div>
+}

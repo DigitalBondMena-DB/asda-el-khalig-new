@@ -1,0 +1,368 @@
+@if (nationalNews) {
+<section id="Home__Articles" class="bg-white py-5">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <h2 class="section__title fs-30">إبداعات الوطن</h2>
+      <a
+        [routerLink]="['/archives/blogs', '6']"
+        class="btn btn-show-all"
+        href="#"
+        >عرض الكل</a
+      >
+    </header>
+    <!-- content -->
+    @if (isDesktop()) {
+    <div class="row flex-row-reverse g-4">
+      <div class="col-12 col-lg-3">
+        <div class="bg-third border-radius-10 p-2">
+          <app-advertising-area
+            [imageWidth]="'170px'"
+            [positionClasses]="
+              'd-flex flex-column justify-content-center gap-3 h-250 p-3 fs-5 fw-semibold'
+            "
+          />
+
+          <a
+            [routerLink]="[nationalNews.blogs.data[3].old_status?'/archives':'/article', nationalNews.blogs.data[3].post_id]"
+            href="#"
+          >
+            <div class="mt-1">
+              <figure class="Logo_Water_Mark small cr">
+                <img
+                  style="object-position: top"
+                  class="w-100 object-fit-cover h-250 border-radius-10"
+                  [src]="nationalNews.blogs.data[3].post_image"
+                  [alt]="nationalNews.blogs.data[3].post_title"
+                />
+              </figure>
+              <h3
+                class="fs-13 fw-bold mb-1 cr title_section_slider_home_Titles"
+              >
+                {{ nationalNews.blogs.data[3].post_title }}
+              </h3>
+              <div>
+                <p
+                  class="mb-0 fs-13 desc_color title_section_slider_home_para"
+                  [innerHTML]="
+                    nationalNews.blogs.data[3].post_content
+                      | stringSlice
+                      | safeHtml
+                  "
+                ></p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <a
+          [routerLink]="[nationalNews.blogs.data[0].old_status?'/archives':'/article', nationalNews.blogs.data[0].post_id]"
+          href="#"
+        >
+          <div>
+            <figure class="cr Logo_Water_Mark small">
+              <img
+                style="object-position: top; height: 520px"
+                class="w-100 object-fit-cover border-radius-10"
+                [src]="nationalNews.blogs.data[0].post_image"
+                [alt]="nationalNews.blogs.data[0].post_title"
+              />
+            </figure>
+            <h3 class="fs-13 fw-bold mb-1 cr title_section_slider_home_Titles">
+              {{ nationalNews.blogs.data[0].post_title }}
+            </h3>
+            <div>
+              <p
+                class="mb-0 fs-13 desc_color title_section_slider_home_para"
+                [innerHTML]="
+                  nationalNews.blogs.data[0].post_content
+                    | stringSlice
+                    | safeHtml
+                "
+              ></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-lg-3">
+        <a
+          [routerLink]="[nationalNews.blogs.data[1].old_status?'/archives':'/article', nationalNews.blogs.data[1].post_id]"
+          href="#"
+        >
+          <div class="mb-2">
+            <figure class="cr Logo_Water_Mark small">
+              <img
+                style="object-position: top; height: 225px"
+                class="w-100 object-fit-cover border-radius-10"
+                [src]="nationalNews.blogs.data[1].post_image"
+                [alt]="nationalNews.blogs.data[1].post_title"
+              />
+            </figure>
+            <h3 class="fs-13 fw-bold mb-2 cr title_section_slider_home_Titles">
+              {{ nationalNews.blogs.data[1].post_title }}
+            </h3>
+            <div>
+              <p
+                class="mb-0 fs-13 desc_color title_section_slider_home_para"
+                [innerHTML]="
+                  nationalNews.blogs.data[1].post_content
+                    | stringSlice
+                    | safeHtml
+                "
+              ></p>
+            </div>
+          </div>
+        </a>
+        <a
+          [routerLink]="[nationalNews.blogs.data[2].old_status?'/archives':'/article', nationalNews.blogs.data[2].post_id]"
+          href="#"
+        >
+          <div>
+            <figure class="Logo_Water_Mark small cr">
+              <img
+                style="object-position: top; height: 225px"
+                class="w-100 object-fit-cover border-radius-10"
+                [src]="nationalNews.blogs.data[2].post_image"
+                [alt]="nationalNews.blogs.data[2].post_title"
+              />
+            </figure>
+            <h3 class="fs-13 fw-bold mb-2 cr title_section_slider_home_Titles">
+              {{ nationalNews.blogs.data[2].post_title }}
+            </h3>
+            <div>
+              <p
+                class="mb-0 fs-13 desc_color title_section_slider_home_para"
+                [innerHTML]="
+                  nationalNews.blogs.data[2].post_content
+                    | stringSlice
+                    | safeHtml
+                "
+              ></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    } @else {
+    <div class="row flex-row-reverse g-4">
+      <div class="col-12">
+        <div class="bg-third border-radius-10 p-2">
+          <app-advertising-area
+            [imageWidth]="'170px'"
+            [positionClasses]="
+              'd-flex flex-column text-center justify-content-center gap-3 h-250 p-3 fs-5 fw-semibold'
+            "
+          />
+        </div>
+      </div>
+
+      @for (item of nationalNews.blogs.data; track $index) {
+      <div class="col-6">
+        <a [routerLink]="[item.old_status?'/archives':'/article', item.post_id]" href="#">
+          <div>
+            <figure class="cr Logo_Water_Mark small">
+              <img
+                style="object-position: top"
+                class="w-100 object-fit-cover h-250 border-radius-10"
+                [src]="item.post_image"
+                [alt]="item.post_title"
+              />
+            </figure>
+            <h3 class="fs-13 fw-bold mb-1 cr title_section_slider_home_Titles">
+              {{ item.post_title }}
+            </h3>
+            <div>
+              <p
+                class="mb-0 fs-13 desc_color title_section_slider_home_para"
+                [innerHTML]="item.post_content | stringSlice | safeHtml"
+              ></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</section>
+
+} @defer { @if (!nationalNews) {
+<section id="Home__Articles" class="bg-white py-5">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <h2 class="section__title fs-30">إبداعات الوطن</h2>
+    </header>
+    @if (isDesktop()) {
+    <div class="row flex-row-reverse g-4">
+      <div class="col-12 col-lg-3">
+        <div class="bg-third border-radius-10 p-2">
+          <app-advertising-area
+            [imageWidth]="'170px'"
+            [positionClasses]="
+              'd-flex flex-column justify-content-center gap-3 h-250 p-3 fs-5 fw-semibold'
+            "
+          />
+
+          <div class="mt-2">
+            <figure class="Logo_Water_Mark small cr">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '110px',
+                  background: 'lightgray'
+                }"
+              />
+            </figure>
+            <h3 class="fs-13 fw-bold mb-1">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </h3>
+            <div>
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '30px',
+                  background: 'lightgray'
+                }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div>
+          <figure class="cr Logo_Water_Mark small">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '370px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h3>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '30px',
+                background: 'lightgray'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-3">
+        <div>
+          <figure class="cr Logo_Water_Mark small">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '130px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h3>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </div>
+        </div>
+        <div>
+          <figure class="Logo_Water_Mark small cr">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '130px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h3>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="row flex-row-reverse g-4">
+      @for (item of skeleton; track $index) {
+      <div class="col-6">
+        <div>
+          <figure class="cr Logo_Water_Mark small">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '370px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+          <h3 class="fs-13 fw-bold mb-1">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '20px',
+                background: 'lightgray'
+              }"
+            />
+          </h3>
+          <div>
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '30px',
+                background: 'lightgray'
+              }"
+            />
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</section>
+} }

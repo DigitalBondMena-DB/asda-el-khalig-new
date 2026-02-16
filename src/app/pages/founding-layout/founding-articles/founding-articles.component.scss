@@ -1,0 +1,109 @@
+@import "variables";
+.card.notNational {
+  background-color: #e0c5aa !important;
+}
+
+.card.isNational {
+  background-color: #84ac40 !important;
+}
+h3.isNational {
+  color: #0d1213 !important;
+}
+h3.notNational {
+  color: black !important;
+}
+p.isNational ::ng-deep {
+  color: #004317 !important;
+}
+
+span.subtitle.isNational {
+  color: white !important;
+}
+span.subtitle.notNational {
+  color: #111827 !important;
+}
+
+.card {
+  border: none !important;
+  &:hover {
+    border: none !important;
+  }
+}
+.title_section *:empty,
+.title_section *:blank {
+  display: none;
+}
+::ng-deep .text-lighter p,
+::ng-deep .text-lighter *,
+::ng-deep .text-lighter b {
+  font-weight: 400 !important;
+  margin: 0px !important;
+  display: inline !important;
+  padding: 0;
+  padding-left: 1px;
+}
+
+::ng-deep .ngx-pagination a {
+  border-radius: 50% !important;
+  background-color: white !important;
+  color: black;
+  margin-inline: 5px;
+}
+::ng-deep .ngx-pagination .current {
+  border-radius: 50%;
+}
+::ng-deep .ngx-pagination a:hover:not(:first-child, :last-child) {
+  border-radius: 50%;
+}
+::ng-deep .ngx-pagination li:last-child:hover a {
+  border-radius: 100vh !important;
+}
+::ng-deep .ngx-pagination li:first-child:hover a {
+  border-radius: 100vh !important;
+}
+
+::ng-deep .ngx-pagination .disabled {
+  border-radius: 50% !important;
+  margin-inline: 5px;
+}
+
+.notNational ::ng-deep .ngx-pagination .current {
+  background-color: $found-color-secondary !important;
+}
+.notNational ::ng-deep .ngx-pagination a:hover:not(:first-child, :last-child) {
+  background-color: $found-color-secondary !important;
+  color: white !important;
+}
+.notNational ::ng-deep .ngx-pagination li:last-child:hover a {
+  background-color: white !important;
+  color: black;
+}
+.notNational ::ng-deep .ngx-pagination li:first-child:hover a {
+  background-color: white !important;
+  color: black;
+}
+
+/* isNational */
+.isNational ::ng-deep .ngx-pagination .current {
+  background-color: #84ac40 !important;
+  color: white;
+}
+.isNational ::ng-deep .ngx-pagination a:hover:not(:first-child, :last-child) {
+  background-color: black !important;
+  color: white !important;
+}
+.isNational ::ng-deep .ngx-pagination li:last-child:hover a {
+  background-color: #84ac40 !important;
+  color: white;
+}
+.isNational ::ng-deep .ngx-pagination li:first-child:hover a {
+  background-color: #84ac40 !important;
+  color: white;
+}
+
+::ng-deep .ngx-pagination li:last-child a,
+::ng-deep .ngx-pagination li:first-child a,
+::ng-deep .ngx-pagination .disabled,
+::ng-deep .ngx-pagination .pagination-next a {
+  border-radius: 100vh !important;
+}

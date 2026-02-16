@@ -1,0 +1,117 @@
+@import "variables";
+
+/* Handle Sections */
+.text-alt.isNational {
+  color: #ffffff !important;
+}
+.text-alt.notNational {
+  color: #4b5563 !important;
+}
+.hero_height {
+  height: 464px;
+}
+img {
+  object-position: top;
+}
+.card:hover {
+  border: none !important;
+}
+.card {
+  border: none !important;
+  background-color: transparent !important;
+}
+/* Handle owl Carousel */
+::ng-deep .owl-dots {
+  position: absolute;
+  z-index: 99;
+  bottom: 20px;
+  left: 20px;
+  margin: 3px;
+  margin: 0 !important;
+}
+::ng-deep .owl-dot.active span {
+  background-color: $main-color !important;
+}
+::ng-deep .owl-dot {
+  background-color: $third-color;
+  padding: 2px;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  margin: 3px !important;
+}
+::ng-deep .owl-dot span {
+  padding: 0px !important;
+  margin: 0px !important;
+  background-color: $third-color !important;
+}
+::ng-deep .owl-stage {
+  position: relative;
+}
+
+::ng-deep .carousel__content {
+  position: relative;
+}
+::ng-deep .carousel__content::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  height: 100%;
+  width: 5px;
+  background: #257745;
+  border-radius: 5px;
+}
+
+.card {
+  padding: 0px !important;
+}
+.title_section.title_section_light {
+  color: white !important;
+}
+
+.breaking-news-bar {
+  display: flex;
+  align-items: center;
+  background: #314b98;
+  color: white;
+  padding: 10px;
+  z-index: 999999;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  direction: rtl; /* Right to left for Arabic */
+}
+
+.breaking-news-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.breaking-news-content {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 0;
+  animation: scrollNews 25s linear infinite;
+}
+
+.breaking-news-bar:hover .breaking-news-content {
+  animation-play-state: paused;
+}
+
+@keyframes scrollNews {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.main-content.isNational {
+  border: none !important;
+  background-color: #199d9e;
+}

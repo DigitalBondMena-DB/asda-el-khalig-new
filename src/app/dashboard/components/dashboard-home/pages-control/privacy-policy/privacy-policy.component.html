@@ -1,0 +1,67 @@
+<section *ngIf="privacy_policy" id="Privacy_Policy" class="py-5 bg-light">
+  <div class="container shadow-sm rounded p-4 bg-white">
+    <header class="container mb-5 d-flex gap-3 align-items-center">
+      <p class="mb-0">
+        اخر تحديث في
+        <span class="text-main">{{
+          privacy_policy.updated_at | hijriDate
+        }}</span>
+        <i class="pi pi-calendar"></i>
+      </p>
+      <button
+        *ngIf="!isEditing"
+        pButton
+        type="button"
+        label="تعديل"
+        icon="pi pi-pencil"
+        (click)="toggleEditing()"
+      ></button>
+      <button
+        *ngIf="isEditing"
+        pButton
+        type="button"
+        label="حفظ التغييرات"
+        icon="pi pi-save"
+        (click)="saveChanges()"
+      ></button>
+    </header>
+
+    <div class="container shadow-sm rounded p-4 bg-white">
+      <!-- Title -->
+      <div *ngIf="isEditing">
+        <ngx-jodit
+          [(ngModel)]="privacy_policy.privacy_title"
+          [attr.config]="options"
+        ></ngx-jodit>
+      </div>
+      <div *ngIf="!isEditing">
+        <h2
+          class="text-main fw-bold text-center mb-4"
+          [innerHTML]="privacy_policy.privacy_title | safeHtml"
+        ></h2>
+      </div>
+
+      <!-- Privacy Text -->
+      <div *ngIf="isEditing">
+        <ngx-jodit
+          [(ngModel)]="privacy_policy.privacy_text"
+          [attr.config]="options"
+        ></ngx-jodit>
+      </div>
+      <div *ngIf="!isEditing">
+        <p
+          class="fs-18 text-muted mb-4"
+          [innerHTML]="privacy_policy.privacy_text | safeHtml"
+        ></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loading State -->
+<div
+  *ngIf="!privacy_policy"
+  class="w-100 min-h-50vh d-flex justify-content-center align-items-center"
+>
+  جار تحميل البيانات ... <i class="pi pi-spin pi-spinner"></i>
+</div>

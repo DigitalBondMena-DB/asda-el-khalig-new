@@ -1,0 +1,360 @@
+<section id="Home__News">
+  <div class="container mx-auto m-4">
+    <header class="d-flex justify-content-between align-items-center">
+      <h2 class="section__title fs-30 mb-0">{{ newsTitle }}</h2>
+      <nav class="flex-grow-1">
+        <ul
+          class="list-unstyled m-0 p-0 d-flex justify-content-end text-nowrap"
+        >
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="getRandomNews(); toggleClickedBtns($event)"
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors active"
+            >
+              الكل
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('01');
+                toggleClickedBtns($event);
+                currentSlugId = '01'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              أخبار محلية
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('02');
+                toggleClickedBtns($event);
+                currentSlugId = '02'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              أخبار العالم
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('03');
+                toggleClickedBtns($event);
+                currentSlugId = '03'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              الرياضة
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('f');
+                toggleClickedBtns($event);
+                currentSlugId = 'f'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              ثقافة و فن
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('04');
+                toggleClickedBtns($event);
+                currentSlugId = '04'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              الاقتصاد
+            </button>
+          </li>
+          <li class="d-none d-md-block">
+            <button
+              #categoryBtn
+              (click)="
+                getAnotherCategories('05');
+                toggleClickedBtns($event);
+                currentSlugId = '05'
+              "
+              class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+            >
+              التعليم
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="d-block d-md-none col-10">
+        <nav class="">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide col-5 mx-auto position-relative mx-auto"
+          >
+            <div class="carousel-inner overflow-hidden">
+              <div class="carousel-item active">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="getRandomNews(); toggleClickedBtns($event)"
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors active"
+                    >
+                      الكل
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('01');
+                        toggleClickedBtns($event);
+                        currentSlugId = '01'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      أخبار محلية
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('02');
+                        toggleClickedBtns($event);
+                        currentSlugId = '02'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      أخبار العالم
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('03');
+                        toggleClickedBtns($event);
+                        currentSlugId = '03'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      الرياضة
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('f');
+                        toggleClickedBtns($event);
+                        currentSlugId = 'f'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      ثقافة و فن
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('04');
+                        toggleClickedBtns($event);
+                        currentSlugId = '04'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      الاقتصاد
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul
+                  class="list-unstyled m-0 p-0 d-flex text-nowrap justify-content-center"
+                >
+                  <li class="d-block d-md-none">
+                    <button
+                      #categoryBtn
+                      (click)="
+                        getAnotherCategories('05');
+                        toggleClickedBtns($event);
+                        currentSlugId = '05'
+                      "
+                      class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors"
+                    >
+                      التعليم
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev btn-main d-flex pt-0 justify-content-center align-items-center rounded-circle end-100"
+              style="width: 35px"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev"
+            >
+              <i class="fa-solid fa-chevron-left fa-fw"></i>
+            </button>
+            <button
+              class="carousel-control-next btn-main d-flex pt-0 justify-content-center align-items-center rounded-circle start-100"
+              style="width: 35px"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next"
+            >
+              <i class="fa-solid fa-chevron-right fa-fw"></i>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+    @if (allNews.length>0) {
+    <div class="row my-2 g-4">
+      @for (card of allNews | slice:0:isDesktop()?4:10; track $index) {
+      <div class="col-6 col-lg-3">
+        <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
+          <div class="cr">
+            <figure class="Logo_Water_Mark">
+              <img
+                (load)="imageLoaded($event)"
+                class="w-100 object-fit-cover h-250-md border-radius-10"
+                [src]="
+                  card?.post_image || './assets/images/not_found_image.jpg'
+                    | imagesSrc
+                "
+                [alt]="card.post_title"
+              />
+              <div
+                class="placeholder h-250-md opacity-100 bd-placeholder-img card-img-top position-absolute top-0 start-0 w-100 border-radius-10"
+                style="background-color: #868e96"
+              ></div>
+            </figure>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="fs-13 fw-bold mb-0">
+                {{
+                  (card.author_name === "admin"
+                    ? ""
+                    : card.author_name
+                    ? card.author_name
+                    : "أصداء الخليج"
+                  ) | stringSpliter
+                }}
+              </h3>
+              <p class="text-main fs-13 fw-bold mb-0">
+                {{ card.post_date | hijriDate }} هـ
+              </p>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center mb-2 mt-3"
+            >
+              <h4 class="fs-13 fw-bold cr title_section_slider_home_news">
+                {{ card.post_title }}
+              </h4>
+            </div>
+          </div>
+        </a>
+      </div>
+      }
+    </div>
+    } @defer { @if (allNews && allNews.length == 0 || 0) {
+    <div #PlaceHolder class="row my-2 g-4">
+      @for (item of skeleton| slice:0:isDesktop()?4:8; track $index) {
+      <div class="col-6 col-lg-3">
+        <div>
+          <figure class="Logo_Water_Mark">
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '100%',
+                height: '250px',
+                background: 'lightgray'
+              }"
+            />
+          </figure>
+
+          <div>
+            <h3 class="fs-13 fw-bold mb-0">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </h3>
+            <p class="text-main fs-13 fw-bold mb-0">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </p>
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center mb-2 mt-3"
+          >
+            <h4 class="fs-13 fw-bold">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '20px',
+                  background: 'lightgray'
+                }"
+              />
+            </h4>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } }
+  </div>
+</section>

@@ -1,0 +1,133 @@
+@if (statics && lastVisitData) {
+<div class="text-500 mb-4">
+  <img
+    class="ms-1 align-middle"
+    role="presentation"
+    src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png"
+  />
+  آخر زيارة في -
+  <span class="text-main"> {{ lastVisitData.lastVisit }}</span>
+</div>
+<div class="grid">
+  <!-- Total Views -->
+  <div class="col-12 lg:col-6 xl:col-3">
+    <app-a-total-views
+      [totalViews]="statics.counters"
+      [message]="countersIncrementMessage"
+    />
+  </div>
+
+  <!-- Total Comments -->
+  <div class="col-12 lg:col-6 xl:col-3">
+    <app-b-total-comments
+      [totalComments]="statics.comments"
+      [message]="commentsIncrementMessage"
+    />
+  </div>
+
+  <!-- Total Articles -->
+  <div class="col-12 lg:col-6 xl:col-3">
+    <app-c-total-articles
+      [totalArticles]="statics.totalblogs"
+      [message]="blogsIncrementMessage"
+    />
+  </div>
+
+  <!-- Monthly Views -->
+  <div class="col-12 lg:col-6 xl:col-3">
+    <app-d-total-monthly-views
+      [lastWeekCounters]="statics.lastWeekCounters"
+      [lastTwoWeeksCounters]="statics.lastTwoWeeksCounters"
+    />
+  </div>
+</div>
+
+<!-- app.component.html -->
+<div class="grid">
+  <!-- Most Viewed Articles Table -->
+  <div class="col-8">
+    <app-table-b-most-views-blogs [mostViewedBlogs]="statics.mostViewedBlogs" />
+  </div>
+  <!-- Most Viewed Articles Chart -->
+  <div class="col-4">
+    <app-table-a-most-views-blog-chart
+      [mostViewedBlogs]="statics.mostViewedBlogs"
+    />
+  </div>
+
+  <!-- Most Viewed Blog Categories Table -->
+  <div class="col-12 md:col-6 lg:col-6">
+    <app-table-c-most-views-categories
+      [mostViewedCategoriesBlog]="statics.mostViewedCategoriesBlog"
+    />
+  </div>
+
+  <!-- Recent Articles Table -->
+  <div class="col-12 md:col-6 lg:col-6">
+    <app-table-a-recent-articles [latestBlogs]="statics.latestBlogs" />
+  </div>
+
+  <!-- Recent Comments Table -->
+  <div class="col-12 md:col-6 lg:col-6">
+    <app-table-d-most-commented
+      [mostCommentedBlogs]="statics.mostCommentedBlogs"
+    />
+  </div>
+
+  <!-- Recent Contact Us Emails Table -->
+  <div class="col-12 md:col-6 lg:col-6">
+    <app-table-e-recent-messages [latestContact]="statics.latestContact" />
+  </div>
+</div>
+
+} @else {
+<div class="w-100 min-h-50vh d-flex justify-content-center align-items-center">
+  جار تحميل البيانات ... <i class="pi pi-spin pi-spinner"></i>
+</div>
+}
+
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.75)"
+  size="default"
+  color="var(--secondary-color-green)"
+  type="ball-beat"
+  [showSpinner]="true"
+  [disableAnimation]="true"
+  [fullScreen]="true"
+  [scrollTop]="true"
+>
+  <span class="d-block d-block mx-auto text-center translate-middle-y"> </span
+></ngx-spinner>
+
+<!-- Time display div -->
+<!-- @if (showTimeDiv) {
+<div class="time-display">
+  <span>{{ currentTime }}</span>
+</div>
+} -->
+
+<!-- Confirmation Dialog for Approve -->
+@if (previewDialog) {
+<ng-container>
+  <p-dialog
+    [draggable]="false"
+    [(visible)]="previewDialog"
+    [modal]="true"
+    [style]="{ maxwidth: '90vw' }"
+  >
+    <app-preview-section-comments [currentId]="currentBlog" />
+    <div></div>
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        pRipple
+        label="إغلاق"
+        icon="pi pi-check"
+        class="p-button-text"
+        (click)="previewDialog = false"
+      ></button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+}
+<app-alert-message></app-alert-message>

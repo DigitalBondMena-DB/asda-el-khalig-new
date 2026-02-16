@@ -1,0 +1,40 @@
+@import "variables";
+
+.container {
+  max-width: 1200px;
+}
+
+.p-person-card {
+  padding: 1.5rem;
+  // border-radius: 12px;
+  // background-color: #f9f9f9;
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  // text-align: center;
+  // transition: all 0.3s ease;
+}
+
+
+.p-person-details {
+  margin-top: 1rem;
+}
+
+.p-person-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.p-person-position {
+  font-size: 1rem;
+  color: #666;
+}
+
+.p-person-department {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* RTL adjustments */
+:host {
+  direction: rtl;
+  text-align: center;
+}

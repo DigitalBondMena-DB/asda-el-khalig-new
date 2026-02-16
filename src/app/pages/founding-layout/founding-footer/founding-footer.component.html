@@ -1,0 +1,344 @@
+<div
+  [ngClass]="{ isNational: isNational, notNational: !isNational }"
+  class="footer"
+  [ngClass]="{
+    isNational: isNational,
+    notNational: !isNational
+  }"
+>
+  <div class="container">
+    <div class="row g-4 g-lg-3">
+      <div class="col-8 col-xl-4">
+        <div>
+          <div class="mb-3">
+            <img
+              width="300px"
+              [src]="
+                isNational
+                  ? './assets/images/national-day/Asdaa-white.png'
+                  : './assets/images/new_logos/blue_text.png'
+              "
+              alt="اصداء الخليج"
+            />
+          </div>
+          <p class="arabic_coryRight mt-2 col-lg-10 fw-bold">
+            جميع التعليقات والردود المطروحة لا تُعبر عن رأي الموقع ولكن تُعبر عن
+            رأي كاتبها، والموقع لا يتحمل أي مسؤولية تجاه تلك التعليقات والردود.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-4">
+        <div>
+          <h2
+            [ngClass]="{
+              isNational: isNational,
+              notNational: !isNational
+            }"
+            class="fs-6 fw-bold mb-3"
+          >
+            مشاهدة جميع الاقسام
+          </h2>
+          <ul class="list-unstyled p-0 m-0 row">
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '01']"
+                >أخبار محلية</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '02']"
+                >أخبار العالم</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '03']"
+                >الرياضة</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', 'f']"
+                >ثقافة و فن</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '04']"
+                >الاقتصاد</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '05']"
+                >التعليم</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/article', '08']"
+                >المقالات</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', 'i']"
+                >تحقيقات</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '09']"
+                >أخبار المجتمع</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '07']"
+                >دراسات وأبحاث</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '11']"
+                >كاريكاتير</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', 'g']"
+                >الصحة والحياه</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '06']"
+                >علوم وتكنولوجيا</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', 'h']"
+                >وقائع أمنية</a
+              >
+            </li>
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                [routerLink]="['/archives/blogs', '10']"
+                >زاوية رئيس التحرير</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-6 col-xl-2">
+        <div>
+          <h2 class="fs-6 fw-bold mb-3">عام</h2>
+          <ul class="list-unstyled p-0 m-0">
+            <li class="cr col-4 pe-0">
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="text-decoration-none footer-links-color fw-bold"
+                routerLink="/"
+                >الرئيسية</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="footer-links-color fw-bold text-decoration-none"
+                routerLink="about-us"
+                >من نحن</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="footer-links-color fw-bold text-decoration-none"
+                routerLink="/contact-us"
+                >تواصل معنا</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="footer-links-color fw-bold text-decoration-none"
+                routerLink="/administrative-structure"
+                >هيكل إداري</a
+              >
+            </li>
+            <li>
+              <a
+                [ngClass]="{
+                  isNational: isNational,
+                  notNational: !isNational
+                }"
+                class="footer-links-color fw-bold text-decoration-none"
+                routerLink="/privacy-policy"
+                >سياسة الخصوصية</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-6 col-xl-2">
+        <div
+          class="d-flex flex-column justify-content-end gap-3 flex-wrap social__icons"
+        >
+          <div class="d-flex justify-content-end flex-column">
+            <img
+              class="download_app_images"
+              [src]="
+                !isNational
+                  ? './assets/images/footer_images/google.png'
+                  : './assets/images/national-day/Google-play.png'
+              "
+              alt="تحميل من google play"
+            />
+            <img
+              class="download_app_images"
+              [src]="
+                !isNational
+                  ? './assets/images/footer_images/app_store.png'
+                  : './assets/images/national-day/play-store.png'
+              "
+              alt="تحميل من app store"
+            />
+          </div>
+          <ul
+            class="list-unstyled p-0 m-0 d-flex flex-row-reverse justify-content-end gap-1"
+          >
+            @for (link of socialLinks; track $index) { @if(link.icon) {
+            <li>
+              <a
+                [href]="link.url"
+                target="_blank"
+                [attr.aria-label]="'find us on ' + link.label"
+              >
+                <img [src]="link.icon" [alt]="link.alt" />
+              </a>
+            </li>
+            } }
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 my-5">
+        <div class="h-100 d-flex justify-content-center align-items-center">
+          <p class="ltr">
+            <a
+              href="https://digitalbondmena.com/en"
+              target="_blank"
+              title="Visit Digital Bond MENA website"
+            >
+              <img
+                class="align-middle"
+                [src]="
+                  isNational
+                    ? './assets/images/national-day/DB-white.png'
+                    : './assets/images/digital_bond.png'
+                "
+                width="35px"
+                alt="Digital Bond MENA Logo"
+              />
+            </a>
+
+            <span class="fw-bold align-middle mx-2">DIGITAL BOND</span>
+            <span class="align-middle">جميع الحقوق محفوظة &commat;2025</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

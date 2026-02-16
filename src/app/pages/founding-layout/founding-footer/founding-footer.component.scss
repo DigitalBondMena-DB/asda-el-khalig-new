@@ -1,0 +1,49 @@
+.footer.isNational {
+  background-color: #002225;
+  background-image: url("/assets/images/national-day/footer-pattern.png");
+  background-position: bottom;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  color: #ffffff !important;
+}
+.footer.notNational {
+  background-color: #d7c1aa;
+  color: #4b5563 !important;
+  background-image: url("/assets/images/founding-day/footer-bg.png");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: difference;
+}
+.footer-links-color.isNational {
+  color: #ffffff !important;
+}
+h2.isNational {
+  color: #ffffff !important;
+}
+h2.notNational {
+  color: #4b5563 !important;
+}
+.footer {
+  position: relative;
+  padding-block: 45px;
+  .social_images {
+    text-align: center;
+    width: 18px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  .arabic_coryRight {
+    margin-bottom: 80px;
+  }
+  .download_app_images {
+    width: 181px;
+    height: 53px;
+  }
+}
+.social__icons {
+  a img {
+    width: 24px;
+    height: 24px;
+  }
+}

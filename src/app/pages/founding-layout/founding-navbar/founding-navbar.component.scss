@@ -1,0 +1,147 @@
+@import "variables";
+.isNational {
+  background-color: #002225;
+}
+.navbar.notNational {
+  background-color: $found-color-secondary;
+}
+.bg-main-founding.notNational {
+  background-color: $found-color-secondary;
+}
+.bg-main-founding.isNational {
+  background-color: #002225;
+}
+.navbar__banner {
+  img {
+    // box model
+    width: 77px;
+    // height: 35px;
+  }
+  .Banner_logo:first-child {
+    width: 56px;
+    height: 56px;
+  }
+  .Banner_logo:nth-child(2) {
+    width: 24px;
+    height: 21px;
+  }
+}
+.social__icons {
+  a img {
+    width: 40px;
+    height: 35px;
+  }
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+/* Search Input */
+.search_container {
+  position: relative;
+  max-width: 300px;
+}
+.search_icon {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  width: 35px;
+}
+#Search_Input {
+  width: 100%;
+  border: none;
+  padding: 8px 20px 8px 50px;
+  transition: 0.5s all;
+  &::placeholder {
+    color: white;
+  }
+  caret-color: white;
+}
+#Search_Input.notNational {
+  background-color: $found-color-secondary;
+}
+#Search_Input.isNational {
+  background-color: #002225;
+}
+#Search_Input:focus,
+#Search_Input:hover {
+  background-color: white;
+  & + button .search-dark {
+    display: inline-block !important;
+  }
+  & + button .search-light {
+    display: none !important;
+  }
+}
+
+.nav-link {
+  text-wrap: nowrap;
+}
+
+h2.text-center {
+  text-align: center;
+}
+
+.Image_banner_Logos {
+  width: 130px;
+  height: 70px;
+}
+/* Offcanvas customizations */
+.offcanvas {
+  width: 300px; /* Prevent excessive width on mobile */
+}
+
+/* Ensure the dropdown does not overflow */
+.dropdown-menu {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Reduce padding for small screens */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: 8px 12px;
+  }
+}
+
+.links-container {
+  overflow-x: auto;
+}
+@media (min-width: 768px) {
+  .links-container {
+    overflow-x: visible;
+  }
+}
+
+/* Offcanvas customizations */
+.offcanvas {
+  width: 300px; /* Prevent excessive width on mobile */
+}
+
+/* Ensure the dropdown does not overflow */
+.dropdown-menu {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Reduce padding for small screens */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: 8px 12px;
+  }
+}
+
+.author_name {
+  font-size: 10px;
+}
+.logo_width {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .logo_width {
+    max-width: 300px;
+  }
+}

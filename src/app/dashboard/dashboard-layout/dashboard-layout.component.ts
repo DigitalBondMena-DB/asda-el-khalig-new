@@ -1,0 +1,18 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-dashboard-layout',
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: './dashboard-layout.component.html',
+  styleUrl: './dashboard-layout.component.scss',
+})
+export class DashboardLayoutComponent {
+  isBrowser: boolean = false;
+  constructor() {
+    if (typeof window != 'undefined') {
+      this.isBrowser = true;
+    }
+  }
+}

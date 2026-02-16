@@ -1,0 +1,52 @@
+.layout-main-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  justify-content: space-between;
+  padding: 6rem 2rem 0.5rem 1rem;
+  transition: margin-right $transitionDuration;
+}
+
+.layout-main {
+  flex: 1 1 auto;
+  height: calc(100vh - 10.5rem);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.layout-main::-webkit-scrollbar-thumb,
+.layout-main::-webkit-scrollbar-thumb {
+  background-color: black;
+  box-shadow: 0px 0px 10px 0px #eeeeee8c inset;
+  border-radius: 100vh;
+  border-radius: 10px;
+}
+
+.layout-main::-webkit-scrollbar,
+.layout-main::-webkit-scrollbar {
+  width: 8px;
+  background-color: #eeeeee8c;
+  border-left: 2px solid #eee;
+  box-shadow: 0px 0px 21px 0px #0003 inset;
+  border-radius: 10px;
+}
+
+.p-datatable-wrapper::-webkit-scrollbar-thumb,
+.p-datatable-wrapper::-webkit-scrollbar-thumb {
+  background-color: black;
+  box-shadow: 0px 0px 10px 0px #eeeeee8c inset;
+  border-radius: 100vh;
+  border-radius: 10px;
+}
+
+.p-datatable-wrapper::-webkit-scrollbar,
+.p-datatable-wrapper::-webkit-scrollbar {
+  width: 8px;
+  background-color: #eeeeee8c;
+  border-left: 2px solid #eee;
+  box-shadow: 0px 0px 21px 0px #0003 inset;
+  border-radius: 10px;
+}
+.p-datatable > .p-datatable-wrapper {
+  max-height: 60vh;
+}

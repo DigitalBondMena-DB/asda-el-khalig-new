@@ -1,0 +1,41 @@
+<div class="founding-layout">
+  <app-founding-navbar [isNational]="true"></app-founding-navbar>
+  <app-founding-hero [isNational]="true"></app-founding-hero>
+
+  <div class="position-relative z-1">
+    <div class="position-relative z-2 first-bg">
+      <app-founding-about [isNational]="true"></app-founding-about>
+    </div>
+    <div class="position-relative z-2">
+      <app-founding-banner [isNational]="true"></app-founding-banner>
+    </div>
+
+    <img
+      class="bg-image"
+      src="./assets/images/national-day/left-pattern.png"
+      alt="يوم الوطن"
+    />
+  </div>
+
+  <div class="position-relative overflow-hidden">
+    <app-founding-news
+      [isNational]="true"
+      [isDesktop]="isDesktop"
+    ></app-founding-news>
+
+    <div class="position-relative">
+      <app-founding-articles [isNational]="true"></app-founding-articles>
+      <app-founding-investigations
+        [isNational]="true"
+        [isDesktop]="isDesktop"
+      ></app-founding-investigations>
+      <app-founding-footer [isNational]="true"></app-founding-footer>
+    </div>
+
+    <img
+      class="bg-image-right"
+      src="./assets/images/national-day/right-pattern.png"
+      alt="يوم الوطن"
+    />
+  </div>
+</div>
