@@ -4,13 +4,15 @@
   bottom: 20px;
   right: 20px;
   width: 100px;
+  z-index: 123;
   height: 100px;
   border-radius: 50%;
-  background-color: #b6824c;
+  background-color: #DBC1A6;
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    mix-blend-mode: color-burn;
   }
 }
 .loader {

@@ -1,3 +1,4 @@
+import { isFoundingDay } from './../../constants/WEB_SITE_BASE_UTL';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Contact } from '../../interfaces/ISocialMedia';
@@ -13,7 +14,7 @@ import { StaticCategoriesService } from '../../services/content/static-categorie
 })
 export class FooterComponent {
   socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];
-
+  isFoundingDay = isFoundingDay
   constructor(
     private _StaticCategoriesService: StaticCategoriesService,
     private _SocialMediaService: SocialMediaService

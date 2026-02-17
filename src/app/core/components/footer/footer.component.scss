@@ -1,4 +1,10 @@
 .footer {
+  &.bg-footer {
+    background-image: url("/assets/images/founding-day/footer-bg.png");
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: difference;
+  }
   position: relative;
   padding-block: 45px;
   .social_images {
