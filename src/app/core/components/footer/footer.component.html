@@ -178,31 +178,47 @@
           class="d-flex flex-column justify-content-end gap-3 flex-wrap social__icons"
         >
           <div class="d-flex justify-content-end flex-column">
-            <img
-              class="download_app_images"
-              src="./assets/images/footer_images/google.png"
-              alt="تحميل من google play"
-            />
-            <img
-              class="download_app_images"
-              src="./assets/images/footer_images/app_store.png"
-              alt="تحميل من app store"
-            />
+            <a
+              href="https://play.google.com/store/apps/details?id=com.albadrsystems.asdaaalkhaleej&hl=en"
+              target="_blank"
+              class="d-block"
+            >
+              <img
+                class="download_app_images"
+                src="./assets/images/footer_images/google.png"
+                alt="تحميل من google play"
+                style="width: 181px; height: 53px"
+              />
+            </a>
+            <a
+              href="https://apps.apple.com/my/app/asda-al-khaleej-%D8%A3%D8%B5%D8%AF%D8%A7%D8%A1-%D8%A7%D9%84%D8%AE%D9%84%D9%8A%D8%AC/id1494863139?l=ms&platform=watch"
+              target="_blank"
+              class="d-block"
+            >
+              <img
+                class="download_app_images"
+                src="./assets/images/footer_images/app_store.png"
+                alt="تحميل من app store"
+                style="width: 181px; height: 53px"
+              />
+            </a>
           </div>
           <ul
             class="list-unstyled p-0 m-0 d-flex flex-row-reverse justify-content-end gap-1"
           >
-            @for (link of socialLinks; track $index) { @if(link.icon) {
-            <li>
-              <a
-                [href]="link.url"
-                target="_blank"
-                [attr.aria-label]="'find us on ' + link.label"
-              >
-                <img [src]="link.icon" [alt]="link.alt" />
-              </a>
-            </li>
-            } }
+            @for (link of socialLinks; track $index) {
+              @if (link.icon) {
+                <li>
+                  <a
+                    [href]="link.url"
+                    target="_blank"
+                    [attr.aria-label]="'find us on ' + link.label"
+                  >
+                    <img [src]="link.icon" [alt]="link.alt" />
+                  </a>
+                </li>
+              }
+            }
           </ul>
         </div>
       </div>

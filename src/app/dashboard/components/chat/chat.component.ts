@@ -38,7 +38,7 @@ export class ChatComponent {
 
   constructor() {
     this._GoogleGenerativeAI = new GoogleGenerativeAI(
-      'AIzaSyDfmhWCPKoMkSNyW95ax9vw69RbUivhh18'
+      'AIzaSyDHYVBF8rWpLf6p0jk0ueER8iHm4ILinQM',
     );
   }
 
@@ -78,7 +78,7 @@ export class ChatComponent {
   async generateText(prompt: string): Promise<string> {
     try {
       const model = this._GoogleGenerativeAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.5-flash',
         generationConfig: {
           temperature: 2,
         },

@@ -15,14 +15,9 @@
     />
   </button>
   <!-- Chatbox Button (fixed to the bottom right) -->
-  <!-- <button
-    (click)="showTime()"
-    pButton
-    class="chat-toggle-btn copy"
-    tooltipPosition="top"
-  >
+  <button pButton class="chat-toggle-btn copy" tooltipPosition="top">
     <i class="pi pi-copy"></i>
-  </button> -->
+  </button>
   <!-- Chatbox Container (fixed to the bottom right) -->
   <p-panel
     *ngIf="chatVisible"
@@ -53,7 +48,7 @@
           *ngFor="let message of messages"
           [ngClass]="{
             'user-message': message.isUser,
-            'bot-message': !message.isUser
+            'bot-message': !message.isUser,
           }"
         >
           {{ message.text }}
