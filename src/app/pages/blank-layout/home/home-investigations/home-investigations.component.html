@@ -1,4 +1,4 @@
-@if (investigations) {
+@if (investigations && investigations.blogs && investigations.blogs.data) {
 <section id="Home__Investigations__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -172,7 +172,7 @@
     }
   </div>
 </section>
-} @defer { @if (!investigations) {
+} @else {
 <section id="Home__Investigations__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -321,4 +321,4 @@
     }
   </div>
 </section>
-} }
+}

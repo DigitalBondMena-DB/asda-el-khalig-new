@@ -3,6 +3,8 @@
 </h1>
 
 <header>
+  <img src="/assets/images/pages/home/1.png" loading="lazy" decoding="async" alt="" role="presentation"
+    class="header-bg">
   <app-blank-navbar />
   <div class="large">
     <app-hero />
@@ -14,6 +16,8 @@
 }
 <app-home-banner />
 <div class="main-bg pb-5">
+  <img src="/assets/images/pages/home/2.png" loading="lazy" decoding="async" alt="" role="presentation"
+    class="main-bg-img">
   <app-home-advertising-area />
   @if (isDesktop) {
   <app-home-news [isDesktop]="isDesktop" />
@@ -38,36 +42,26 @@
   <div class="container">
     <div class="row g-3 flex-column flex-xl-row-reverse">
       <div class="col-12">
-        <div
-          rol="button"
-          class="position-relative bg-main d-flex flex-wrap flex-column-reverse md-flex-row md-flex-nowrap w-100 md-h-392px md-flex-row rounded shadow-md md-justify-end"
-        >
+        <div rol="button"
+          class="position-relative bg-main d-flex flex-wrap flex-column-reverse md-flex-row md-flex-nowrap w-100 md-h-392px md-flex-row rounded shadow-md md-justify-end">
           <div
-            class="d-flex flex-column justify-content-between p-4 w-100 md-w-60 position-relative md-absolute top-0 start-0 end-0 bottom-0"
-          >
+            class="d-flex flex-column justify-content-between p-4 w-100 md-w-60 position-relative md-absolute top-0 start-0 end-0 bottom-0">
             <div class="text-white titles text-end flex-1">
-              <h2 class="mb-2 text-white">الزاوية الإسبوعية خود</h2>
-              <h3 class="mb-2 text-white">للكاتبة</h3>
-              <h4 class="mb-2 text-white">منال الحصيني</h4>
+              <h2 class="mb-2">الزاوية الإسبوعية خود</h2>
+              <h3 class="mb-2">للكاتبة</h3>
+              <h4 class="mb-2">منال الحصيني</h4>
             </div>
 
-            <a
-              class="text-decoration-none"
-              [routerLink]="['/archives/blogs', 'writer-manal-corner']"
-              href="#"
-              class="btn bg-white text-primary px-3 text-center text-black my-2 mt-3"
-            >
+            <a class="text-decoration-none" [routerLink]="['/archives/blogs', 'writer-manal-corner']" href="#"
+              class="btn bg-white text-primary px-3 text-center text-black my-2 mt-3">
               <span class="fw-semibold" style="font-size: 16px">
                 تصفح الان
               </span>
             </a>
 
-            <a
-              class="text-decoration-none"
-              href="https://x.com/manalalhusayni"
+            <a class="text-decoration-none" href="https://x.com/manalalhusayni"
               class="btn alt-color px-3 text-center my-2 text-black d-flex align-items-center gap-2 justify-content-center"
-              target="_blank"
-            >
+              target="_blank">
               <i class="fa-brands fa-x-twitter"></i>
 
               <span class="fw-semibold" style="font-size: 16px">
@@ -76,73 +70,21 @@
             </a>
           </div>
 
-          <div
-            class="md-w-40 d-flex justify-content-center align-items-center md-items-center"
-          >
+          <div class="md-w-40 d-flex justify-content-center align-items-center md-items-center">
             <figure class="w-75 m-0 mx-auto logo-image pt-2 md-pt-0">
-              <img
-                src="./assets/images/pages/home/news/LogoAsdaa-min.png"
-                class="img-fluid w-75"
-                alt="Offer Image"
-              />
+              <img src="./assets/images/pages/home/news/LogoAsdaa-min.png" class="img-fluid w-75" alt="Offer Image"
+                loading="lazy" decoding="async" />
             </figure>
           </div>
         </div>
       </div>
-      <!-- <div class="col-xl-6">
-        <div
-          rol="button"
-          class="position-relative bg-third d-flex flex-wrap flex-column-reverse md-flex-row md-flex-nowrap w-100 md-h-392px md-flex-row rounded shadow-md md-justify-end"
-        >
-          <div
-            class="d-flex flex-column justify-content-between p-4 w-100 md-w-60 position-relative md-absolute top-0 start-0 end-0 bottom-0"
-          >
-            <div class="text-black titles text-end flex-1">
-              <h2 class="mb-2">أفكار معاصرة</h2>
-              <h3 class="mb-2">بقلم د. مجدي الداغر</h3>
-              <h4 class="mb-2">صحفي وأكاديمي مصري</h4>
-            </div>
-
-            <a
-              class="text-decoration-none"
-              [routerLink]="['/archives/blogs', 'magdy-mohammed-al-dagher']"
-              class="btn btn-primary px-3 text-center my-2 mt-3"
-            >
-              <span class="fw-semibold" style="font-size: 16px">
-                تصفح الان
-              </span>
-            </a>
-
-            <a
-              class="text-decoration-none"
-              href="https://www.facebook.com/dr.magdy.eldagher"
-              target="_blank"
-              class="btn main-color px-3 text-center my-2 text-white d-flex align-items-center gap-2 justify-content-center"
-            >
-              <i class="fa-brands fa-facebook"></i>
-
-              <span class="fw-semibold" style="font-size: 16px">
-                حساب الكاتب على فيسبوك
-              </span>
-            </a>
-          </div>
-
-          <div class="md-w-40 d-flex align-items-end justify-content-center">
-            <figure class="w-100 logo-image m-0">
-              <img
-                src="./assets/images/pages/home/news/sec-1.png"
-                class="img-fluid w-100 h-100"
-                alt="Offer Image"
-              />
-            </figure>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>
 
 <div class="third-bg">
+  <img src="/assets/images/pages/home/4.png" loading="lazy" decoding="async" alt="" role="presentation"
+    class="third-bg-img">
   <app-home-investigations [isDesktop]="isDesktop" />
   @if (!isDesktop) {
   <app-home-articles />

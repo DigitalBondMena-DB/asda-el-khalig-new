@@ -31,7 +31,7 @@ export class CategoriesComponent {
       this.isDesktop = window.innerWidth > 992;
     });
   }
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize() {
     this.isDesktop = window.innerWidth > 992;
     console.log(this.isDesktop);

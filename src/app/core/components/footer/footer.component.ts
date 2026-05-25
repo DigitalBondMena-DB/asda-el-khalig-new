@@ -1,5 +1,6 @@
 import { isFoundingDay } from './../../constants/WEB_SITE_BASE_UTL';
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Contact } from '../../interfaces/ISocialMedia';
 import { SocialMediaService } from '../../services/content/social-media.service';
@@ -17,13 +18,17 @@ export class FooterComponent {
   isFoundingDay = isFoundingDay
   constructor(
     private _StaticCategoriesService: StaticCategoriesService,
-    private _SocialMediaService: SocialMediaService
+    private _SocialMediaService: SocialMediaService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   ngOnInit(): void {
     this.getSocialMediaLinks();
-    this._StaticCategoriesService.increaseView().subscribe({
-      next: (response) => {},
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this._StaticCategoriesService.increaseView().subscribe({
+        next: (response) => {},
+        error: (err) => console.warn('Failed to record visit on server.', err.message),
+      });
+    }
   }
 
   getSocialMediaLinks(): void {

@@ -38,7 +38,7 @@ export class ChatComponent {
 
   constructor() {
     this._GoogleGenerativeAI = new GoogleGenerativeAI(
-      'AIzaSyDHYVBF8rWpLf6p0jk0ueER8iHm4ILinQM',
+      'AIzaSyChmMfKqqieY1eaIGnmsO5RnnwPCmWJSwA',
     );
   }
 

@@ -4,57 +4,33 @@
       <div class="col-12 col-lg-8 order-1 order-lg-1">
         <div>
           <div class="hero_height border-radius-10 overflow-hidden">
-            @defer (when sliderData){
-            <owl-carousel-o
-              [options]="customOptions"
-              (dragging)="onDragStart()"
-              (translated)="onDragEnd()"
-            >
-              @for (slide of sliderData.blogs; track $index) {
+            <owl-carousel-o [options]="customOptions" (dragging)="onDragStart()" (translated)="onDragEnd()">
+              @for (slide of (sliderData && sliderData.blogs) || []; track $index) {
               <ng-template carouselSlide [id]="slide.post_id + ''">
-                <a
-                  [routerLink]="
+                <a [routerLink]="
                     shouldNavigate() ? [slide.old_status?'/archives':'/article', slide.post_id] : null
-                  "
-                  [class.disabled]="!shouldNavigate()"
-                  href="#"
-                >
+                  " [class.disabled]="!shouldNavigate()" href="#">
                   <figure class="my-0 h-100 Logo_Water_Mark card cr">
-                    <img
-                      #image
-                      (load)="imageLoaded(image)"
-                      style="object-position: top"
-                      class="w-100 object-fit-cover hero_height"
-                      [src]="slide.featured_image"
-                      [alt]="slide.post_title"
-                    />
-                    <span
-                      class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"
-                    ></span>
+                    <img #image (load)="imageLoaded(image)" style="object-position: top"
+                      class="w-100 object-fit-cover hero_height" [ngSrc]="slide.featured_image"
+                      [priority]="$index === 0" [attr.decoding]="$index === 0 ? 'sync' : 'async'" width="860" height="460"
+                      [alt]="slide.post_title" />
+                    <span class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"></span>
                     <figcaption class="card-img-overlay d-flex align-items-end">
                       <div
-                        class="carousel__content bg-black py-3 bg-opacity-50 px-3 border-radius-10 col-9 col-md-10 mb-4 px-3 text-white"
-                      >
+                        class="carousel__content bg-black py-3 bg-opacity-50 px-3 border-radius-10 col-9 col-md-10 mb-4 px-3 text-white">
                         <p class="text-light title_section_slider_header">
                           {{ slide.post_title }}
                         </p>
-                        <div
-                          #content
-                          [innerHTML]="
+                        <div #content [innerHTML]="
                             slide.post_content | removeInlineStyles | safeHtml
-                          "
-                          class="d-none d-md-block title_section_slider font-light content_container"
-                        ></div>
+                          " class="d-none d-md-block title_section_slider font-light content_container"></div>
                         <div class="text-start">
-                          <a
-                            [routerLink]="
+                          <a [routerLink]="
                               shouldNavigate()
                                 ? [slide.old_status?'/archives':'/article', slide.post_id]
                                 : null
-                            "
-                            class="btn-show-all btn text-light"
-                            href="#"
-                          >
+                            " class="btn-show-all btn text-light" href="#">
                             المزيد
                           </a>
                         </div>
@@ -66,21 +42,10 @@
               }
             </owl-carousel-o>
 
-            } @placeholder {
-            <ngx-skeleton-loader
-              [theme]="{
-                width: '100%',
-                height: '464px',
-                background: 'lightgray'
-              }"
-            />
-            }
           </div>
         </div>
       </div>
-      <div
-        class="d-none d-md-block col-12 col-lg-4 order-0 order-lg-1 position-relative"
-      >
+      <div class="d-none d-md-block col-12 col-lg-4 order-0 order-lg-1 position-relative">
         <div>
           <app-home-master></app-home-master>
         </div>
@@ -97,10 +62,7 @@
     <div class="breaking-news-content">
       @for (news of allBreakingNews.blogs; track $index) {
       <span>
-        <a
-          [routerLink]="['/archives', news.ar_slug]"
-          class="text-white text-decoration-none"
-        >
+        <a [routerLink]="['/archives', news.ar_slug]" class="text-white text-decoration-none">
           {{ news.post_title }} &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;
         </a>
       </span>

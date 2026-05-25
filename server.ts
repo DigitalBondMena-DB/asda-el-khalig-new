@@ -1,6 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
 import express from 'express';
+import compression from 'compression';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
@@ -25,6 +26,7 @@ const escapeHtml = (unsafe: string) =>
 // Express app setup
 export function app(): express.Express {
   const server = express();
+  server.use(compression());
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
@@ -35,7 +37,7 @@ export function app(): express.Express {
   server.set('views', browserDistFolder);
 
   // Serve static files from /browser
-  server.get('*.*', express.static(browserDistFolder, { maxAge: '1y' }));
+  server.get('*.*', express.static(browserDistFolder, { maxAge: '1y', immutable: true }));
 
   // Handle requests with SSR & dynamic meta tags
   server.get('*', async (req, res, next) => {

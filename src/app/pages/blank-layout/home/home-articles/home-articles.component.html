@@ -1,4 +1,4 @@
-@if (specificCategory) {
+@if (specificCategory && specificCategory.blogs && specificCategory.blogs.data) {
 <section id="Home__articles" class="bg-third py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -56,7 +56,7 @@
   </div>
 </section>
 
-} @defer { @if (!specificCategory) {
+} @else {
 <section id="Home__articles" class="bg-third py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -108,4 +108,4 @@
     </div>
   </div>
 </section>
-} }
+}

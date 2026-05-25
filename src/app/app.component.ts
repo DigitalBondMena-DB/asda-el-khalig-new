@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { afterNextRender, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import {
   ActivatedRoute,
@@ -30,11 +30,7 @@ export class AppComponent {
     private activatedRoute: ActivatedRoute,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: Object,
   ) {
-    // afterNextRender(() => {
-    //   setTimeout(() => {
-    //     document.querySelector('.lightBox')?.classList.add('d-none');
-    //   }, 10000);
-    // });
+
   }
   ngOnInit(): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
@@ -48,6 +44,17 @@ export class AppComponent {
         let navbars = document.querySelectorAll('.navbar');
         navbars.forEach((navbar) => new bootstrap.Collapse(navbar));
       }, 100);
+
+      window.addEventListener('load', () => {
+        const lightBox = document.querySelector('.lightBox');
+        if (lightBox) {
+          lightBox.classList.add('d-none');
+        }
+        const lightBoxDetails = document.querySelector('.lightBox-details');
+        if (lightBoxDetails) {
+          lightBoxDetails.classList.add('d-none');
+        }
+      });
     }
   }
 

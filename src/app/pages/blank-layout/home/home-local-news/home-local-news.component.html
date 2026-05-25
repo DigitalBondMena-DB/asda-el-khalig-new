@@ -1,9 +1,5 @@
-@if (localNews) {
-<section
-  [ngClass]="{ 'd-none': isShowSkeleton }"
-  id="Home__Local__News"
-  class="bg-third py-4"
->
+@if (localNews && localNews.blogs) {
+<section [ngClass]="{ 'd-none': isShowSkeleton }" id="Home__Local__News" class="bg-third py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
       <h2 class="section__title fs-30">{{ sectionTitle }}</h2>
@@ -11,20 +7,12 @@
     <div class="row py-2 flex-row-reverse">
       <div class="col-12 col-md-5 ms-auto">
         <div class="bg-white border-radius-10 d-flex justify-content-evenly">
-          <button
-            (click)="getLocalNews(); toggleButtonsHandler(localBtn)"
-            #toggleButtons
-            #localBtn
-            class="w-100 border-radius-10 py-1 btn-main"
-          >
+          <button (click)="getLocalNews(); toggleButtonsHandler(localBtn)" #toggleButtons #localBtn
+            class="w-100 border-radius-10 py-1 btn-main">
             الأخبار المحلية
           </button>
-          <button
-            #toggleButtons
-            #randomBtn
-            (click)="getRandomNews(); toggleButtonsHandler(randomBtn)"
-            class="w-100 border-radius-10 py-1 bg-white"
-          >
+          <button #toggleButtons #randomBtn (click)="getRandomNews(); toggleButtonsHandler(randomBtn)"
+            class="w-100 border-radius-10 py-1 bg-white">
             أخبار متنوعة
           </button>
         </div>
@@ -33,35 +21,26 @@
       <div class="col-12 col-lg-5">
         <div>
           <div class="row g-3 g-lg-2">
-            @for (news of localNews.blogs.data | slice:0:isDesktop()?4:10; track
-            $index) {
+            @for (news of ((localNews && localNews.blogs && localNews.blogs.data) || []) | slice:0:isDesktop()?4:10; track $index) {
             <div class="col-3">
               <a [routerLink]="[news.old_status?'/archives':'/article', news.post_id]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
-                    <img
-                      height="100px"
-                      class="w-100 object-fit-cover border-radius-10"
-                      [src]="
+                    <img height="100" class="w-100 object-fit-cover border-radius-10" [src]="
                         news.post_image || './assets/images/not_found_image.jpg'
                           | imagesSrc
-                      "
-                      [alt]="news.post_title"
-                    />
+                      " [alt]="news.post_title" loading="lazy" decoding="async" />
                   </figure>
                 </div>
               </a>
             </div>
             <div class="col-9">
               <p class="date_color fw-bold fs-13">
-                <img
-                  class="ms-1 align-middle"
-                  role="presentation"
-                  src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png"
-                />
+                <img class="ms-1 align-middle" role="presentation" loading="lazy" decoding="async"
+                  src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" />
                 <span class="align-middle text-main">{{
                   news.post_date | hijriDate
-                }}</span>
+                  }}</span>
               </p>
               <div>
                 <p class="mb-0 fs-13 desc_color title_section_slider_home_Titles fw-bold cr">
@@ -74,34 +53,21 @@
         </div>
       </div>
       <div class="col-12 col-lg-7 d-none d-md-block">
-        <a
-          [routerLink]="[localNews.blogs.data[0].old_status?'/archives':'/article', localNews.blogs.data[0].post_id]"
-          href="#"
-        >
+        <a [routerLink]="[localNews.blogs.data[0].old_status?'/archives':'/article', localNews.blogs.data[0].post_id]"
+          href="#">
           <div>
             <figure class="Logo_Water_Mark cr">
-              <img
-                height="450px"
-                class="w-100 object-fit-cover border-radius-10"
-                [src]="
+              <img height="450" loading="lazy" decoding="async" class="w-100 object-fit-cover border-radius-10" [src]="
                   localNews.blogs.data[0].post_image ||
                     './assets/images/not_found_image.jpg' | imagesSrc
-                "
-                alt="card.author"
-              />
+                " alt="card.author" />
             </figure>
-            <p
-              class="m-0 date_color fw-bold fs-13 d-flex justify-content-end align-items-center"
-            >
-              <img
-                class="ms-1 align-middle"
-                style="398px"
-                src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png"
-                role="presentation"
-              />
+            <p class="m-0 date_color fw-bold fs-13 d-flex justify-content-end align-items-center">
+              <img class="ms-1 align-middle" loading="lazy" decoding="async"
+                src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" role="presentation" />
               <span class="align-middle text-main">{{
                 localNews.blogs.data[0].post_date | hijriDate
-              }}</span>
+                }}</span>
             </p>
             <h3 class="fw-bold m-0 text-end title_section_slider_home_Titles cr p-0">
               {{ localNews.blogs.data[0].post_title }}
@@ -124,178 +90,3 @@
 </section>
 }
 <!-- skeleton -->
-@if(isShowSkeleton ) { @defer {
-<section id="Home__Local__News" class="bg-third py-4">
-  <div class="container">
-    <header class="d-flex justify-content-between">
-      <h2 class="section__title fs-30">{{ sectionTitle }}</h2>
-    </header>
-    <div class="row py-2 flex-row-reverse">
-      <div class="col-12 col-lg-5">
-        <div>
-          <div class="row g-3 g-lg-2 d-none d-md-flex">
-            <div class="col-12">
-              <div
-                class="bg-white border-radius-10 d-flex justify-content-evenly"
-              >
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '100%',
-                    height: '35px',
-                    background: 'lightgray'
-                  }"
-                />
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '100%',
-                    height: '35px',
-                    background: 'lightgray'
-                  }"
-                />
-              </div>
-            </div>
-            @for (item of skeleton|slice:0:4; track $index) {
-            <div class="col-3">
-              <div>
-                <figure class="Logo_Water_Mark small cr">
-                  <ngx-skeleton-loader
-                    [theme]="{
-                      width: '100%',
-                      height: '100px',
-                      background: 'lightgray'
-                    }"
-                  />
-                </figure>
-              </div>
-            </div>
-            <div class="col-9">
-              <p class="date_color fw-bold fs-13">
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '40%',
-                    height: '20px',
-                    background: 'lightgray'
-                  }"
-                />
-              </p>
-              <div>
-                <p class="mb-0 fs-13 desc_color fw-bold">
-                  <ngx-skeleton-loader
-                    [theme]="{
-                      width: '100%',
-                      height: '20px',
-                      background: 'lightgray'
-                    }"
-                  />
-                </p>
-              </div>
-            </div>
-            }
-          </div>
-          <div class="row g-3 g-lg-2 d-flex d-md-none">
-            <div class="col-12">
-              <div
-                class="bg-white border-radius-10 d-flex justify-content-evenly"
-              >
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '100%',
-                    height: '35px',
-                    background: 'lightgray'
-                  }"
-                />
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '100%',
-                    height: '35px',
-                    background: 'lightgray'
-                  }"
-                />
-              </div>
-            </div>
-            @for (item of skeleton; track $index) {
-            <div class="col-3">
-              <div>
-                <figure class="Logo_Water_Mark small cr">
-                  <ngx-skeleton-loader
-                    [theme]="{
-                      width: '100%',
-                      height: '100px',
-                      background: 'lightgray'
-                    }"
-                  />
-                </figure>
-              </div>
-            </div>
-            <div class="col-9">
-              <p class="date_color fw-bold fs-13">
-                <ngx-skeleton-loader
-                  [theme]="{
-                    width: '40%',
-                    height: '20px',
-                    background: 'lightgray'
-                  }"
-                />
-              </p>
-              <div>
-                <p class="mb-0 fs-13 desc_color fw-bold">
-                  <ngx-skeleton-loader
-                    [theme]="{
-                      width: '100%',
-                      height: '20px',
-                      background: 'lightgray'
-                    }"
-                  />
-                </p>
-              </div>
-            </div>
-            }
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-7 d-none d-md-block">
-        <div>
-          <figure class="Logo_Water_Mark cr">
-            <ngx-skeleton-loader
-              [theme]="{
-                width: '100%',
-                height: '450px',
-                background: 'lightgray'
-              }"
-            />
-          </figure>
-          <div class="row justify-content-between align-items-center mb-2 mt-3">
-            <h3 class="fs-13 fw-bold mb-0 col-9 text-end text-main">
-              <ngx-skeleton-loader
-                [theme]="{
-                  width: '100%',
-                  height: '20px',
-                  background: 'lightgray'
-                }"
-              />
-            </h3>
-            <p class="mb-0 date_color fw-bold fs-13 col-3 text-start">
-              <ngx-skeleton-loader
-                [theme]="{
-                  width: '100%',
-                  height: '20px',
-                  background: 'lightgray'
-                }"
-              />
-            </p>
-          </div>
-          <div>
-            <ngx-skeleton-loader
-              [theme]="{
-                width: '100%',
-                height: '20px',
-                background: 'lightgray'
-              }"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-} }

@@ -5,36 +5,27 @@
         <div>
           <div class="hero_height border-radius-10 overflow-hidden">
             <figure class="my-0 h-100 Logo_Water_Mark card">
-              <img
-                #image
-                (load)="imageLoaded(image)"
-                style="object-position: top"
-                class="w-100 object-fit-cover hero_height"
-                [src]="
+              <img #image (load)="imageLoaded(image)" style="object-position: top"
+                class="w-100 object-fit-cover hero_height" [src]="
                   isNational
                     ? './assets/images/national-day/home-banner.png'
                     : './assets/images/founding-day/founding-slide.png'
-                "
-                [alt]="isNational ? 'يوم الوطن' : 'يوم التأسيس'"
-              />
+                " [alt]="isNational ? 'يوم الوطن' : 'يوم التأسيس'" />
               @if (!isNational) {
-                <span
-                  class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"
-                ></span>
-                <figcaption class="card-img-overlay d-flex align-items-end">
-                  <div
-                    class="carousel__content bg-black py-3 bg-opacity-50 px-3 border-radius-10 col-9 col-md-10 mb-4 px-3 text-white"
-                  >
-                    <p class="text-light title_section_slider_header">
-                      يوم التأسيس
-                    </p>
-                    <p class="title_section_slider content_container">
-                      ثلاثة قرون من العزة و المجد و مسيرة امجاد عريقة فيأتى هذا
-                      اليوم كفرصة لتجديد الاعتزاز بالهوية الوطنية و الافتخار بها
-                    </p>
-                    <div class="text-start"></div>
-                  </div>
-                </figcaption>
+              <span class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"></span>
+              <figcaption class="card-img-overlay d-flex align-items-end">
+                <div
+                  class="carousel__content bg-black py-3 bg-opacity-50 px-3 border-radius-10 col-9 col-md-10 mb-4 px-3 text-white">
+                  <p class="text-light title_section_slider_header">
+                    يوم التأسيس
+                  </p>
+                  <p class="title_section_slider content_container">
+                    ثلاثة قرون من العزة و المجد و مسيرة امجاد عريقة فيأتى هذا
+                    اليوم كفرصة لتجديد الاعتزاز بالهوية الوطنية و الافتخار بها
+                  </p>
+                  <div class="text-start"></div>
+                </div>
+              </figcaption>
               }
             </figure>
           </div>
@@ -42,88 +33,56 @@
       </div>
       <div class="col-12 col-lg-4 order-0 order-lg-1 position-relative">
         <div>
-          <div
-            class="main_animation border-radius-10 overflow-hidden Logo_Water_Mark position-relative z-3"
-          >
-            <a
-              [routerLink]="[
+          <div class="main_animation border-radius-10 overflow-hidden Logo_Water_Mark position-relative z-3">
+            <a [routerLink]="[
                 masterBlog?.blogs[0]?.old_status ? '/archives' : '/article',
                 masterBlog?.blogs[0]?.post_id,
-              ]"
-              href="#"
-            >
-              <img
-                style="height: 380px"
-                class="w-100 object-fit-cover"
-                src="./assets/images/pages/home/Hero_Section/سلمان-بن-أحمد-العيد.jpg"
-                alt="carousel"
-              />
+              ]" href="#">
+              <img style="height: 380px" class="w-100 object-fit-cover" loading="lazy" decoding="async"
+                src="./assets/images/pages/home/Hero_Section/سلمان-بن-أحمد-العيد.jpg" alt="carousel" />
             </a>
           </div>
         </div>
         @if (!isNational) {
-          <div class="main-content position-relative z-3">
-            <p
-              [ngClass]="{
+        <div class="main-content position-relative z-3">
+          <p [ngClass]="{
                 isNational: isNational,
                 notNational: !isNational,
-              }"
-              class="fw-bold fs-13 py-2 mb-0 text-alt"
-            >
-              {{ masterBlog?.blogs[0]?.post_title }}
-            </p>
-            <a
-              class="text-decoration-none"
-              [routerLink]="['/archives/blogs', '10']"
-              href="#"
-              href="#"
-            >
-              <p
-                [ngClass]="{
+              }" class="fw-bold fs-13 py-2 mb-0 text-alt">
+            {{ masterBlog?.blogs[0]?.post_title }}
+          </p>
+          <a class="text-decoration-none" [routerLink]="['/archives/blogs', '10']" href="#" href="#">
+            <p [ngClass]="{
                   isNational: isNational,
                   notNational: !isNational,
                 }"
-                class="text-alt cr fw-bold border-color-founding text-center fs-13 border border-2 border-radius-10 p-3 text-center fs-13"
-              >
-                زاوية رئيس التحرير : سلمان بن أحمد العيد
-              </p>
-            </a>
-          </div>
+              class="text-alt cr fw-bold border-color-founding text-center fs-13 border border-2 border-radius-10 p-3 text-center fs-13">
+              زاوية رئيس التحرير : سلمان بن أحمد العيد
+            </p>
+          </a>
+        </div>
         } @else {
-          <div
-            [ngClass]="{
+        <div [ngClass]="{
               isNational: isNational,
               notNational: !isNational,
             }"
-            class="main-content position-relative z-3 border-color-founding text-center fs-13 border border-2 border-radius-10 p-3 text-center fs-13 mt-2"
-          >
-            <a
-              class="text-decoration-none"
-              [routerLink]="['/archives/blogs', '10']"
-              href="#"
-              href="#"
-            >
-              <p
-                [ngClass]="{
+          class="main-content position-relative z-3 border-color-founding text-center fs-13 border border-2 border-radius-10 p-3 text-center fs-13 mt-2">
+          <a class="text-decoration-none" [routerLink]="['/archives/blogs', '10']" href="#" href="#">
+            <p [ngClass]="{
                   isNational: isNational,
                   notNational: !isNational,
-                }"
-                class="fw-bold fs-13 py-2 mb-0 text-alt"
-              >
-                {{ masterBlog?.blogs[0]?.post_title }}
-              </p>
+                }" class="fw-bold fs-13 py-2 mb-0 text-alt">
+              {{ masterBlog?.blogs[0]?.post_title }}
+            </p>
 
-              <p
-                [ngClass]="{
+            <p [ngClass]="{
                   isNational: isNational,
                   notNational: !isNational,
-                }"
-                class="text-alt cr fw-bold"
-              >
-                زاوية رئيس التحرير : سلمان بن أحمد العيد
-              </p>
-            </a>
-          </div>
+                }" class="text-alt cr fw-bold">
+              زاوية رئيس التحرير : سلمان بن أحمد العيد
+            </p>
+          </a>
+        </div>
         }
       </div>
     </div>
@@ -131,24 +90,21 @@
 </section>
 
 @if (allBreakingNews && allBreakingNews.blogs.length > 0) {
-  <div class="breaking-news-bar position-fixed bottom-0 start-0 w-100">
-    <span class="breaking-label p-2 bg-danger">أخبار عاجلة</span>
-    <div class="breaking-news-container">
-      <div class="breaking-news-content">
-        @for (news of allBreakingNews.blogs; track $index) {
-          <span>
-            <a
-              [routerLink]="[
+<div class="breaking-news-bar position-fixed bottom-0 start-0 w-100">
+  <span class="breaking-label p-2 bg-danger">أخبار عاجلة</span>
+  <div class="breaking-news-container">
+    <div class="breaking-news-content">
+      @for (news of allBreakingNews.blogs; track $index) {
+      <span>
+        <a [routerLink]="[
                 news.old_status ? '/archives' : '/article',
                 news.ar_slug,
-              ]"
-              class="text-white text-decoration-none"
-            >
-              {{ news.post_title }} &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;
-            </a>
-          </span>
-        }
-      </div>
+              ]" class="text-white text-decoration-none">
+          {{ news.post_title }} &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;
+        </a>
+      </span>
+      }
     </div>
   </div>
+</div>
 }

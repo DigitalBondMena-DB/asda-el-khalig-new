@@ -1,32 +1,58 @@
 header {
-  background: linear-gradient(
-      rgba(255, 255, 255, 75%),
-      rgba(255, 255, 255, 75%)
-    ),
-    url("/assets/images/pages/home/1.png");
-  background-position: center, 105% 50%;
-  background-size: 100%, auto;
-  background-repeat: no-repeat;
+  position: relative;
 }
+
+header .header-bg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+  opacity: 40%;
+  width: 200px;
+}
+
 .main-bg {
-  background: linear-gradient(
-      rgba(255, 255, 255, 75%),
-      rgba(255, 255, 255, 75%)
-    ),
-    url("/assets/images/pages/home/2.png");
-  background-size: 100%, 50% 80%;
-  background-position: center, right bottom;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
+
+.main-bg .main-bg-img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  opacity: 40%;
+}
+
 .third-bg {
-  background: linear-gradient(
-      rgba(255, 255, 255, 75%),
-      rgba(255, 255, 255, 75%)
-    ),
-    url("/assets/images/pages/home/4.png");
-  background-size: 100%, 90% 90%;
-  background-position: center, center 130px;
-  background-repeat: no-repeat;
+  position: relative;
+}
+
+.third-bg .third-bg-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+  opacity: 30%;
+}
+
+
+.third-bg {
+  position: relative;
+}
+
+.third-bg .third-bg-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -1;
+  opacity: 20%;
 }
 
 /* Custom Styles */
@@ -69,9 +95,11 @@ header {
   .md-w-50 {
     width: 50% !important;
   }
+
   .md-w-40 {
     width: 45% !important;
   }
+
   .md-w-60 {
     width: 55% !important;
   }
@@ -91,6 +119,7 @@ header {
 
 .titles {
   @media (max-width: 350px) {
+
     h2,
     h3,
     h4 {
@@ -99,16 +128,8 @@ header {
     }
   }
 
-  // @media (min-width: 351px) and (max-width: 650px) {
-  //   h2,
-  //   h3,
-  //   h4 {
-  //     font-size: 14px !important;
-  //     font-weight: 500;
-  //   }
-  // }
-
   @media (min-width: 351px) and (max-width: 1400px) {
+
     h2,
     h3,
     h4 {
@@ -116,7 +137,9 @@ header {
       font-weight: 700;
     }
   }
+
   @media (min-width: 1401px) {
+
     h2,
     h3,
     h4 {

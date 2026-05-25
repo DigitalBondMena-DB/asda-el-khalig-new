@@ -1,15 +1,11 @@
 <section id="Home__Banner" class="bg-third py-4 text-center">
   <div class="container">
-    <div
-      class="row justify-content-evenly g-4 g-lg-0 flex-nowrap overflow-x-auto"
-    >
+    <div class="row justify-content-evenly g-4 g-lg-0 flex-nowrap overflow-x-auto">
       <div class="col-5 col-lg-2 flex-shrink-0 mb-3 mb-sm-0">
         <div class="row g-2 text-center align-items-center">
           <div class="col-4">
-            <img
-              src="./assets/images/banner_icons/website_views.png"
-              alt="website views"
-            />
+            <img src="./assets/images/banner_icons/website_views.png" alt="website views" loading="lazy"
+              decoding="async" width="49" height="49" />
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">عدد زيارات الموقع</p>
@@ -20,21 +16,20 @@
       <div class="col-5 col-lg-2 flex-shrink-0 mb-3 mb-sm-0">
         <div class="row g-2 text-center align-items-center">
           <div class="col-4">
-            <img src="./assets/images/banner_icons/weather.svg" alt="weather" />
+            <img src="./assets/images/banner_icons/weather.webp" loading="lazy" decoding="async" width="49" height="49"
+              alt="weather" />
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">حالة الطقس بالرياض</p>
-            <p
-              [innerHTML]="currentTemp | safeHtml"
-              class="mb-0 fs-11 fw-bold"
-            ></p>
+            <p [innerHTML]="currentTemp | safeHtml" class="mb-0 fs-11 fw-bold"></p>
           </div>
         </div>
       </div>
       <div class="col-5 col-lg-2 flex-shrink-0 mb-3 mb-sm-0">
         <div class="row g-2 text-center align-items-center">
           <div class="col-4">
-            <img src="./assets/images/banner_icons/clock.svg" alt="weather" />
+            <img src="./assets/images/banner_icons/clock.svg" loading="lazy" decoding="async" width="49" height="49"
+              alt="weather" />
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">التوقيت</p>
@@ -47,10 +42,8 @@
       <div class="col-5 col-lg-2 flex-shrink-0 mb-3 mb-sm-0">
         <div class="row g-2 text-center align-items-center">
           <div class="col-4">
-            <img
-              src="./assets/images/banner_icons/people.svg"
-              alt="التعداد السكاني"
-            />
+            <img src="./assets/images/banner_icons/people.svg" alt="التعداد السكاني" loading="lazy" decoding="async"
+              width="49" height="49" />
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">التعداد السكاني {{ year }}</p>
@@ -61,10 +54,8 @@
       <div class="col-5 col-lg-2 flex-shrink-0 mb-3 mb-sm-0">
         <div class="row g-2 text-center align-items-center">
           <div class="col-4">
-            <img
-              src="./assets/images/banner_icons/money.svg"
-              alt="1 USD vs SAR"
-            />
+            <img src="./assets/images/banner_icons/money.svg" alt="1 USD vs SAR" loading="lazy" decoding="async"
+              width="49" height="49" />
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">سعر الصرف</p>

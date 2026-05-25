@@ -1,5 +1,5 @@
-import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { NgClass, isPlatformBrowser } from '@angular/common';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Contact } from '../../../core/interfaces/ISocialMedia';
 import { SocialMediaService } from '../../../core/services/content/social-media.service';
@@ -19,13 +19,17 @@ export class FoundingFooterComponent {
 
   constructor(
     private _StaticCategoriesService: StaticCategoriesService,
-    private _SocialMediaService: SocialMediaService
+    private _SocialMediaService: SocialMediaService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   ngOnInit(): void {
     this.getSocialMediaLinks();
-    this._StaticCategoriesService.increaseView().subscribe({
-      next: (response) => {},
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this._StaticCategoriesService.increaseView().subscribe({
+        next: (response) => {},
+        error: (err) => console.warn('Failed to record visit on server.', err.message),
+      });
+    }
   }
 
   getSocialMediaLinks(): void {

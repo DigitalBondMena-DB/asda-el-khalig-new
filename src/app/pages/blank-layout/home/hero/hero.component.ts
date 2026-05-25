@@ -1,5 +1,5 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { IAllBreakingNews } from '../../../../core/interfaces/slider/IBreakingNews';
@@ -10,6 +10,7 @@ import { CategoriesService } from './../../../../core/services/content/categorie
 import { NewsControlService } from './../../../../dashboard/services/news-control.service';
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 import { HomeMasterComponent } from './home-master/home-master.component';
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-hero',
@@ -21,6 +22,7 @@ import { HomeMasterComponent } from './home-master/home-master.component';
     SafeHtmlPipe,
     RemoveInlineStylesPipe,
     HomeMasterComponent,
+    NgOptimizedImage
   ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
@@ -30,11 +32,10 @@ export class HeroComponent {
   masterBlog!: any;
   allBreakingNews!: IAllBreakingNews;
   constructor(
-    private _Router: Router,
     private _NewsControlService: NewsControlService,
     private _HomeContentService: HomeContentService,
     private _CategoriesService: CategoriesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getBreakingNews();
