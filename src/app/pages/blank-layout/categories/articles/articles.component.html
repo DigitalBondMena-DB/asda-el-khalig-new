@@ -9,32 +9,23 @@
     $index) {
     <div class="col-md-6 col-lg-4">
       <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
-        <article
-          class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-        >
+        <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
           <div>
             <h3 class="text-main fs-13 fw-bold cr title_section_slider_article">
               {{ card.post_title }}
             </h3>
-            <p
-              [innerHtml]="card.post_content | removeInlineStyles | safeHtml"
-              class="fs-13 text-lighter mb-4 title_section title_section-articles"
-            ></p>
+            <p [innerHtml]="card.post_content | removeInlineStyles | safeHtml"
+              class="fs-13 text-lighter mb-4 title_section title_section-articles"></p>
           </div>
           <h4 class="text-end">
-            <img
-              width="80px"
-              height="80px"
-              class="align-middle rounded-circle object-fit-cover ms-3"
-              [src]="
+            <img width="80" height="80" loading="lazy" decoding="async"
+              class="align-middle rounded-circle object-fit-cover ms-3" [src]="
                 card.post_image || './assets/images/not_found_image.jpg'
                   | imagesSrc
-              "
-              alt="tweet"
-            />
+              " alt="tweet" />
             <span class="align-middle fs-13">{{
               card.author_name ? card.author_name : "أصداء الخليج"
-            }}</span>
+              }}</span>
           </h4>
         </article>
       </a>
@@ -42,19 +33,10 @@
     }
 
     <div class="d-flex justify-content-center my-4">
-      <pagination-controls
-        id="some_id"
-        (pageChange)="pageChanged($event)"
-        [directionLinks]="true"
-        [autoHide]="false"
-        [maxSize]="8"
-        [responsive]="true"
-        previousLabel="السابق"
-        nextLabel="التالي"
-        screenReaderPaginationLabel="Pagination"
-        screenReaderPageLabel="صفحة"
-        screenReaderCurrentLabel="انت الان في الصفحة رقم"
-      >
+      <pagination-controls id="some_id" (pageChange)="pageChanged($event)" [directionLinks]="true" [autoHide]="false"
+        [maxSize]="8" [responsive]="true" previousLabel="السابق" nextLabel="التالي"
+        screenReaderPaginationLabel="Pagination" screenReaderPageLabel="صفحة"
+        screenReaderCurrentLabel="انت الان في الصفحة رقم">
       </pagination-controls>
     </div>
   </div>
@@ -63,380 +45,272 @@
 <section>
   <div class="row g-4">
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>
     <div class="col-md-6 col-lg-4">
-      <article
-        class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between"
-      >
+      <article class="card cr article-shadow p-3 h-100 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column justify-content-between">
           <h3 class="text-main fs-13 fw-bold">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '80px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h3>
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '100%',
               height: '40px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
         <div class="text-start">
-          <ngx-skeleton-loader
-            [theme]="{
+          <ngx-skeleton-loader [theme]="{
               width: '30px',
               height: '30px',
               background: 'lightgray'
-            }"
-            [appearance]="'circle'"
-          />
-          <ngx-skeleton-loader
-            [theme]="{
+            }" [appearance]="'circle'" />
+          <ngx-skeleton-loader [theme]="{
               width: '120px',
               height: '15px',
               background: 'lightgray'
-            }"
-            [appearance]="'line'"
-          />
+            }" [appearance]="'line'" />
         </div>
       </article>
     </div>

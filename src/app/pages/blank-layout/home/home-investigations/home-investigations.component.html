@@ -3,32 +3,20 @@
   <div class="container">
     <header class="d-flex justify-content-between">
       <h2 class="section__title fs-30">التحقيقات</h2>
-      <a
-        [routerLink]="['/archives/blogs', 'i']"
-        href="#"
-        class="btn btn-show-all"
-        >عرض الكل</a
-      >
+      <a [routerLink]="['/archives/blogs', 'i']" href="#" class="btn btn-show-all">عرض الكل</a>
     </header>
     @if (isDesktop()) {
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="pt-2">
-          <a
-            [routerLink]="[investigations.blogs.data[0].old_status?'/archives':'/article', investigations.blogs.data[0].post_id]"
-            href="#"
-          >
+          <a [routerLink]="[investigations.blogs.data[0].old_status?'/archives':'/article', investigations.blogs.data[0].post_id]"
+            href="#">
             <figure class="Logo_Water_Mark small cr">
-              <img
-                class="w-100 object-fit-cover border-radius-10 h-300"
-                [src]="investigations.blogs.data[0].post_image"
-                [alt]="investigations.blogs.data[0].post_title"
-              />
+              <img class="w-100 object-fit-cover border-radius-10 h-300" [src]="investigations.blogs.data[0].post_image"
+                [alt]="investigations.blogs.data[0].post_title" loading="lazy" decoding="async" />
             </figure>
             <div>
-              <h3
-                class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article"
-              >
+              <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
                 {{ investigations.blogs.data[0].post_title }}
               </h3>
             </div>
@@ -40,24 +28,17 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <div>
-                <a
-                  [routerLink]="[
+                <a [routerLink]="[
                     investigations.blogs.data[1].old_status?'/archives':'/article',
                     investigations.blogs.data[1].post_id
-                  ]"
-                  href="#"
-                >
+                  ]" href="#">
                   <figure class="Logo_Water_Mark small cr">
-                    <img
-                      class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[1].post_image"
-                      [alt]="investigations.blogs.data[1].post_title"
-                    />
+                    <img class="w-100 object-fit-cover border-radius-10 h-md-120"
+                      [src]="investigations.blogs.data[1].post_image" [alt]="investigations.blogs.data[1].post_title"
+                      loading="lazy" decoding="async" />
                   </figure>
                   <div>
-                    <h3
-                      class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article"
-                    >
+                    <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
                       {{ investigations.blogs.data[1].post_title }}
                     </h3>
                     <!-- <p
@@ -73,25 +54,18 @@
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <a
-                [routerLink]="[
+              <a [routerLink]="[
                   investigations.blogs.data[2].old_status?'/archives':'/article',
                   investigations.blogs.data[2].post_id
-                ]"
-                href="#"
-              >
+                ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
-                    <img
-                      class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[2].post_image"
-                      [alt]="investigations.blogs.data[2].post_title"
-                    />
+                    <img class="w-100 object-fit-cover border-radius-10 h-md-120"
+                      [src]="investigations.blogs.data[2].post_image" [alt]="investigations.blogs.data[2].post_title"
+                      loading="lazy" decoding="async" />
                   </figure>
                   <div>
-                    <h3
-                      class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article"
-                    >
+                    <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
                       {{ investigations.blogs.data[2].post_title }}
                     </h3>
                     <!-- <p
@@ -107,25 +81,18 @@
               </a>
             </div>
             <div class="col-12">
-              <a
-                [routerLink]="[
+              <a [routerLink]="[
                   investigations.blogs.data[3].old_status?'/archives':'/article',
                   investigations.blogs.data[3].post_id
-                ]"
-                href="#"
-              >
+                ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
-                    <img
-                      class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[3].post_image"
-                      [alt]="investigations.blogs.data[3].post_title"
-                    />
+                    <img class="w-100 object-fit-cover border-radius-10 h-md-120"
+                      [src]="investigations.blogs.data[3].post_image" [alt]="investigations.blogs.data[3].post_title"
+                      loading="lazy" decoding="async" />
                   </figure>
                   <div>
-                    <h3
-                      class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article"
-                    >
+                    <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
                       {{ investigations.blogs.data[3].post_title }}
                     </h3>
                     <!-- <p
@@ -151,16 +118,11 @@
         <div class="pt-2">
           <a [routerLink]="[item.old_status?'/archives':'/article', item.post_id]" href="#">
             <figure class="Logo_Water_Mark small cr">
-              <img
-                class="w-100 object-fit-cover border-radius-10 h-250"
-                [src]="item.post_image"
-                [alt]="item.post_title"
-              />
+              <img class="w-100 object-fit-cover border-radius-10 h-250" [src]="item.post_image" [alt]="item.post_title"
+                loading="lazy" decoding="async" />
             </figure>
             <div>
-              <h3
-                class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article"
-              >
+              <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
                 {{ item.post_title }}
               </h3>
             </div>
@@ -177,35 +139,26 @@
   <div class="container">
     <header class="d-flex justify-content-between">
       <h2 class="section__title fs-30">التحقيقات</h2>
-      <a
-        [routerLink]="['/archives/blogs', 'i']"
-        href="#"
-        class="btn btn-show-all"
-        >عرض الكل</a
-      >
+      <a [routerLink]="['/archives/blogs', 'i']" href="#" class="btn btn-show-all">عرض الكل</a>
     </header>
     @if (isDesktop()) {
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="pt-2">
           <figure class="Logo_Water_Mark small cr">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '100%',
                 height: '300px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </figure>
           <div>
             <h3 class="fs-13 text-main fw-bold mb-2">
-              <ngx-skeleton-loader
-                [theme]="{
+              <ngx-skeleton-loader [theme]="{
                   width: '100%',
                   height: '20px',
                   background: 'lightgray'
-                }"
-              />
+                }" />
             </h3>
           </div>
         </div>
@@ -216,23 +169,19 @@
             <div class="col-12 col-md-6">
               <div>
                 <figure class="Logo_Water_Mark small cr">
-                  <ngx-skeleton-loader
-                    [theme]="{
+                  <ngx-skeleton-loader [theme]="{
                       width: '100%',
                       height: '120px',
                       background: 'lightgray'
-                    }"
-                  />
+                    }" />
                 </figure>
                 <div>
                   <h3 class="fs-13 text-main fw-bold mb-2">
-                    <ngx-skeleton-loader
-                      [theme]="{
+                    <ngx-skeleton-loader [theme]="{
                         width: '100%',
                         height: '20px',
                         background: 'lightgray'
-                      }"
-                    />
+                      }" />
                   </h3>
                 </div>
               </div>
@@ -240,23 +189,19 @@
             <div class="col-12 col-md-6">
               <div>
                 <figure class="Logo_Water_Mark small cr">
-                  <ngx-skeleton-loader
-                    [theme]="{
+                  <ngx-skeleton-loader [theme]="{
                       width: '100%',
                       height: '120px',
                       background: 'lightgray'
-                    }"
-                  />
+                    }" />
                 </figure>
                 <div>
                   <h3 class="fs-13 text-main fw-bold mb-2">
-                    <ngx-skeleton-loader
-                      [theme]="{
+                    <ngx-skeleton-loader [theme]="{
                         width: '100%',
                         height: '20px',
                         background: 'lightgray'
-                      }"
-                    />
+                      }" />
                   </h3>
                 </div>
               </div>
@@ -264,23 +209,19 @@
             <div class="col-12">
               <div>
                 <figure class="Logo_Water_Mark small cr">
-                  <ngx-skeleton-loader
-                    [theme]="{
+                  <ngx-skeleton-loader [theme]="{
                       width: '100%',
                       height: '120px',
                       background: 'lightgray'
-                    }"
-                  />
+                    }" />
                 </figure>
                 <div>
                   <h3 class="fs-13 text-main fw-bold mb-2">
-                    <ngx-skeleton-loader
-                      [theme]="{
+                    <ngx-skeleton-loader [theme]="{
                         width: '100%',
                         height: '20px',
                         background: 'lightgray'
-                      }"
-                    />
+                      }" />
                   </h3>
                 </div>
               </div>
@@ -295,23 +236,19 @@
       <div class="col-6">
         <div class="pt-2">
           <figure class="Logo_Water_Mark small cr">
-            <ngx-skeleton-loader
-              [theme]="{
+            <ngx-skeleton-loader [theme]="{
                 width: '100%',
                 height: '250px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </figure>
           <div>
             <h3 class="fs-13 text-main fw-bold mb-2">
-              <ngx-skeleton-loader
-                [theme]="{
+              <ngx-skeleton-loader [theme]="{
                   width: '100%',
                   height: '20px',
                   background: 'lightgray'
-                }"
-              />
+                }" />
             </h3>
           </div>
         </div>

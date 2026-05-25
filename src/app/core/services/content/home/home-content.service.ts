@@ -11,7 +11,7 @@ export class HomeContentService {
   constructor(
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private PLATFORM_ID: object
-  ) {}
+  ) { }
 
   getHomeSlider(): Observable<any | null> {
     if (this.checkPlatForm()) {

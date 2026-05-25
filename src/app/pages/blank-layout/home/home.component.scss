@@ -12,19 +12,24 @@ header .header-bg {
   width: 200px;
 }
 
+@media screen and (min-width:1024px) {
+  header .header-bg {
+    width: 400px;
+  }
+}
+
 .main-bg {
   position: relative;
   overflow: hidden;
 }
 
 .main-bg .main-bg-img {
-  width: 100%;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
   z-index: -1;
-  width: 100%;
+  width: 50%;
   opacity: 40%;
 }
 
