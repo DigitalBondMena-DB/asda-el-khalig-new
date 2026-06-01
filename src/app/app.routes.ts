@@ -47,30 +47,13 @@ export const routes: Routes = [
           },
         ],
       },
-      // detail
-      // {
-      //   path: 'archives/:id',
-      //   loadComponent: () =>
-      //     import(
-      //       './pages/blank-layout/categories/details/details.component'
-      //     ).then((c) => c.DetailsComponent),
-      // },
-      // {
-      //   path: 'article/:id',
-      //   loadComponent: () =>
-      //     import(
-      //       './pages/blank-layout/categories/details/details.component'
-      //     ).then((c) => c.DetailsComponent),
-      // },
       {
         path: 'archives/:id',
         component: DetailsComponent,
-        // resolve:{article:articlesResolver}
       },
       {
         path: 'article/:id',
         component: DetailsComponent,
-        // resolve:{article:articlesResolver}
       },
       {
         path: 'contact-us',

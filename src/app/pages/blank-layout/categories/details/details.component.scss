@@ -48,6 +48,47 @@ input:active {
 }
 
 /* social media links */
+.social-icons-custom a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.social-icons-custom a:hover {
+  opacity: 0.8;
+  color: white;
+}
+.social-icons-custom a svg {
+  width: 18px;
+  height: 18px;
+}
+.social-icons-custom a.link-icon {
+  background-color: #6c8695;
+}
+.social-icons-custom a.email-icon {
+  background-color: #f89a1f;
+}
+.social-icons-custom a.whatsapp-icon {
+  background-color: #25d366;
+}
+.social-icons-custom a.messenger-icon {
+  background-color: #0084ff;
+}
+.social-icons-custom a.telegram-icon {
+  background-color: #0088cc;
+}
+.social-icons-custom a.x-icon {
+  background-color: #000000;
+}
+.social-icons-custom a.facebook-icon {
+  background-color: #3b5998;
+}
+
 .social-icons a {
   display: inline-flex;
   align-items: center;

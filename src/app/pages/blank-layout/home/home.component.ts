@@ -10,29 +10,27 @@ import { HomeArticlesComponent } from './home-articles/home-articles.component';
 import { HomeInvestigationsComponent } from './home-investigations/home-investigations.component';
 import { HomeLocalNewsComponent } from './home-local-news/home-local-news.component';
 import { HomeNewsComponent } from './home-news/home-news.component';
-import { HomeSecondAdvertisingBannerComponent } from './home-second-advertising-banner/home-second-advertising-banner.component';
 import { HomeVideosComponent } from './home-videos/home-videos.component';
 import { NationalNewsComponent } from './national-news/national-news.component';
 
 @Component({
-    selector: 'app-home',
-    imports: [
-        HeroComponent,
-        HomeAdvertisingAreaComponent,
-        HomeArticlesComponent,
-        HomeInvestigationsComponent,
-        HomeLocalNewsComponent,
-        HomeVideosComponent,
-        HomeSecondAdvertisingBannerComponent,
-        HomeBannerComponent,
-        HomeNewsComponent,
-        BlankNavbarComponent,
-        NationalNewsComponent,
-        HomeMasterComponent,
-        RouterLink,
-    ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [
+    HeroComponent,
+    HomeAdvertisingAreaComponent,
+    HomeArticlesComponent,
+    HomeInvestigationsComponent,
+    HomeLocalNewsComponent,
+    HomeVideosComponent,
+    HomeBannerComponent,
+    HomeNewsComponent,
+    BlankNavbarComponent,
+    NationalNewsComponent,
+    HomeMasterComponent,
+    RouterLink,
+  ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(private _MetaTagsHandleService: MetaTagsHandleService) {

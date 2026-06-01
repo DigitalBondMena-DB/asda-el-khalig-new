@@ -16,13 +16,11 @@ import {
 import { Meta, Title } from '@angular/platform-browser';
 import {
   ActivatedRoute,
-  NavigationEnd,
   Router,
   RouterLink,
 } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrService } from 'ngx-toastr';
-import { filter, map, Subscription, switchMap } from 'rxjs';
 import { BlankNavbarComponent } from '../../../../core/components/blank-navbar/blank-navbar.component';
 import { IBlog } from '../../../../core/interfaces/IBlog';
 import { HijriDatePipe } from '../../../../core/pipes/date-hijri.pipe';
@@ -31,28 +29,26 @@ import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 import { RelatedContentComponent } from '../related-content/related-content.component';
-import { ShareButtons } from 'ngx-sharebuttons/buttons';
 import { CommentsService } from '../../../../core/services/shared/comments.service';
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 
 @Component({
-    selector: 'app-details',
-    imports: [
-        NgxSkeletonLoaderModule,
-        AdvertisingAreaComponent,
-        RelatedContentComponent,
-        ReactiveFormsModule,
-        BlankNavbarComponent,
-        CommonModule,
-        HijriDatePipe,
-        SafeHtmlPipe,
-        ImagesSrcPipe,
-        RouterLink,
-        ShareButtons,
-        RemoveInlineStylesPipe,
-    ],
-    templateUrl: './details.component.html',
-    styleUrl: './details.component.scss'
+  selector: 'app-details',
+  imports: [
+    NgxSkeletonLoaderModule,
+    AdvertisingAreaComponent,
+    RelatedContentComponent,
+    ReactiveFormsModule,
+    BlankNavbarComponent,
+    CommonModule,
+    HijriDatePipe,
+    SafeHtmlPipe,
+    ImagesSrcPipe,
+    RouterLink,
+    RemoveInlineStylesPipe,
+  ],
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
   currentId!: string;
@@ -76,10 +72,20 @@ export class DetailsComponent {
     private renderer: Renderer2,
     private _CommentsService: CommentsService,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) { }
 
   encodeURIComponent(value: string): string {
     return encodeURIComponent(value);
+  }
+
+  copyLink(): void {
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      navigator.clipboard.writeText(this.currentUrl).then(() => {
+        this._ToastrService.success('تم نسخ الرابط بنجاح');
+      }).catch(err => {
+        this._ToastrService.error('فشل في نسخ الرابط');
+      });
+    }
   }
 
   ngOnInit(): void {

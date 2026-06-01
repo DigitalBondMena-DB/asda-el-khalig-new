@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../../core/components/footer/footer.component';
 
 @Component({
     selector: 'app-blank-layout',
-    imports: [FooterComponent, RouterOutlet, RouterLink],
+    imports: [FooterComponent, RouterOutlet],
     templateUrl: './blank-layout.component.html',
     styleUrl: './blank-layout.component.scss'
 })
-export class BlankLayoutComponent {}
+export class BlankLayoutComponent { }
