@@ -50,8 +50,6 @@ export function app(): express.Express {
     const blogId = blogIdMatch ? blogIdMatch[1] : null;
 
     if (isBot && blogId) {
-      console.log(`Bot detected: ${userAgent}, fetching blog ${blogId}`);
-
       try {
         const response = await fetch(`https://your-api.com/blog/${blogId}`);
         if (!response.ok)
@@ -64,17 +62,16 @@ export function app(): express.Express {
         // Inject SEO meta tags
         const metaTags = `
           <meta property="og:title" content="${escapeHtml(
-            blogData.blog.post_title
-          )}" />
+          blogData.blog.post_title
+        )}" />
           <meta property="og:description" content="${escapeHtml(
-            blogData.blog.post_content
-          )}" />
+          blogData.blog.post_content
+        )}" />
           <meta property="og:image" content="${escapeHtml(
-            blogData.blog.post_image
-          )}" />
-          <meta property="og:url" content="${protocol}://${
-          headers.host
-        }${originalUrl}" />
+          blogData.blog.post_image
+        )}" />
+          <meta property="og:url" content="${protocol}://${headers.host
+          }${originalUrl}" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="${escapeHtml(
             blogData.blog.post_title

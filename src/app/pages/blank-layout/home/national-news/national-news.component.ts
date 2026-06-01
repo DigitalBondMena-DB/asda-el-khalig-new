@@ -8,22 +8,22 @@ import { HomeContentService } from '../../../../core/services/content/home/home-
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 
 @Component({
-    selector: 'app-national-news',
-    imports: [
-        AdvertisingAreaComponent,
-        StringSlicePipe,
-        RouterLink,
-        NgxSkeletonLoaderModule,
-        SafeHtmlPipe,
-    ],
-    templateUrl: './national-news.component.html',
-    styleUrl: './national-news.component.scss'
+  selector: 'app-national-news',
+  imports: [
+    AdvertisingAreaComponent,
+    StringSlicePipe,
+    RouterLink,
+    NgxSkeletonLoaderModule,
+    SafeHtmlPipe,
+  ],
+  templateUrl: './national-news.component.html',
+  styleUrl: './national-news.component.scss'
 })
 export class NationalNewsComponent {
   nationalNews!: ISpecificCategory;
   isDesktop = input();
   skeleton: number[] = [0, 1, 2, 3, 4, 5, 6];
-  constructor(private _HomeContentService: HomeContentService) {}
+  constructor(private _HomeContentService: HomeContentService) { }
 
   ngOnInit(): void {
     this.getNationalNews();
@@ -33,7 +33,6 @@ export class NationalNewsComponent {
     this._HomeContentService.getHomeNationalsNews().subscribe({
       next: (response) => {
         this.nationalNews = response;
-        console.log(response);
       },
     });
   }

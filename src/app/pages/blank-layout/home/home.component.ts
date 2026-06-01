@@ -46,6 +46,5 @@ export class HomeComponent {
   @HostListener('window:resize')
   onResize() {
     this.isDesktop = window.innerWidth > 992;
-    console.log(this.isDesktop);
   }
 }

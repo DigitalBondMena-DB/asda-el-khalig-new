@@ -400,8 +400,6 @@ export class DetailsComponent {
     }
   }
   ngOnDestroy(): void {
-    console.log('🛑 Destroying component, resetting meta tags...');
-
     // Ensure meta tags are reset to default values
     this.titleService.setTitle(this.defaultTitle);
 

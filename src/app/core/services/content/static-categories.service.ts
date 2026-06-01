@@ -8,7 +8,7 @@ import { ISpecificCategory } from '../../interfaces/ISpecificCategory';
   providedIn: 'root',
 })
 export class StaticCategoriesService {
-  constructor(private _HttpClient: HttpClient) {}
+  constructor(private _HttpClient: HttpClient) { }
 
   getLocalNews(): Observable<ISpecificCategory> {
     return <Observable<ISpecificCategory>>(

@@ -9,10 +9,10 @@ import { HomeContentService } from '../../../../../core/services/content/home/ho
 import { NewsControlService } from '../../../../../core/services/shared/news-control.service';
 
 @Component({
-    selector: 'app-home-master',
-    imports: [CarouselModule, RouterLink, NgxSkeletonLoaderModule],
-    templateUrl: './home-master.component.html',
-    styleUrl: './home-master.component.scss'
+  selector: 'app-home-master',
+  imports: [CarouselModule, RouterLink, NgxSkeletonLoaderModule],
+  templateUrl: './home-master.component.html',
+  styleUrl: './home-master.component.scss'
 })
 export class HomeMasterComponent {
   sliderData!: ISliderHome;
@@ -23,7 +23,7 @@ export class HomeMasterComponent {
     private _NewsControlService: NewsControlService,
     private _HomeContentService: HomeContentService,
     private _CategoriesService: CategoriesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getBreakingNews();
@@ -35,7 +35,6 @@ export class HomeMasterComponent {
     this._NewsControlService.getBreakingNews().subscribe({
       next: (response) => {
         this.allBreakingNews = response;
-        console.log(response);
       },
     });
   }

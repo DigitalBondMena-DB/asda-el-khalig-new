@@ -38,9 +38,6 @@
               "src/assets"
             ],
             "styles": [
-
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-beat.css",
               "node_modules/ngx-spinner/animations/ball-spin-fade.css",
@@ -120,7 +117,6 @@
               "src/assets"
             ],
             "styles": [
-
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.min.css",
               "node_modules/ngx-toastr/toastr.css",

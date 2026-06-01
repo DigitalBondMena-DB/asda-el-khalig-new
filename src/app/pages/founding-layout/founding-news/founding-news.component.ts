@@ -23,20 +23,20 @@ import { CategoriesService } from '../../../core/services/content/categories.ser
 import { HomeContentService } from '../../../core/services/content/home/home-content.service';
 
 @Component({
-    selector: 'app-founding-news',
-    imports: [
-        NgxSkeletonLoaderModule,
-        SlicePipe,
-        RouterLink,
-        ImagesSrcPipe,
-        HijriDatePipe,
-        CarouselModule,
-        NgxPaginationModule,
-        StringSpliterPipe,
-        NgClass,
-    ],
-    templateUrl: './founding-news.component.html',
-    styleUrl: './founding-news.component.scss'
+  selector: 'app-founding-news',
+  imports: [
+    NgxSkeletonLoaderModule,
+    SlicePipe,
+    RouterLink,
+    ImagesSrcPipe,
+    HijriDatePipe,
+    CarouselModule,
+    NgxPaginationModule,
+    StringSpliterPipe,
+    NgClass,
+  ],
+  templateUrl: './founding-news.component.html',
+  styleUrl: './founding-news.component.scss'
 })
 export class FoundingNewsComponent {
   @Input({ required: true }) isNational: boolean = true;
@@ -54,7 +54,7 @@ export class FoundingNewsComponent {
     private _HomeContentService: HomeContentService,
     private _CategoriesService: CategoriesService,
     private _Router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.PlaceHolder)
@@ -73,26 +73,11 @@ export class FoundingNewsComponent {
     this.allNews = {} as ISpecificCategory;
   }
 
-  // getRandomNews(): void {
-  //   if (this.PlaceHolder)
-  //     this.PlaceHolder.nativeElement.classList.remove('d-none');
-  //   this._HomeContentService.getHomeRandomNews().subscribe({
-  //     next: (response) => {
-  //       console.log(this.allNews);
-  //       this.allNews = response?.blogs?.data ;
-  //       // this.currentSlugId = response.blogs.data[0].;
-  //       if (this.PlaceHolder)
-  //         this.PlaceHolder.nativeElement.classList.add('d-none');
-  //     },
-  //   });
-  // }
-
   getAnotherCategories(categoryId: string, page: number): void {
     if (this.PlaceHolder)
       this.PlaceHolder.nativeElement.classList.remove('d-none');
     this._CategoriesService.getCurrentCategories(categoryId, page).subscribe({
       next: (response) => {
-        console.log(this.totalItems);
         this.allNews = response as ISpecificCategory;
         this.totalItems = response?.blogs.total as number;
         if (this.PlaceHolder)

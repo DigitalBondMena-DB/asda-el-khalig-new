@@ -23,7 +23,6 @@ export class AdministrativeStructureComponent {
     this._MetaTagsHandleService.handleMeta();
     this._EmployeesService.getAllEmployees().subscribe({
       next: (response) => {
-        console.log(response);
         this.structure = response.rows;
         let totalDisabledNum = response.rows.filter(
           (e) => e.status == 0

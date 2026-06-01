@@ -14,11 +14,7 @@ export class HomeContentService {
   ) { }
 
   getHomeSlider(): Observable<any | null> {
-    if (this.checkPlatForm()) {
-      return this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`);
-    } else {
-      return of(null);
-    }
+    return this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`);
   }
   getHomeLocalNews(): Observable<any> {
     if (this.checkPlatForm()) {

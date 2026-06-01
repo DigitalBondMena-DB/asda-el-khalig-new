@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { DetailsComponent } from './pages/blank-layout/categories/details/details.component';
-
 export const routes: Routes = [
   {
     path: '',
@@ -49,11 +47,17 @@ export const routes: Routes = [
       },
       {
         path: 'archives/:id',
-        component: DetailsComponent,
+        loadComponent: () =>
+          import('./pages/blank-layout/categories/details/details.component').then(
+            (c) => c.DetailsComponent,
+          )
       },
       {
         path: 'article/:id',
-        component: DetailsComponent,
+        loadComponent: () =>
+          import('./pages/blank-layout/categories/details/details.component').then(
+            (c) => c.DetailsComponent,
+          ),
       },
       {
         path: 'contact-us',

@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import {
   InMemoryScrollingFeature,
   InMemoryScrollingOptions,
@@ -11,14 +11,9 @@ import {
 import { IMAGE_CONFIG } from '@angular/common';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideShareButtonsOptions,
-  SharerMethods,
-  withConfig,
-} from 'ngx-sharebuttons';
-import { shareIcons } from 'ngx-sharebuttons/icons';
+
 import { provideToastr } from 'ngx-toastr';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { homeCacheInterceptor } from './core/interceptors/home-cache.interceptor';
@@ -35,6 +30,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideNoopAnimations(),
     provideRouter(
       routes,
       withComponentInputBinding(),
@@ -42,7 +38,6 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions()
     ),
     provideClientHydration(),
-    provideAnimations(),
     provideToastr({
       positionClass: 'toast-top-left',
       timeOut: 2000,
@@ -55,14 +50,6 @@ export const appConfig: ApplicationConfig = {
         networkErrorInterceptor,
       ]),
       withFetch() // for lazy loading
-    ),
-
-    provideShareButtonsOptions(
-      shareIcons(),
-      withConfig({
-        debug: true,
-        sharerMethod: SharerMethods.Anchor,
-      })
     ),
     {
       provide: IMAGE_CONFIG,

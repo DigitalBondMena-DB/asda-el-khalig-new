@@ -4,7 +4,7 @@
       <div class="col-12 col-lg-8 order-1 order-lg-1">
         <div>
           <div class="hero_height border-radius-10 overflow-hidden">
-            <owl-carousel-o [options]="customOptions" (dragging)="onDragStart()" (translated)="onDragEnd()">
+            <owl-carousel-o ngSkipHydration [options]="customOptions" (dragging)="onDragStart()" (translated)="onDragEnd()">
               @for (slide of (sliderData && sliderData.blogs) || []; track $index) {
               <ng-template carouselSlide [id]="slide.post_id + ''">
                 <a [routerLink]="

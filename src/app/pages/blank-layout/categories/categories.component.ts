@@ -6,16 +6,16 @@ import { AdvertisingAreaComponent } from '../../../shared/components/advertising
 import { RelatedContentComponent } from './related-content/related-content.component';
 
 @Component({
-    selector: 'app-categories',
-    imports: [
-        BlankNavbarComponent,
-        AdvertisingAreaComponent,
-        RelatedContentComponent,
-        RouterOutlet,
-        RouterLink,
-    ],
-    templateUrl: './categories.component.html',
-    styleUrl: './categories.component.scss'
+  selector: 'app-categories',
+  imports: [
+    BlankNavbarComponent,
+    AdvertisingAreaComponent,
+    RelatedContentComponent,
+    RouterOutlet,
+    RouterLink,
+  ],
+  templateUrl: './categories.component.html',
+  styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent {
   masterBlog!: any;
@@ -33,7 +33,6 @@ export class CategoriesComponent {
   @HostListener('window:resize')
   onResize() {
     this.isDesktop = window.innerWidth > 992;
-    console.log(this.isDesktop);
   }
   onClickGetLastEditorNewsId(): void {
     this._CategoriesService.getEditorBlog().subscribe({

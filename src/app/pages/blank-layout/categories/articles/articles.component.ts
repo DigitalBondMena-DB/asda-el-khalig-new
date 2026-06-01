@@ -11,17 +11,17 @@ import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 
 @Component({
-    selector: 'app-articles',
-    imports: [
-        RouterLink,
-        NgxPaginationModule,
-        NgxSkeletonLoaderModule,
-        ImagesSrcPipe,
-        SafeHtmlPipe,
-        RemoveInlineStylesPipe,
-    ],
-    templateUrl: './articles.component.html',
-    styleUrl: './articles.component.scss'
+  selector: 'app-articles',
+  imports: [
+    RouterLink,
+    NgxPaginationModule,
+    NgxSkeletonLoaderModule,
+    ImagesSrcPipe,
+    SafeHtmlPipe,
+    RemoveInlineStylesPipe,
+  ],
+  templateUrl: './articles.component.html',
+  styleUrl: './articles.component.scss'
 })
 export class ArticlesComponent {
   currentId!: string;
@@ -51,7 +51,7 @@ export class ArticlesComponent {
     private titleService: Title,
     private metaService: Meta,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
@@ -116,7 +116,6 @@ export class ArticlesComponent {
           }
         );
         (response as ISpecificCategory).blogs.data = newArr;
-        console.log(newArr);
         this.specificCategories = response as ISpecificCategory;
         this.totalItems = response?.blogs.total as number;
       },

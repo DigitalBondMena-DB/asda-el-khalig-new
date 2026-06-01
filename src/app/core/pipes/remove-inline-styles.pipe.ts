@@ -8,15 +8,21 @@ export class RemoveInlineStylesPipe implements PipeTransform {
   transform(value: string): string {
     if (!value) return '';
 
-    // 1. Parse the HTML
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(value, 'text/html');
+    // Check if DOMParser is available (Browser environment)
+    if (typeof DOMParser !== 'undefined') {
+      // 1. Parse the HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(value, 'text/html');
 
-    // 2. Process all elements in the document
-    this.cleanElement(doc.body);
+      // 2. Process all elements in the document
+      this.cleanElement(doc.body);
 
-    // 3. Return the cleaned HTML content
-    return doc.body.innerHTML;
+      // 3. Return the cleaned HTML content
+      return doc.body.innerHTML;
+    }
+
+    // SSR fallback: basic stripping of some common attributes like style to prevent large DOM changes between server and client
+    return value.replace(/ style="[^"]*"/gi, '');
   }
 
   // Helper method to remove all attributes from an element

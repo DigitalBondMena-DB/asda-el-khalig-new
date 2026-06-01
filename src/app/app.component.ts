@@ -67,8 +67,6 @@ export class AppComponent {
 
   private updateMetaData(): void {
     const routeData = this.getRouteData(this.activatedRoute);
-    console.log('Route Data:', routeData); // Debugging
-
     const pageTitle =
       routeData?.title ||
       'صحيفة أصداء الخليج | صحيفة سعودية مرخصة | رئيس التحرير سلمان بن أحمد العيد';

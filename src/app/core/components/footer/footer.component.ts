@@ -7,10 +7,10 @@ import { SocialMediaService } from '../../services/content/social-media.service'
 import { StaticCategoriesService } from '../../services/content/static-categories.service';
 
 @Component({
-    selector: 'app-footer',
-    imports: [RouterLink],
-    templateUrl: './footer.component.html',
-    styleUrl: './footer.component.scss'
+  selector: 'app-footer',
+  imports: [RouterLink],
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];
@@ -19,15 +19,14 @@ export class FooterComponent {
     private _StaticCategoriesService: StaticCategoriesService,
     private _SocialMediaService: SocialMediaService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.getSocialMediaLinks();
-    if (isPlatformBrowser(this.platformId)) {
-      this._StaticCategoriesService.increaseView().subscribe({
-        next: (response) => {},
-        error: (err) => console.warn('Failed to record visit on server.', err.message),
-      });
-    }
+    this._StaticCategoriesService.increaseView().subscribe({
+      next: (response) => { },
+      error: (err) => console.warn('Failed to record visit on server.', err.message),
+    });
+
   }
 
   getSocialMediaLinks(): void {

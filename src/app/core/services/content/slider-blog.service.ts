@@ -12,13 +12,11 @@ export class SliderBlogService {
   constructor(
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object
-  ) {}
+  ) { }
 
   getSliderData(): Observable<ISliderHome> {
-    if (isPlatformBrowser(this._PLATFORM_ID)) {
-      return <Observable<ISliderHome>>(
-        this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`)
-      );
-    } else return new Observable<ISliderHome>();
+    return <Observable<ISliderHome>>(
+      this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`)
+    );
   }
 }

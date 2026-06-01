@@ -12,17 +12,17 @@ import { HomeContentService } from '../../../core/services/content/home/home-con
 import { NewsControlService } from '../../../core/services/shared/news-control.service';
 
 @Component({
-    selector: 'app-founding-hero',
-    imports: [
-        CarouselModule,
-        RouterLink,
-        NgxSkeletonLoaderModule,
-        SafeHtmlPipe,
-        RemoveInlineStylesPipe,
-        NgClass,
-    ],
-    templateUrl: './founding-hero.component.html',
-    styleUrl: './founding-hero.component.scss'
+  selector: 'app-founding-hero',
+  imports: [
+    CarouselModule,
+    RouterLink,
+    NgxSkeletonLoaderModule,
+    SafeHtmlPipe,
+    RemoveInlineStylesPipe,
+    NgClass,
+  ],
+  templateUrl: './founding-hero.component.html',
+  styleUrl: './founding-hero.component.scss'
 })
 export class FoundingHeroComponent {
   @Input({ required: true }) isNational: boolean = false;
@@ -33,7 +33,7 @@ export class FoundingHeroComponent {
     private _NewsControlService: NewsControlService,
     private _HomeContentService: HomeContentService,
     private _CategoriesService: CategoriesService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.getBreakingNews();
     this.getSliderData();
@@ -44,7 +44,6 @@ export class FoundingHeroComponent {
     this._NewsControlService.getBreakingNews().subscribe({
       next: (response) => {
         this.allBreakingNews = response;
-        console.log(response);
       },
     });
   }

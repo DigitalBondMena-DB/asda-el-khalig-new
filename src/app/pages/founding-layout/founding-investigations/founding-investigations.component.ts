@@ -7,16 +7,16 @@ import { ISpecificCategory } from '../../../core/interfaces/ISpecificCategory';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 
 @Component({
-    selector: 'app-founding-investigations',
-    imports: [
-        RouterLink,
-        NgxSkeletonLoaderModule,
-        NgxPaginationModule,
-        SlicePipe,
-        NgClass,
-    ],
-    templateUrl: './founding-investigations.component.html',
-    styleUrl: './founding-investigations.component.scss'
+  selector: 'app-founding-investigations',
+  imports: [
+    RouterLink,
+    NgxSkeletonLoaderModule,
+    NgxPaginationModule,
+    SlicePipe,
+    NgClass,
+  ],
+  templateUrl: './founding-investigations.component.html',
+  styleUrl: './founding-investigations.component.scss'
 })
 export class FoundingInvestigationsComponent {
   @Input({ required: true }) isNational: boolean = true;
@@ -28,7 +28,7 @@ export class FoundingInvestigationsComponent {
 
   // currentSlugId: string = 'foundation_day_investigations';
   currentSlugId: string = this.isNational ? 'nation_day_investigations' : 'i';
-  constructor(private _CategoriesService: CategoriesService) {}
+  constructor(private _CategoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     this.currentSlugId = this.isNational ? 'nation_day_investigations' : 'i';
@@ -45,8 +45,6 @@ export class FoundingInvestigationsComponent {
       next: (response) => {
         this.investigations = response as ISpecificCategory;
         this.totalItems = response?.blogs.total as number;
-        console.log(this.totalItems);
-        console.log(response);
       },
     });
   }

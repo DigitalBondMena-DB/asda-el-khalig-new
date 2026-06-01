@@ -13,7 +13,7 @@ export class CategoriesService {
   constructor(
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object
-  ) {}
+  ) { }
 
   getCurrentCategories(
     blogId: string,
@@ -48,9 +48,7 @@ export class CategoriesService {
     } else return of(null);
   }
   getEditorBlog(): Observable<any> {
-    if (isPlatformBrowser(this._PLATFORM_ID)) {
-      return this._HttpClient.get(`${WEB_SITE_BASE_URL}main-blogs`);
-    } else return of(null);
+    return this._HttpClient.get(`${WEB_SITE_BASE_URL}main-blogs`);
   }
 
   getNavBarCategories(): Observable<ISpecificCategory> {

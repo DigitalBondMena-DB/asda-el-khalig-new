@@ -16,18 +16,20 @@ import { IAllBreakingNews } from '../../interfaces/slider/IBreakingNews';
 export class NewsControlService {
   _PLATFORM_ID = inject(PLATFORM_ID);
 
-  constructor(private _HttpClient: HttpClient) {}
+  constructor(private _HttpClient: HttpClient) { }
 
   getAllNews(): Observable<IGetAllNews> {
     return <Observable<IGetAllNews>>(
       this._HttpClient.get(`${WEB_SITE_BASE_URL}blog_index`)
     );
   }
-  getNewsBySearch(title:string): Observable<IGetAllNews> {
+  getNewsBySearch(title: string): Observable<IGetAllNews> {
     return <Observable<IGetAllNews>>(
-      this._HttpClient.get(`${WEB_SITE_BASE_URL}blog_index`,{params:{
-        search:title
-      }})
+      this._HttpClient.get(`${WEB_SITE_BASE_URL}blog_index`, {
+        params: {
+          search: title
+        }
+      })
     );
   }
 
@@ -72,11 +74,11 @@ export class NewsControlService {
     );
   }
   getBreakingNews(): Observable<IAllBreakingNews> {
-    if (isPlatformBrowser(this._PLATFORM_ID)) {
-      return <Observable<IAllBreakingNews>>(
-        this._HttpClient.get(`${WEB_SITE_BASE_URL}CheckActivity`)
-      );
-    } else return new Observable();
+
+    return <Observable<IAllBreakingNews>>(
+      this._HttpClient.get(`${WEB_SITE_BASE_URL}CheckActivity`)
+    );
+
   }
 
   getNewsById(id: number): Observable<IGetOneBlogResponse> {

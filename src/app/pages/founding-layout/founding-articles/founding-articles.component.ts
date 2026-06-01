@@ -10,19 +10,19 @@ import { SafeHtmlPipe } from '../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 
 @Component({
-    selector: 'app-founding-articles',
-    imports: [
-        SlicePipe,
-        RouterLink,
-        NgxSkeletonLoaderModule,
-        ImagesSrcPipe,
-        SafeHtmlPipe,
-        RemoveInlineStylesPipe,
-        NgxPaginationModule,
-        NgClass,
-    ],
-    templateUrl: './founding-articles.component.html',
-    styleUrl: './founding-articles.component.scss'
+  selector: 'app-founding-articles',
+  imports: [
+    SlicePipe,
+    RouterLink,
+    NgxSkeletonLoaderModule,
+    ImagesSrcPipe,
+    SafeHtmlPipe,
+    RemoveInlineStylesPipe,
+    NgxPaginationModule,
+    NgClass,
+  ],
+  templateUrl: './founding-articles.component.html',
+  styleUrl: './founding-articles.component.scss'
 })
 export class FoundingArticlesComponent {
   @Input({ required: true }) isNational: boolean = true;
@@ -31,7 +31,7 @@ export class FoundingArticlesComponent {
     ? 'nation_day_blogs'
     : 'foundation_day_blogs';
 
-  constructor(private _CategoriesService: CategoriesService) {}
+  constructor(private _CategoriesService: CategoriesService) { }
   currentPage: number = 1;
   totalItems: number = 0;
   article: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -61,7 +61,6 @@ export class FoundingArticlesComponent {
       next: (response) => {
         this.totalItems = response?.blogs.total as number;
         this.specificCategory = response as ISpecificCategory;
-        console.log(this.totalItems);
       },
     });
   }

@@ -6,10 +6,10 @@ import { SocialMediaService } from '../../../core/services/content/social-media.
 import { StaticCategoriesService } from '../../../core/services/content/static-categories.service';
 
 @Component({
-    selector: 'app-founding-footer',
-    imports: [RouterLink, NgClass],
-    templateUrl: './founding-footer.component.html',
-    styleUrl: './founding-footer.component.scss'
+  selector: 'app-founding-footer',
+  imports: [RouterLink, NgClass],
+  templateUrl: './founding-footer.component.html',
+  styleUrl: './founding-footer.component.scss'
 })
 export class FoundingFooterComponent {
   @Input({ required: true }) isNational: boolean = false;
@@ -20,15 +20,14 @@ export class FoundingFooterComponent {
     private _StaticCategoriesService: StaticCategoriesService,
     private _SocialMediaService: SocialMediaService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.getSocialMediaLinks();
-    if (isPlatformBrowser(this.platformId)) {
-      this._StaticCategoriesService.increaseView().subscribe({
-        next: (response) => {},
-        error: (err) => console.warn('Failed to record visit on server.', err.message),
-      });
-    }
+    this._StaticCategoriesService.increaseView().subscribe({
+      next: (response) => { },
+      error: (err) => console.warn('Failed to record visit on server.', err.message),
+    });
+
   }
 
   getSocialMediaLinks(): void {

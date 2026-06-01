@@ -28,21 +28,21 @@ import { StringSpliterPipe } from '../../../../core/pipes/string-spliter.pipe';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 
 @Component({
-    selector: 'app-blogs',
-    imports: [
-        HijriDatePipe,
-        StringSlicePipe,
-        RouterLink,
-        NgxPaginationModule,
-        ImagesSrcPipe,
-        NgxSkeletonLoaderModule,
-        SafeHtmlPipe,
-        RemoveInlineStylesPipe,
-        StringSpliterPipe,
-        SlicePipe,
-    ],
-    templateUrl: './blogs.component.html',
-    styleUrls: ['./blogs.component.scss']
+  selector: 'app-blogs',
+  imports: [
+    HijriDatePipe,
+    StringSlicePipe,
+    RouterLink,
+    NgxPaginationModule,
+    ImagesSrcPipe,
+    NgxSkeletonLoaderModule,
+    SafeHtmlPipe,
+    RemoveInlineStylesPipe,
+    StringSpliterPipe,
+    SlicePipe,
+  ],
+  templateUrl: './blogs.component.html',
+  styleUrls: ['./blogs.component.scss']
 })
 export class BlogsComponent implements OnInit, OnDestroy {
   currentId!: string;
@@ -74,10 +74,9 @@ export class BlogsComponent implements OnInit, OnDestroy {
       this.getInitialId();
     }
   }
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize() {
     this.isDesktop = window.innerWidth > 992;
-    console.log(this.isDesktop);
   }
   private updateCanonicalUrl(): void {
     if (window.location.href) {
