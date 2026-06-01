@@ -1,14 +1,13 @@
-import { isPlatformBrowser } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { WEB_SITE_BASE_URL } from '../../constants/WEB_SITE_BASE_UTL';
 import {
   IGetAllNews,
   IGetOneBlogResponse,
   INewsAddResponse,
 } from '../../interfaces/INewsControl';
-import { IAllBreakingNews } from '../../interfaces/slider/IBreakingNews';
 
 @Injectable({
   providedIn: 'root',
@@ -73,12 +72,8 @@ export class NewsControlService {
       }
     );
   }
-  getBreakingNews(): Observable<IAllBreakingNews> {
-
-    return <Observable<IAllBreakingNews>>(
-      this._HttpClient.get(`${WEB_SITE_BASE_URL}CheckActivity`)
-    );
-
+  getBreakingNews(): Observable<any> {
+    return this._HttpClient.get(`${WEB_SITE_BASE_URL}CheckActivity`).pipe(catchError(() => of(null)));
   }
 
   getNewsById(id: number): Observable<IGetOneBlogResponse> {

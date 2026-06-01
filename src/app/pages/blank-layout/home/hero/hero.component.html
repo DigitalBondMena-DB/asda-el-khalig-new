@@ -4,8 +4,9 @@
       <div class="col-12 col-lg-8 order-1 order-lg-1">
         <div>
           <div class="hero_height border-radius-10 overflow-hidden">
-            <owl-carousel-o ngSkipHydration [options]="customOptions" (dragging)="onDragStart()" (translated)="onDragEnd()">
-              @for (slide of (sliderData && sliderData.blogs) || []; track $index) {
+            <owl-carousel-o ngSkipHydration [options]="customOptions" (dragging)="onDragStart()"
+              (translated)="onDragEnd()">
+              @for (slide of (sliderData() && sliderData()?.blogs) || []; track $index) {
               <ng-template carouselSlide [id]="slide.post_id + ''">
                 <a [routerLink]="
                     shouldNavigate() ? [slide.old_status?'/archives':'/article', slide.post_id] : null
@@ -13,8 +14,8 @@
                   <figure class="my-0 h-100 Logo_Water_Mark card cr">
                     <img #image (load)="imageLoaded(image)" style="object-position: top"
                       class="w-100 object-fit-cover hero_height" [ngSrc]="slide.featured_image"
-                      [priority]="$index === 0" [attr.decoding]="$index === 0 ? 'sync' : 'async'" width="860" height="460"
-                      [alt]="slide.post_title" />
+                      [priority]="$index === 0" [attr.decoding]="$index === 0 ? 'sync' : 'async'" width="860"
+                      height="460" [alt]="slide.post_title" />
                     <span class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"></span>
                     <figcaption class="card-img-overlay d-flex align-items-end">
                       <div
@@ -55,12 +56,12 @@
 </section>
 
 <!-- Fast News -->
-@if (allBreakingNews&&allBreakingNews.blogs.length > 0) {
+@if (allBreakingNews() && (allBreakingNews()?.blogs?.length ?? 0) > 0) {
 <div class="breaking-news-bar position-fixed bottom-0 start-0 w-100">
   <span class="breaking-label p-2 bg-danger">أخبار عاجلة</span>
   <div class="breaking-news-container">
     <div class="breaking-news-content">
-      @for (news of allBreakingNews.blogs; track $index) {
+      @for (news of allBreakingNews()?.blogs ?? []; track $index) {
       <span>
         <a [routerLink]="['/archives', news.ar_slug]" class="text-white text-decoration-none">
           {{ news.post_title }} &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp;

@@ -31,28 +31,28 @@
   <div class="container-fluid flex-row-reverse flex-nowrap w-100 d-flex justify-content-between">
     <div class="search_container d-none d-md-flex">
       <input [(ngModel)]="searchResult" #inputSearch (keydown.enter)="searchResults(inputSearch.value)" [style]="{
-          'background-color': searchResult.length > 0 ? 'white' : ''
-        }" id="Search_Input" type="search" class="search Input border-radius-10" aria-label="Search"
+          'background-color': searchResult().length > 0 ? 'white' : ''
+        }" id="Search_Input" type="text" class="search Input border-radius-10" aria-label="Search"
         placeholder="ابحث عن.." />
       <button class="btn search_icon bg-transparent" (click)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(inputSearch.value)
             : focusSearchInput()
         " (keydown.enter)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(inputSearch.value)
             : focusSearchInput()
         " (keydown.space)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(inputSearch.value)
             : focusSearchInput()
         " aria-label="بحث" tabindex="0" role="button">
         <img decoding="async" loading="lazy" [style]="{
-            display: searchResult.length > 0 ? 'inline-block !important' : ''
+            display: searchResult().length > 0 ? 'inline-block !important' : ''
           }" class="d-none search-dark" width="40px" src="./assets/images/navbar/search-dark.svg" alt="search icon"
           aria-hidden="true" />
         <img decoding="async" loading="lazy" [style]="{
-            display: searchResult.length > 0 ? 'none !important' : ''
+            display: searchResult().length > 0 ? 'none !important' : ''
           }" class="search-light" width="40" height="40" src="./assets/images/navbar/search-light.svg"
           alt="search icon" aria-hidden="true" />
       </button>
@@ -167,28 +167,28 @@
     <div class="search_container d-flex d-md-none">
       <input [(ngModel)]="searchResult" #mobileInputSearch (keydown.enter)="searchResults(mobileInputSearch.value)"
         [style]="{
-          'background-color': searchResult.length > 0 ? 'white' : ''
-        }" id="Search_Input_Mobile" type="search" class="search w-100 Input border-radius-10" aria-label="بحث"
+          'background-color': searchResult().length > 0 ? 'white' : ''
+        }" id="Search_Input_Mobile" type="text" class="search w-100 Input border-radius-10" aria-label="بحث"
         placeholder="ابحث عن.." />
       <button class="btn search_icon bg-transparent" (click)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(mobileInputSearch.value)
             : focusSearchInput()
         " (keydown.enter)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(mobileInputSearch.value)
             : focusSearchInput()
         " (keydown.space)="
-          searchResult.length > 0
+          searchResult().length > 0
             ? searchResults(mobileInputSearch.value)
             : focusSearchInput()
         " aria-label="بحث" tabindex="0" role="button">
         <img decoding="async" loading="lazy" [style]="{
-            display: searchResult.length > 0 ? 'inline-block !important' : ''
+            display: searchResult().length > 0 ? 'inline-block !important' : ''
           }" class="d-none search-dark" width="40px" src="./assets/images/navbar/search-dark.svg" alt="search icon"
           aria-hidden="true" />
         <img decoding="async" loading="lazy" [style]="{
-            display: searchResult.length > 0 ? 'none !important' : ''
+            display: searchResult().length > 0 ? 'none !important' : ''
           }" class="search-light" width="40" height="40" src="./assets/images/navbar/search-light.svg"
           alt="search icon" aria-hidden="true" />
       </button>

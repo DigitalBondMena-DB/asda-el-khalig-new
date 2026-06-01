@@ -1,9 +1,11 @@
 import { CommonModule, SlicePipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
   QueryList,
+  signal,
   ViewChildren,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -14,49 +16,47 @@ import { ImagesSrcPipe } from '../../../../core/pipes/images-src.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 
 @Component({
-    selector: 'app-home-local-news',
-    imports: [
-        SlicePipe,
-        HijriDatePipe,
-        NgxSkeletonLoaderModule,
-        RouterLink,
-        ImagesSrcPipe,
-        CommonModule,
-    ],
-    templateUrl: './home-local-news.component.html',
-    styleUrl: './home-local-news.component.scss'
+  selector: 'app-home-local-news',
+  imports: [
+    SlicePipe,
+    HijriDatePipe,
+    NgxSkeletonLoaderModule,
+    RouterLink,
+    ImagesSrcPipe,
+    CommonModule,
+  ],
+  templateUrl: './home-local-news.component.html',
+  styleUrl: './home-local-news.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeLocalNewsComponent {
-  localNews!: ISpecificCategory;
-  sliceNumber = 3;
-  sectionTitle = 'الأخبار المحلية';
-  isShowSkeleton = true;
+  localNews = signal<ISpecificCategory | null>(null);
+  sectionTitle = signal('الأخبار المحلية');
+  isShowSkeleton = signal<boolean>(true);
   @ViewChildren('toggleButtons') toggleButtons!: QueryList<ElementRef>;
-  constructor(private _HomeContentService: HomeContentService) {}
+  constructor(private _HomeContentService: HomeContentService) { }
 
   ngOnInit(): void {
     this.getLocalNews();
   }
 
   getLocalNews() {
-    this.isShowSkeleton = true;
-    this.sliceNumber = 1;
+    this.isShowSkeleton.set(true);
     this._HomeContentService.getHomeLocalNews().subscribe({
       next: (response) => {
-        this.localNews = response;
-        this.sectionTitle = 'الأخبار المحلية';
-        this.isShowSkeleton = false;
+        this.localNews.set(response);
+        this.sectionTitle.set('الأخبار المحلية');
+        this.isShowSkeleton.set(false);
       },
     });
   }
   getRandomNews() {
-    this.isShowSkeleton = true;
-    this.sliceNumber = 4;
+    this.isShowSkeleton.set(true);
     this._HomeContentService.getHomeRandomNews().subscribe({
       next: (response) => {
-        this.localNews = response;
-        this.sectionTitle = 'أخبار متنوعة';
-        this.isShowSkeleton = false;
+        this.localNews.set(response);
+        this.sectionTitle.set('أخبار متنوعة');
+        this.isShowSkeleton.set(false);
       },
     });
   }

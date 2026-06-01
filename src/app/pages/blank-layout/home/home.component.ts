@@ -1,4 +1,4 @@
-import { afterNextRender, Component, HostListener } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, HostListener, inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlankNavbarComponent } from '../../../core/components/blank-navbar/blank-navbar.component';
 import { MetaTagsHandleService } from '../../../core/services/content/meta-tags-handle.service';
@@ -12,6 +12,9 @@ import { HomeLocalNewsComponent } from './home-local-news/home-local-news.compon
 import { HomeNewsComponent } from './home-news/home-news.component';
 import { HomeVideosComponent } from './home-videos/home-videos.component';
 import { NationalNewsComponent } from './national-news/national-news.component';
+import { fromEvent, startWith, throttleTime } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -30,21 +33,38 @@ import { NationalNewsComponent } from './national-news/national-news.component';
     RouterLink,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
-  constructor(private _MetaTagsHandleService: MetaTagsHandleService) {
+  private destroyRef = inject(DestroyRef);
+  private _MetaTagsHandleService = inject(MetaTagsHandleService);
+  private platformId = inject(PLATFORM_ID);
+  isDesktop = signal(true);
+
+  constructor() {
     afterNextRender(() => {
-      this.isDesktop = window.innerWidth > 992;
+      this.setupResizeListener()
     });
   }
   ngOnInit(): void {
     this._MetaTagsHandleService.handleMeta();
+    this.checkScreen()
   }
-  isDesktop: boolean = true; // Default check
+  private setupResizeListener() {
+    fromEvent(window, 'resize')
+      .pipe(
+        throttleTime(200),
+        startWith(null),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
+        this.checkScreen();
+      });
+  }
+  private checkScreen() {
+    if (isPlatformServer(this.platformId)) return;
+    this.isDesktop.set(window.innerWidth > 992);
 
-  @HostListener('window:resize')
-  onResize() {
-    this.isDesktop = window.innerWidth > 992;
   }
 }

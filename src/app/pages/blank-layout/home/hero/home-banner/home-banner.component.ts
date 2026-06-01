@@ -60,13 +60,13 @@ export class HomeBannerComponent implements OnInit, OnDestroy {
   }
 
   private _loadWeather(): void {
-    const url = 'https://api.weatherapi.com/v1/current.json'
-      + '?key=94d6f85346f344d699b111519251901&q=Riyadh&aqi=yes';
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current_weather=true';
 
-    this._httpClient.get<IWeatherAPI>(url)
+    this._httpClient.get<any>(url)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
-        next: ({ current: { temp_c } }) => {
+        next: (data) => {
+          const temp_c = data.current_weather.temperature;
           const f = (temp_c * 9) / 5 + 32;
           this.currentTemp =
             `${Math.trunc(temp_c)}<sup>o</sup>C / ${Math.trunc(f)}<sup>o</sup>F`;

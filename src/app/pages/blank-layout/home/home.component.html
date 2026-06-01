@@ -10,30 +10,30 @@
     <app-hero />
   </div>
 </header>
-@if (!isDesktop) {
-<app-home-local-news [isDesktop]="isDesktop" />
-<app-home-news [isDesktop]="isDesktop" />
+@if (!isDesktop()) {
+<app-home-local-news [isDesktop]="isDesktop()" />
+<app-home-news [isDesktop]="isDesktop()" />
 }
 <app-home-banner />
 <div class="main-bg pb-5">
   <img src="/assets/images/pages/home/2.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="main-bg-img">
   <app-home-advertising-area />
-  @if (isDesktop) {
-  <app-home-news [isDesktop]="isDesktop" />
-  } @if (!isDesktop) {
+  @if (isDesktop()) {
+  <app-home-news [isDesktop]="isDesktop()" />
+  } @if (!isDesktop()) {
   <div class="p-3">
     <app-home-master></app-home-master>
   </div>
   }
 </div>
 
-@if (isDesktop) {
-<app-home-local-news [isDesktop]="isDesktop" />
+@if (isDesktop()) {
+<app-home-local-news [isDesktop]="isDesktop()" />
 }
 
-<app-national-news [isDesktop]="isDesktop" />
-@if (isDesktop) {
+<app-national-news [isDesktop]="isDesktop()" />
+@if (isDesktop()) {
 <app-home-articles />
 }
 
@@ -62,7 +62,8 @@
             <a class="text-decoration-none" href="https://x.com/manalalhusayni"
               class="btn alt-color px-3 text-center my-2 text-black d-flex align-items-center gap-2 justify-content-center"
               target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>
+              <img loading="lazy" decoding="async" src="./assets/images/social_meida_icons/x-twitter-brands-solid.svg"
+                alt="اصداء الخليج اكس" width="16" height="16">
 
               <span class="fw-semibold" style="font-size: 16px">
                 حساب الكاتبة على إكس
@@ -85,9 +86,9 @@
 <div class="third-bg">
   <img src="/assets/images/pages/home/4.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="third-bg-img">
-  <app-home-investigations [isDesktop]="isDesktop" />
-  @if (!isDesktop) {
+  <app-home-investigations [isDesktop]="isDesktop()" />
+  @if (!isDesktop()) {
   <app-home-articles />
   }
-  <app-home-videos [isDesktop]="isDesktop" />
+  <app-home-videos [isDesktop]="isDesktop()" />
 </div>

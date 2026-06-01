@@ -1,8 +1,8 @@
-@if (localNews && localNews.blogs) {
+@if (localNews() && localNews()?.blogs) {
 <section [ngClass]="{ 'd-none': isShowSkeleton }" id="Home__Local__News" class="bg-third py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
-      <h2 class="section__title fs-30">{{ sectionTitle }}</h2>
+      <h2 class="section__title fs-30">{{ sectionTitle() }}</h2>
     </header>
     <div class="row py-2 flex-row-reverse">
       <div class="col-12 col-md-5 ms-auto">
@@ -21,7 +21,8 @@
       <div class="col-12 col-lg-5">
         <div>
           <div class="row g-3 g-lg-2">
-            @for (news of ((localNews && localNews.blogs && localNews.blogs.data) || []) | slice:0:isDesktop()?4:10; track $index) {
+            @for (news of ((localNews() && localNews()?.blogs && localNews()?.blogs?.data) || []) |
+            slice:0:isDesktop()?4:10; track $index) {
             <div class="col-3">
               <a [routerLink]="[news.old_status?'/archives':'/article', news.post_id]" href="#">
                 <div>
@@ -53,12 +54,12 @@
         </div>
       </div>
       <div class="col-12 col-lg-7 d-none d-md-block">
-        <a [routerLink]="[localNews.blogs.data[0].old_status?'/archives':'/article', localNews.blogs.data[0].post_id]"
+        <a [routerLink]="[localNews()?.blogs?.data?.[0]?.old_status  ? '/archives':'/article', localNews()?.blogs?.data?.[0]?.post_id]"
           href="#">
           <div>
             <figure class="Logo_Water_Mark cr">
               <img height="450" loading="lazy" decoding="async" class="w-100 object-fit-cover border-radius-10" [src]="
-                  localNews.blogs.data[0].post_image ||
+                  localNews()?.blogs?.data?.[0]?.post_image ||
                     './assets/images/not_found_image.jpg' | imagesSrc
                 " alt="card.author" />
             </figure>
@@ -66,22 +67,13 @@
               <img class="ms-1 align-middle" loading="lazy" decoding="async"
                 src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" role="presentation" />
               <span class="align-middle text-main">{{
-                localNews.blogs.data[0].post_date | hijriDate
+                localNews()?.blogs?.data?.[0]?.post_date | hijriDate
                 }}</span>
             </p>
             <h3 class="fw-bold m-0 text-end title_section_slider_home_Titles cr p-0">
-              {{ localNews.blogs.data[0].post_title }}
+              {{ localNews()?.blogs?.data?.[0]?.post_title }}
             </h3>
-            <div>
-              <!-- <p
-                class="mb-0 fs-13 desc_color fw-bold title_section_slider_home_Titles"
-                [innerHTML]="
-                  localNews.blogs.data[0].post_content
-                    | stringSlice : 150
-                    | safeHtml
-                "
-              ></p> -->
-            </div>
+
           </div>
         </a>
       </div>

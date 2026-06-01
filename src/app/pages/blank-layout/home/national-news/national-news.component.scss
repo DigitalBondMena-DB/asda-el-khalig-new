@@ -14,3 +14,17 @@ section {
   height: 100%;
   z-index: -1;
 }
+
+.title_section_slider_home_para {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px !important;
+  color: #777474 !important;
+  font-weight: 400;
+  line-height: 1.4;
+  max-height: 2.8em;
+}

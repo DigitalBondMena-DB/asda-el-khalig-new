@@ -1,6 +1,7 @@
 <div>
   <div class="main_animation border-radius-10 overflow-hidden Logo_Water_Mark">
-    <a [routerLink]="[masterBlog?.blogs[0]?.old_status?'/archives':'/article', masterBlog?.blogs[0]?.post_id]" href="#">
+    <a [routerLink]="[masterBlog()?.blogs[0]?.old_status?'/archives':'/article', masterBlog()?.blogs[0]?.post_id]"
+      href="#">
       <img style="height: 380px" class="w-100 object-fit-cover" loading="eager" fetchpriority="high" decoding="sync"
         src="./assets/images/pages/home/Hero_Section/سلمان-بن-أحمد-العيد.jpg" alt="carousel" />
     </a>
@@ -8,7 +9,7 @@
 </div>
 <div class="main-content">
   <p class="fw-bold fs-13 py-2 mb-0">
-    {{ masterBlog?.blogs[0]?.post_title }}
+    {{ masterBlog()?.blogs[0]?.post_title }}
   </p>
   <a class="text-decoration-none" [routerLink]="['/archives/blogs', '10']" href="#" href="#">
     <p

@@ -1,31 +1,22 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, model, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { Contact } from '../../interfaces/ISocialMedia';
-import { SocialMediaService } from '../../services/content/social-media.service';
 
 @Component({
-    selector: 'app-blank-navbar',
-    imports: [RouterLink, FormsModule, RouterLinkActive],
-    templateUrl: './blank-navbar.component.html',
-    styleUrl: './blank-navbar.component.scss'
+  selector: 'app-blank-navbar',
+  imports: [RouterLink, FormsModule, RouterLinkActive],
+  templateUrl: './blank-navbar.component.html',
+  styleUrl: './blank-navbar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BlankNavbarComponent {
-  @ViewChild('inputSearch') desktopSearchInput!: ElementRef;
-  @ViewChild('mobileInputSearch') mobileSearchInput!: ElementRef;
+  private readonly _Router = inject(Router)
 
-  nowDate = new Date();
-  searchResult: string = '';
-  socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];
+  desktopSearchInput = viewChild<ElementRef>('inputSearch');
+  mobileSearchInput = viewChild<ElementRef>('mobileInputSearch');
 
-  constructor(
-    private _Router: Router,
-    private _SocialMediaService: SocialMediaService
-  ) {}
+  searchResult = model<string>('');
 
-  ngOnInit(): void {
-    this.getSocialMediaLinks();
-  }
   categories = [
     { router: '/', id: null, name: 'الرئيسية' },
     { router: '/archives/blogs', id: '01', name: 'أخبار محلية' },
@@ -51,12 +42,12 @@ export class BlankNavbarComponent {
   focusSearchInput(): void {
     // Check if we're on mobile or desktop view
     if (window.innerWidth < 768) {
-      if (this.mobileSearchInput) {
-        this.mobileSearchInput.nativeElement.focus();
+      if (this.mobileSearchInput()) {
+        this.mobileSearchInput()?.nativeElement.focus();
       }
     } else {
-      if (this.desktopSearchInput) {
-        this.desktopSearchInput.nativeElement.focus();
+      if (this.desktopSearchInput()) {
+        this.desktopSearchInput()?.nativeElement.focus();
       }
     }
   }
@@ -65,67 +56,5 @@ export class BlankNavbarComponent {
     if (searchResult.length > 0) {
       this._Router.navigate([`/archives/search`, searchResult]);
     }
-  }
-  getSocialMediaLinks(): void {
-    this._SocialMediaService.getSocialMediaLinks().subscribe({
-      next: (response) => {
-        const contact = response?.contact as Contact;
-        const linksMapping: Record<
-          string,
-          { label: string; icon: string; alt: string }
-        > = {
-          face_url: {
-            label: 'Facebook',
-            icon: './assets/images/social_meida_icons/facebook.svg',
-            alt: 'اصداء الخليج فيسبوك',
-          },
-          tweet_url: {
-            label: 'Twitter',
-            icon: './assets/images/social_meida_icons/x-twitter-brands-solid.svg',
-            alt: 'اصداء الخليج اكس',
-          },
-          instgram_url: {
-            label: 'Instagram',
-            icon: './assets/images/social_meida_icons/instagram.svg',
-            alt: 'اصداء الخليج انستجرام',
-          },
-          tiktok_url: {
-            label: 'TikTok',
-            icon: './assets/images/social_meida_icons/tiktok.svg',
-            alt: 'اصداء الخليج تيك توك',
-          },
-          snapchat_url: {
-            label: 'Snapchat',
-            icon: './assets/images/social_meida_icons/snapchat.svg',
-            alt: 'اصداء الخليج سناب شات',
-          },
-          telegram_url: {
-            label: 'Telegram',
-            icon: './assets/images/social_meida_icons/telegram.svg',
-            alt: 'اصداء الخليج تيليجرام',
-          },
-          watus_number: {
-            label: 'WhatsApp',
-            icon: './assets/images/social_meida_icons/whatsapp.svg',
-            alt: 'اصداء الخليج واتساب',
-          },
-        };
-        // Filter non-null social media links
-        if (contact) {
-          for (const [key, value] of Object.entries(contact)) {
-            this.socialLinks.push({
-              url: value as string,
-              ...linksMapping[key],
-            });
-            // if (value !== 'null' && linksMapping[key]) {
-            //   this.socialLinks.push({
-            //     url: value as string,
-            //     ...linksMapping[key],
-            //   });
-            // }
-          }
-        }
-      },
-    });
   }
 }

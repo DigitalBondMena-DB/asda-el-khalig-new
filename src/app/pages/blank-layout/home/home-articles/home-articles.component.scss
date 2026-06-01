@@ -2,6 +2,7 @@
 .title_section *:blank {
   display: none;
 }
+
 ::ng-deep .text-lighter p,
 ::ng-deep .text-lighter *,
 ::ng-deep .text-lighter b {
@@ -10,4 +11,18 @@
   display: inline !important;
   padding: 0;
   padding-left: 1px;
+}
+
+.title_section-articles {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px !important;
+  color: #000 !important;
+  font-weight: 400;
+  line-height: 1.4;
+  max-height: 55px;
 }
