@@ -6,11 +6,10 @@ import { SocialMediaService } from '../../../core/services/content/social-media.
 import { StaticCategoriesService } from '../../../core/services/content/static-categories.service';
 
 @Component({
-  selector: 'app-founding-footer',
-  standalone: true,
-  imports: [RouterLink, NgClass],
-  templateUrl: './founding-footer.component.html',
-  styleUrl: './founding-footer.component.scss',
+    selector: 'app-founding-footer',
+    imports: [RouterLink, NgClass],
+    templateUrl: './founding-footer.component.html',
+    styleUrl: './founding-footer.component.scss'
 })
 export class FoundingFooterComponent {
   @Input({ required: true }) isNational: boolean = false;

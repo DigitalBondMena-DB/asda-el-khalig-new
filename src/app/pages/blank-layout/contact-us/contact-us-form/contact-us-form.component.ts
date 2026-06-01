@@ -17,11 +17,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ContactUsService } from '../../../../core/services/content/contact-us.service';
 
 @Component({
-  selector: 'app-contact-us-form',
-  standalone: true,
-  imports: [NgxIntlTelInputModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './contact-us-form.component.html',
-  styleUrl: './contact-us-form.component.scss',
+    selector: 'app-contact-us-form',
+    imports: [NgxIntlTelInputModule, ReactiveFormsModule, CommonModule],
+    templateUrl: './contact-us-form.component.html',
+    styleUrl: './contact-us-form.component.scss'
 })
 export class ContactUsFormComponent {
   SearchCountryField = SearchCountryField;

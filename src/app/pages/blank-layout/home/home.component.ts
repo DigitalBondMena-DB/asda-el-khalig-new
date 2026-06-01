@@ -15,25 +15,24 @@ import { HomeVideosComponent } from './home-videos/home-videos.component';
 import { NationalNewsComponent } from './national-news/national-news.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    HeroComponent,
-    HomeAdvertisingAreaComponent,
-    HomeArticlesComponent,
-    HomeInvestigationsComponent,
-    HomeLocalNewsComponent,
-    HomeVideosComponent,
-    HomeSecondAdvertisingBannerComponent,
-    HomeBannerComponent,
-    HomeNewsComponent,
-    BlankNavbarComponent,
-    NationalNewsComponent,
-    HomeMasterComponent,
-    RouterLink,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [
+        HeroComponent,
+        HomeAdvertisingAreaComponent,
+        HomeArticlesComponent,
+        HomeInvestigationsComponent,
+        HomeLocalNewsComponent,
+        HomeVideosComponent,
+        HomeSecondAdvertisingBannerComponent,
+        HomeBannerComponent,
+        HomeNewsComponent,
+        BlankNavbarComponent,
+        NationalNewsComponent,
+        HomeMasterComponent,
+        RouterLink,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(private _MetaTagsHandleService: MetaTagsHandleService) {

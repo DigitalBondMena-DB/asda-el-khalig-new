@@ -7,17 +7,16 @@ import { ISpecificCategory } from '../../../core/interfaces/ISpecificCategory';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 
 @Component({
-  selector: 'app-founding-investigations',
-  standalone: true,
-  imports: [
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    NgxPaginationModule,
-    SlicePipe,
-    NgClass,
-  ],
-  templateUrl: './founding-investigations.component.html',
-  styleUrl: './founding-investigations.component.scss',
+    selector: 'app-founding-investigations',
+    imports: [
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        NgxPaginationModule,
+        SlicePipe,
+        NgClass,
+    ],
+    templateUrl: './founding-investigations.component.html',
+    styleUrl: './founding-investigations.component.scss'
 })
 export class FoundingInvestigationsComponent {
   @Input({ required: true }) isNational: boolean = true;

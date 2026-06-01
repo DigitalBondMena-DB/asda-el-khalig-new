@@ -6,14 +6,13 @@ import { IAllBreakingNews } from '../../../../../core/interfaces/slider/IBreakin
 import { ISliderHome } from '../../../../../core/interfaces/slider/ISliderHome';
 import { CategoriesService } from '../../../../../core/services/content/categories.service';
 import { HomeContentService } from '../../../../../core/services/content/home/home-content.service';
-import { NewsControlService } from '../../../../../dashboard/services/news-control.service';
+import { NewsControlService } from '../../../../../core/services/shared/news-control.service';
 
 @Component({
-  selector: 'app-home-master',
-  standalone: true,
-  imports: [CarouselModule, RouterLink, NgxSkeletonLoaderModule],
-  templateUrl: './home-master.component.html',
-  styleUrl: './home-master.component.scss',
+    selector: 'app-home-master',
+    imports: [CarouselModule, RouterLink, NgxSkeletonLoaderModule],
+    templateUrl: './home-master.component.html',
+    styleUrl: './home-master.component.scss'
 })
 export class HomeMasterComponent {
   sliderData!: ISliderHome;

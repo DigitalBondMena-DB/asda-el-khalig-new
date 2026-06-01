@@ -14,18 +14,17 @@ import { ImagesSrcPipe } from '../../../../core/pipes/images-src.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 
 @Component({
-  selector: 'app-home-local-news',
-  standalone: true,
-  imports: [
-    SlicePipe,
-    HijriDatePipe,
-    NgxSkeletonLoaderModule,
-    RouterLink,
-    ImagesSrcPipe,
-    CommonModule,
-  ],
-  templateUrl: './home-local-news.component.html',
-  styleUrl: './home-local-news.component.scss',
+    selector: 'app-home-local-news',
+    imports: [
+        SlicePipe,
+        HijriDatePipe,
+        NgxSkeletonLoaderModule,
+        RouterLink,
+        ImagesSrcPipe,
+        CommonModule,
+    ],
+    templateUrl: './home-local-news.component.html',
+    styleUrl: './home-local-news.component.scss'
 })
 export class HomeLocalNewsComponent {
   localNews!: ISpecificCategory;

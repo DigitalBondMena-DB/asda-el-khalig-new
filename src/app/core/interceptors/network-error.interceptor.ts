@@ -1,10 +1,9 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { MessageService } from 'primeng/api';
+
 import { catchError, throwError, delay, retryWhen, scan } from 'rxjs';
 
 export const networkErrorInterceptor: HttpInterceptorFn = (req, next) => {
-  const messageService = inject(MessageService);
+
   const MAX_RETRIES = 3; // Number of retry attempts
   const RETRY_DELAY = 2000; // 2 seconds delay between retries
 

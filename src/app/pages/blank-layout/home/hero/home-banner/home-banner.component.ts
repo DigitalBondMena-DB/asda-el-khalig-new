@@ -7,11 +7,10 @@ import { StaticCategoriesService } from '../../../../../core/services/content/st
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-home-banner',
-  standalone: true,
-  imports: [SafeHtmlPipe],
-  templateUrl: './home-banner.component.html',
-  styleUrl: './home-banner.component.scss',
+    selector: 'app-home-banner',
+    imports: [SafeHtmlPipe],
+    templateUrl: './home-banner.component.html',
+    styleUrl: './home-banner.component.scss'
 })
 export class HomeBannerComponent {
   arabicLocale = 'en-EN';

@@ -10,16 +10,15 @@ import { HomeContentService } from '../../../../core/services/content/home/home-
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 
 @Component({
-  selector: 'app-related-content',
-  standalone: true,
-  imports: [
-    NgxSkeletonLoaderModule,
-    AdvertisingAreaComponent,
-    RouterLink,
-    ImagesSrcPipe,
-  ],
-  templateUrl: './related-content.component.html',
-  styleUrl: './related-content.component.scss',
+    selector: 'app-related-content',
+    imports: [
+        NgxSkeletonLoaderModule,
+        AdvertisingAreaComponent,
+        RouterLink,
+        ImagesSrcPipe,
+    ],
+    templateUrl: './related-content.component.html',
+    styleUrl: './related-content.component.scss'
 })
 export class RelatedContentComponent {
   relatedContent!: ISpecificCategory;

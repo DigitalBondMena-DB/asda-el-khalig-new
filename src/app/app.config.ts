@@ -19,8 +19,7 @@ import {
 } from 'ngx-sharebuttons';
 import { shareIcons } from 'ngx-sharebuttons/icons';
 import { provideToastr } from 'ngx-toastr';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+
 import { routes } from './app.routes';
 import { homeCacheInterceptor } from './core/interceptors/home-cache.interceptor';
 import { isStableInterceptor } from './core/interceptors/is-stable.interceptor';
@@ -57,8 +56,7 @@ export const appConfig: ApplicationConfig = {
       ]),
       withFetch() // for lazy loading
     ),
-    MessageService,
-    importProvidersFrom([ToastModule]),
+
     provideShareButtonsOptions(
       shareIcons(),
       withConfig({

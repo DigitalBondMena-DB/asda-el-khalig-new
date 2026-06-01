@@ -2,16 +2,15 @@ import { Component } from '@angular/core';
 import { BlankNavbarComponent } from '../../../core/components/blank-navbar/blank-navbar.component';
 import { AvatarModule } from 'primeng/avatar';
 import { CommonModule } from '@angular/common';
-import { EmployeesService } from '../../../dashboard/services/employees.service';
+import { EmployeesService } from '../../../core/services/shared/employees.service';
 import { IEmployeeRow } from '../../../core/interfaces/IEmployess';
 import { MetaTagsHandleService } from '../../../core/services/content/meta-tags-handle.service';
 
 @Component({
-  selector: 'app-administrative-structure',
-  standalone: true,
-  imports: [BlankNavbarComponent, CommonModule, AvatarModule],
-  templateUrl: './administrative-structure.component.html',
-  styleUrls: ['./administrative-structure.component.scss'],
+    selector: 'app-administrative-structure',
+    imports: [BlankNavbarComponent, CommonModule, AvatarModule],
+    templateUrl: './administrative-structure.component.html',
+    styleUrls: ['./administrative-structure.component.scss']
 })
 export class AdministrativeStructureComponent {
   structure!: IEmployeeRow[];

@@ -8,17 +8,16 @@ import { HomeContentService } from '../../../../core/services/content/home/home-
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 
 @Component({
-  selector: 'app-national-news',
-  standalone: true,
-  imports: [
-    AdvertisingAreaComponent,
-    StringSlicePipe,
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    SafeHtmlPipe,
-  ],
-  templateUrl: './national-news.component.html',
-  styleUrl: './national-news.component.scss',
+    selector: 'app-national-news',
+    imports: [
+        AdvertisingAreaComponent,
+        StringSlicePipe,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        SafeHtmlPipe,
+    ],
+    templateUrl: './national-news.component.html',
+    styleUrl: './national-news.component.scss'
 })
 export class NationalNewsComponent {
   nationalNews!: ISpecificCategory;

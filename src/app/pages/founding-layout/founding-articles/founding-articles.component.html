@@ -80,25 +80,25 @@
         <article class="card cr p-3 h-250 justify-content-between flex-column">
           <div class="d-flex flex-column justify-content-between">
             <h3 class="text-main fs-13 fw-bold">
-              <ngx-skeleton-loader [theme]="{
+              <ngx-skeleton-loader ngSkipHydration [theme]="{
                   width: '80px',
                   height: '20px',
                   background: 'lightgray'
                 }" />
             </h3>
-            <ngx-skeleton-loader [theme]="{
+            <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '40px',
                 background: 'lightgray'
               }" />
           </div>
           <div class="text-start">
-            <ngx-skeleton-loader [theme]="{
+            <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '30px',
                 height: '30px',
                 background: 'lightgray'
               }" [appearance]="'circle'" />
-            <ngx-skeleton-loader [theme]="{
+            <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '120px',
                 height: '15px',
                 background: 'lightgray'

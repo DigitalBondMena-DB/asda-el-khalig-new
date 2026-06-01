@@ -2,15 +2,14 @@ import { Component, inject, input } from '@angular/core';
 import { IYoutube } from '../../../../core/interfaces/IYoutube';
 import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
-import { SocialMediaLinksService } from '../../../../dashboard/services/social-media-links.service';
+import { SocialMediaLinksService } from '../../../../core/services/shared/social-media-links.service';
 import { SlicePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home-videos',
-  standalone: true,
-  imports: [SafeHtmlPipe, SlicePipe],
-  templateUrl: './home-videos.component.html',
-  styleUrl: './home-videos.component.scss',
+    selector: 'app-home-videos',
+    imports: [SafeHtmlPipe, SlicePipe],
+    templateUrl: './home-videos.component.html',
+    styleUrl: './home-videos.component.scss'
 })
 export class HomeVideosComponent {
   currentYoutubeVideos!: IYoutube;

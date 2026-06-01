@@ -6,11 +6,10 @@ import { Contact } from '../../../core/interfaces/ISocialMedia';
 import { SocialMediaService } from '../../../core/services/content/social-media.service';
 
 @Component({
-  selector: 'app-founding-navbar',
-  standalone: true,
-  imports: [RouterLink, FormsModule, RouterLinkActive, NgClass],
-  templateUrl: './founding-navbar.component.html',
-  styleUrl: './founding-navbar.component.scss',
+    selector: 'app-founding-navbar',
+    imports: [RouterLink, FormsModule, RouterLinkActive, NgClass],
+    templateUrl: './founding-navbar.component.html',
+    styleUrl: './founding-navbar.component.scss'
 })
 export class FoundingNavbarComponent {
   @Input({ required: true }) isNational: boolean = false;

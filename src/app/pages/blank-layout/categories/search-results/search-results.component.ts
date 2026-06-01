@@ -12,19 +12,18 @@ import { StringSlicePipe } from '../../../../core/pipes/string-slice.pipe';
 import { SearchBlogsService } from '../../../../core/services/content/home/search-blogs.service';
 
 @Component({
-  selector: 'app-search-results',
-  standalone: true,
-  imports: [
-    HijriDatePipe,
-    StringSlicePipe,
-    RouterLink,
-    NgxPaginationModule,
-    ImagesSrcPipe,
-    NgxSkeletonLoaderModule,
-    SafeHtmlPipe,
-  ],
-  templateUrl: './search-results.component.html',
-  styleUrl: './search-results.component.scss',
+    selector: 'app-search-results',
+    imports: [
+        HijriDatePipe,
+        StringSlicePipe,
+        RouterLink,
+        NgxPaginationModule,
+        ImagesSrcPipe,
+        NgxSkeletonLoaderModule,
+        SafeHtmlPipe,
+    ],
+    templateUrl: './search-results.component.html',
+    styleUrl: './search-results.component.scss'
 })
 export class SearchResultsComponent {
   currentId!: string;

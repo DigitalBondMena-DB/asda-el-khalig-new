@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss","skipTests": true
+          "style": "scss",
+          "skipTests": true
         }
       },
       "root": "",
@@ -26,7 +27,9 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             },
             "assets": [
               "src/favicon.ico",
@@ -35,8 +38,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
+
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.min.css",
               "node_modules/ngx-toastr/toastr.css",
@@ -46,7 +48,7 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "node_modules/jodit/es2021/jodit.min.css",
+
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
               "node_modules/ngx-sharebuttons/themes/default.scss",
@@ -54,7 +56,9 @@
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -78,7 +82,7 @@
               ],
               "outputHashing": "all"
             },
-            "apache":{
+            "apache": {
               "baseHref": "/El_Khaleeg/"
             },
             "development": {
@@ -122,8 +126,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
+
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.min.css",
               "node_modules/ngx-toastr/toastr.css",
@@ -132,11 +135,13 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "node_modules/jodit/es2021/jodit.min.css",
+
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }

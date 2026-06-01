@@ -9,18 +9,17 @@ import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 
 @Component({
-  selector: 'app-home-articles',
-  standalone: true,
-  imports: [
-    SlicePipe,
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    ImagesSrcPipe,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-  ],
-  templateUrl: './home-articles.component.html',
-  styleUrl: './home-articles.component.scss',
+    selector: 'app-home-articles',
+    imports: [
+        SlicePipe,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        ImagesSrcPipe,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+    ],
+    templateUrl: './home-articles.component.html',
+    styleUrl: './home-articles.component.scss'
 })
 export class HomeArticlesComponent {
   specificCategory!: ISpecificCategory;

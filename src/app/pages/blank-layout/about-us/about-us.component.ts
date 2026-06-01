@@ -3,14 +3,13 @@ import { BlankNavbarComponent } from '../../../core/components/blank-navbar/blan
 import { IAboutUsRow } from '../../../core/interfaces/IAboutUs';
 import { SafeHtmlPipe } from '../../../core/pipes/safe-html.pipe';
 import { MetaTagsHandleService } from '../../../core/services/content/meta-tags-handle.service';
-import { AboutUsService } from '../../../dashboard/services/about-us.service';
+import { AboutUsService } from '../../../core/services/shared/about-us.service';
 
 @Component({
-  selector: 'app-about-us',
-  standalone: true,
-  imports: [BlankNavbarComponent, SafeHtmlPipe],
-  templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.scss',
+    selector: 'app-about-us',
+    imports: [BlankNavbarComponent, SafeHtmlPipe],
+    templateUrl: './about-us.component.html',
+    styleUrl: './about-us.component.scss'
 })
 export class AboutUsComponent {
   aboutUsContent!: IAboutUsRow;

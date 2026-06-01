@@ -6,11 +6,10 @@ import { HomeContentService } from '../../../../core/services/content/home/home-
 import { SlicePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home-investigations',
-  standalone: true,
-  imports: [RouterLink, NgxSkeletonLoaderModule, SlicePipe],
-  templateUrl: './home-investigations.component.html',
-  styleUrl: './home-investigations.component.scss',
+    selector: 'app-home-investigations',
+    imports: [RouterLink, NgxSkeletonLoaderModule, SlicePipe],
+    templateUrl: './home-investigations.component.html',
+    styleUrl: './home-investigations.component.scss'
 })
 export class HomeInvestigationsComponent {
   investigations!: ISpecificCategory;

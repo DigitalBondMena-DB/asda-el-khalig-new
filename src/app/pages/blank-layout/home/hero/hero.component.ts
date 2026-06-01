@@ -7,25 +7,24 @@ import { ISliderHome } from '../../../../core/interfaces/slider/ISliderHome';
 import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 import { CategoriesService } from './../../../../core/services/content/categories.service';
-import { NewsControlService } from './../../../../dashboard/services/news-control.service';
+import { NewsControlService } from './../../../../core/services/shared/news-control.service';
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 import { HomeMasterComponent } from './home-master/home-master.component';
 import { NgOptimizedImage } from "@angular/common";
 
 @Component({
-  selector: 'app-hero',
-  standalone: true,
-  imports: [
-    CarouselModule,
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-    HomeMasterComponent,
-    NgOptimizedImage
-  ],
-  templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
+    selector: 'app-hero',
+    imports: [
+        CarouselModule,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+        HomeMasterComponent,
+        NgOptimizedImage
+    ],
+    templateUrl: './hero.component.html',
+    styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
   sliderData!: ISliderHome;

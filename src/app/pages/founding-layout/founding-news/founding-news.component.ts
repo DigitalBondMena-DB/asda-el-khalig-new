@@ -23,21 +23,20 @@ import { CategoriesService } from '../../../core/services/content/categories.ser
 import { HomeContentService } from '../../../core/services/content/home/home-content.service';
 
 @Component({
-  selector: 'app-founding-news',
-  standalone: true,
-  imports: [
-    NgxSkeletonLoaderModule,
-    SlicePipe,
-    RouterLink,
-    ImagesSrcPipe,
-    HijriDatePipe,
-    CarouselModule,
-    NgxPaginationModule,
-    StringSpliterPipe,
-    NgClass,
-  ],
-  templateUrl: './founding-news.component.html',
-  styleUrl: './founding-news.component.scss',
+    selector: 'app-founding-news',
+    imports: [
+        NgxSkeletonLoaderModule,
+        SlicePipe,
+        RouterLink,
+        ImagesSrcPipe,
+        HijriDatePipe,
+        CarouselModule,
+        NgxPaginationModule,
+        StringSpliterPipe,
+        NgClass,
+    ],
+    templateUrl: './founding-news.component.html',
+    styleUrl: './founding-news.component.scss'
 })
 export class FoundingNewsComponent {
   @Input({ required: true }) isNational: boolean = true;

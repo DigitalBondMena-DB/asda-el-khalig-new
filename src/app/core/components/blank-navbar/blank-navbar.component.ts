@@ -5,11 +5,10 @@ import { Contact } from '../../interfaces/ISocialMedia';
 import { SocialMediaService } from '../../services/content/social-media.service';
 
 @Component({
-  selector: 'app-blank-navbar',
-  standalone: true,
-  imports: [RouterLink, FormsModule, RouterLinkActive],
-  templateUrl: './blank-navbar.component.html',
-  styleUrl: './blank-navbar.component.scss',
+    selector: 'app-blank-navbar',
+    imports: [RouterLink, FormsModule, RouterLinkActive],
+    templateUrl: './blank-navbar.component.html',
+    styleUrl: './blank-navbar.component.scss'
 })
 export class BlankNavbarComponent {
   @ViewChild('inputSearch') desktopSearchInput!: ElementRef;

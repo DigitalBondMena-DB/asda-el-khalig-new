@@ -10,20 +10,19 @@ import { SafeHtmlPipe } from '../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 
 @Component({
-  selector: 'app-founding-articles',
-  standalone: true,
-  imports: [
-    SlicePipe,
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    ImagesSrcPipe,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-    NgxPaginationModule,
-    NgClass,
-  ],
-  templateUrl: './founding-articles.component.html',
-  styleUrl: './founding-articles.component.scss',
+    selector: 'app-founding-articles',
+    imports: [
+        SlicePipe,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        ImagesSrcPipe,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+        NgxPaginationModule,
+        NgClass,
+    ],
+    templateUrl: './founding-articles.component.html',
+    styleUrl: './founding-articles.component.scss'
 })
 export class FoundingArticlesComponent {
   @Input({ required: true }) isNational: boolean = true;

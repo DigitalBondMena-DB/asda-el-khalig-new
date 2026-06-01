@@ -6,17 +6,16 @@ import { AdvertisingAreaComponent } from '../../../shared/components/advertising
 import { RelatedContentComponent } from './related-content/related-content.component';
 
 @Component({
-  selector: 'app-categories',
-  standalone: true,
-  imports: [
-    BlankNavbarComponent,
-    AdvertisingAreaComponent,
-    RelatedContentComponent,
-    RouterOutlet,
-    RouterLink,
-  ],
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss',
+    selector: 'app-categories',
+    imports: [
+        BlankNavbarComponent,
+        AdvertisingAreaComponent,
+        RelatedContentComponent,
+        RouterOutlet,
+        RouterLink,
+    ],
+    templateUrl: './categories.component.html',
+    styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent {
   masterBlog!: any;

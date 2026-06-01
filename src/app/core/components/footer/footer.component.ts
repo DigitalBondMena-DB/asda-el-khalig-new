@@ -7,11 +7,10 @@ import { SocialMediaService } from '../../services/content/social-media.service'
 import { StaticCategoriesService } from '../../services/content/static-categories.service';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+    selector: 'app-footer',
+    imports: [RouterLink],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];

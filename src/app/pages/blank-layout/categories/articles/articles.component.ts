@@ -11,18 +11,17 @@ import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 
 @Component({
-  selector: 'app-articles',
-  standalone: true,
-  imports: [
-    RouterLink,
-    NgxPaginationModule,
-    NgxSkeletonLoaderModule,
-    ImagesSrcPipe,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-  ],
-  templateUrl: './articles.component.html',
-  styleUrl: './articles.component.scss',
+    selector: 'app-articles',
+    imports: [
+        RouterLink,
+        NgxPaginationModule,
+        NgxSkeletonLoaderModule,
+        ImagesSrcPipe,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+    ],
+    templateUrl: './articles.component.html',
+    styleUrl: './articles.component.scss'
 })
 export class ArticlesComponent {
   currentId!: string;

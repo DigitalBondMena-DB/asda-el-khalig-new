@@ -9,20 +9,19 @@ import { FoundingNavbarComponent } from '../founding-layout/founding-navbar/foun
 import { FoundingNewsComponent } from '../founding-layout/founding-news/founding-news.component';
 
 @Component({
-  selector: 'app-national-day-layout',
-  standalone: true,
-  imports: [
-    FoundingAboutComponent,
-    FoundingArticlesComponent,
-    FoundingHeroComponent,
-    FoundingInvestigationsComponent,
-    FoundingNavbarComponent,
-    FoundingFooterComponent,
-    FoundingNewsComponent,
-    FoundingBannerComponent,
-  ],
-  templateUrl: './national-day-layout.component.html',
-  styleUrl: './national-day-layout.component.scss',
+    selector: 'app-national-day-layout',
+    imports: [
+        FoundingAboutComponent,
+        FoundingArticlesComponent,
+        FoundingHeroComponent,
+        FoundingInvestigationsComponent,
+        FoundingNavbarComponent,
+        FoundingFooterComponent,
+        FoundingNewsComponent,
+        FoundingBannerComponent,
+    ],
+    templateUrl: './national-day-layout.component.html',
+    styleUrl: './national-day-layout.component.scss'
 })
 export class NationalDayLayoutComponent {
   isDesktop: boolean = true; // Default check

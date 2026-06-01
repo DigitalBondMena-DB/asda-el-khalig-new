@@ -9,21 +9,20 @@ import { RemoveInlineStylesPipe } from '../../../core/pipes/remove-inline-styles
 import { SafeHtmlPipe } from '../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 import { HomeContentService } from '../../../core/services/content/home/home-content.service';
-import { NewsControlService } from '../../../dashboard/services/news-control.service';
+import { NewsControlService } from '../../../core/services/shared/news-control.service';
 
 @Component({
-  selector: 'app-founding-hero',
-  standalone: true,
-  imports: [
-    CarouselModule,
-    RouterLink,
-    NgxSkeletonLoaderModule,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-    NgClass,
-  ],
-  templateUrl: './founding-hero.component.html',
-  styleUrl: './founding-hero.component.scss',
+    selector: 'app-founding-hero',
+    imports: [
+        CarouselModule,
+        RouterLink,
+        NgxSkeletonLoaderModule,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+        NgClass,
+    ],
+    templateUrl: './founding-hero.component.html',
+    styleUrl: './founding-hero.component.scss'
 })
 export class FoundingHeroComponent {
   @Input({ required: true }) isNational: boolean = false;

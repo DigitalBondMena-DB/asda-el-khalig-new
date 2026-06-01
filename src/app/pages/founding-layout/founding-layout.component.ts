@@ -9,20 +9,19 @@ import { FoundingNewsComponent } from './founding-news/founding-news.component';
 import { FoundingBannerComponent } from './founding-banner/founding-banner.component';
 
 @Component({
-  selector: 'app-founding-layout',
-  standalone: true,
-  imports: [
-    FoundingAboutComponent,
-    FoundingArticlesComponent,
-    FoundingHeroComponent,
-    FoundingInvestigationsComponent,
-    FoundingNavbarComponent,
-    FoundingFooterComponent,
-    FoundingNewsComponent,
-    FoundingBannerComponent,
-  ],
-  templateUrl: './founding-layout.component.html',
-  styleUrl: './founding-layout.component.scss',
+    selector: 'app-founding-layout',
+    imports: [
+        FoundingAboutComponent,
+        FoundingArticlesComponent,
+        FoundingHeroComponent,
+        FoundingInvestigationsComponent,
+        FoundingNavbarComponent,
+        FoundingFooterComponent,
+        FoundingNewsComponent,
+        FoundingBannerComponent,
+    ],
+    templateUrl: './founding-layout.component.html',
+    styleUrl: './founding-layout.component.scss'
 })
 export class FoundingLayoutComponent {
   isDesktop: boolean = true; // Default check

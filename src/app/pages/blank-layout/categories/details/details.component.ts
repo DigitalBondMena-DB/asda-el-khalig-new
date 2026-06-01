@@ -32,28 +32,27 @@ import { CategoriesService } from '../../../../core/services/content/categories.
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 import { RelatedContentComponent } from '../related-content/related-content.component';
 import { ShareButtons } from 'ngx-sharebuttons/buttons';
-import { CommentsService } from '../../../../dashboard/services/comments.service';
+import { CommentsService } from '../../../../core/services/shared/comments.service';
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 
 @Component({
-  selector: 'app-details',
-  standalone: true,
-  imports: [
-    NgxSkeletonLoaderModule,
-    AdvertisingAreaComponent,
-    RelatedContentComponent,
-    ReactiveFormsModule,
-    BlankNavbarComponent,
-    CommonModule,
-    HijriDatePipe,
-    SafeHtmlPipe,
-    ImagesSrcPipe,
-    RouterLink,
-    ShareButtons,
-    RemoveInlineStylesPipe,
-  ],
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.scss',
+    selector: 'app-details',
+    imports: [
+        NgxSkeletonLoaderModule,
+        AdvertisingAreaComponent,
+        RelatedContentComponent,
+        ReactiveFormsModule,
+        BlankNavbarComponent,
+        CommonModule,
+        HijriDatePipe,
+        SafeHtmlPipe,
+        ImagesSrcPipe,
+        RouterLink,
+        ShareButtons,
+        RemoveInlineStylesPipe,
+    ],
+    templateUrl: './details.component.html',
+    styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
   currentId!: string;

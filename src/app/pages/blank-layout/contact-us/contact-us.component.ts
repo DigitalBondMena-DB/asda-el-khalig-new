@@ -6,11 +6,10 @@ import { ISocialMedia } from '../../../core/interfaces/ISocialMedia';
 import { MetaTagsHandleService } from '../../../core/services/content/meta-tags-handle.service';
 
 @Component({
-  selector: 'app-contact-us',
-  standalone: true,
-  imports: [ContactUsFormComponent, BlankNavbarComponent],
-  templateUrl: './contact-us.component.html',
-  styleUrl: './contact-us.component.scss',
+    selector: 'app-contact-us',
+    imports: [ContactUsFormComponent, BlankNavbarComponent],
+    templateUrl: './contact-us.component.html',
+    styleUrl: './contact-us.component.scss'
 })
 export class ContactUsComponent {
   socialMediaLinks!: ISocialMedia;

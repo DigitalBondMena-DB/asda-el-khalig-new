@@ -7,18 +7,16 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { ToastModule } from 'primeng/toast';
+
 import { filter } from 'rxjs';
 import { isFoundingDay } from './core/constants/WEB_SITE_BASE_UTL';
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  providers: [],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'Asdaa-el-khaleeg';

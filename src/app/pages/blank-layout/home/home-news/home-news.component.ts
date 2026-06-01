@@ -18,19 +18,18 @@ import { CategoriesService } from '../../../../core/services/content/categories.
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 
 @Component({
-  selector: 'app-home-news',
-  standalone: true,
-  imports: [
-    NgxSkeletonLoaderModule,
-    SlicePipe,
-    RouterLink,
-    ImagesSrcPipe,
-    HijriDatePipe,
-    CarouselModule,
-    StringSpliterPipe,
-  ],
-  templateUrl: './home-news.component.html',
-  styleUrl: './home-news.component.scss',
+    selector: 'app-home-news',
+    imports: [
+        NgxSkeletonLoaderModule,
+        SlicePipe,
+        RouterLink,
+        ImagesSrcPipe,
+        HijriDatePipe,
+        CarouselModule,
+        StringSpliterPipe,
+    ],
+    templateUrl: './home-news.component.html',
+    styleUrl: './home-news.component.scss'
 })
 export class HomeNewsComponent {
   allNews: IBlog[] = [];

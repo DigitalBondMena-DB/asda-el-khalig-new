@@ -28,22 +28,21 @@ import { StringSpliterPipe } from '../../../../core/pipes/string-spliter.pipe';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 
 @Component({
-  selector: 'app-blogs',
-  standalone: true,
-  imports: [
-    HijriDatePipe,
-    StringSlicePipe,
-    RouterLink,
-    NgxPaginationModule,
-    ImagesSrcPipe,
-    NgxSkeletonLoaderModule,
-    SafeHtmlPipe,
-    RemoveInlineStylesPipe,
-    StringSpliterPipe,
-    SlicePipe,
-  ],
-  templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.scss'],
+    selector: 'app-blogs',
+    imports: [
+        HijriDatePipe,
+        StringSlicePipe,
+        RouterLink,
+        NgxPaginationModule,
+        ImagesSrcPipe,
+        NgxSkeletonLoaderModule,
+        SafeHtmlPipe,
+        RemoveInlineStylesPipe,
+        StringSpliterPipe,
+        SlicePipe,
+    ],
+    templateUrl: './blogs.component.html',
+    styleUrls: ['./blogs.component.scss']
 })
 export class BlogsComponent implements OnInit, OnDestroy {
   currentId!: string;
