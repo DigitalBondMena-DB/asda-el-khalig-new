@@ -14,8 +14,8 @@
               <h3 class="text-main fs-13 fw-bold cr title_section_slider_article">
                 {{ blog.post_title }}
               </h3>
-              <p class="fs-13 text-lighter mb-4 title_section title_section-articles"
-                [innerHTML]="blog.post_content | removeInlineStyles | safeHtml"></p>
+              <div class="fs-13 text-lighter mb-4 title_section title_section-articles"
+                [innerHTML]="blog.post_content | removeInlineStyles | safeHtml"></div>
             </div>
 
             <h4 class="text-end mt-0">

@@ -6,9 +6,8 @@ import {
   ElementRef,
   inject,
   input,
-  QueryList,
   signal,
-  viewChild,
+  viewChildren,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -38,8 +37,7 @@ export class HomeLocalNewsComponent {
   isDesktop = input();
   localNews = signal<ISpecificCategory | null>(null);
   sectionTitle = signal('الأخبار المحلية');
-  isShowSkeleton = signal<boolean>(true);
-  toggleButtons = viewChild<QueryList<ElementRef>>('toggleButtons');
+  toggleButtons = viewChildren<ElementRef>('toggleButtons');
 
 
   ngOnInit(): void {
@@ -47,22 +45,18 @@ export class HomeLocalNewsComponent {
   }
 
   getLocalNews() {
-    this.isShowSkeleton.set(true);
     this._HomeContentService.getHomeLocalNews().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.localNews.set(response);
         this.sectionTitle.set('الأخبار المحلية');
-        this.isShowSkeleton.set(false);
       },
     });
   }
   getRandomNews() {
-    this.isShowSkeleton.set(true);
     this._HomeContentService.getHomeRandomNews().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.localNews.set(response);
         this.sectionTitle.set('أخبار متنوعة');
-        this.isShowSkeleton.set(false);
       },
     });
   }

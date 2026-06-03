@@ -14,8 +14,8 @@
             <h3 class="text-main fs-13 fw-bold cr title_section_slider_article">
               {{ card.post_title }}
             </h3>
-            <p [innerHtml]="card.post_content | removeInlineStyles | safeHtml"
-              class="fs-13 text-lighter mb-4 title_section title_section-articles"></p>
+            <div [innerHtml]="card.post_content | removeInlineStyles | safeHtml"
+              class="fs-13 text-lighter mb-4 title_section title_section-articles"></div>
           </div>
           <h4 class="text-end">
             <img width="80" height="80" loading="lazy" decoding="async"
