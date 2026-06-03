@@ -1,17 +1,9 @@
 <!-- navbar banner -->
-<div
-  class="container-fluid py-2 d-flex justify-content-between align-items-center flex-md-wrap"
->
+<div class="container-fluid py-2 d-flex justify-content-between align-items-center flex-md-wrap">
   <!-- app logo -->
-  <div
-    class="d-flex col-6 col-md-auto justify-content-between flex-shrink-1 align-items-center gap-3"
-  >
+  <div class="d-flex col-6 col-md-auto justify-content-between flex-shrink-1 align-items-center gap-3">
     <a routerLink="/" href="#">
-      <img
-        class="object-fit-contain logo_width cr"
-        src="./assets/images/Fblue_text (1).png"
-        alt="اصداء الخليج"
-      />
+      <img class="object-fit-contain logo_width cr" src="./assets/images/Fblue_text (1).png" alt="اصداء الخليج" />
     </a>
     <!-- <img
         class="Banner_logo"
@@ -24,337 +16,119 @@
   <!-- author name -->
   <div class="flex-xxl-grow-1 flex-shrink-0 text-center mx-3">
     <h2
-      class="author_name mb-0 text-center fs-4 d-flex flex-md-grow-1 flex-column align-items-center fw-bold text-nowrap"
-    >
+      class="author_name mb-0 text-center fs-4 d-flex flex-md-grow-1 flex-column align-items-center fw-bold text-nowrap">
       <span class="d-block mb-1">رئيس التحرير</span> سلمان بن أحمد العيد
     </h2>
   </div>
 
   <!-- image -->
   <div
-    class="d-none d-md-flex justify-content-center flex-grow-1 flex-xl-grow-0 justify-content-xxl-between gap-3 flex-row-reverse align-items-center mt-3 mt-lg-0"
-  >
+    class="d-none d-md-flex justify-content-center flex-grow-1 flex-xl-grow-0 justify-content-xxl-between gap-3 flex-row-reverse align-items-center mt-3 mt-lg-0">
     <div>
-      <img
-        class="col-12 col-sm-auto"
-        src="./assets/images/all.png"
-        alt="رؤية المملكة العربية السعودية"
-      />
+      <img class="col-12 col-sm-auto" src="./assets/images/all.png" alt="رؤية المملكة العربية السعودية" />
     </div>
   </div>
 </div>
 
 <!-- nav bar banner -->
 
-<div
-  [ngClass]="{ isNational: isNational, notNational: !isNational }"
-  class="navbar bg-main flex-row-reverse"
->
-  <div
-    class="container-fluid flex-row-reverse flex-nowrap w-100 d-flex justify-content-between"
-  >
+<div [ngClass]="{ isNational: isNational, notNational: !isNational }" class="navbar bg-main flex-row-reverse">
+  <div class="container-fluid flex-row-reverse flex-nowrap w-100 d-flex justify-content-between">
     <div class="search_container d-none d-md-flex">
-      <input
-        [(ngModel)]="searchResult"
-        #inputSearch
-        (keydown.enter)="searchResults(inputSearch.value)"
-        [style]="{
+      <input [(ngModel)]="searchResult" #inputSearch (keydown.enter)="searchResults(inputSearch.value)" [style]="{
           'background-color': searchResult.length > 0 ? 'white' : ''
-        }"
-        id="Search_Input"
-        [ngClass]="{ isNational: isNational, notNational: !isNational }"
-        type="search"
-        class="search Input border-radius-10"
-        aria-label="Search"
-      />
-      <button
-        class="btn search_icon bg-transparent"
-        (click)="searchResults(inputSearch.value)"
-      >
-        <img
-          [style]="{
+        }" id="Search_Input" [ngClass]="{ isNational: isNational, notNational: !isNational }" type="search"
+        class="search Input border-radius-10" aria-label="Search" />
+      <button class="btn search_icon bg-transparent" (click)="searchResults(inputSearch.value)">
+        <img [style]="{
             display: searchResult.length > 0 ? 'inline-block !important' : ''
-          }"
-          class="d-none search-dark"
-          width="40px"
-          src="./assets/images/navbar/search-dark.svg"
-          alt="search icon"
-        />
-        <img
-          [style]="{
+          }" class="d-none search-dark" width="40px" src="./assets/images/navbar/search-dark.svg" alt="search icon" />
+        <img [style]="{
             display: searchResult.length > 0 ? 'none !important' : ''
-          }"
-          class="search-light"
-          width="40px"
-          src="./assets/images/navbar/search-light.svg"
-          alt="search icon"
-        />
+          }" class="search-light" width="40px" src="./assets/images/navbar/search-light.svg" alt="search icon" />
       </button>
     </div>
-    <button
-      class="navbar-toggler d-block d-md-none"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu"
-    >
-      <img
-        width="35px"
-        height="35px"
-        src="./assets/images/navbar/bars-solid.svg"
-        role="presentation"
-      />
+    <button class="navbar-toggler d-block d-md-none" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+      <img width="35px" height="35px" src="./assets/images/navbar/bars-solid.svg" role="presentation" loading="lazy"
+        decoding="async" />
     </button>
 
-    <div
-      class="links-container d-flex flex-row-reverse justify-content-start"
-      id="navbarNav"
-    >
-      <ul
-        class="d-flex list-unstyled justify-content-between align-items-center mb-0 p-0"
-      >
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            aria-current="page"
-            routerLink="/"
-            href="#"
-            >الرئيسية</a
-          >
+    <div class="links-container d-flex flex-row-reverse justify-content-start" id="navbarNav">
+      <ul class="d-flex list-unstyled justify-content-between align-items-center mb-0 p-0">
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" aria-current="page" routerLink="/" href="#">الرئيسية</a>
         </li>
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', '01']"
-            href="#"
-            >أخبار محلية</a
-          >
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '01']" href="#">أخبار محلية</a>
         </li>
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', '02']"
-            href="#"
-            >أخبار العالم</a
-          >
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '02']" href="#">أخبار العالم</a>
         </li>
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', '03']"
-            href="#"
-            >الرياضة</a
-          >
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '03']" href="#">الرياضة</a>
         </li>
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', 'f']"
-            href="#"
-            >ثقافة وفن</a
-          >
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', 'f']" href="#">ثقافة وفن</a>
         </li>
-        <li
-          class="nav-item mx-1"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', '04']"
-            href="#"
-            >الاقتصاد</a
-          >
+        <li class="nav-item mx-1" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '04']" href="#">الاقتصاد</a>
         </li>
         <li data-bs-toggle="collapse" class="nav-item mx-1 d-none d-xl-block">
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/blogs', '05']"
-            href="#"
-            >التعليم</a
-          >
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '05']" href="#">التعليم</a>
         </li>
         <li data-bs-target="#navbarNav" class="nav-item mx-1 d-none d-xl-block">
-          <a
-            class="nav-link px-1 px-md-2 px-xl-3"
-            [routerLink]="['/archives/article', '08']"
-            href="#"
-            >المقالات</a
-          >
+          <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/article', '08']" href="#">المقالات</a>
         </li>
 
-        <li
-          class="nav-item drop-down-container mx-1 position-relative z-3 d-none d-md-block"
-        >
+        <li class="nav-item drop-down-container mx-1 position-relative z-3 d-none d-md-block">
           <button class="nav-link px-1 px-md-2 px-xl-3 btn text-white">
             أخرى
-            <img
-              src="./assets/images/navbar/navbar-dropdown-icon.svg"
-              role="presentation"
-            />
+            <img src="./assets/images/navbar/navbar-dropdown-icon.svg" role="presentation" />
           </button>
           <ul
-            class="drop-down-nav overflow-hidden end-0 border-radius-10 list-unstyled position-absolute z-3 bg-light box-shadow p-0 m-0 justify-content-between flex-column"
-          >
+            class="drop-down-nav overflow-hidden end-0 border-radius-10 list-unstyled position-absolute z-3 bg-light box-shadow p-0 m-0 justify-content-between flex-column">
             <li data-bs-toggle="collapse" class="pe-3 py-2 d-xl-none">
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', '05']"
-                href="#"
-                >التعليم</a
-              >
+              <a class="text-black" [routerLink]="['/archives/blogs', '05']" href="#">التعليم</a>
             </li>
             <li data-bs-target="#navbarNav" class="pe-3 py-2 d-xl-none">
-              <a
-                class="text-black"
-                [routerLink]="['/archives/article', '08']"
-                href="#"
-                >المقالات</a
-              >
+              <a class="text-black" [routerLink]="['/archives/article', '08']" href="#">المقالات</a>
             </li>
 
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', 'i']"
-                href="#"
-                >تحقيقات</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', 'i']" href="#">تحقيقات</a>
             </li>
             <li class="text-black">
-              <a
-                class="nav-link px-1 px-md-2 px-xl-3"
-                [routerLink]="['/archives/blogs', '09']"
-                href="#"
-                >أخبار المجتمع</a
-              >
+              <a class="nav-link px-1 px-md-2 px-xl-3" [routerLink]="['/archives/blogs', '09']" href="#">أخبار
+                المجتمع</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', '07']"
-                href="#"
-                >دراسات وأبحاث</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', '07']" href="#">دراسات وأبحاث</a>
             </li>
 
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', '11']"
-                href="#"
-                >كاريكاتير</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', '11']" href="#">كاريكاتير</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', 'g']"
-                href="#"
-                >الصحة والحياة</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', 'g']" href="#">الصحة والحياة</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', '06']"
-                href="#"
-                >علوم وتكنولوجيا</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', '06']" href="#">علوم وتكنولوجيا</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', 'h']"
-                href="#"
-                >وقائع أمنية</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', 'h']" href="#">وقائع أمنية</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', 'y']"
-                href="#"
-                >منوعات</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" [routerLink]="['/archives/blogs', 'y']" href="#">منوعات</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a class="text-black" routerLink="/founding-day" href="#"
-                >يوم التأسيس</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" routerLink="/founding-day" href="#">يوم التأسيس</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2"
-            >
-              <a class="text-black" routerLink="/national-day" href="#"
-                >يوم الوطني</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2">
+              <a class="text-black" routerLink="/national-day" href="#">يوم الوطني</a>
             </li>
-            <li
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              class="pe-3 py-2 border-top border-1"
-            >
-              <a
-                class="text-black"
-                [routerLink]="['/archives/blogs', '10']"
-                href="#"
-                >زاوية رئيس التحرير</a
-              >
+            <li data-bs-toggle="collapse" data-bs-target="#navbarNav" class="pe-3 py-2 border-top border-1">
+              <a class="text-black" [routerLink]="['/archives/blogs', '10']" href="#">زاوية رئيس التحرير</a>
             </li>
           </ul>
         </li>
@@ -364,81 +138,37 @@
 </div>
 
 <!-- Offcanvas Navbar for Mobile -->
-<div
-  class="offcanvas offcanvas-end"
-  tabindex="-1"
-  id="mobileMenu"
-  aria-labelledby="mobileMenuLabel"
->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header justify-content-between align-items-center">
     <h5 id="mobileMenuLabel" class="m-0">القائمة</h5>
-    <button
-      type="button"
-      class="btn-close text-reset m-0"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
+    <button type="button" class="btn-close text-reset m-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
   <div class="offcanvas-body">
     <div class="search_container d-flex d-md-none">
-      <input
-        [(ngModel)]="searchResult"
-        #inputSearch
-        (keydown.enter)="searchResults(inputSearch.value)"
-        [style]="{
+      <input [(ngModel)]="searchResult" #inputSearch (keydown.enter)="searchResults(inputSearch.value)" [style]="{
           'background-color': searchResult.length > 0 ? 'white' : ''
-        }"
-        id="Search_Input"
-        type="search"
-        class="search w-100 Input border-radius-10"
-        aria-label="Search"
-        placeholder="ابحث عن.."
-      />
-      <button
-        class="btn search_icon bg-transparent"
-        (click)="searchResults(inputSearch.value)"
-      >
-        <img
-          [style]="{
+        }" id="Search_Input" type="search" class="search w-100 Input border-radius-10" aria-label="Search"
+        placeholder="ابحث عن.." />
+      <button class="btn search_icon bg-transparent" (click)="searchResults(inputSearch.value)">
+        <img [style]="{
             display: searchResult.length > 0 ? 'inline-block !important' : ''
-          }"
-          class="d-none search-dark"
-          width="40px"
-          src="./assets/images/navbar/search-dark.svg"
-          alt="search icon"
-        />
-        <img
-          [style]="{
+          }" class="d-none search-dark" width="40px" src="./assets/images/navbar/search-dark.svg" alt="search icon" />
+        <img [style]="{
             display: searchResult.length > 0 ? 'none !important' : ''
-          }"
-          class="search-light"
-          width="40px"
-          src="./assets/images/navbar/search-light.svg"
-          alt="search icon"
-        />
+          }" class="search-light" width="40px" src="./assets/images/navbar/search-light.svg" alt="search icon" />
       </button>
     </div>
     <ul class="navbar-nav pe-0 mt-2">
       @for (item of categories; track $index) { @if (item.id) {
       <li data-bs-dismiss="offcanvas" class="nav-item border-bottom">
-        <a
-          routerLinkActive="bg-main-founding text-white rounded"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link"
-          [routerLink]="[item.router, item.id]"
-          >{{ item.name }}</a
-        >
+        <a routerLinkActive="bg-main-founding text-white rounded" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link" [routerLink]="[item.router, item.id]">{{ item.name }}</a>
       </li>
       } @else {
       <li data-bs-dismiss="offcanvas" class="nav-item border-bottom">
-        <a
-          routerLinkActive="bg-main-founding text-white rounded"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link"
-          [routerLink]="[item.router]"
-          >{{ item.name }}</a
-        >
+        <a routerLinkActive="bg-main-founding text-white rounded" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link" [routerLink]="[item.router]">{{ item.name }}</a>
       </li>
       } }
     </ul>

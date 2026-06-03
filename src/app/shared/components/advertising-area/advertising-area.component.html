@@ -1,21 +1,9 @@
-<div
-  [ngClass]="positionClasses"
-  class="parent advertising__container overflow-hidden mx-auto"
->
-  <img
-    class="img-logo"
-    [ngStyle]="{ width: imageWidth }"
-    src="./assets/images/logo13.png"
-    alt="اصداء الخليج"
-  />
+<div [ngClass]="positionClasses()" class="parent advertising__container overflow-hidden mx-auto">
+  <img class="img-logo" [ngStyle]="{ width: imageWidth() }" src="./assets/images/logo13.png" alt="اصداء الخليج"
+    loading="lazy" decoding="async" />
   <div class="d-flex align-items-center justify-content-center fs-4">
     <p class="mb-0 me-2">مساحة اعلانية</p>
   </div>
-  <a
-    routerLink="/contact-us"
-    href="#"
-    class="btn btn-main px-3 text-center"
-    style="text-align: center !important"
-    >اعلن معنا الان</a
-  >
+  <a routerLink="/contact-us" href="#" class="btn btn-main px-3 text-center" style="text-align: center !important">اعلن
+    معنا الان</a>
 </div>
