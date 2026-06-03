@@ -1,4 +1,4 @@
-@if (investigations && investigations.blogs && investigations.blogs.data) {
+@if (investigations() && investigations()?.blogs && investigations()?.blogs?.data) {
 <section id="Home__Investigations__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -9,15 +9,16 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="pt-2">
-          <a [routerLink]="[investigations.blogs.data[0].old_status?'/archives':'/article', investigations.blogs.data[0].post_id]"
+          <a [routerLink]="[investigations()?.blogs?.data?.[0]?.old_status?'/archives':'/article', investigations()?.blogs?.data?.[0]?.post_id]"
             href="#">
             <figure class="Logo_Water_Mark small cr">
-              <img class="w-100 object-fit-cover border-radius-10 h-300" [src]="investigations.blogs.data[0].post_image"
-                [alt]="investigations.blogs.data[0].post_title" loading="lazy" decoding="async" />
+              <img class="w-100 object-fit-cover border-radius-10 h-300"
+                [src]="investigations()?.blogs?.data?.[0]?.post_image"
+                [alt]="investigations()?.blogs?.data?.[0]?.post_title" loading="lazy" decoding="async" />
             </figure>
             <div>
               <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
-                {{ investigations.blogs.data[0].post_title }}
+                {{ investigations()?.blogs?.data?.[0]?.post_title }}
               </h3>
             </div>
           </a>
@@ -29,80 +30,57 @@
             <div class="col-12 col-md-6">
               <div>
                 <a [routerLink]="[
-                    investigations.blogs.data[1].old_status?'/archives':'/article',
-                    investigations.blogs.data[1].post_id
+                    investigations()?.blogs?.data?.[1]?.old_status?'/archives':'/article',
+                    investigations()?.blogs?.data?.[1]?.post_id
                   ]" href="#">
                   <figure class="Logo_Water_Mark small cr">
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[1].post_image" [alt]="investigations.blogs.data[1].post_title"
-                      loading="lazy" decoding="async" />
+                      [src]="investigations()?.blogs?.data?.[1]?.post_image"
+                      [alt]="investigations()?.blogs?.data?.[1]?.post_title" loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
-                      {{ investigations.blogs.data[1].post_title }}
+                      {{ investigations()?.blogs?.data?.[1]?.post_title }}
                     </h3>
-                    <!-- <p
-                      class="fs-13 text-lighter fw-semibold title_section_slider_article"
-                      [innerHTML]="
-                        investigations.blogs.data[1].post_content
-                          | stringSlice
-                          | safeHtml
-                      "
-                    ></p> -->
                   </div>
                 </a>
               </div>
             </div>
             <div class="col-12 col-md-6">
               <a [routerLink]="[
-                  investigations.blogs.data[2].old_status?'/archives':'/article',
-                  investigations.blogs.data[2].post_id
+                  investigations()?.blogs?.data?.[2]?.old_status?'/archives':'/article',
+                  investigations()?.blogs?.data?.[2]?.post_id
                 ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[2].post_image" [alt]="investigations.blogs.data[2].post_title"
-                      loading="lazy" decoding="async" />
+                      [src]="investigations()?.blogs?.data?.[2]?.post_image"
+                      [alt]="investigations()?.blogs?.data?.[2]?.post_title" loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
-                      {{ investigations.blogs.data[2].post_title }}
+                      {{ investigations()?.blogs?.data?.[2]?.post_title }}
                     </h3>
-                    <!-- <p
-                      class="fs-13 text-lighter fw-semibold title_section_slider_article"
-                      [innerHTML]="
-                        investigations.blogs.data[2].post_content
-                          | stringSlice
-                          | safeHtml
-                      "
-                    ></p> -->
+
                   </div>
                 </div>
               </a>
             </div>
             <div class="col-12">
               <a [routerLink]="[
-                  investigations.blogs.data[3].old_status?'/archives':'/article',
-                  investigations.blogs.data[3].post_id
+                  investigations()?.blogs?.data?.[3]?.old_status?'/archives':'/article',
+                  investigations()?.blogs?.data?.[3]?.post_id
                 ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[3].post_image" [alt]="investigations.blogs.data[3].post_title"
-                      loading="lazy" decoding="async" />
+                      [src]="investigations()?.blogs?.data?.[3]?.post_image"
+                      [alt]="investigations()?.blogs?.data?.[3]?.post_title" loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 class="fs-13 text-main fw-bold mb-2 cr title_section_slider_article">
-                      {{ investigations.blogs.data[3].post_title }}
+                      {{ investigations()?.blogs?.data?.[3]?.post_title }}
                     </h3>
-                    <!-- <p
-                      class="fs-13 text-lighter fw-semibold title_section_slider_article"
-                      [innerHTML]="
-                        investigations.blogs.data[3].post_content
-                          | stringSlice
-                          | safeHtml
-                      "
-                    ></p> -->
                   </div>
                 </div>
               </a>
@@ -113,7 +91,7 @@
     </div>
     } @else {
     <div class="row">
-      @for (item of investigations.blogs.data|slice:0:8; track $index) {
+      @for (item of (investigations()?.blogs?.data ?? [])|slice:0:8; track $index) {
       <div class="col-6">
         <div class="pt-2">
           <a [routerLink]="[item.old_status?'/archives':'/article', item.post_id]" href="#">

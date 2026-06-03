@@ -1,4 +1,4 @@
-@if (specificCategory && specificCategory.blogs && specificCategory.blogs.data) {
+@if (specificCategory() && specificCategory()?.blogs && specificCategory()?.blogs?.data) {
 <section id="Home__articles" class="bg-third py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -6,7 +6,7 @@
       <a [routerLink]="['/archives/article', '08']" href="#" class="btn btn-show-all">عرض الكل</a>
     </header>
     <div class="row g-1 g-lg-3">
-      @for (blog of specificCategory.blogs.data | slice:0:8; track $index) {
+      @for (blog of (specificCategory()?.blogs?.data ?? []) | slice:0:8; track $index) {
       <div class="col-12 col-lg-3">
         <a [routerLink]="[blog.old_status?'/archives':'/article',blog.post_id]" class="text-decoration-none" href="#">
           <article class="card cr p-3 h-100 justify-content-between flex-column">

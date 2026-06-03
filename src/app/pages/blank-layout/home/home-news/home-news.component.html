@@ -1,7 +1,7 @@
 <section id="Home__News">
   <div class="container mx-auto m-4">
     <header class="d-flex justify-content-between align-items-center">
-      <h2 class="section__title fs-30 mb-0">{{ newsTitle }}</h2>
+      <h2 class="section__title fs-30 mb-0">{{ newsTitle() }}</h2>
       <nav class="flex-grow-1">
         <ul class="list-unstyled m-0 p-0 d-flex justify-content-end text-nowrap">
           <li class="d-none d-md-block">
@@ -14,7 +14,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('01');
                 toggleClickedBtns($event);
-                currentSlugId = '01'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               أخبار محلية
             </button>
@@ -23,7 +22,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('02');
                 toggleClickedBtns($event);
-                currentSlugId = '02'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               أخبار العالم
             </button>
@@ -32,7 +30,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('03');
                 toggleClickedBtns($event);
-                currentSlugId = '03'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               الرياضة
             </button>
@@ -41,7 +38,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('f');
                 toggleClickedBtns($event);
-                currentSlugId = 'f'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               ثقافة و فن
             </button>
@@ -50,7 +46,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('04');
                 toggleClickedBtns($event);
-                currentSlugId = '04'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               الاقتصاد
             </button>
@@ -59,7 +54,6 @@
             <button #categoryBtn (click)="
                 getAnotherCategories('05');
                 toggleClickedBtns($event);
-                currentSlugId = '05'
               " class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
               التعليم
             </button>
@@ -86,7 +80,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('01');
                         toggleClickedBtns($event);
-                        currentSlugId = '01'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       أخبار محلية
@@ -100,7 +93,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('02');
                         toggleClickedBtns($event);
-                        currentSlugId = '02'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       أخبار العالم
@@ -114,7 +106,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('03');
                         toggleClickedBtns($event);
-                        currentSlugId = '03'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       الرياضة
@@ -128,7 +119,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('f');
                         toggleClickedBtns($event);
-                        currentSlugId = 'f'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       ثقافة و فن
@@ -142,7 +132,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('04');
                         toggleClickedBtns($event);
-                        currentSlugId = '04'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       الاقتصاد
@@ -156,7 +145,6 @@
                     <button #categoryBtn (click)="
                         getAnotherCategories('05');
                         toggleClickedBtns($event);
-                        currentSlugId = '05'
                       "
                       class="cr btn text-decoration-none fs-13 border-radius-10 d-inline-block px-3 py-2 mx-2 nav-anchors">
                       التعليم
@@ -179,9 +167,9 @@
         </nav>
       </div>
     </header>
-    @if (allNews && allNews.length > 0) {
+    @if (allNews() && (allNews()?.length ?? 0) > 0) {
     <div class="row my-2 g-4">
-      @for (card of allNews | slice:0:isDesktop()?4:10; track $index) {
+      @for (card of allNews() | slice:0:isDesktop()?4:10; track $index) {
       <div class="col-6 col-lg-3">
         <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
           <div class="cr">

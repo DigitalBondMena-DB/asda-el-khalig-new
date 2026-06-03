@@ -1,103 +1,116 @@
 import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, DestroyRef, inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+  PLATFORM_ID,
+  NgZone,
+} from '@angular/core';
+import { interval } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { IWeatherAPI } from '../../../../../core/interfaces/IWeatherAPI';
-import { SafeHtmlPipe } from '../../../../../core/pipes/safe-html.pipe';
 import { StaticCategoriesService } from '../../../../../core/services/content/static-categories.service';
+import { SafeHtmlPipe } from '../../../../../core/pipes/safe-html.pipe';
 
 @Component({
   selector: 'app-home-banner',
   imports: [SafeHtmlPipe],
   templateUrl: './home-banner.component.html',
-  styleUrl: './home-banner.component.scss'
+  styleUrl: './home-banner.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeBannerComponent implements OnInit, OnDestroy {
-
+export class HomeBannerComponent {
   private readonly PLATFORM_ID = inject(PLATFORM_ID);
-  private readonly _httpClient = inject(HttpClient);
-  private readonly _staticCategories = inject(StaticCategoriesService);
-  private readonly _destroyRef = inject(DestroyRef);
+  private readonly http = inject(HttpClient);
+  private readonly staticCategories = inject(StaticCategoriesService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly zone = inject(NgZone);
 
-  arabicLocale = 'en-US';
-  currentTemp = '';
-  sar = '';
-  staticDate = '';
-  websiteCounter: number | string = 0;
+
+  // ─── signals ─────────────────────────────
+  websiteCounter = signal<string | number>(0);
+  currentTemp = signal<string>('');
+  sar = signal<string>('');
+  staticDate = signal<string>('');
+
   year = new Date().getFullYear();
   currentPopulation = '36.95';
+  arabicLocale = 'en-US';
 
-  private _clockInterval: ReturnType<typeof setInterval> | null = null;
-
-  ngOnInit(): void {
+  ngOnInit() {
     if (isPlatformServer(this.PLATFORM_ID)) return;
 
-    this._loadCounter();
-    this._loadWeather();
-    this._loadCurrency();
-    this._startClock();
+    this.loadCounter();
+    this.loadWeather();
+    this.loadCurrency();
+    this.startClock();
   }
 
-  ngOnDestroy(): void {
-    if (this._clockInterval) {
-      clearInterval(this._clockInterval);
-      this._clockInterval = null;
-    }
-  }
-
-  // ─── private helpers ──────────────────────────────────────────
-
-  private _loadCounter(): void {
-    this._staticCategories.getViewsData()
-      .pipe(takeUntilDestroyed(this._destroyRef))
+  // ─── counter (RxJS) ──────────────────────
+  private loadCounter() {
+    this.staticCategories
+      .getViewsData()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (response) => {
-          this.websiteCounter = new Intl.NumberFormat(this.arabicLocale)
-            .format(response.counter.coutner_Value);
+        next: (res) => {
+          this.websiteCounter.set(
+            new Intl.NumberFormat(this.arabicLocale).format(
+              res.counter.coutner_Value
+            )
+          );
         },
-        error: (err) => console.error('Counter failed:', err),
       });
   }
 
-  private _loadWeather(): void {
-    const url = 'https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current_weather=true';
+  // ─── weather (RxJS) ──────────────────────
+  private loadWeather() {
+    const url =
+      'https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current_weather=true';
 
-    this._httpClient.get<any>(url)
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe({
-        next: (data) => {
-          const temp_c = data.current_weather.temperature;
-          const f = (temp_c * 9) / 5 + 32;
-          this.currentTemp =
-            `${Math.trunc(temp_c)}<sup>o</sup>C / ${Math.trunc(f)}<sup>o</sup>F`;
-        },
-        error: (err) => console.error('Weather failed:', err),
+    this.http
+      .get<any>(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        const c = data.current_weather.temperature;
+        const f = (c * 9) / 5 + 32;
+
+        this.currentTemp.set(
+          `${Math.trunc(c)}°C / ${Math.trunc(f)}°F`
+        );
       });
   }
 
-  private _loadCurrency(): void {
-    const url = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest'
-      + '/v1/currencies/usd.json';
+  // ─── currency ────────────────────────────
+  private loadCurrency() {
+    const url =
+      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
 
-    this._httpClient.get<{ usd: { sar: string } }>(url)
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe({
-        next: (data) => { this.sar = data.usd.sar; },
-        error: (err) => console.error('Currency failed:', err),
+    this.http
+      .get<any>(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        this.sar.set(data?.usd?.sar ?? '');
       });
   }
 
-  private _startClock(): void {
-    const fmt = new Intl.DateTimeFormat('en-US', {
+  // ─── clock (RXJS instead of setInterval) ─
+  private startClock() {
+    const formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: 'Asia/Riyadh',
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
     });
+    this.zone.runOutsideAngular(() => {
+      interval(1000)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          const time = formatter.format(new Date());
+          this.staticDate.set(time);
+        });
+    })
 
-    const tick = () => { this.staticDate = fmt.format(new Date()); };
-
-    tick(); // اعرض الوقت فوراً
-    this._clockInterval = setInterval(tick, 1000);
   }
 }

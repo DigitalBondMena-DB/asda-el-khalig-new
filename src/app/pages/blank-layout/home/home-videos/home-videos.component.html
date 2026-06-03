@@ -1,4 +1,4 @@
-@if(currentYoutubeVideos) {
+@if(currentYoutubeVideos()) {
 <section id="Home__Local__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -10,20 +10,20 @@
       <div class="col-12 col-md-9">
         <div (click)="
             onClickOpenYouTubeVideo(
-              currentYoutubeVideos.items[0].snippet.resourceId.videoId
+              currentYoutubeVideos()?.items?.[0]?.snippet?.resourceId?.videoId
             )
-          " class="h-100 cr position-relative" height="545px" [innerHTML]="videoIframe | safeHtml"></div>
+          " class="h-100 cr position-relative" height="545px" [innerHTML]="videoIframe() ?? '' | safeHtml"></div>
       </div>
 
       <div class="col-12 col-md-3 d-flex justify-content-between flex-column">
         <div (click)="
             onClickOpenYouTubeVideo(
-              currentYoutubeVideos.items[1].snippet.resourceId.videoId
+              currentYoutubeVideos()?.items?.[1]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
-                currentYoutubeVideos.items[1].snippet.thumbnails.standard.url
+                currentYoutubeVideos()?.items?.[1]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
           </figure>
           <!-- <div>
@@ -34,12 +34,12 @@
         </div>
         <div (click)="
             onClickOpenYouTubeVideo(
-              currentYoutubeVideos.items[2].snippet.resourceId.videoId
+              currentYoutubeVideos()?.items?.[2]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
-                currentYoutubeVideos.items[2].snippet.thumbnails.standard.url
+                currentYoutubeVideos()?.items?.[2]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
           </figure>
           <!-- <div>
@@ -50,12 +50,12 @@
         </div>
         <div (click)="
             onClickOpenYouTubeVideo(
-              currentYoutubeVideos.items[3].snippet.resourceId.videoId
+              currentYoutubeVideos()?.items?.[3]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
-                currentYoutubeVideos.items[3].snippet.thumbnails.standard.url
+                currentYoutubeVideos()?.items?.[3]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
           </figure>
           <!-- <div>
@@ -71,17 +71,17 @@
       <div class="col-12 col-md-9">
         <div (click)="
             onClickOpenYouTubeVideo(
-              currentYoutubeVideos.items[0].snippet.resourceId.videoId
+              currentYoutubeVideos()?.items?.[0]?.snippet?.resourceId?.videoId
             )
-          " class="h-100 cr position-relative" height="400px" [innerHTML]="videoIframe | safeHtml"></div>
+          " class="h-100 cr position-relative" height="400px" [innerHTML]="videoIframe() ?? '' | safeHtml"></div>
       </div>
 
-      @for (item of currentYoutubeVideos.items|slice:1:5; track $index) {
+      @for (item of (currentYoutubeVideos()?.items ?? [])|slice:1:5; track $index) {
       <div class="col-6 d-flex justify-content-between flex-column">
-        <div (click)="onClickOpenYouTubeVideo(item.snippet.resourceId.videoId)" class="Logo_youtube_Mark cr mb-2">
+        <div (click)="onClickOpenYouTubeVideo(item?.snippet?.resourceId?.videoId)" class="Logo_youtube_Mark cr mb-2">
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
             <img class="youTube_Image w-100 object-fit-cover border-radius-10"
-              [src]="item.snippet.thumbnails.standard.url" alt="card.author" loading="lazy" decoding="async" />
+              [src]="item?.snippet?.thumbnails?.standard?.url" alt="card.author" loading="lazy" decoding="async" />
           </figure>
           <!-- <div>
                 <h3 class="fs-13 fw-bold mb-1 title_section">

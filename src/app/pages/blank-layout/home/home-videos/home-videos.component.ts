@@ -1,23 +1,25 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, signal } from '@angular/core';
 import { IYoutube } from '../../../../core/interfaces/IYoutube';
 import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 import { SocialMediaLinksService } from '../../../../core/services/shared/social-media-links.service';
 import { SlicePipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-home-videos',
-    imports: [SafeHtmlPipe, SlicePipe],
-    templateUrl: './home-videos.component.html',
-    styleUrl: './home-videos.component.scss'
+  selector: 'app-home-videos',
+  imports: [SafeHtmlPipe, SlicePipe],
+  templateUrl: './home-videos.component.html',
+  styleUrl: './home-videos.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeVideosComponent {
-  currentYoutubeVideos!: IYoutube;
+  destroyRef = inject(DestroyRef);
   SocialMediaLinksService = inject(SocialMediaLinksService);
-  videoIframe: string = '';
+  _HomeContentService = inject(HomeContentService);
+  currentYoutubeVideos = signal<IYoutube | null>(null);
+  videoIframe = signal<string>('');
   isDesktop = input();
-
-  constructor(private _HomeContentService: HomeContentService) {}
 
   ngOnInit(): void {
     this.getHomeVideo();
@@ -25,22 +27,25 @@ export class HomeVideosComponent {
   }
 
   getLocalNews() {
-    this._HomeContentService.getHomeYouTube().subscribe({
+    this._HomeContentService.getHomeYouTube().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
-        this.currentYoutubeVideos = response;
+        this.currentYoutubeVideos.set(response);
       },
     });
   }
 
   getHomeVideo() {
-    this.SocialMediaLinksService.getSocialMediaLinks().subscribe({
+    this.SocialMediaLinksService.getSocialMediaLinks().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
-        this.videoIframe = response?.contact.youtube_embedded;
+        this.videoIframe.set(response?.contact.youtube_embedded);
       },
     });
   }
 
-  onClickOpenYouTubeVideo(targetVideoUrl: string): void {
+  onClickOpenYouTubeVideo(targetVideoUrl: string | undefined): void {
+    if (!targetVideoUrl) {
+      return;
+    }
     window.open(`https://www.youtube.com/watch?v=${targetVideoUrl}`, '_blank');
   }
 

@@ -9,7 +9,7 @@
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">عدد زيارات الموقع</p>
-            <p class="mb-0 fs-11 fw-bold">{{ websiteCounter }} زائر</p>
+            <p class="mb-0 fs-11 fw-bold">{{ websiteCounter() }} زائر</p>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">حالة الطقس بالرياض</p>
-            <p [innerHTML]="currentTemp | safeHtml" class="mb-0 fs-11 fw-bold"></p>
+            <p [innerHTML]="currentTemp() | safeHtml" class="mb-0 fs-11 fw-bold"></p>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">التوقيت</p>
             <p class="mb-0 fs-11 fw-bold">
-              {{ staticDate }}
+              {{ staticDate() }}
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@
           </div>
           <div class="col-8 text-end">
             <p class="mb-0 fs-13 fw-bold">سعر الصرف</p>
-            <p class="mb-0 fs-11 fw-bold ltr">1 USD = {{ sar }} SAR</p>
+            <p class="mb-0 fs-11 fw-bold ltr">1 USD = {{ sar() }} SAR</p>
           </div>
         </div>
       </div>

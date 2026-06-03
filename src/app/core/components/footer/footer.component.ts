@@ -1,36 +1,35 @@
 import { isFoundingDay } from './../../constants/WEB_SITE_BASE_UTL';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Contact } from '../../interfaces/ISocialMedia';
 import { SocialMediaService } from '../../services/content/social-media.service';
 import { StaticCategoriesService } from '../../services/content/static-categories.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-footer',
   imports: [RouterLink],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FooterComponent {
-  socialLinks: { label: string; url: string; icon: string; alt: string }[] = [];
+export class FooterComponent implements OnInit {
+  readonly destroyRef = inject(DestroyRef);
+  private readonly _StaticCategoriesService = inject(StaticCategoriesService);
+  private readonly _SocialMediaService = inject(SocialMediaService);
+  socialLinks = signal<{ label: string; url: string; icon: string; alt: string }[]>([]);
   isFoundingDay = isFoundingDay
-  constructor(
-    private _StaticCategoriesService: StaticCategoriesService,
-    private _SocialMediaService: SocialMediaService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
   ngOnInit(): void {
     this.getSocialMediaLinks();
-    this._StaticCategoriesService.increaseView().subscribe({
-      next: (response) => { },
+    this._StaticCategoriesService.increaseView().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: () => { },
       error: (err) => console.warn('Failed to record visit on server.', err.message),
     });
 
   }
 
   getSocialMediaLinks(): void {
-    this._SocialMediaService.getSocialMediaLinks().subscribe({
+    this._SocialMediaService.getSocialMediaLinks().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         const contact = response?.contact as Contact;
         const linksMapping: Record<
@@ -76,16 +75,10 @@ export class FooterComponent {
         // Filter non-null social media links
         if (contact) {
           for (const [key, value] of Object.entries(contact)) {
-            this.socialLinks.push({
+            this.socialLinks.update((prev) => [...prev, {
               url: value as string,
               ...linksMapping[key],
-            });
-            // if (value !== 'null' && linksMapping[key]) {
-            //   this.socialLinks.push({
-            //     url: value as string,
-            //     ...linksMapping[key],
-            //   });
-            // }
+            }]);
           }
         }
       },

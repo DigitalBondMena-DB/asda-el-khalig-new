@@ -2,11 +2,13 @@ import { CommonModule, SlicePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
+  inject,
   input,
   QueryList,
   signal,
-  ViewChildren,
+  viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -14,6 +16,7 @@ import { ISpecificCategory } from '../../../../core/interfaces/ISpecificCategory
 import { HijriDatePipe } from '../../../../core/pipes/date-hijri.pipe';
 import { ImagesSrcPipe } from '../../../../core/pipes/images-src.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home-local-news',
@@ -30,11 +33,14 @@ import { HomeContentService } from '../../../../core/services/content/home/home-
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeLocalNewsComponent {
+  private _HomeContentService = inject(HomeContentService);
+  private destroyRef = inject(DestroyRef);
+  isDesktop = input();
   localNews = signal<ISpecificCategory | null>(null);
   sectionTitle = signal('الأخبار المحلية');
   isShowSkeleton = signal<boolean>(true);
-  @ViewChildren('toggleButtons') toggleButtons!: QueryList<ElementRef>;
-  constructor(private _HomeContentService: HomeContentService) { }
+  toggleButtons = viewChild<QueryList<ElementRef>>('toggleButtons');
+
 
   ngOnInit(): void {
     this.getLocalNews();
@@ -42,7 +48,7 @@ export class HomeLocalNewsComponent {
 
   getLocalNews() {
     this.isShowSkeleton.set(true);
-    this._HomeContentService.getHomeLocalNews().subscribe({
+    this._HomeContentService.getHomeLocalNews().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.localNews.set(response);
         this.sectionTitle.set('الأخبار المحلية');
@@ -52,7 +58,7 @@ export class HomeLocalNewsComponent {
   }
   getRandomNews() {
     this.isShowSkeleton.set(true);
-    this._HomeContentService.getHomeRandomNews().subscribe({
+    this._HomeContentService.getHomeRandomNews().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.localNews.set(response);
         this.sectionTitle.set('أخبار متنوعة');
@@ -61,13 +67,12 @@ export class HomeLocalNewsComponent {
     });
   }
   toggleButtonsHandler(element: HTMLElement) {
-    this.toggleButtons.forEach((button) => {
+    this.toggleButtons()?.forEach((button) => {
       button.nativeElement.classList.remove('btn-main');
       button.nativeElement.classList.add('bg-white');
     });
     element.classList.add('btn-main');
   }
 
-  skeleton: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  isDesktop = input();
+
 }

@@ -42,6 +42,10 @@ header .header-bg {
   top: 50%;
   transform: translateY(-50%);
   right: 0;
+  width: 80%;
+  inset-inline: 0;
+  margin: auto;
+  object-fit: cover;
   z-index: -1;
   opacity: 30%;
 }
