@@ -2,7 +2,7 @@
   صحيفة أصداء الخليج | صحيفة سعودية مرخصة | رئيس التحرير سلمان بن أحمد العيد
 </h1>
 
-<header>
+<header style="min-height: 473px">
   <img src="/assets/images/pages/home/1.png" decoding="async" alt="" role="presentation" class="header-bg">
   <app-blank-navbar />
   <div class="large">
@@ -14,11 +14,7 @@
   <app-home-news [isDesktop]="isDesktop()" />
 </div>
 
-@defer (on viewport) {
 <app-home-banner />
-} @placeholder {
-<div style="min-height: 126px"></div>
-}
 <div class="main-bg pb-5">
 
   @defer (on viewport) {

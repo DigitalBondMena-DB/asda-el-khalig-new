@@ -1,5 +1,5 @@
 <!-- navbar banner -->
-<div class="container-fluid py-2 d-flex justify-content-between align-items-center flex-md-wrap">
+<div class="container-fluid py-2 d-flex justify-content-between align-items-center flex-md-wrap" style="min-height: 106px">
   <!-- app logo -->
   <div class="d-flex col-6 col-md-auto justify-content-between flex-shrink-1 align-items-center gap-3">
     <a routerLink="/" href="#">
@@ -27,7 +27,7 @@
 </div>
 
 <!-- nav bar banner -->
-<div class="navbar bg-main flex-row-reverse">
+<div class="navbar bg-main flex-row-reverse" style="min-height: 56px">
   <div class="container-fluid flex-row-reverse flex-nowrap w-100 d-flex justify-content-between">
     <div class="search_container d-none d-md-flex">
       <input [(ngModel)]="searchResult" #inputSearch (keydown.enter)="searchResults(inputSearch.value)" [style]="{
@@ -161,7 +161,12 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
   <div class="offcanvas-header justify-content-between align-items-center">
     <p id="mobileMenuLabel" class="m-0">القائمة</p>
-    <button type="button" class="btn-close text-reset m-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class=" text-reset m-0" data-bs-dismiss="offcanvas" aria-label="Close">
+      <div class="close-cross">
+        <span></span>
+        <span></span>
+      </div>
+    </button>
   </div>
 
   <div class="offcanvas-body">
