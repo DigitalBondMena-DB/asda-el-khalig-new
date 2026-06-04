@@ -3,25 +3,21 @@
 </h1>
 
 <header>
-  <img src="/assets/images/pages/home/1.png" loading="lazy" decoding="async" alt="" role="presentation"
-    class="header-bg">
+  <img src="/assets/images/pages/home/1.png" decoding="async" alt="" role="presentation" class="header-bg">
   <app-blank-navbar />
   <div class="large">
     <app-hero />
   </div>
 </header>
-@defer (on viewport) {
 @if (!isDesktop()) {
 <app-home-local-news [isDesktop]="isDesktop()" />
 <app-home-news [isDesktop]="isDesktop()" />
 }
-} @placeholder {
-<div style="min-height: 200px"></div>
-}
+
 @defer (on viewport) {
 <app-home-banner />
 } @placeholder {
-<div style="min-height: 50px"></div>
+<div style="min-height: 126px"></div>
 }
 <div class="main-bg pb-5">
 

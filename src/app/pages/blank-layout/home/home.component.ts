@@ -40,7 +40,7 @@ export class HomeComponent {
   private destroyRef = inject(DestroyRef);
   private _MetaTagsHandleService = inject(MetaTagsHandleService);
   private platformId = inject(PLATFORM_ID);
-  isDesktop = signal(true);
+  isDesktop = signal(false);
 
   constructor() {
     afterNextRender(() => {
