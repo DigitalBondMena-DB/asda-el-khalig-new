@@ -67,22 +67,16 @@ export class HomeBannerComponent {
   // ─── weather (RxJS) ──────────────────────
   private loadWeather() {
     const url =
-      'https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current_weather=true';
+      'https://api.weatherapi.com/v1/current.json?key=94d6f85346f344d699b111519251901&q=Riyadh&aqi=yes';
 
     // Run outside Angular's zone and delay to prevent blocking network idle
     this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            const c = data.current_weather.temperature;
-            const f = (c * 9) / 5 + 32;
-            this.currentTemp.set(`${Math.trunc(c)}°C / ${Math.trunc(f)}°F`);
-          })
-          .catch(() => {
-            // Silently fail if weather is unavailable so it doesn't break UI
-          });
-      }, 4000);
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.currentTemp.set(`${data.current.temp_c}°C / ${data.current.temp_c}°F`);
+        })
     });
   }
 
