@@ -3,38 +3,67 @@
 </h1>
 
 <header>
-  <img src="/assets/images/pages/home/1.png" loading="lazy" decoding="async" alt="" role="presentation"
+  <img src="/assets/images/pages/home/1.png" fetchpriority="high" decoding="sync" alt="" role="presentation"
     class="header-bg">
   <app-blank-navbar />
   <div class="large">
     <app-hero />
   </div>
 </header>
-@if (!isDesktop()) {
-<app-home-local-news [isDesktop]="isDesktop()" />
-<app-home-news [isDesktop]="isDesktop()" />
+@defer (on viewport) {
+  @if (!isDesktop()) {
+  <app-home-local-news [isDesktop]="isDesktop()" />
+  <app-home-news [isDesktop]="isDesktop()" />
+  }
+} @placeholder {
+  <div style="min-height: 200px"></div>
 }
-<app-home-banner />
+@defer (on viewport) {
+  <app-home-banner />
+} @placeholder {
+  <div style="min-height: 50px"></div>
+}
 <div class="main-bg pb-5">
   <img src="/assets/images/pages/home/2.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="main-bg-img">
-  <app-home-advertising-area />
-  @if (isDesktop()) {
-  <app-home-news [isDesktop]="isDesktop()" />
-  } @if (!isDesktop()) {
-  <div class="p-3">
-    <app-home-master></app-home-master>
-  </div>
+  @defer (on viewport) {
+    <app-home-advertising-area />
+  } @placeholder {
+    <div style="min-height: 100px"></div>
+  }
+  @defer (on viewport) {
+    @if (isDesktop()) {
+    <app-home-news [isDesktop]="isDesktop()" />
+    } @if (!isDesktop()) {
+    <div class="p-3">
+      <app-home-master></app-home-master>
+    </div>
+    }
+  } @placeholder {
+    <div style="min-height: 300px"></div>
   }
 </div>
 
-@if (isDesktop()) {
-<app-home-local-news [isDesktop]="isDesktop()" />
+@defer (on viewport) {
+  @if (isDesktop()) {
+  <app-home-local-news [isDesktop]="isDesktop()" />
+  }
+} @placeholder {
+  <div style="min-height: 200px"></div>
 }
 
-<app-national-news [isDesktop]="isDesktop()" />
-@if (isDesktop()) {
-<app-home-articles />
+@defer (on viewport) {
+  <app-national-news [isDesktop]="isDesktop()" />
+} @placeholder {
+  <div style="min-height: 200px"></div>
+}
+
+@defer (on viewport) {
+  @if (isDesktop()) {
+  <app-home-articles />
+  }
+} @placeholder {
+  <div style="min-height: 200px"></div>
 }
 
 <!-- Custom Category -->
@@ -86,9 +115,21 @@
 <div class="third-bg">
   <img src="/assets/images/pages/home/4.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="third-bg-img">
-  <app-home-investigations [isDesktop]="isDesktop()" />
-  @if (!isDesktop()) {
-  <app-home-articles />
+  @defer (on viewport) {
+    <app-home-investigations [isDesktop]="isDesktop()" />
+  } @placeholder {
+    <div style="min-height: 200px"></div>
   }
-  <app-home-videos [isDesktop]="isDesktop()" />
+  @defer (on viewport) {
+    @if (!isDesktop()) {
+    <app-home-articles />
+    }
+  } @placeholder {
+    <div style="min-height: 200px"></div>
+  }
+  @defer (on viewport) {
+    <app-home-videos [isDesktop]="isDesktop()" />
+  } @placeholder {
+    <div style="min-height: 200px"></div>
+  }
 </div>
