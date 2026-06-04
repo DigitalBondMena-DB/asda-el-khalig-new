@@ -9,10 +9,10 @@
     <app-hero />
   </div>
 </header>
-@if (!isDesktop()) {
-<app-home-local-news [isDesktop]="isDesktop()" />
-<app-home-news [isDesktop]="isDesktop()" />
-}
+<div class="d-block d-lg-none">
+  <app-home-local-news [isDesktop]="isDesktop()" />
+  <app-home-news [isDesktop]="isDesktop()" />
+</div>
 
 @defer (on viewport) {
 <app-home-banner />
@@ -29,22 +29,21 @@
   <div style="min-height: 100px"></div>
   }
   @defer (on viewport) {
-  @if (isDesktop()) {
-  <app-home-news [isDesktop]="isDesktop()" />
-  } @if (!isDesktop()) {
-  <div class="p-3">
+  <div class="d-none d-lg-block">
+    <app-home-news [isDesktop]="isDesktop()" />
+  </div>
+  <div class="d-block d-lg-none p-3">
     <app-home-master></app-home-master>
   </div>
-  }
   } @placeholder {
   <div style="min-height: 300px"></div>
   }
 </div>
 
 @defer (on viewport) {
-@if (isDesktop()) {
-<app-home-local-news [isDesktop]="isDesktop()" />
-}
+<div class="d-none d-lg-block">
+  <app-home-local-news [isDesktop]="isDesktop()" />
+</div>
 } @placeholder {
 <div style="min-height: 200px"></div>
 }
@@ -56,9 +55,9 @@
 }
 
 @defer (on viewport) {
-@if (isDesktop()) {
-<app-home-articles />
-}
+<div class="d-none d-lg-block">
+  <app-home-articles />
+</div>
 } @placeholder {
 <div style="min-height: 200px"></div>
 }
@@ -123,9 +122,9 @@
   <div style="min-height: 200px"></div>
   }
   @defer (on viewport) {
-  @if (!isDesktop()) {
-  <app-home-articles />
-  }
+  <div class="d-block d-lg-none">
+    <app-home-articles />
+  </div>
   } @placeholder {
   <div style="min-height: 200px"></div>
   }
