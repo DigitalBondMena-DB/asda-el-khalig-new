@@ -3,7 +3,7 @@
 </h1>
 
 <header>
-  <img src="/assets/images/pages/home/1.png" fetchpriority="high" decoding="sync" alt="" role="presentation"
+  <img src="/assets/images/pages/home/1.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="header-bg">
   <app-blank-navbar />
   <div class="large">
@@ -11,62 +11,64 @@
   </div>
 </header>
 @defer (on viewport) {
-  @if (!isDesktop()) {
-  <app-home-local-news [isDesktop]="isDesktop()" />
-  <app-home-news [isDesktop]="isDesktop()" />
-  }
+@if (!isDesktop()) {
+<app-home-local-news [isDesktop]="isDesktop()" />
+<app-home-news [isDesktop]="isDesktop()" />
+}
 } @placeholder {
-  <div style="min-height: 200px"></div>
+<div style="min-height: 200px"></div>
 }
 @defer (on viewport) {
-  <app-home-banner />
+<app-home-banner />
 } @placeholder {
-  <div style="min-height: 50px"></div>
+<div style="min-height: 50px"></div>
 }
 <div class="main-bg pb-5">
+
+  @defer (on viewport) {
   <img src="/assets/images/pages/home/2.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="main-bg-img">
-  @defer (on viewport) {
-    <app-home-advertising-area />
+  <app-home-advertising-area />
   } @placeholder {
-    <div style="min-height: 100px"></div>
+  <div style="min-height: 100px"></div>
   }
   @defer (on viewport) {
-    @if (isDesktop()) {
-    <app-home-news [isDesktop]="isDesktop()" />
-    } @if (!isDesktop()) {
-    <div class="p-3">
-      <app-home-master></app-home-master>
-    </div>
-    }
+  @if (isDesktop()) {
+  <app-home-news [isDesktop]="isDesktop()" />
+  } @if (!isDesktop()) {
+  <div class="p-3">
+    <app-home-master></app-home-master>
+  </div>
+  }
   } @placeholder {
-    <div style="min-height: 300px"></div>
+  <div style="min-height: 300px"></div>
   }
 </div>
 
 @defer (on viewport) {
-  @if (isDesktop()) {
-  <app-home-local-news [isDesktop]="isDesktop()" />
-  }
+@if (isDesktop()) {
+<app-home-local-news [isDesktop]="isDesktop()" />
+}
 } @placeholder {
-  <div style="min-height: 200px"></div>
+<div style="min-height: 200px"></div>
 }
 
 @defer (on viewport) {
-  <app-national-news [isDesktop]="isDesktop()" />
+<app-national-news [isDesktop]="isDesktop()" />
 } @placeholder {
-  <div style="min-height: 200px"></div>
+<div style="min-height: 200px"></div>
 }
 
 @defer (on viewport) {
-  @if (isDesktop()) {
-  <app-home-articles />
-  }
+@if (isDesktop()) {
+<app-home-articles />
+}
 } @placeholder {
-  <div style="min-height: 200px"></div>
+<div style="min-height: 200px"></div>
 }
 
 <!-- Custom Category -->
+@defer (on viewport) {
 <section class="mt-4">
   <div class="container">
     <div class="row g-3 flex-column flex-xl-row-reverse">
@@ -111,25 +113,29 @@
     </div>
   </div>
 </section>
+} @placeholder {
+<div style="min-height: 200px"></div>
+}
 
 <div class="third-bg">
+
+  @defer (on viewport) {
   <img src="/assets/images/pages/home/4.png" loading="lazy" decoding="async" alt="" role="presentation"
     class="third-bg-img">
-  @defer (on viewport) {
-    <app-home-investigations [isDesktop]="isDesktop()" />
+  <app-home-investigations [isDesktop]="isDesktop()" />
   } @placeholder {
-    <div style="min-height: 200px"></div>
+  <div style="min-height: 200px"></div>
   }
   @defer (on viewport) {
-    @if (!isDesktop()) {
-    <app-home-articles />
-    }
+  @if (!isDesktop()) {
+  <app-home-articles />
+  }
   } @placeholder {
-    <div style="min-height: 200px"></div>
+  <div style="min-height: 200px"></div>
   }
   @defer (on viewport) {
-    <app-home-videos [isDesktop]="isDesktop()" />
+  <app-home-videos [isDesktop]="isDesktop()" />
   } @placeholder {
-    <div style="min-height: 200px"></div>
+  <div style="min-height: 200px"></div>
   }
 </div>
