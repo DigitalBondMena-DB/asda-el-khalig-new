@@ -1,40 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Kufi+Arabic:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Sans+Arabic:wght@100..900&display=swap");
-$main-font: "Cairo", serif;
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo/Cairo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('../assets/fonts/Noto_Kufi_Arabic/NotoKufiArabic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Kufi Arabic';
+  src: url('../assets/fonts/Noto_Kufi_Arabic/NotoKufiArabic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root,
 html,
 body {
-  // font-family: "Alexandria", serif;
-
   font-family: "Noto Kufi Arabic", serif !important;
-  // font-family: "Noto Naskh Arabic", serif !important;
-  // font-family: "Noto Sans Arabic", serif !important;
-  // letter-spacing: -1px;
-  // font-family: "Noto Sans Arabic", serif;
-
   text-align: justify;
-  // text-justify: kashida;
   word-spacing: -2.5px;
-  // word-spacing: -1px;
-  // letter-spacing: 0.5px;
 }
-:root,
-::ng-deep html,
-::ng-deep body {
-  // font-family: "Alexandria", serif;
 
-  // font-family: "Noto Sans Arabic", serif;
-  // letter-spacing: -1px;
-  font-family: "Noto Kufi Arabic", serif !important;
-  // font-family: "Noto Naskh Arabic", serif !important;
-  // font-family: "Noto Sans Arabic", serif !important;
-}
-.fs-cairo {
-  font-family: "Cairo", serif !important;
-}
-.Inter-font {
-  font-family: "Inter", serif;
-}
 .pi {
   font-family: "primeicons" !important;
 }

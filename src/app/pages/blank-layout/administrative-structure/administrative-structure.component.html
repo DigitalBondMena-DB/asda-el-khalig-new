@@ -1,18 +1,13 @@
 <app-blank-navbar />
-@if (structure) {
+@if (structure()) {
 <section class="container my-5">
   <h2 class="text-center my-5 fw-bold">الهيكل الإداري لصحيفة أصداء الخليج</h2>
   <div class="row justify-content-center">
-    @for (person of structure; track $index) { @if (person.status) {
+    @for (person of structure() ?? []; track $index) { @if (person.status) {
     <div class="col-lg-4 col-sm-6 mb-4">
       <div class="p-person-card">
-        <img
-          [src]="person.main_image"
-          width="170px"
-          height="170px"
-          class="rounded-circle object-fit-cover"
-          [alt]="person.name"
-        />
+        <img [src]="person.main_image" width="170px" height="170px" class="rounded-circle object-fit-cover"
+          [alt]="person.name" loading="lazy" decoding="async" />
         <div class="p-person-details">
           <div class="p-person-name text-main">{{ person.name }}</div>
           <div class="p-person-position">{{ person.title }}</div>
@@ -23,7 +18,7 @@
     <div class="col-12 my-5">
       <h2 class="text-main fs-13 fw-bold text-center">لا يوجد بيانات</h2>
     </div>
-    } @if(isTotalRecordsEqualsTotalDisabled) {
+    } @if(isTotalRecordsEqualsTotalDisabled()) {
     <div class="col-12 my-5">
       <h2 class="text-main fs-13 fw-bold text-center">لا يوجد بيانات</h2>
     </div>

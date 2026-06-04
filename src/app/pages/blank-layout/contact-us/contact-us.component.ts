@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { ContactUsFormComponent } from './contact-us-form/contact-us-form.component';
 import { BlankNavbarComponent } from '../../../core/components/blank-navbar/blank-navbar.component';
 import { SocialMediaService } from '../../../core/services/content/social-media.service';
 import { ISocialMedia } from '../../../core/interfaces/ISocialMedia';
 import { MetaTagsHandleService } from '../../../core/services/content/meta-tags-handle.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-    selector: 'app-contact-us',
-    imports: [ContactUsFormComponent, BlankNavbarComponent],
-    templateUrl: './contact-us.component.html',
-    styleUrl: './contact-us.component.scss'
+  selector: 'app-contact-us',
+  imports: [ContactUsFormComponent, BlankNavbarComponent],
+  templateUrl: './contact-us.component.html',
+  styleUrl: './contact-us.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactUsComponent {
-  socialMediaLinks!: ISocialMedia;
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly _SocialMediaService = inject(SocialMediaService);
+  private readonly _MetaTagsHandleService = inject(MetaTagsHandleService);
+  socialMediaLinks = signal<ISocialMedia | null>(null);
 
-  constructor(
-    private _SocialMediaService: SocialMediaService,
-    private _MetaTagsHandleService: MetaTagsHandleService
-  ) {}
 
   ngOnInit(): void {
     this._MetaTagsHandleService.handleMeta();
@@ -25,10 +26,11 @@ export class ContactUsComponent {
   }
 
   getSocialMediaLinks(): void {
-    this._SocialMediaService.getSocialMediaLinks().subscribe({
-      next: (response) => {
-        this.socialMediaLinks = response as ISocialMedia;
-      },
-    });
+    this._SocialMediaService.getSocialMediaLinks().pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response: any) => {
+          this.socialMediaLinks.set(response);
+        },
+      });
   }
 }

@@ -1,30 +1,27 @@
 <app-blank-navbar />
-@if (aboutUsContent) {
+@if (aboutUsContent()) {
 <section id="About_Us" class="py-5">
   <div class="container">
-    <h1
-      class="fs-20 text-main"
-      [innerHTML]="aboutUsContent.about_title | safeHtml"
-    ></h1>
-    <p class="my-4" [innerHTML]="aboutUsContent.about_text | safeHtml"></p>
-    <h3
-      class="fw-bold my-4 text-main"
-      [innerHTML]="aboutUsContent.about_second_title | safeHtml"
-    ></h3>
-    <p
-      class="fs-20"
-      [innerHTML]="aboutUsContent.about_second_text | safeHtml"
-    ></p>
-    <h4
-      class="fw-bold my-4 text-main"
-      [innerHTML]="aboutUsContent.about_third_title | safeHtml"
-    ></h4>
-    <P [innerHTML]="aboutUsContent.about_third_text | safeHtml"></P>
-    <h6
-      class="fw-bold my-4 text-main"
-      [innerHTML]="aboutUsContent.about_fourth_title | safeHtml"
-    ></h6>
-    <p [innerHTML]="aboutUsContent.about_fourth_text | safeHtml"></p>
+    <h1>
+      <div [innerHTML]="aboutUsContent()?.about_title | safeHtml" class="fs-20 text-main">
+
+      </div>
+    </h1>
+    <div class="my-4" [innerHTML]="aboutUsContent()?.about_text | safeHtml"></div>
+    <h3>
+      <div [innerHTML]="aboutUsContent()?.about_second_title | safeHtml" class="fw-bold my-4 text-main">
+
+      </div>
+    </h3>
+    <div class="fs-20" [innerHTML]="aboutUsContent()?.about_second_text | safeHtml"></div>
+    <h4>
+      <div [innerHTML]="aboutUsContent()?.about_third_title | safeHtml" class="fw-bold my-4 text-main"></div>
+    </h4>
+    <div [innerHTML]="aboutUsContent()?.about_third_text | safeHtml"></div>
+    <h6>
+      <div [innerHTML]="aboutUsContent()?.about_fourth_title | safeHtml" class="fw-bold my-4 text-main"></div>
+    </h6>
+    <div [innerHTML]="aboutUsContent()?.about_fourth_text | safeHtml"></div>
   </div>
 </section>
 }

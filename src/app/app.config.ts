@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
 import {
   InMemoryScrollingFeature,
   InMemoryScrollingOptions,
@@ -19,6 +19,7 @@ import { routes } from './app.routes';
 import { homeCacheInterceptor } from './core/interceptors/home-cache.interceptor';
 import { isStableInterceptor } from './core/interceptors/is-stable.interceptor';
 import { networkErrorInterceptor } from './core/interceptors/network-error.interceptor';
+import { SeoService } from './core/services/seo/seo.service';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
   anchorScrolling: 'enabled',
@@ -29,6 +30,9 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAppInitializer(() => {
+      const seoService = inject(SeoService);
+    }),
     provideNoopAnimations(),
     provideRouter(
       routes,

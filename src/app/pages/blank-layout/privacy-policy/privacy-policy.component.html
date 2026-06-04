@@ -1,17 +1,15 @@
 <app-blank-navbar />
-@if(privacy_policy) {
+@if(privacy_policy()) {
 <section id="Privacy_Policy" class="py-5 bg-light">
   <div class="container shadow-sm rounded p-4 bg-white">
     <!-- Slogan -->
-    <h2
-      class="text-main fw-bold text-center mb-4"
-      [innerHTML]="privacy_policy.privacy_title | safeHtml"
-    ></h2>
+    <h2>
+      <div class="text-main fw-bold text-center mb-4" [innerHTML]="privacy_policy()?.privacy_title | safeHtml">
 
-    <p
-      class="fs-18 text-muted mb-4"
-      [innerHTML]="privacy_policy.privacy_text | safeHtml"
-    ></p>
+      </div>
+    </h2>
+
+    <div class="fs-18 text-muted mb-4" [innerHTML]="privacy_policy()?.privacy_text | safeHtml"></div>
   </div>
 </section>
 }

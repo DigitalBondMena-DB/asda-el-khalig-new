@@ -34,7 +34,6 @@
             "assets": [
               "src/favicon.ico",
               "src/sitemap.xml",
-              "src/assets/favicon_io/site.webmanifest",
               "src/assets"
             ],
             "styles": [
