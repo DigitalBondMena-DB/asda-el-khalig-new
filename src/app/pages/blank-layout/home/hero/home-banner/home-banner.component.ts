@@ -69,17 +69,21 @@ export class HomeBannerComponent {
     const url =
       'https://api.open-meteo.com/v1/forecast?latitude=24.7136&longitude=46.6753&current_weather=true';
 
-    this.http
-      .get<any>(url)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data) => {
-        const c = data.current_weather.temperature;
-        const f = (c * 9) / 5 + 32;
-
-        this.currentTemp.set(
-          `${Math.trunc(c)}°C / ${Math.trunc(f)}°F`
-        );
-      });
+    // Run outside Angular's zone and delay to prevent blocking network idle
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            const c = data.current_weather.temperature;
+            const f = (c * 9) / 5 + 32;
+            this.currentTemp.set(`${Math.trunc(c)}°C / ${Math.trunc(f)}°F`);
+          })
+          .catch(() => {
+            // Silently fail if weather is unavailable so it doesn't break UI
+          });
+      }, 4000);
+    });
   }
 
   // ─── currency ────────────────────────────
