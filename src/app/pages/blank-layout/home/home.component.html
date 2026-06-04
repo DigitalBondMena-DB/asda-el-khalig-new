@@ -14,7 +14,11 @@
   <app-home-news [isDesktop]="isDesktop()" />
 </div>
 
+@defer (on viewport) {
 <app-home-banner />
+} @placeholder {
+<div style="min-height: 126px"></div>
+}
 <div class="main-bg pb-5">
 
   @defer (on viewport) {
