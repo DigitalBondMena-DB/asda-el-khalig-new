@@ -38,6 +38,7 @@ export class HomeLocalNewsComponent {
   localNews = signal<ISpecificCategory | null>(null);
   sectionTitle = signal('الأخبار المحلية');
   toggleButtons = viewChildren<ElementRef>('toggleButtons');
+  skeleton: number[] = [0, 1, 2, 3];
 
 
   ngOnInit(): void {

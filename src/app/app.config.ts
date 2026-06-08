@@ -5,12 +5,11 @@ import {
   provideRouter,
   withComponentInputBinding,
   withInMemoryScrolling,
-  withViewTransitions,
 } from '@angular/router';
 
 import { IMAGE_CONFIG } from '@angular/common';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { provideToastr } from 'ngx-toastr';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
@@ -31,16 +30,15 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAppInitializer(() => {
-      const seoService = inject(SeoService);
+      inject(SeoService);
     }),
     provideNoopAnimations(),
     provideRouter(
       routes,
       withComponentInputBinding(),
       inMemoryScrollingFeature,
-      withViewTransitions()
     ),
-    provideClientHydration(),
+    provideClientHydration(withEventReplay()),
     provideToastr({
       positionClass: 'toast-top-left',
       timeOut: 2000,
@@ -48,7 +46,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         isStableInterceptor,
-        homeCacheInterceptor,
         networkErrorInterceptor,
       ]),
       withFetch() // for lazy loading

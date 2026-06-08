@@ -8,7 +8,7 @@ import { ISliderHome } from '../../../core/interfaces/slider/ISliderHome';
 import { RemoveInlineStylesPipe } from '../../../core/pipes/remove-inline-styles.pipe';
 import { SafeHtmlPipe } from '../../../core/pipes/safe-html.pipe';
 import { CategoriesService } from '../../../core/services/content/categories.service';
-import { HomeContentService } from '../../../core/services/content/home/home-content.service';
+import { SliderBlogService } from '../../../core/services/content/slider-blog.service';
 import { NewsControlService } from '../../../core/services/shared/news-control.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class FoundingHeroComponent {
   allBreakingNews!: IAllBreakingNews;
   constructor(
     private _NewsControlService: NewsControlService,
-    private _HomeContentService: HomeContentService,
+    private _SliderBlogService: SliderBlogService,
     private _CategoriesService: CategoriesService
   ) { }
   ngOnInit(): void {
@@ -49,7 +49,7 @@ export class FoundingHeroComponent {
   }
 
   getSliderData() {
-    this._HomeContentService.getHomeSlider().subscribe({
+    this._SliderBlogService.getSliderData().subscribe({
       next: (response) => {
         this.sliderData = response;
       },

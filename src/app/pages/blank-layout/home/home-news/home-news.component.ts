@@ -51,40 +51,26 @@ export class HomeNewsComponent implements OnInit {
   newsTitle = signal<string>('الأخبار');
   skeleton: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  PlaceHolder = viewChild<ElementRef>('PlaceHolder');
   navBtns = viewChildren<ElementRef>('categoryBtn');
 
   ngOnInit(): void {
-    if (this.PlaceHolder())
-      this.PlaceHolder()?.nativeElement.classList.add('d-none');
     this.getRandomNews();
   }
-  ngOnDestroy(): void {
-    if (this.PlaceHolder())
-      this.PlaceHolder()?.nativeElement.classList.add('d-none');
-  }
+  ngOnDestroy(): void { }
   getRandomNews(): void {
     this.allNews.set([]);
-    if (this.PlaceHolder())
-      this.PlaceHolder()?.nativeElement.classList.remove('d-none');
     this._HomeContentService.getHomeRandomNews().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allNews.set(response?.blogs?.data || []);
-        if (this.PlaceHolder())
-          this.PlaceHolder()?.nativeElement.classList.add('d-none');
       },
     });
   }
 
   getAnotherCategories(categoryId: string): void {
     this.allNews.set([]);
-    if (this.PlaceHolder())
-      this.PlaceHolder()?.nativeElement.classList.remove('d-none');
     this._CategoriesService.getCurrentCategories(categoryId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
         this.allNews.set(response?.blogs?.data || []);
-        if (this.PlaceHolder())
-          this.PlaceHolder()?.nativeElement.classList.add('d-none');
       },
     });
   }

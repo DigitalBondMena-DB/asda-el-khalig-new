@@ -1,4 +1,3 @@
-import { isPlatformServer } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
@@ -6,7 +5,6 @@ import {
   DestroyRef,
   inject,
   signal,
-  PLATFORM_ID,
   NgZone,
 } from '@angular/core';
 import { interval } from 'rxjs';
@@ -22,7 +20,6 @@ import { SafeHtmlPipe } from '../../../../../core/pipes/safe-html.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeBannerComponent {
-  private readonly PLATFORM_ID = inject(PLATFORM_ID);
   private readonly http = inject(HttpClient);
   private readonly staticCategories = inject(StaticCategoriesService);
   private readonly destroyRef = inject(DestroyRef);
@@ -40,7 +37,6 @@ export class HomeBannerComponent {
   arabicLocale = 'en-US';
 
   ngOnInit() {
-    if (isPlatformServer(this.PLATFORM_ID)) return;
 
     this.loadCounter();
     this.loadWeather();

@@ -38,7 +38,7 @@
             <div class="col-9">
               <p class="date_color fw-bold fs-13">
                 <img class="ms-1 align-middle" role="presentation" loading="lazy" decoding="async"
-                  src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" />
+                  src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" width="14" height="14" />
                 <span class="align-middle text-main">{{
                   news.post_date | hijriDate
                   }}</span>
@@ -65,7 +65,7 @@
             </figure>
             <p class="m-0 date_color fw-bold fs-13 d-flex justify-content-end align-items-center">
               <img class="ms-1 align-middle" loading="lazy" decoding="async"
-                src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" role="presentation" />
+                src="./assets/images/pages/home/loca_news/clock-rotate-left-solid.png" role="presentation" width="14" height="14" />
               <span class="align-middle text-main">{{
                 localNews()?.blogs?.data?.[0]?.post_date | hijriDate
                 }}</span>
@@ -76,6 +76,46 @@
 
           </div>
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+} @else {
+<section id="Home__Local__News" class="bg-third py-4">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <h2 class="section__title fs-30">
+        <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '200px', height: '30px', background: 'lightgray', margin: '0' }" />
+      </h2>
+    </header>
+    <div class="row py-2 flex-row-reverse">
+      <div class="col-12 col-md-5 ms-auto">
+        <div class="bg-white border-radius-10 d-flex justify-content-evenly p-2">
+          <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '100%', height: '30px', background: 'lightgray', margin: '0' }" />
+        </div>
+      </div>
+      <div class="col-7"></div>
+      <div class="col-12 col-lg-5">
+        <div>
+          <div class="row g-3 g-lg-2">
+            @for (item of skeleton| slice:0:isDesktop()?4:10; track $index) {
+            <div class="col-3">
+              <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '100%', height: '100px', background: 'lightgray', margin: '0' }" />
+            </div>
+            <div class="col-9">
+              <p class="mb-2">
+                <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '50%', height: '20px', background: 'lightgray', margin: '0' }" />
+              </p>
+              <div>
+                <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '80%', height: '20px', background: 'lightgray', margin: '0' }" />
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-7 d-none d-md-block">
+        <ngx-skeleton-loader ngSkipHydration [theme]="{ width: '100%', height: '450px', background: 'lightgray', margin: '0' }" />
       </div>
     </div>
   </div>

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable, makeStateKey, TransferState } from '@angular/core';
+import { Observable, of, tap } from 'rxjs';
 import { WEB_SITE_BASE_URL } from '../../constants/WEB_SITE_BASE_UTL';
-import { Observable, of } from 'rxjs';
 import { ISliderHome } from '../../interfaces/slider/ISliderHome';
-import { isPlatformBrowser } from '@angular/common';
+
+const SLIDER_KEY = makeStateKey<ISliderHome>('slider-home');
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,22 @@ import { isPlatformBrowser } from '@angular/common';
 export class SliderBlogService {
   constructor(
     private _HttpClient: HttpClient,
-    @Inject(PLATFORM_ID) private _PLATFORM_ID: object
+    private transferState: TransferState
   ) { }
 
   getSliderData(): Observable<ISliderHome> {
-    return <Observable<ISliderHome>>(
-      this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`)
-    );
+    const cachedData = this.transferState.get(SLIDER_KEY, null as any);
+
+    if (cachedData) {
+      return of(cachedData);
+    }
+
+    return this._HttpClient
+      .get<ISliderHome>(`${WEB_SITE_BASE_URL}slider-blogs`)
+      .pipe(
+        tap((data) => {
+          this.transferState.set(SLIDER_KEY, data);
+        })
+      );
   }
 }

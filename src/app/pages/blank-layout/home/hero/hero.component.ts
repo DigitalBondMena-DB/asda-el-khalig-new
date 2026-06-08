@@ -5,15 +5,13 @@ import {
   inject,
   signal
 } from '@angular/core';
-
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgOptimizedImage } from '@angular/common';
 import { timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
+import { SliderBlogService } from '../../../../core/services/content/slider-blog.service';
 import { NewsControlService } from '../../../../core/services/shared/news-control.service';
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
@@ -38,7 +36,7 @@ export class HeroComponent {
   private readonly destroyRef = inject(DestroyRef);
 
   private readonly _NewsControlService = inject(NewsControlService);
-  private readonly _HomeContentService = inject(HomeContentService);
+  private readonly _SliderBlogService = inject(SliderBlogService);
 
   sliderData = signal<any>(null);
   allBreakingNews = signal<any>(null);
@@ -62,7 +60,7 @@ export class HeroComponent {
   }
 
   getSliderData() {
-    this._HomeContentService.getHomeSlider()
+    this._SliderBlogService.getSliderData()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {

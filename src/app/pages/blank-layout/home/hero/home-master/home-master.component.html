@@ -2,7 +2,7 @@
   <div class="main_animation border-radius-10 overflow-hidden Logo_Water_Mark">
     <a [routerLink]="[masterBlog()?.blogs[0]?.old_status?'/archives':'/article', masterBlog()?.blogs[0]?.post_id]"
       href="#">
-      <img style="height: 380px" class="w-100 object-fit-cover" loading="eager" fetchpriority="high" decoding="sync"
+      <img style="height: 380px" class="w-100 object-fit-cover" loading="lazy" decoding="async"
         src="./assets/images/pages/home/Hero_Section/salman-bin-ahmed-al-eid.jpg" alt="carousel" />
     </a>
   </div>
