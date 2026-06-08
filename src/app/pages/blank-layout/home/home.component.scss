@@ -30,7 +30,7 @@ header .header-bg {
   right: 0;
   z-index: -1;
   width: 50%;
-  opacity: 40%;
+  opacity: 20%;
 }
 
 .third-bg {
@@ -48,6 +48,7 @@ header .header-bg {
   object-fit: cover;
   z-index: -1;
   opacity: 30%;
+  max-height: 100%;
 }
 
 

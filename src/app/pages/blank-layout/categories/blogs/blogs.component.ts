@@ -2,12 +2,15 @@ import { isPlatformBrowser, SlicePipe } from '@angular/common';
 import {
   afterNextRender,
   Component,
+  DestroyRef,
   HostListener,
   Inject,
-  OnDestroy,
+  inject,
   OnInit,
   PLATFORM_ID,
+  signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta, Title } from '@angular/platform-browser';
 import {
   ActivatedRoute,
@@ -17,7 +20,7 @@ import {
 } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { filter, Subject, takeUntil } from 'rxjs';
+import { filter } from 'rxjs';
 import { ISpecificCategory } from '../../../../core/interfaces/ISpecificCategory';
 import { HijriDatePipe } from '../../../../core/pipes/date-hijri.pipe';
 import { ImagesSrcPipe } from '../../../../core/pipes/images-src.pipe';
@@ -44,16 +47,16 @@ import { CategoriesService } from '../../../../core/services/content/categories.
   templateUrl: './blogs.component.html',
   styleUrls: ['./blogs.component.scss']
 })
-export class BlogsComponent implements OnInit, OnDestroy {
-  currentId!: string;
-  specificCategories: ISpecificCategory | null = null;
-  imageLoadedFlag = false;
-  currentPage = 1;
-  totalItems = 0;
-  isShowSkeleton = true;
-  skeleton: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  private destroy$ = new Subject<void>();
-  isDesktop: boolean = true; // Default check
+export class BlogsComponent implements OnInit {
+  currentId = signal<string>('');
+  specificCategories = signal<ISpecificCategory | null>(null);
+  imageLoadedFlag = signal(false);
+  currentPage = signal(1);
+  totalItems = signal(0);
+  isShowSkeleton = signal(true);
+  skeleton = signal<number[]>([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+  isDesktop = signal<boolean>(true); // Default check
+  private destroyRef = inject(DestroyRef);
 
   constructor(
     private _CategoriesService: CategoriesService,
@@ -64,7 +67,7 @@ export class BlogsComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object
   ) {
     afterNextRender(() => {
-      this.isDesktop = window.innerWidth > 992;
+      this.isDesktop.set(window.innerWidth > 992);
     });
   }
 
@@ -76,9 +79,12 @@ export class BlogsComponent implements OnInit, OnDestroy {
   }
   @HostListener('window:resize')
   onResize() {
-    this.isDesktop = window.innerWidth > 992;
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      this.isDesktop.set(window.innerWidth > 992);
+    }
   }
   private updateCanonicalUrl(): void {
+    if (!isPlatformBrowser(this._PLATFORM_ID)) return
     if (window.location.href) {
       const canonicalUrl = window.location.href;
 
@@ -96,7 +102,7 @@ export class BlogsComponent implements OnInit, OnDestroy {
   private listenToRouteChanges(): void {
     this._Router.events
       .pipe(
-        takeUntil(this.destroy$),
+        takeUntilDestroyed(this.destroyRef),
         filter((event) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
@@ -161,39 +167,35 @@ export class BlogsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
   pageChanged(page: number): void {
-    this.isShowSkeleton = true;
+    this.isShowSkeleton.set(true);
     window.scrollTo(0, 0);
-    this.currentPage = page;
-    this.loadCategoryData(this.currentId, page);
+    this.currentPage.set(page);
+    this.loadCategoryData(this.currentId(), page);
   }
 
   getInitialId(): void {
     this._ActivatedRoute.paramMap
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((params) => {
         const id = params.get('id');
         if (id) {
-          this.currentId = id;
-          this.loadCategoryData(id, this.currentPage);
+          this.currentId.set(id);
+          this.loadCategoryData(id, this.currentPage());
         }
       });
   }
 
   loadCategoryData(categoryId: string, page: number): void {
-    this.isShowSkeleton = false;
+    this.isShowSkeleton.set(false);
     this._CategoriesService
       .getCurrentCategories(categoryId, page)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          this.specificCategories = response as ISpecificCategory;
-          this.totalItems = response?.blogs?.total || 0;
-          this.isShowSkeleton = false;
+          this.specificCategories.set(response as ISpecificCategory);
+          this.totalItems.set(response?.blogs?.total || 0);
+          this.isShowSkeleton.set(false);
           this.updateMeta();
           this.handleImages();
         },

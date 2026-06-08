@@ -5,14 +5,14 @@
       <div class="container">
         <div class="row g-4 g-lg-3 align-items-stretch">
           <div class="p-2 col-12 col-lg-8">
-            @if (!isShowSkeleton &&IBlogs) {
+            @if (!isShowSkeleton() && IBlogs()) {
             <div>
               <div>
                 <figure class="Logo_Water_Mark">
                   <img style="object-position: top" class="w-100 object-fit-cover border-radius-10 article-image" [src]="
-                      IBlogs.blog.post_image ||
+                      IBlogs()!.blog.post_image ||
                         './assets/images/not_found_image.jpg' | imagesSrc
-                    " [alt]="IBlogs.blog.post_title" />
+                    " [alt]="IBlogs()?.blog?.post_title" />
                 </figure>
 
                 <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
@@ -20,10 +20,10 @@
                     <img width="35px" height="35px" src="./assets/images/new_logos/logo_blue_no_text.png"
                       alt="أصداء الخليج" />
                     {{
-                    IBlogs.blog.author_name === "admin"
+                    IBlogs()?.blog?.author_name === "admin"
                     ? ""
-                    : IBlogs.blog.author_name
-                    ? IBlogs.blog.author_name
+                    : IBlogs()?.blog?.author_name
+                    ? IBlogs()?.blog?.author_name
                     : "أصداء الخليج"
                     }}
                   </p>
@@ -40,7 +40,7 @@
                         </svg>
                       </a>
                       <!-- Email -->
-                      <a [href]="'mailto:?subject=' + encodeURIComponent(IBlogs.blog.post_title) + '&body=' + encodeURIComponent(currentUrl)"
+                      <a [href]="'mailto:?subject=' + encodeURIComponent(IBlogs()?.blog?.post_title ?? '') + '&body=' + encodeURIComponent(currentUrl())"
                         class="email-icon" aria-label="Share on Email">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -49,7 +49,7 @@
                         </svg>
                       </a>
                       <!-- WhatsApp -->
-                      <a [href]="'https://api.whatsapp.com/send?text=' + encodeURIComponent(IBlogs.blog.post_title + ' ' + currentUrl)"
+                      <a [href]="'https://api.whatsapp.com/send?text=' + encodeURIComponent(IBlogs()!.blog.post_title + ' ' + currentUrl())"
                         target="_blank" class="whatsapp-icon" aria-label="Share on WhatsApp">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -58,7 +58,7 @@
                         </svg>
                       </a>
                       <!-- Messenger -->
-                      <a [href]="'fb-messenger://share/?link=' + encodeURIComponent(currentUrl)" target="_blank"
+                      <a [href]="'fb-messenger://share/?link=' + encodeURIComponent(currentUrl())" target="_blank"
                         class="messenger-icon" aria-label="Share on Messenger">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -67,7 +67,7 @@
                         </svg>
                       </a>
                       <!-- Telegram -->
-                      <a [href]="'https://t.me/share/url?url=' + encodeURIComponent(currentUrl) + '&text=' + encodeURIComponent(IBlogs.blog.post_title)"
+                      <a [href]="'https://t.me/share/url?url=' + encodeURIComponent(currentUrl()) + '&text=' + encodeURIComponent(IBlogs()?.blog?.post_title ?? '')"
                         target="_blank" class="telegram-icon" aria-label="Share on Telegram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -76,7 +76,7 @@
                         </svg>
                       </a>
                       <!-- X (Twitter) -->
-                      <a [href]="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(currentUrl) + '&text=' + encodeURIComponent(IBlogs.blog.post_title)"
+                      <a [href]="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(currentUrl()) + '&text=' + encodeURIComponent(IBlogs()!.blog.post_title)"
                         target="_blank" class="x-icon" aria-label="Share on Twitter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -85,7 +85,7 @@
                         </svg>
                       </a>
                       <!-- Facebook -->
-                      <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl)"
+                      <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl())"
                         target="_blank" class="facebook-icon" aria-label="Share on Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                           viewBox="0 0 16 16">
@@ -98,12 +98,12 @@
                 </div>
 
                 <h1 class="text-main fs-13 fw-bold my-3 mb-1 fs-5">
-                  {{ IBlogs.blog.post_title }}
+                  {{ IBlogs()?.blog?.post_title }}
                 </h1>
                 <h2 class="text-dark text-opacity-75 fs-13 fw-bold my-3 mb-1 fs-5">
                   {{
-                  IBlogs.blog.post_subtitle != "null"
-                  ? IBlogs.blog.post_subtitle
+                  IBlogs()?.blog?.post_subtitle != "null"
+                  ? IBlogs()?.blog?.post_subtitle
                   : ""
                   }}
                 </h2>
@@ -111,18 +111,18 @@
                 <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
                   <span></span>
                   <p class="mb-0 date_color fw-bold fs-5">
-                    {{ IBlogs.blog.post_date | hijriDate }}
+                    {{ IBlogs()?.blog?.post_date | hijriDate }}
                   </p>
                 </div>
 
                 <div>
                   <p #content id="content" class="mb-0 fs-13 desc_color fw-bold content" [innerHTML]="
-                      IBlogs.blog.post_content | removeInlineStyles | safeHtml
+                      (IBlogs()?.blog?.post_content ?? '') | removeInlineStyles | safeHtml
                     "></p>
                 </div>
               </div>
             </div>
-            @if (IBlogs.comments) {
+            @if (IBlogs()?.comments) {
             <div class="p-2 col-12 order-0 order-lg-1 my-4">
               <form [formGroup]="userDataForm" (ngSubmit)="onSubmitComment()">
                 <div class="row">
@@ -178,19 +178,19 @@
                               userCommentForm?.getError('maxlength') ||
                               userCommentForm?.getError('required')) &&
                             userCommentForm?.touched
-                        }" (input)="userComments = userData.value" #userData placeholder="اكتب تعليقك هنا"
+                        }" (input)="userComments.set(userData.value)" #userData placeholder="اكتب تعليقك هنا"
                         class="form-control border-radius-10 py-3 commentInput" type="text"
                         formControlName="userComment" />
-                      <button [disabled]="userComments.length > 150 && !isLoading"
+                      <button [disabled]="userComments().length > 150 && !isLoading()"
                         class="btn btn-main py-2 px-4 position-absolute start-0 top-50 translate-middle-y ms-2 border-radius-10 z-1">
-                        اضف تعليق @if (isLoading) {<i class="pi pi-spinner pi-spin"></i>}
+                        اضف تعليق @if (isLoading()) {<i class="pi pi-spinner pi-spin"></i>}
                       </button>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-1">
                       <small [ngClass]="{
                           'text-danger align-self-start':
-                            userComments.length > 150
-                        }">150/{{ userComments.length }}</small>
+                            userComments().length > 150
+                        }">150/{{ userComments().length }}</small>
                       @if (userCommentForm?.getError('maxlength') &&
                       userCommentForm?.touched) {
                       <small class="text-danger">لا يمكن كتابة اكثر من 150 حرف</small>
@@ -216,14 +216,14 @@
                 </div>
               </form>
               <div class="mt-4">
-                @if (IBlogs.comments && IBlogs.comments.length > 0 ) {
+                @if (IBlogs()?.comments && (IBlogs()?.comments?.length ?? 0) > 0 ) {
                 <div class="d-flex justify-content-between align-items-center">
                   <p>التعليقات</p>
                   <p class="text-danger" style="font-size: 13px !important">
-                    {{ IBlogs.comments.length }} تعليقات
+                    {{ IBlogs()?.comments?.length }} تعليقات
                   </p>
                 </div>
-                @for (item of IBlogs.comments; track $index) {
+                @for (item of IBlogs()!.comments; track $index) {
                 <div class="box-shadow border-radius-10 p-3 mb-3">
                   <div class="d-flex align-items-center gap-2 mb-2">
                     <span class="d-flex justify-content-center align-items-center rounded-circle" style="
@@ -247,7 +247,7 @@
             </div>
             } }
             <!-- skeleton -->
-            @defer { @if (isShowSkeleton) {
+            @defer { @if (isShowSkeleton()) {
             <div>
               <figure class="Logo_Water_Mark">
                 <ngx-skeleton-loader ngSkipHydration [theme]="{
@@ -294,10 +294,10 @@
               <div class="">
                 <div>
                   <a class="text-decoration-none" [routerLink]="[
-                      masterBlog?.blogs[0]?.old_status
+                      masterBlog()?.blogs[0]?.old_status
                         ? '/archives'
                         : '/article',
-                      masterBlog?.blogs[0]?.post_id
+                      masterBlog()?.blogs[0]?.post_id
                     ]" href="#">
                     <div class="hero_height border-radius-10 overflow-hidden Logo_Water_Mark">
                       <img class="w-100 object-fit-cover main_animation"
@@ -309,7 +309,7 @@
 
                 <div class="main-content">
                   <p class="fw-bold fs-13 my-2">
-                    {{ masterBlog?.blogs[0]?.post_title }}
+                    {{ masterBlog()?.blogs[0]?.post_title }}
                   </p>
                   <a [routerLink]="['/archives/blogs', '10']" href="#">
                     <p style="text-align: center !important"
@@ -332,6 +332,6 @@
         </div>
       </div>
     </section>
-    @if (IBlogs) {<app-related-content [isRandom]="false" [currentRelatedContentId]="IBlogs.blog.category_slug" />}
+    @if (IBlogs()) {<app-related-content [isRandom]="false" [currentRelatedContentId]="IBlogs()!.blog.category_slug" />}
   </div>
 </div>

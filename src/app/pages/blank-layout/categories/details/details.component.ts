@@ -1,12 +1,19 @@
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
+  AfterContentInit,
   Component,
+  DestroyRef,
   ElementRef,
   Inject,
+  inject,
+  OnDestroy,
+  OnInit,
   PLATFORM_ID,
   Renderer2,
+  signal,
   ViewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
@@ -50,17 +57,19 @@ import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-sty
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
-export class DetailsComponent {
-  currentId!: string;
-  IBlogs!: IBlog;
-  userComments: string = '';
-  isStoreData: boolean = false;
-  isShowSkeleton = true;
-  masterBlog!: any;
-  currentUrl: string = '';
-  isLoading: boolean = false;
+export class DetailsComponent implements OnInit, AfterContentInit, OnDestroy {
+  currentId = signal<string>('');
+  IBlogs = signal<IBlog | null>(null);
+  userComments = signal<string>('');
+  isStoreData = signal<boolean>(false);
+  isShowSkeleton = signal<boolean>(true);
+  masterBlog = signal<any>(null);
+  currentUrl = signal<string>('');
+  isLoading = signal<boolean>(false);
   @ViewChild('isStoreDataInput') isStoreDataInput!: ElementRef;
   @ViewChild('stickySection') stickySection!: ElementRef;
+  private destroyRef = inject(DestroyRef);
+
   constructor(
     private _CategoriesService: CategoriesService,
     private _ActivatedRoute: ActivatedRoute,
@@ -80,7 +89,7 @@ export class DetailsComponent {
 
   copyLink(): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      navigator.clipboard.writeText(this.currentUrl).then(() => {
+      navigator.clipboard.writeText(this.currentUrl()).then(() => {
         this._ToastrService.success('تم نسخ الرابط بنجاح');
       }).catch(err => {
         this._ToastrService.error('فشل في نسخ الرابط');
@@ -132,15 +141,15 @@ export class DetailsComponent {
   }
 
   getInitialId(): void {
-    this._ActivatedRoute.paramMap.subscribe({
+    this._ActivatedRoute.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (params) => {
         let id = params.get('id');
         if (id) {
-          this.currentId = id;
-          this.getCurrentBlog(this.currentId);
+          this.currentId.set(id);
+          this.getCurrentBlog(this.currentId());
           if (isPlatformBrowser(this._PLATFORM_ID)) {
-            this.currentUrl = window.location.href; // Get the current URL
-            // this.currentUrl = `https://www.asda-alkhaleej.com/archives/${id}`; // Get the current URL
+            this.currentUrl.set(window.location.href); // Get the current URL
+            // this.currentUrl.set(`https://www.asda-alkhaleej.com/archives/${id}`); // Get the current URL
           }
         }
       },
@@ -148,20 +157,20 @@ export class DetailsComponent {
   }
 
   getCurrentBlog(blogId: string): void {
-    // this.IBlogs = this._ActivatedRoute.snapshot.data['article'];
+    // this.IBlogs.set(this._ActivatedRoute.snapshot.data['article']);
     // if(typeof window != "undefined") {
     //   setTimeout(() => {
     //     document.querySelector('.lightBox-details')?.classList.add('d-none');
     //   }, 500);
     // }
     // this.changeMeta();
-    this.isShowSkeleton = true;
-    this._CategoriesService.getBlogById(blogId).subscribe({
+    this.isShowSkeleton.set(true);
+    this._CategoriesService.getBlogById(blogId).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
-        this.IBlogs = response as IBlog;
+        this.IBlogs.set(response as IBlog);
         // Update meta tags after the blog data is loaded
         this.changeMeta();
-        this.isShowSkeleton = false;
+        this.isShowSkeleton.set(false);
         this.handleImages();
         this.updateCanonicalUrl(this.router.url);
         // this.removeStyles();
@@ -170,9 +179,9 @@ export class DetailsComponent {
   }
 
   onClickGetLastEditorNewsId(): void {
-    this._CategoriesService.getEditorBlog().subscribe({
+    this._CategoriesService.getEditorBlog().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
-        this.masterBlog = response;
+        this.masterBlog.set(response);
       },
     });
   }
@@ -194,9 +203,9 @@ export class DetailsComponent {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       let inputSaveData = event.target as HTMLInputElement;
       if (inputSaveData.checked) {
-        this.isStoreData = true;
+        this.isStoreData.set(true);
       } else {
-        this.isStoreData = false;
+        this.isStoreData.set(false);
         localStorage.removeItem('userData');
       }
     }
@@ -216,19 +225,19 @@ export class DetailsComponent {
 
   onSubmitComment(): void {
     if (this.userDataForm.valid) {
-      this.isLoading = true;
+      this.isLoading.set(true);
 
       let commentData = {
         ...this.userDataForm.value,
-        blog_id: this.currentId,
+        blog_id: this.currentId(),
       };
 
-      this._CommentsService.addComment(commentData).subscribe({
+      this._CommentsService.addComment(commentData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (response) => {
-          if (this.isStoreData) {
+          if (this.isStoreData()) {
             this.storeData();
           }
-          this.isLoading = false;
+          this.isLoading.set(false);
           this._ToastrService.success('تم ارسال التعليق بنجاح');
           this.userDataForm.reset();
         },
@@ -245,7 +254,7 @@ export class DetailsComponent {
       if (userData) {
         if (this.isStoreDataInput)
           this.isStoreDataInput.nativeElement.checked = true;
-        this.isStoreData = true;
+        this.isStoreData.set(true);
         let currentData = JSON.parse(userData);
         Object.keys(currentData).forEach((key) => {
           this.userDataForm.get(key)?.setValue(currentData[key]);
@@ -275,8 +284,8 @@ export class DetailsComponent {
   private defaultUrl = '/';
 
   changeMeta(): void {
-    if (this.IBlogs?.blog) {
-      const post = this.IBlogs.blog;
+    if (this.IBlogs()?.blog) {
+      const post = this.IBlogs()!.blog;
       const postTitle = post.post_title;
       const metaDescription = this.decodeHtml(
         post.post_content.replace(/<[^>]+>/g, '').slice(0, 150)
@@ -434,14 +443,14 @@ export class DetailsComponent {
     });
 
     // Reset image meta tags only if IBlogs is available
-    if (this.IBlogs?.blog) {
+    if (this.IBlogs()?.blog) {
       this.metaService.updateTag({
         property: 'og:image',
-        content: this.IBlogs.blog.post_image || this.defaultImage,
+        content: this.IBlogs()!.blog.post_image || this.defaultImage,
       });
       this.metaService.updateTag({
         name: 'twitter:image',
-        content: this.IBlogs.blog.post_image || this.defaultImage,
+        content: this.IBlogs()!.blog.post_image || this.defaultImage,
       });
     } else {
       console.warn(
