@@ -4,22 +4,28 @@
 .text-alt.isNational {
   color: #ffffff !important;
 }
+
 .text-alt.notNational {
   color: #4b5563 !important;
 }
+
 .hero_height {
   height: 464px;
 }
+
 img {
   object-position: top;
 }
+
 .card:hover {
   border: none !important;
 }
+
 .card {
   border: none !important;
   background-color: transparent !important;
 }
+
 /* Handle owl Carousel */
 ::ng-deep .owl-dots {
   position: absolute;
@@ -29,9 +35,11 @@ img {
   margin: 3px;
   margin: 0 !important;
 }
+
 ::ng-deep .owl-dot.active span {
   background-color: $main-color !important;
 }
+
 ::ng-deep .owl-dot {
   background-color: $third-color;
   padding: 2px;
@@ -40,11 +48,13 @@ img {
   height: 14px;
   margin: 3px !important;
 }
+
 ::ng-deep .owl-dot span {
   padding: 0px !important;
   margin: 0px !important;
   background-color: $third-color !important;
 }
+
 ::ng-deep .owl-stage {
   position: relative;
 }
@@ -52,6 +62,7 @@ img {
 ::ng-deep .carousel__content {
   position: relative;
 }
+
 ::ng-deep .carousel__content::after {
   content: "";
   position: absolute;
@@ -67,9 +78,6 @@ img {
 .card {
   padding: 0px !important;
 }
-.title_section.title_section_light {
-  color: white !important;
-}
 
 .breaking-news-bar {
   display: flex;
@@ -82,7 +90,8 @@ img {
   font-weight: bold;
   overflow: hidden;
   white-space: nowrap;
-  direction: rtl; /* Right to left for Arabic */
+  direction: rtl;
+  /* Right to left for Arabic */
 }
 
 .breaking-news-container {
@@ -106,6 +115,7 @@ img {
   from {
     transform: translateX(-100vw);
   }
+
   to {
     transform: translateX(100%);
   }

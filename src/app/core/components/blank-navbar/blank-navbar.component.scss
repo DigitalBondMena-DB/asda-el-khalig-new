@@ -1,28 +1,5 @@
 @import "variables";
 
-.navbar__banner {
-  img {
-    width: 77px;
-  }
-
-  .Banner_logo:first-child {
-    width: 56px;
-    height: 56px;
-  }
-
-  .Banner_logo:nth-child(2) {
-    width: 24px;
-    height: 21px;
-  }
-}
-
-.social__icons {
-  a img {
-    width: 40px;
-    height: 35px;
-  }
-}
-
 .navbar-toggler:focus {
   box-shadow: none !important;
 }
@@ -82,15 +59,6 @@
   font-size: 16px;
 }
 
-h2.text-center {
-  text-align: center;
-}
-
-.Image_banner_Logos {
-  width: 130px;
-  height: 70px;
-}
-
 /* Offcanvas customizations */
 .offcanvas {
   width: 300px;
@@ -98,10 +66,7 @@ h2.text-center {
 }
 
 /* Ensure the dropdown does not overflow */
-.dropdown-menu {
-  max-height: 400px;
-  overflow-y: auto;
-}
+
 
 /* Reduce padding for small screens */
 @media (max-width: 768px) {
@@ -141,12 +106,6 @@ h2.text-center {
 .offcanvas {
   width: 300px;
   /* Prevent excessive width on mobile */
-}
-
-/* Ensure the dropdown does not overflow */
-.dropdown-menu {
-  max-height: 400px;
-  overflow-y: auto;
 }
 
 /* Reduce padding for small screens */

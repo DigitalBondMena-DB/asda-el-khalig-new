@@ -3,22 +3,21 @@
 </h1>
 
 <header style="min-height: 473px">
-  <img src="/assets/images/pages/home/1.png" decoding="async" alt="" role="presentation" class="header-bg">
   <app-blank-navbar />
   <div class="large">
     <app-hero />
   </div>
+  <img src="/assets/images/pages/home/1.png" loading="lazy" decoding="async" alt="" role="presentation"
+    class="header-bg">
+
 </header>
 <div class="d-block d-lg-none">
   <app-home-local-news [isDesktop]="isDesktop()" />
   <app-home-news [isDesktop]="isDesktop()" />
 </div>
 
-@defer (on viewport) {
 <app-home-banner />
-} @placeholder {
-<div style="min-height: 126px"></div>
-}
+
 <div class="main-bg pb-5">
 
   @defer (on viewport) {
@@ -64,7 +63,7 @@
 
 <!-- Custom Category -->
 @defer (on viewport) {
-<section class="mt-4">
+<section class="mt-4 content-section-visibility">
   <div class="container">
     <div class="row g-3 flex-column flex-xl-row-reverse">
       <div class="col-12">

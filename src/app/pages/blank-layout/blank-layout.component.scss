@@ -1,30 +1,8 @@
 @import "variables";
+
 :host {
   min-height: 100vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-}
-
-.founding_day_button {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: fixed;
-  z-index: 999999;
-  bottom: 5%;
-  left: 2.5%;
-  // overflow: hidden;
-  background-color: $found-color-dark;
-  a {
-    background: url("/assets/images/founding-day/found-button.gif");
-    opacity: 0.5;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
 }

@@ -7,12 +7,8 @@ import {
   inject,
   input,
   OnInit,
-  QueryList,
   signal,
-  viewChild,
-  ViewChild,
   viewChildren,
-  ViewChildren,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';

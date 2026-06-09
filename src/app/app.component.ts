@@ -9,7 +9,6 @@ import { isFoundingDay } from './core/constants/WEB_SITE_BASE_UTL';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Asdaa-el-khaleeg';
   isFoundingDay = isFoundingDay;
 }
 

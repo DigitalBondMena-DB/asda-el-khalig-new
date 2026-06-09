@@ -34,7 +34,6 @@ import { HomeMasterComponent } from "./home-master/home-master.component";
 })
 export class HeroComponent {
   private readonly destroyRef = inject(DestroyRef);
-
   private readonly _NewsControlService = inject(NewsControlService);
   private readonly _SliderBlogService = inject(SliderBlogService);
 

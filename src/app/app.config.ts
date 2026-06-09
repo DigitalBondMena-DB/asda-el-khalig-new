@@ -15,7 +15,6 @@ import { provideToastr } from 'ngx-toastr';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
-import { homeCacheInterceptor } from './core/interceptors/home-cache.interceptor';
 import { isStableInterceptor } from './core/interceptors/is-stable.interceptor';
 import { networkErrorInterceptor } from './core/interceptors/network-error.interceptor';
 import { SeoService } from './core/services/seo/seo.service';

@@ -6,11 +6,13 @@ import {
   inject,
   signal,
   NgZone,
+  PLATFORM_ID,
 } from '@angular/core';
 import { interval } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { StaticCategoriesService } from '../../../../../core/services/content/static-categories.service';
 import { SafeHtmlPipe } from '../../../../../core/pipes/safe-html.pipe';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home-banner',
@@ -24,7 +26,7 @@ export class HomeBannerComponent {
   private readonly staticCategories = inject(StaticCategoriesService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly zone = inject(NgZone);
-
+  private readonly _PLATFORM_ID = inject(PLATFORM_ID);
 
   // ─── signals ─────────────────────────────
   websiteCounter = signal<string | number>(0);
@@ -51,29 +53,29 @@ export class HomeBannerComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res) => {
-          this.websiteCounter.set(
-            new Intl.NumberFormat(this.arabicLocale).format(
-              res.counter.coutner_Value
-            )
-          );
+          if (isPlatformBrowser(this._PLATFORM_ID)) {
+            this.websiteCounter.set(
+              new Intl.NumberFormat(this.arabicLocale).format(
+                res.counter.coutner_Value
+              )
+            );
+          }
         },
       });
   }
 
   // ─── weather (RxJS) ──────────────────────
   private loadWeather() {
+
     const url =
       'https://api.weatherapi.com/v1/current.json?key=94d6f85346f344d699b111519251901&q=Riyadh&aqi=yes';
 
-    // Run outside Angular's zone and delay to prevent blocking network idle
-    this.zone.runOutsideAngular(() => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          this.currentTemp.set(`${data.current.temp_c}°C / ${data.current.temp_c}°F`);
-        })
-    });
+    this.http
+      .get<any>(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        this.currentTemp.set(`${data.current.temp_c}°C / ${data.current.temp_c}°F`);
+      });
   }
 
   // ─── currency ────────────────────────────
@@ -91,6 +93,8 @@ export class HomeBannerComponent {
 
   // ─── clock (RXJS instead of setInterval) ─
   private startClock() {
+    if (!isPlatformBrowser(this._PLATFORM_ID)) return;
+
     const formatter = new Intl.DateTimeFormat('en-US', {
       timeZone: 'Asia/Riyadh',
       hour: '2-digit',

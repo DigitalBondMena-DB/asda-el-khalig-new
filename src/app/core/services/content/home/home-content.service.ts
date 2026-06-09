@@ -13,10 +13,6 @@ export class HomeContentService {
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private PLATFORM_ID: object
   ) { }
-
-  getHomeSlider(): Observable<any | null> {
-    return this._HttpClient.get(`${WEB_SITE_BASE_URL}slider-blogs`).pipe(catchError(() => of(null)));
-  }
   getHomeLocalNews(): Observable<any> {
     let category_slug = {
       category_slug: '01',

@@ -1,15 +1,12 @@
 @import "variables";
-.date_color {
-  color: #afaeae;
-}
-.desc_color {
-  color: #646363;
-}
+
+
 
 .nav-anchors.active {
   background-color: $main-color;
   color: $text-light;
 }
+
 .nav-anchors {
   background-color: $secondary-color;
   color: black;
@@ -18,12 +15,15 @@
 .carousel-control-next {
   right: auto;
 }
+
 .carousel-control-prev {
   right: left;
 }
+
 .h-250-md {
   height: 200px;
 }
+
 @media screen and (min-width: 992px) {
   .h-250-md {
     height: 250px;

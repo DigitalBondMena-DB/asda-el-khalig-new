@@ -6,7 +6,6 @@ import { isFoundingDay } from '../../../../core/constants/WEB_SITE_BASE_UTL';
   selector: 'app-home-advertising-area',
   imports: [RouterLink],
   templateUrl: './home-advertising-area.component.html',
-  styleUrl: './home-advertising-area.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeAdvertisingAreaComponent {

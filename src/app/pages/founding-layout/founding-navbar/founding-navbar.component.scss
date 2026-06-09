@@ -1,31 +1,39 @@
 @import "variables";
+
 .isNational {
   background-color: #002225;
 }
+
 .navbar.notNational {
   background-color: $found-color-secondary;
 }
+
 .bg-main-founding.notNational {
   background-color: $found-color-secondary;
 }
+
 .bg-main-founding.isNational {
   background-color: #002225;
 }
+
 .navbar__banner {
   img {
     // box model
     width: 77px;
     // height: 35px;
   }
+
   .Banner_logo:first-child {
     width: 56px;
     height: 56px;
   }
+
   .Banner_logo:nth-child(2) {
     width: 24px;
     height: 21px;
   }
 }
+
 .social__icons {
   a img {
     width: 40px;
@@ -42,6 +50,7 @@
   position: relative;
   max-width: 300px;
 }
+
 .search_icon {
   position: absolute;
   top: 50%;
@@ -49,29 +58,37 @@
   transform: translateY(-50%);
   width: 35px;
 }
+
 #Search_Input {
   width: 100%;
   border: none;
   padding: 8px 20px 8px 50px;
   transition: 0.5s all;
+
   &::placeholder {
     color: white;
   }
+
   caret-color: white;
 }
+
 #Search_Input.notNational {
   background-color: $found-color-secondary;
 }
+
 #Search_Input.isNational {
   background-color: #002225;
 }
+
 #Search_Input:focus,
 #Search_Input:hover {
   background-color: white;
-  & + button .search-dark {
+
+  &+button .search-dark {
     display: inline-block !important;
   }
-  & + button .search-light {
+
+  &+button .search-light {
     display: none !important;
   }
 }
@@ -88,15 +105,11 @@ h2.text-center {
   width: 130px;
   height: 70px;
 }
+
 /* Offcanvas customizations */
 .offcanvas {
-  width: 300px; /* Prevent excessive width on mobile */
-}
-
-/* Ensure the dropdown does not overflow */
-.dropdown-menu {
-  max-height: 400px;
-  overflow-y: auto;
+  width: 300px;
+  /* Prevent excessive width on mobile */
 }
 
 /* Reduce padding for small screens */
@@ -109,6 +122,7 @@ h2.text-center {
 .links-container {
   overflow-x: auto;
 }
+
 @media (min-width: 768px) {
   .links-container {
     overflow-x: visible;
@@ -117,13 +131,8 @@ h2.text-center {
 
 /* Offcanvas customizations */
 .offcanvas {
-  width: 300px; /* Prevent excessive width on mobile */
-}
-
-/* Ensure the dropdown does not overflow */
-.dropdown-menu {
-  max-height: 400px;
-  overflow-y: auto;
+  width: 300px;
+  /* Prevent excessive width on mobile */
 }
 
 /* Reduce padding for small screens */
@@ -136,6 +145,7 @@ h2.text-center {
 .author_name {
   font-size: 10px;
 }
+
 .logo_width {
   max-width: 100%;
 }

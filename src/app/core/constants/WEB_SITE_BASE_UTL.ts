@@ -1,3 +1,3 @@
-const WEB_SITE_BASE_URL = 'https://www.asda-alkhaleej.com/asdaanews/api/';
+const WEB_SITE_BASE_URL = 'https://asdaanewslast.asda-alkhaleej.com/api/';
 export { WEB_SITE_BASE_URL };
 export const isFoundingDay = false;

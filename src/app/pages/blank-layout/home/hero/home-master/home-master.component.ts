@@ -10,7 +10,6 @@ import { timer } from 'rxjs';
   selector: 'app-home-master',
   imports: [CarouselModule, RouterLink, NgxSkeletonLoaderModule],
   templateUrl: './home-master.component.html',
-  styleUrl: './home-master.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeMasterComponent {

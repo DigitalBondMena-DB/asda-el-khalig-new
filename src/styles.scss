@@ -4,7 +4,6 @@
 @use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default' as owl-theme;
 @import "typography";
 @import "base";
-@import "forms";
 @import "variables";
 @import "utilities";
 @import "buttons";
@@ -18,4 +17,9 @@ $gutter: 1rem; //for primeflex grid system
 
 .flex-1 {
     flex: 1 1 0% !important;
+}
+
+.content-section-visibility {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
