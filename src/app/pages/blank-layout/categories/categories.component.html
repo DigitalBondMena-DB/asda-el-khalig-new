@@ -10,8 +10,9 @@
       <div class="p-2 col-12 col-lg-3 order-0 order-lg-1 position-relative">
         <div>
           <div class="hero_height main_animation border-radius-10 overflow-hidden Logo_Water_Mark cr">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
-            <a [routerLink]="[masterBlog?.blogs[0]?.old_status?'/archives':'/article', masterBlog?.blogs[0]?.post_id]"
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
+            <a [routerLink]="[masterBlog()?.blogs[0]?.old_status?'/archives':'/article', masterBlog()?.blogs[0]?.post_id]"
               href="#">
               <img loading="lazy" decoding="async" class="w-100 object-fit-cover main_animation"
                 src="./assets/images/pages/home/Hero_Section/salman-bin-ahmed-al-eid.webp" alt="carousel" />
@@ -20,7 +21,7 @@
         </div>
         <div class="main-content">
           <p class="fw-bold fs-13 my-2">
-            {{ masterBlog?.blogs[0]?.post_title }}
+            {{ masterBlog()?.blogs[0]?.post_title }}
           </p>
           <a [routerLink]="['/archives/blogs', '10']" href="#">
             <p

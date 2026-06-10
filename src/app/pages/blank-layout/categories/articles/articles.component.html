@@ -1,11 +1,11 @@
 <h1 class="d-none">
   صحيفة أصداء الخليج | صحيفة سعودية مرخصة | رئيس التحرير سلمان بن أحمد العيد
 </h1>
-@if (!isShowSkeleton && specificCategories) {
+@if (!isShowSkeleton() && specificCategories()) {
 <section>
   <div class="row g-4">
-    @for (card of specificCategories.blogs.data | paginate: { id:'some_id',
-    itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems }; track
+    @for (card of specificCategories()!.blogs.data | paginate: { id:'some_id',
+    itemsPerPage: 9, currentPage: currentPage(),totalItems: totalItems() }; track
     $index) {
     <div class="col-md-6 col-lg-4">
       <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
@@ -41,7 +41,7 @@
     </div>
   </div>
 </section>
-} @defer { @if (isShowSkeleton) {
+} @defer { @if (isShowSkeleton()) {
 <section>
   <div class="row g-4">
     <div class="col-md-6 col-lg-4">

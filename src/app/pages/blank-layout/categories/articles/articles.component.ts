@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, signal, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -23,35 +23,18 @@ import { CategoriesService } from '../../../../core/services/content/categories.
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss'
 })
-export class ArticlesComponent {
-  currentId!: string;
-  specificCategories!: ISpecificCategory | null;
-  currentPage: number = 1;
-  totalItems: number = 0;
-  isShowSkeleton: boolean = true;
+export class ArticlesComponent implements OnInit {
+  currentId = signal<string>('');
+  specificCategories = signal<ISpecificCategory | null>(null);
+  currentPage = signal<number>(1);
+  totalItems = signal<number>(0);
+  isShowSkeleton = signal<boolean>(true);
 
-  pageChanged(e: number) {
-    this.isShowSkeleton = true;
-    window.scrollTo(0, 0);
-    this.currentPage = e;
-    this._CategoriesService
-      .getCurrentCategories(this.currentId, this.currentPage)
-      .subscribe({
-        next: (response) => {
-          this.isShowSkeleton = false;
-          this.specificCategories = response as ISpecificCategory;
-          this.totalItems = response?.blogs.total as number;
-        },
-      });
-  }
-
-  constructor(
-    private _CategoriesService: CategoriesService,
-    private _ActivatedRoute: ActivatedRoute,
-    private titleService: Title,
-    private metaService: Meta,
-    @Inject(PLATFORM_ID) private _PLATFORM_ID: object
-  ) { }
+  private _CategoriesService = inject(CategoriesService);
+  private _ActivatedRoute = inject(ActivatedRoute);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  private _PLATFORM_ID = inject(PLATFORM_ID);
 
   ngOnInit(): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
@@ -61,28 +44,35 @@ export class ArticlesComponent {
     }
   }
 
+  pageChanged(e: number) {
+    this.isShowSkeleton.set(true);
+    window.scrollTo(0, 0);
+    this.currentPage.set(e);
+    this._CategoriesService
+      .getCurrentCategories(this.currentId(), this.currentPage())
+      .subscribe({
+        next: (response) => {
+          this.isShowSkeleton.set(false);
+          this.specificCategories.set(response as ISpecificCategory);
+          this.totalItems.set((response as ISpecificCategory)?.blogs?.total || 0);
+        },
+      });
+  }
+
   private updateCanonicalUrl(): void {
     if (window.location.href) {
       const canonicalUrl = window.location.href;
-
-      // ✅ Remove existing canonical tag if it exists
       const existingCanonical = document.querySelectorAll('[rel="canonical"]');
       if (existingCanonical.length > 0) {
         existingCanonical.forEach((e) => e.remove());
       }
-
-      // ✅ Add a new canonical tag
       this.metaService.addTag({ rel: 'canonical', href: canonicalUrl });
     }
   }
 
   private updateMeta(): void {
     const staticPart = 'المقالات | صحيفة أصداء الخليج';
-
-    // ✅ Set Meta Title
     this.titleService.setTitle(`${staticPart} المقالات`);
-
-    // ✅ Set Meta Description
     this.metaService.updateTag({
       name: 'description',
       content: `صحيفة أصداء الخليج صحيفة سعودية مرخصة تقدم الأخبار والتقارير الحصرية ، برئاسة رئيس التحرير سلمان بن أحمد العيد تابع أحدث المستجدات السياسية الاقتصادية والرياضية`,
@@ -90,23 +80,22 @@ export class ArticlesComponent {
   }
 
   getInitialId(): void {
-    // Extract 'id' from the current route on page load
-    const id = this._ActivatedRoute.paramMap.subscribe({
+    this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         let id = params.get('id');
         if (id) {
-          this.currentId = id;
-          this.getCurrentCategory(this.currentId);
+          this.currentId.set(id);
+          this.getCurrentCategory(id);
         }
       },
     });
   }
 
   getCurrentCategory(blogId: string): void {
-    this.isShowSkeleton = true;
+    this.isShowSkeleton.set(true);
     this._CategoriesService.getCurrentCategories(blogId).subscribe({
       next: (response) => {
-        this.isShowSkeleton = false;
+        this.isShowSkeleton.set(false);
         const newArr = (response as ISpecificCategory).blogs.data.map(
           (blog) => {
             return {
@@ -116,8 +105,8 @@ export class ArticlesComponent {
           }
         );
         (response as ISpecificCategory).blogs.data = newArr;
-        this.specificCategories = response as ISpecificCategory;
-        this.totalItems = response?.blogs.total as number;
+        this.specificCategories.set(response as ISpecificCategory);
+        this.totalItems.set((response as ISpecificCategory)?.blogs?.total || 0);
       },
     });
   }

@@ -1,7 +1,6 @@
 import { ApplicationConfig, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
 import {
   InMemoryScrollingFeature,
-  InMemoryScrollingOptions,
   provideRouter,
   withComponentInputBinding,
   withInMemoryScrolling,
@@ -18,13 +17,11 @@ import { routes } from './app.routes';
 import { isStableInterceptor } from './core/interceptors/is-stable.interceptor';
 import { networkErrorInterceptor } from './core/interceptors/network-error.interceptor';
 import { SeoService } from './core/services/seo/seo.service';
-const scrollConfig: InMemoryScrollingOptions = {
-  scrollPositionRestoration: 'top',
-  anchorScrolling: 'enabled',
-};
-
 const inMemoryScrollingFeature: InMemoryScrollingFeature =
-  withInMemoryScrolling(scrollConfig);
+  withInMemoryScrolling({
+    scrollPositionRestoration: 'top',
+    anchorScrolling: 'enabled',
+  });
 
 export const appConfig: ApplicationConfig = {
   providers: [

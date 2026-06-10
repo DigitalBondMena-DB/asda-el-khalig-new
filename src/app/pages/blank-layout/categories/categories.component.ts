@@ -1,5 +1,5 @@
-import { afterNextRender, Component, HostListener } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { BlankNavbarComponent } from '../../../core/components/blank-navbar/blank-navbar.component';
 import { CategoriesService } from '../../../core/services/content/categories.service';
 import { AdvertisingAreaComponent } from '../../../shared/components/advertising-area/advertising-area.component';
@@ -18,26 +18,16 @@ import { RelatedContentComponent } from './related-content/related-content.compo
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent {
-  masterBlog!: any;
-  isDesktop: boolean = true; // Default check
-
+  masterBlog = signal<any>(null);
+  private _CategoriesService = inject(CategoriesService)
   ngOnInit(): void {
     this.onClickGetLastEditorNewsId();
   }
 
-  constructor(private _CategoriesService: CategoriesService) {
-    afterNextRender(() => {
-      this.isDesktop = window.innerWidth > 992;
-    });
-  }
-  @HostListener('window:resize')
-  onResize() {
-    this.isDesktop = window.innerWidth > 992;
-  }
   onClickGetLastEditorNewsId(): void {
     this._CategoriesService.getEditorBlog().subscribe({
       next: (response) => {
-        this.masterBlog = response;
+        this.masterBlog.set(response);
       },
     });
   }

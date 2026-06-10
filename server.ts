@@ -5,22 +5,25 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
 
-// Express app setup
 export function app(): express.Express {
   const server = express();
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  const commonEngine = new CommonEngine();
+  // ✅ التعديل الوحيد — allowedHosts هنا
+  const commonEngine = new CommonEngine({
+    allowedHosts: [
+      'asda-alkhaleej.com',
+      'www.asda-alkhaleej.com',
+    ],
+  });
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
-  // Serve static files from /browser
   server.get('*.*', express.static(browserDistFolder, { maxAge: '1y', immutable: true }));
 
-  // Handle requests with SSR
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
@@ -39,11 +42,12 @@ export function app(): express.Express {
   return server;
 }
 
-// Start the server
 function run(): void {
-  const port = process.env['PORT'] || 5400;
+  const port = Number(process.env['PORT']) || 5400;
   const server = app();
-  server.listen(port, () => {
+
+  // ✅ 0.0.0.0 عشان Docker
+  server.listen(port, '0.0.0.0', () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
