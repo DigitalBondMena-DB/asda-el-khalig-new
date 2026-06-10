@@ -2,52 +2,40 @@
 <section>
   <h1 class="d-none">أصداء الخليج - {{ categories.category.name }}</h1>
   <div class="row g-4">
-    @for (card of categories.blogs.data | slice:0:(isDesktop()?10:8) |
+    @for (card of (categories?.blogs?.data ?? []) | slice:0:(isDesktop()?10:8) |
     paginate: { id:'some_id', itemsPerPage: 9, currentPage:
     currentPage(),totalItems: totalItems() }; track $index) {
     <div [class]="{ 'col-6': !isDesktop() }" class="col-md-6 col-lg-4">
-      <a
-        class="text-decoration-none"
-        [routerLink]="[
+      <a class="text-decoration-none" [routerLink]="[
           card.old_status ? '/archives' : '/article',
           card.post_id
-        ]"
-        href="#"
-      >
+        ]" href="#">
         <div>
           <figure class="Logo_Water_Mark cr h-250">
-            <img
-              class="w-100 h-100 object-fit-cover border-radius-10"
-              style="object-position: top"
-              [src]="
-                card?.post_image || './assets/images/not_found_image.jpg'
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
+            <img class="w-100 h-100 object-fit-cover border-radius-10" style="object-position: top" [src]="
+                card?.post_image || './assets/images/not_found_image.webp'
                   | imagesSrc
-              "
-              (load)="imageLoaded($event)"
-              alt="card.author"
-            />
+              " (load)="imageLoaded($event)" alt="card.author" />
             @if (!imageLoadedFlag()) {
             <div
               class="placeholder opacity-100 bd-placeholder-img card-img-top position-absolute top-0 start-0 w-100 border-radius-10"
-              style="background-color: #868e96"
-              [style]="{ height: isDesktop() ? '250px' : '150px' }"
-            ></div>
+              style="background-color: #868e96" [style]="{ height: isDesktop() ? '250px' : '150px' }"></div>
             }
           </figure>
           <h3 class="text-dark fs-13 fw-bold mt-2 mb-1 cr title_section_Blogs">
             {{ card.post_title }}
           </h3>
-          <div
-            class="d-flex justify-content-between align-items-center mb-2 mt-3"
-          >
+          <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
             <h4 style="color: #022738" class="fs-13 fw-bold mb-0">
               {{
-                (card.author_name == "admin"
-                  ? ""
-                  : card.author_name
-                  ? card.author_name
-                  : "أصداء الخليج"
-                ) | stringSpliter
+              (card.author_name == "admin"
+              ? ""
+              : card.author_name
+              ? card.author_name
+              : "أصداء الخليج"
+              ) | stringSpliter
               }}
             </h4>
             <p class="mb-0 date_color fw-bold fs-13 text-main">
@@ -55,17 +43,13 @@
             </p>
           </div>
           <div>
-            <p
-              #content
-              style="color: #646363"
-              class="mb-0 fs-13 desc_color fw-bold text-secondary-dark title_section"
+            <p #content style="color: #646363" class="mb-0 fs-13 desc_color fw-bold text-secondary-dark title_section"
               [innerHTML]="
                 card.post_content
                   | removeInlineStyles
                   | stringSlice : 50
                   | safeHtml
-              "
-            ></p>
+              "></p>
           </div>
         </div>
       </a>
@@ -78,19 +62,10 @@
   </div>
 
   <div class="d-flex justify-content-center my-4">
-    <pagination-controls
-      id="some_id"
-      (pageChange)="pageChanged($event)"
-      [directionLinks]="true"
-      [autoHide]="false"
-      [maxSize]="8"
-      [responsive]="true"
-      previousLabel="السابق"
-      nextLabel="التالي"
-      screenReaderPaginationLabel="Pagination"
-      screenReaderPageLabel="صفحة"
-      screenReaderCurrentLabel="انت الان في الصفحة رقم"
-    >
+    <pagination-controls id="some_id" (pageChange)="pageChanged($event)" [directionLinks]="true" [autoHide]="false"
+      [maxSize]="8" [responsive]="true" previousLabel="السابق" nextLabel="التالي"
+      screenReaderPaginationLabel="Pagination" screenReaderPageLabel="صفحة"
+      screenReaderCurrentLabel="انت الان في الصفحة رقم">
     </pagination-controls>
   </div>
 </section>
@@ -101,53 +76,43 @@
     <div [class]="{ 'col-6': !isDesktop() }" class="col-md-6 col-lg-4">
       <div>
         <figure class="Logo_Water_Mark cr h-250">
-          <ngx-skeleton-loader ngSkipHydration
-            [theme]="{
+          <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+            role="presentation" alt="" />
+          <ngx-skeleton-loader ngSkipHydration [theme]="{
               width: '100%',
               height: isDesktop() ? '250px' : '200px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </figure>
         <h3 class="text-main fs-13 fw-bold mt-2 mb-1 text-decoration-underline">
-          <ngx-skeleton-loader ngSkipHydration
-            [theme]="{
+          <ngx-skeleton-loader ngSkipHydration [theme]="{
               width: '100%',
               height: '20px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </h3>
-        <div
-          class="d-flex justify-content-between align-items-center mb-2 mt-3"
-        >
+        <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
           <h4 class="fs-13 fw-bold">
-            <ngx-skeleton-loader ngSkipHydration
-              [theme]="{
+            <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '120px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </h4>
           <p class="mb-0 date_color fw-bold fs-13">
-            <ngx-skeleton-loader ngSkipHydration
-              [theme]="{
+            <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '50px',
                 height: '20px',
                 background: 'lightgray'
-              }"
-            />
+              }" />
           </p>
         </div>
         <div>
-          <ngx-skeleton-loader ngSkipHydration
-            [theme]="{
+          <ngx-skeleton-loader ngSkipHydration [theme]="{
               width: '100%',
               height: '20px',
               background: 'lightgray'
-            }"
-          />
+            }" />
         </div>
       </div>
     </div>
@@ -155,10 +120,7 @@
   </div>
 </section>
 } @else {
-<section
-  class="d-flex justify-content-center align-items-center"
-  style="min-height: 400px"
->
+<section class="d-flex justify-content-center align-items-center" style="min-height: 400px">
   <div class="text-center">
     <h2 class="text-main fs-4 fw-bold mb-3">لا توجد مواضيع متاحة</h2>
     <p class="text-secondary fs-6">

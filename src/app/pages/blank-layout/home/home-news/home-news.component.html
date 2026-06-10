@@ -176,9 +176,10 @@
         <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
           <div class="cr">
             <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
               <img (load)="imageLoaded($event)" class="w-100 object-fit-cover h-250-md border-radius-10" width="310"
                 height="250" [src]="
-                  card?.post_image || './assets/images/not_found_image.jpg'
+                  card?.post_image || './assets/images/not_found_image.webp'
                     | imagesSrc
                 " [alt]="card.post_title" loading="lazy" decoding="async" />
               <div
@@ -217,6 +218,7 @@
       <div class="col-6 col-lg-3">
         <div>
           <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '250px',

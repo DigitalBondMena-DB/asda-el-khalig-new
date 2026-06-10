@@ -21,9 +21,10 @@
               currentYoutubeVideos()?.items?.[1]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
-          <img src="/assets/images/youtube.png" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
+          <img src="/assets/images/youtube.webp" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
             role="presentation" alt="">
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
                 currentYoutubeVideos()?.items?.[1]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
@@ -34,10 +35,11 @@
               currentYoutubeVideos()?.items?.[2]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
-          <img src="/assets/images/youtube.png" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
+          <img src="/assets/images/youtube.webp" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
             role="presentation" alt="">
 
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
                 currentYoutubeVideos()?.items?.[2]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
@@ -53,10 +55,11 @@
               currentYoutubeVideos()?.items?.[3]?.snippet?.resourceId?.videoId
             )
           " class="Logo_youtube_Mark cr mb-2">
-          <img src="/assets/images/youtube.png" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
+          <img src="/assets/images/youtube.webp" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
             role="presentation" alt="">
 
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <img class="youTube_Image w-100 object-fit-cover border-radius-10" [src]="
                 currentYoutubeVideos()?.items?.[3]?.snippet?.thumbnails?.standard?.url
               " alt="card.author" loading="lazy" decoding="async" />
@@ -82,10 +85,11 @@
       @for (item of (currentYoutubeVideos()?.items ?? [])|slice:1:5; track $index) {
       <div class="col-6 d-flex justify-content-between flex-column">
         <div (click)="onClickOpenYouTubeVideo(item?.snippet?.resourceId?.videoId)" class="Logo_youtube_Mark cr mb-2">
-          <img src="/assets/images/youtube.png" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
+          <img src="/assets/images/youtube.webp" class="play-logo" width="53" height="53" loading="lazy" decoding="async"
             role="presentation" alt="">
 
           <figure style="height: 150px !important" class="Logo_Water_Mark small overflow-hidden mb-0">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <img class="youTube_Image w-100 object-fit-cover border-radius-10"
               [src]="item?.snippet?.thumbnails?.standard?.url" alt="card.author" loading="lazy" decoding="async" />
           </figure>

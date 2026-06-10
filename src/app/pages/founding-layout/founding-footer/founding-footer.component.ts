@@ -42,49 +42,49 @@ export class FoundingFooterComponent {
             label: 'Facebook',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/facebook.svg'
-              : './assets/images/national-day/FB.png',
+              : './assets/images/national-day/FB.webp',
             alt: 'اصداء الخليج فيسبوك',
           },
           tweet_url: {
             label: 'Twitter',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/x-twitter-brands-solid.svg'
-              : './assets/images/national-day/x.png',
+              : './assets/images/national-day/x.webp',
             alt: 'اصداء الخليج اكس',
           },
           instgram_url: {
             label: 'Instagram',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/instagram.svg'
-              : './assets/images/national-day/IG.png',
+              : './assets/images/national-day/IG.webp',
             alt: 'اصداء الخليج انستجرام',
           },
           tiktok_url: {
             label: 'TikTok',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/tiktok.svg'
-              : './assets/images/national-day/TikTok.png',
+              : './assets/images/national-day/TikTok.webp',
             alt: 'اصداء الخليج تيك توك',
           },
           snapchat_url: {
             label: 'Snapchat',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/snapchat.svg'
-              : './assets/images/national-day/Snap.png',
+              : './assets/images/national-day/Snap.webp',
             alt: 'اصداء الخليج سناب شات',
           },
           telegram_url: {
             label: 'Telegram',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/telegram.svg'
-              : './assets/images/national-day/Telegram.png',
+              : './assets/images/national-day/Telegram.webp',
             alt: 'اصداء الخليج تيليجرام',
           },
           watus_number: {
             label: 'WhatsApp',
             icon: !this.isNational
               ? './assets/images/social_meida_icons/whatsapp.svg'
-              : './assets/images/national-day/WA.png',
+              : './assets/images/national-day/WA.webp',
             alt: 'اصداء الخليج واتساب',
           },
         };

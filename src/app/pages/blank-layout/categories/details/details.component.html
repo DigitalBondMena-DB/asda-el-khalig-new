@@ -9,15 +9,16 @@
             <div>
               <div>
                 <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                   <img style="object-position: top" class="w-100 object-fit-cover border-radius-10 article-image" [src]="
                       IBlogs()!.blog.post_image ||
-                        './assets/images/not_found_image.jpg' | imagesSrc
+                        './assets/images/not_found_image.webp' | imagesSrc
                     " [alt]="IBlogs()?.blog?.post_title" />
                 </figure>
 
                 <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
                   <p class="mb-0 date_color fw-bold fs-13">
-                    <img width="35px" height="35px" src="./assets/images/new_logos/logo_blue_no_text.png"
+                    <img width="35px" height="35px" src="./assets/images/new_logos/logo_blue_no_text.webp"
                       alt="أصداء الخليج" />
                     {{
                     IBlogs()?.blog?.author_name === "admin"
@@ -250,6 +251,7 @@
             @defer { @if (isShowSkeleton()) {
             <div>
               <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                 <ngx-skeleton-loader ngSkipHydration [theme]="{
                     width: '100%',
                     height: '650px',
@@ -300,8 +302,9 @@
                       masterBlog()?.blogs[0]?.post_id
                     ]" href="#">
                     <div class="hero_height border-radius-10 overflow-hidden Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                       <img class="w-100 object-fit-cover main_animation"
-                        src="./assets/images/pages/home/Hero_Section/salman-bin-ahmed-al-eid.jpg" alt="carousel"
+                        src="./assets/images/pages/home/Hero_Section/salman-bin-ahmed-al-eid.webp" alt="carousel"
                         loading="lazy" decoding="async" />
                     </div>
                   </a>

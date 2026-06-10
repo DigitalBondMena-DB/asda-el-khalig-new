@@ -24,11 +24,12 @@
         >
           <div class="cr">
             <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
               <img
                 (load)="imageLoaded($event)"
                 class="w-100 object-fit-cover h-250 border-radius-10"
                 [src]="
-                  card?.post_image || './assets/images/not_found_image.jpg'
+                  card?.post_image || './assets/images/not_found_image.webp'
                     | imagesSrc
                 "
                 [alt]="card.post_title"
@@ -72,6 +73,7 @@
       <div class="col-12 col-md-6 col-lg-3 h-350">
         <div>
           <figure class="Logo_Water_Mark">
+  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration
               [theme]="{
                 width: '100%',
