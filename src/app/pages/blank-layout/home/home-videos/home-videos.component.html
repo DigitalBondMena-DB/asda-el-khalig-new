@@ -12,7 +12,7 @@
             onClickOpenYouTubeVideo(
               currentYoutubeVideos()?.items?.[0]?.snippet?.resourceId?.videoId
             )
-          " class="h-100 cr position-relative" height="545px" [innerHTML]="videoIframe() ?? '' | safeHtml"></div>
+          " class="h-100 cr position-relative" height="545px" [innerHTML]="videoIframe() | safeHtml"></div>
       </div>
 
       <div class="col-12 col-md-3 d-flex justify-content-between flex-column">
@@ -79,7 +79,7 @@
             onClickOpenYouTubeVideo(
               currentYoutubeVideos()?.items?.[0]?.snippet?.resourceId?.videoId
             )
-          " class="h-100 cr position-relative" height="400px" [innerHTML]="videoIframe() ?? '' | safeHtml"></div>
+          " class="h-100 cr position-relative" height="400px" [innerHTML]="videoIframe() | safeHtml"></div>
       </div>
 
       @for (item of (currentYoutubeVideos()?.items ?? [])|slice:1:5; track $index) {

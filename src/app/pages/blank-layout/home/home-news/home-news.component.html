@@ -169,7 +169,7 @@
         </nav>
       </div>
     </header>
-    @if (allNews() && (allNews()?.length ?? 0) > 0) {
+    @if (allNews() && allNews().length > 0) {
     <div class="row my-2 g-4">
       @for (card of allNews() | slice:0:isDesktop()?4:10; track $index) {
       <div class="col-6 col-lg-3">

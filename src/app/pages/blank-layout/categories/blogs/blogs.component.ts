@@ -4,7 +4,6 @@ import {
   Component,
   DestroyRef,
   HostListener,
-  Inject,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -48,6 +47,12 @@ import { CategoriesService } from '../../../../core/services/content/categories.
   styleUrls: ['./blogs.component.scss']
 })
 export class BlogsComponent implements OnInit {
+  private _CategoriesService = inject(CategoriesService);
+  private _Router = inject(Router);
+  private _ActivatedRoute = inject(ActivatedRoute);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  private _PLATFORM_ID = inject(PLATFORM_ID);
   currentId = signal<string>('');
   specificCategories = signal<ISpecificCategory | null>(null);
   imageLoadedFlag = signal(false);
@@ -59,12 +64,6 @@ export class BlogsComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   constructor(
-    private _CategoriesService: CategoriesService,
-    private _Router: Router,
-    private _ActivatedRoute: ActivatedRoute,
-    private titleService: Title,
-    private metaService: Meta,
-    @Inject(PLATFORM_ID) private _PLATFORM_ID: object
   ) {
     afterNextRender(() => {
       this.isDesktop.set(window.innerWidth > 992);

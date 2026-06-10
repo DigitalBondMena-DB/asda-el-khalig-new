@@ -121,7 +121,7 @@
             </a>
           </div>
           <ul class="list-unstyled p-0 m-0 d-flex flex-row-reverse justify-content-end gap-1">
-            @for (link of socialLinks() ?? [] ; track $index) {
+            @for (link of socialLinks() ; track $index) {
             @if (link.icon) {
             <li>
               <a [href]="link.url" target="_blank" [attr.aria-label]="'find us on ' + link.label">
