@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, provideAppInitializer } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
 import {
   InMemoryScrollingFeature,
   InMemoryScrollingOptions,
@@ -28,6 +28,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZonelessChangeDetection(),
     provideAppInitializer(() => {
       inject(SeoService);
     }),

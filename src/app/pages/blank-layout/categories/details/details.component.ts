@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   AfterContentInit,
   Component,
@@ -12,6 +12,7 @@ import {
   Renderer2,
   signal,
   ViewChild,
+  DOCUMENT
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {

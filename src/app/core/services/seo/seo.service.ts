@@ -1,10 +1,11 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import {
   Injectable,
   PLATFORM_ID,
   RendererFactory2,
   effect,
   inject,
+  DOCUMENT
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
