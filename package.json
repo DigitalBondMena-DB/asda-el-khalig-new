@@ -33,11 +33,12 @@
     "moment-hijri": "^3.0.0",
     "ngx-bootstrap": "^19.0.1",
     "ngx-intl-tel-input": "^3.2.0",
-    "ngx-owl-carousel-o": "^17.0.0",
+    "ngx-owl-carousel-o": "^20.1.1",
     "ngx-pagination": "^6.0.3",
     "ngx-skeleton-loader": "^9.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
+    "swiper": "^12.2.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

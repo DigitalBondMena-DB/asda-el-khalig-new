@@ -11,14 +11,12 @@
                 <a [routerLink]="
                     shouldNavigate() ? [slide.old_status?'/archives':'/article', slide.post_id] : null
                   " [class.disabled]="!shouldNavigate()" href="#">
-                  <figure class="my-0 h-100 Logo_Water_Mark card cr">
-                    <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
-                      role="presentation" alt="" />
-                    <img #image (load)="imageLoaded(image)" style="object-position: top"
-                      class="w-100 object-fit-cover hero_height" [ngSrc]="slide.featured_image"
-                      [attr.decoding]="$index === 0 ? 'sync' : 'async'"
-                      [attr.fetchpriority]="$index === 0 ?  'high' : 'medium'" width="860" height="460"
+                  <figure class="my-0 h-100 Logo_Water_Mark card cr position-relative">
+
+                    <img #image (load)=" imageLoaded(image)" style="object-position: top"
+                      class="w-100 object-fit-cover hero_height" [src]="slide.featured_image" width="860" height="460"
                       [alt]="slide.post_title" />
+
                     <span class="placeholder bg-opacity-100 position-absolute top-0 start-0 bottom-0 end-0"></span>
                     <figcaption class="card-img-overlay d-flex align-items-end">
                       <div

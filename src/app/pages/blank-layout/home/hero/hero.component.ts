@@ -8,7 +8,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { NgOptimizedImage } from '@angular/common';
 import { timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SliderBlogService } from '../../../../core/services/content/slider-blog.service';
@@ -23,7 +22,6 @@ import { HomeMasterComponent } from "./home-master/home-master.component";
     CarouselModule,
     RouterLink,
     NgxSkeletonLoaderModule,
-    NgOptimizedImage,
     RemoveInlineStylesPipe,
     SafeHtmlPipe,
     HomeMasterComponent
