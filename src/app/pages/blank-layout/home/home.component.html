@@ -20,27 +20,24 @@
 } @placeholder {
 <div style="min-height: 180px"></div>
 }
-
+@defer(on viewport) {
 <div class="main-bg pb-5">
 
-  @defer (on viewport) {
   <img src="/assets/images/pages/home/2.webp" loading="lazy" decoding="async" alt="" role="presentation"
     class="main-bg-img">
   <app-home-advertising-area />
-  } @placeholder {
-  <div style="min-height: 100px"></div>
-  }
-  @defer (on viewport) {
+
   <div class="d-none d-lg-block">
     <app-home-news [isDesktop]="isDesktop()" />
   </div>
   <div class="d-block d-lg-none p-3">
     <app-home-master></app-home-master>
   </div>
-  } @placeholder {
-  <div style="min-height: 300px"></div>
-  }
+
 </div>
+} @placeholder {
+<div style="min-height: 500px"></div>
+}
 
 @defer (on viewport) {
 <div class="d-none d-lg-block">
