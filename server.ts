@@ -54,16 +54,19 @@
 
 // run();
 import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
-import { getContext } from '@netlify/angular-runtime/context.mjs'
+import { getAllowedHosts, getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
 
-const angularAppEngine = new AngularAppEngine()
+const angularAppEngine = new AngularAppEngine({
+  allowedHosts: getAllowedHosts(),
+  trustProxyHeaders: getTrustProxyHeaders(),
+})
 
 export async function netlifyAppEngineHandler(request: Request): Promise<Response> {
   const context = getContext()
 
   // Example API endpoints can be defined here.
   // Uncomment and define endpoints as necessary.
-  // const pathname = new URL(request.url).pathname;
+  // const pathname = new URL(request.url).pathname
   // if (pathname === '/api/hello') {
   //   return Response.json({ message: 'Hello from the API' });
   // }
