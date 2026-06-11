@@ -1,4 +1,6 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build]
+  command = "ng build -c production"
+  publish = "dist/asdaa-el-khaleeg/browser"
+
+[[plugins]]
+  package = "@netlify/angular-runtime"

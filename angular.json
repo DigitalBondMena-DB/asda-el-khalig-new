@@ -18,6 +18,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputMode": "server",
             "outputPath": "dist/asdaa-el-khaleeg",
             "index": "src/index.html",
             "browser": "src/main.ts",
