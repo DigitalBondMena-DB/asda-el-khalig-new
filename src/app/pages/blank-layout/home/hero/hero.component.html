@@ -9,8 +9,8 @@
           <a [routerLink]="[blogs[0].old_status ? '/archives' : '/article', blogs[0].post_id]"
             class="d-block h-100 text-decoration-none">
             <figure class="my-0 h-100 Logo_Water_Mark card border-0 position-relative">
-              <img [src]="blogs[0].featured_image" fetchpriority="high" loading="eager"
-                class="w-100 object-fit-cover main-hero-img" [alt]="blogs[0].post_title" width="860" height="310" />
+              <img [ngSrc]="blogs[0].featured_image" priority class="w-100 object-fit-cover main-hero-img"
+                [alt]="blogs[0].post_title" width="860" height="310" />
               <figcaption class="card-img-overlay d-flex align-items-end p-0">
                 <div class="hero-content-overlay w-100 p-3 text-white">
                   <span class="badge bg-main-color text-white mb-2 fs-12">خبر رئيسي</span>
@@ -34,8 +34,8 @@
               <a [routerLink]="[slide.old_status ? '/archives' : '/article', slide.post_id]"
                 class="d-block h-100 text-decoration-none">
                 <figure class="my-0 card border-0 position-relative h-100">
-                  <img [src]="slide.featured_image" loading="lazy" class="w-100 object-fit-cover sub-hero-img"
-                    [alt]="slide.post_title" width="280" height="120" />
+                  <img [src]="slide.featured_image" loading="lazy" decoding="async"
+                    class="w-100 object-fit-cover sub-hero-img" [alt]="slide.post_title" width="280" height="208" />
                   <figcaption class="card-img-overlay d-flex align-items-end p-0">
                     <div class="sub-hero-content-overlay w-100 p-2 text-white">
                       <p class="mb-0 fs-12 fw-bold text-truncate-2 text-white">

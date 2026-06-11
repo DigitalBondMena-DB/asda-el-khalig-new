@@ -13,6 +13,7 @@ import { NewsControlService } from '../../../../core/services/shared/news-contro
 import { RemoveInlineStylesPipe } from '../../../../core/pipes/remove-inline-styles.pipe';
 import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeMasterComponent } from "./home-master/home-master.component";
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
@@ -21,7 +22,8 @@ import { HomeMasterComponent } from "./home-master/home-master.component";
     NgxSkeletonLoaderModule,
     RemoveInlineStylesPipe,
     SafeHtmlPipe,
-    HomeMasterComponent
+    HomeMasterComponent,
+    NgOptimizedImage
   ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
