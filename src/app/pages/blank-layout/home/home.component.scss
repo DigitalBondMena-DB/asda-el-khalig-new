@@ -4,12 +4,13 @@ header {
 
 header .header-bg {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   right: 0;
   z-index: -1;
   opacity: 40%;
   width: 200px;
+  height: auto;
+  pointer-events: none;
 }
 
 @media screen and (min-width:1024px) {
@@ -25,12 +26,13 @@ header .header-bg {
 
 .main-bg .main-bg-img {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   right: 0;
   z-index: -1;
   width: 50%;
+  height: auto;
   opacity: 20%;
+  pointer-events: none;
 }
 
 .third-bg {
@@ -39,30 +41,16 @@ header .header-bg {
 
 .third-bg .third-bg-img {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   right: 0;
   width: 80%;
   inset-inline: 0;
   margin: auto;
   object-fit: cover;
   z-index: -1;
-  opacity: 30%;
-  max-height: 100%;
-}
-
-
-.third-bg {
-  position: relative;
-}
-
-.third-bg .third-bg-img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0;
-  z-index: -1;
   opacity: 20%;
+  height: auto;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {

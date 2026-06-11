@@ -16,12 +16,11 @@
   <app-home-news [isDesktop]="false" />
 </div>
 <app-home-banner />
-
-@defer(on viewport) {
+@defer (on viewport) {
 <div class="main-bg pb-5">
 
-  <img src="/assets/images/pages/home/2.webp" loading="lazy" decoding="async" alt="" role="presentation"
-    class="main-bg-img">
+  <img src="/assets/images/pages/home/2.webp" width="952" height="700" loading="lazy" decoding="async" alt=""
+    role="presentation" class="main-bg-img">
   <app-home-advertising-area />
 
   <div class="d-none d-lg-block">
@@ -33,8 +32,9 @@
 
 </div>
 } @placeholder {
-<div style="min-height: 500px"></div>
+<div style="min-height: 622px"></div>
 }
+
 
 @defer (on viewport) {
 <div class="d-none d-lg-block">
@@ -107,26 +107,20 @@
 } @placeholder {
 <div style="min-height: 200px"></div>
 }
-
+@defer (on viewport) {
 <div class="third-bg">
 
-  @defer (on viewport) {
   <img src="/assets/images/pages/home/4.webp" loading="lazy" decoding="async" alt="" role="presentation"
     class="third-bg-img">
   <app-home-investigations [isDesktop]="isDesktop()" />
-  } @placeholder {
-  <div style="min-height: 200px"></div>
-  }
-  @defer (on viewport) {
+
   <div class="d-block d-lg-none">
     <app-home-articles />
   </div>
-  } @placeholder {
-  <div style="min-height: 200px"></div>
-  }
-  @defer (on viewport) {
+
   <app-home-videos [isDesktop]="isDesktop()" />
-  } @placeholder {
-  <div style="min-height: 200px"></div>
-  }
+
 </div>
+} @placeholder {
+<div style="height: 1100px"></div>
+}

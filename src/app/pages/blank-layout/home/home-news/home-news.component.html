@@ -176,7 +176,8 @@
         <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
           <div class="cr">
             <figure class="Logo_Water_Mark">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <img (load)="imageLoaded($event)" class="w-100 object-fit-cover h-250-md border-radius-10" width="310"
                 height="250" [src]="
                   card?.post_image || './assets/images/not_found_image.webp'
@@ -212,9 +213,10 @@
       </div>
       }
     </div>
-    } @else {
+    }
+    <!-- @else {
     <div #PlaceHolder class="row my-2 g-4">
-      @for (item of skeleton| slice:0:isDesktop()?4:8; track $index) {
+      @for (item of skeleton | slice:0:isDesktop()?4:8; track $index) {
       <div class="col-6 col-lg-3">
         <div>
           <figure class="Logo_Water_Mark">
@@ -255,6 +257,6 @@
       </div>
       }
     </div>
-    }
+    } -->
   </div>
 </section>
