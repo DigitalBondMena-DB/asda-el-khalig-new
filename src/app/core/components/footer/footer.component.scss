@@ -5,26 +5,46 @@
     background-size: cover;
     background-blend-mode: difference;
   }
+
+  &.bg-national-day {
+    background-image: url("/assets/images/national-day/footer-bg.png");
+    background-position: center;
+    background-size: cover;
+  }
+
   position: relative;
   padding-block: 45px;
+
   .social_images {
     text-align: center;
     width: 18px;
   }
+
   li {
     margin-bottom: 6px;
   }
+
   .arabic_coryRight {
     margin-bottom: 80px;
   }
+
   .download_app_images {
     width: 181px;
     height: 53px;
   }
 }
+
 .social__icons {
   a img {
     width: 24px;
     height: 24px;
   }
+}
+
+.nationa-day-logo {
+  background-color: #0C343A;
+  padding: 1.0625rem;
+  border-radius: .5325rem;
+  width: fit-content;
+  margin: auto;
 }

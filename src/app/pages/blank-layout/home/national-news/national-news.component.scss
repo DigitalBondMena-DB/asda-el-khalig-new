@@ -27,3 +27,29 @@ section {
   line-height: 1.4;
   max-height: 2.8em;
 }
+
+.national-day-pattern {
+
+  &::after,
+  &::before {
+    bottom: auto;
+    inset-inline: 0 !important;
+    height: 32px;
+    width: 100%;
+    rotate: 180deg;
+    background-image: url("/assets/images/national-day/national-pattern-horizontal.png");
+    background-repeat: repeat-x;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+}

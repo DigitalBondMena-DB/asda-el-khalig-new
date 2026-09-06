@@ -1,4 +1,4 @@
-import { isFoundingDay } from './../../constants/WEB_SITE_BASE_UTL';
+import { isFoundingDay, isNationalDay } from './../../constants/WEB_SITE_BASE_UTL';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Contact } from '../../interfaces/ISocialMedia';
@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class FooterComponent implements OnInit {
   readonly destroyRef = inject(DestroyRef);
+  isNationalDay = isNationalDay
   private readonly _StaticCategoriesService = inject(StaticCategoriesService);
   private readonly _SocialMediaService = inject(SocialMediaService);
   socialLinks = signal<{ label: string; url: string; icon: string; alt: string }[]>([]);

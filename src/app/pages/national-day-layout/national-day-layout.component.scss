@@ -5,6 +5,7 @@
   min-height: 100vh;
   overflow-x: hidden;
 }
+
 .last-bg {
   background-image: url("/assets/images/national-day/bottom-pattern.webp");
   background-position: bottom;
@@ -20,6 +21,7 @@
   display: none;
   // transform: ;
   z-index: 0;
+
   // transform: translateX(100%);
   @media (min-width: 2100px) {
     display: block;
@@ -34,8 +36,32 @@
   display: none;
   // transform: ;
   z-index: 0;
+
   // transform: translateX(100%);
   @media (min-width: 2100px) {
     display: block;
   }
+}
+
+.national-day-pattern {
+  &.founding-about::after {
+    top: -150px !important;
+  }
+
+  &.founding-banner::after {
+    height: 150%;
+    transform: translateY(-50%);
+    top: 50%
+  }
+
+  &.founding-articles::after {
+    top: 100px;
+    bottom: 100px;
+  }
+
+  &.founding-news::after {
+    top: 50%;
+  }
+
+
 }

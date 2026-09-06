@@ -120,3 +120,25 @@ header .header-bg {
 .alt-color {
   background-color: #cfcece;
 }
+
+.national-day-pattern {
+  &.founding-news::after {
+    max-height: 610px;
+  }
+}
+
+.national-day-banner {
+  max-width: 1034px;
+  margin: 0 auto;
+  padding-top: 3.125rem;
+  padding-inline: 20px;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width:750px) {
+    display: none;
+  }
+}

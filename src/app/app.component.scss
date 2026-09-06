@@ -1,5 +1,7 @@
 @import "variables";
-.founding-day-circle {
+
+.founding-day-circle,
+.national-day-circle {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -8,6 +10,7 @@
   height: 100px;
   border-radius: 50%;
   background-color: #DBC1A6;
+
   img {
     height: 100%;
     width: 100%;
@@ -15,6 +18,13 @@
     mix-blend-mode: color-burn;
   }
 }
+
+.national-day-circle {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+}
+
 .loader {
   width: 16px;
   height: 16px;
@@ -34,17 +44,21 @@
     background: #fff;
     box-shadow: -24px 0 $main-color, 24px 0 #fff;
   }
+
   66% {
     background: $main-color;
     box-shadow: -24px 0 #fff, 24px 0 #fff;
   }
+
   100% {
     background: #fff;
     box-shadow: -24px 0 #fff, 24px 0 $main-color;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .loader {
-    animation: none; /* Disable the animation for users with reduced motion preference */
+    animation: none;
+    /* Disable the animation for users with reduced motion preference */
   }
 }

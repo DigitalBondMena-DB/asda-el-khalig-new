@@ -29,3 +29,13 @@
     height: 250px;
   }
 }
+
+::ng-deep .skeleton-image-loader .loader {
+  height: 200px !important;
+  border-radius: 10px;
+  margin: 0;
+
+  @media screen and (min-width: 992px) {
+    height: 250px !important;
+  }
+}

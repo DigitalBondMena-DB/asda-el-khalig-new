@@ -106,8 +106,28 @@ export const routes: Routes = [
       },
     ],
   },
-
-
+  {
+    path: 'founding-day',
+    loadComponent: () =>
+      import('./pages/founding-layout/founding-layout.component').then(
+        (c) => c.FoundingLayoutComponent,
+      ),
+    data: {
+      title: 'يوم التأسيس | صحيفة أصداء الخليج',
+      description: 'يوم التأسيس | صحيفة أصداء الخليج',
+    },
+  },
+  {
+    path: 'national-day',
+    loadComponent: () =>
+      import('./pages/national-day-layout/national-day-layout.component').then(
+        (c) => c.NationalDayLayoutComponent,
+      ),
+    data: {
+      title: 'يوم الوطني | صحيفة أصداء الخليج',
+      description: 'يوم الوطني | صحيفة أصداء الخليج',
+    },
+  },
   {
     path: '**',
     loadComponent: () =>

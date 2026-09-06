@@ -213,43 +213,47 @@
       </div>
       }
     </div>
-    }
-    <!-- @else {
+    } @else {
     <div #PlaceHolder class="row my-2 g-4">
-      @for (item of skeleton | slice:0:isDesktop()?4:8; track $index) {
+      @for (item of skeleton | slice:0:4; track $index) {
       <div class="col-6 col-lg-3">
         <div>
           <figure class="Logo_Water_Mark">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
-            <ngx-skeleton-loader ngSkipHydration [theme]="{
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+            <ngx-skeleton-loader ngSkipHydration class="skeleton-image-loader d-block" [theme]="{
                 width: '100%',
-                height: '250px',
-                background: 'lightgray'
+                height: '200px',
+                background: 'lightgray',
+                'border-radius': '10px',
+                margin: '0'
               }" />
           </figure>
 
-          <div>
-            <h3 class="fs-13 fw-bold mb-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="fs-13 fw-bold mb-0" style="width: 45%;">
               <ngx-skeleton-loader ngSkipHydration [theme]="{
                   width: '100%',
                   height: '20px',
-                  background: 'lightgray'
+                  background: 'lightgray',
+                  margin: '0'
                 }" />
             </h3>
-            <p class="text-main fs-13 fw-bold mb-0">
+            <p class="text-main fs-13 fw-bold mb-0" style="width: 35%;">
               <ngx-skeleton-loader ngSkipHydration [theme]="{
                   width: '100%',
                   height: '20px',
-                  background: 'lightgray'
+                  background: 'lightgray',
+                  margin: '0'
                 }" />
             </p>
           </div>
           <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
-            <h4 class="fs-13 fw-bold">
+            <h4 class="fs-13 fw-bold w-100 mb-0">
               <ngx-skeleton-loader ngSkipHydration [theme]="{
                   width: '100%',
                   height: '20px',
-                  background: 'lightgray'
+                  background: 'lightgray',
+                  margin: '0'
                 }" />
             </h4>
           </div>
@@ -257,6 +261,6 @@
       </div>
       }
     </div>
-    } -->
+    }
   </div>
 </section>

@@ -1,4 +1,4 @@
-<div class="bg-third footer overflow-hidden" [class.bg-footer]="isFoundingDay">
+<div class="bg-third footer overflow-hidden" [class.bg-footer]="isFoundingDay" [class.bg-national-day]="isNationalDay">
   <div class="container">
     <div class="row g-4 g-lg-3">
       <div class="col-8 col-xl-4">
@@ -82,10 +82,10 @@
         </div>
       </div>
 
-      <div class="col-6 col-xl-2">
+      <div class="col-12 col-xl-2">
         <div>
           <h2 class="fs-6 fw-bold mb-3">عام</h2>
-          <ul class="list-unstyled p-0 m-0">
+          <ul class="list-unstyled p-0 m-0 ">
             <li class="cr col-4 pe-0">
               <a class="text-decoration-none footer-links-color fw-bold" routerLink="/">الرئيسية</a>
             </li>
@@ -106,21 +106,22 @@
         </div>
       </div>
 
-      <div class="col-6 col-xl-2">
+      <div class="col-12 col-xl-2">
         <div class="d-flex flex-column justify-content-end gap-3 flex-wrap social__icons">
           <div class="d-flex justify-content-end flex-column">
             <a href="https://play.google.com/store/apps/details?id=com.albadrsystems.asdaaalkhaleej&hl=en"
-              target="_blank" class="d-block">
-              <img class="download_app_images" src="./assets/images/footer_images/google.webp" alt="تحميل من google play"
-                style="width: 181px; height: 53px" width="180" height="53" loading="lazy" decoding="async" />
+              target="_blank" class="d-flex">
+              <img class="download_app_images mx-auto" src="./assets/images/footer_images/google.webp"
+                alt="تحميل من google play" style="width: 181px; height: 53px" width="180" height="53" loading="lazy"
+                decoding="async" />
             </a>
             <a href="https://apps.apple.com/my/app/asda-al-khaleej-%D8%A3%D8%B5%D8%AF%D8%A7%D8%A1-%D8%A7%D9%84%D8%AE%D9%84%D9%8A%D8%AC/id1494863139?l=ms&platform=watch"
-              target="_blank" class="d-block">
-              <img class="download_app_images" src="./assets/images/footer_images/app_store.webp"
+              target="_blank" class="d-flex">
+              <img class="download_app_images mx-auto mt-1" src="./assets/images/footer_images/app_store.webp"
                 alt="تحميل من app store" style="width: 181px; height: 53px" loading="lazy" decoding="async" />
             </a>
           </div>
-          <ul class="list-unstyled p-0 m-0 d-flex flex-row-reverse justify-content-end gap-1">
+          <ul class="list-unstyled p-0 m-0 d-flex flex-row-reverse justify-content-center gap-1">
             @for (link of socialLinks() ; track $index) {
             @if (link.icon) {
             <li>
@@ -131,6 +132,12 @@
             }
             }
           </ul>
+          @if (isNationalDay) {
+          <div class="nationa-day-logo">
+            <img loading="lazy" decoding="async" src="./assets/images/national-day/national-day-logo.png" width="105"
+              height="58" alt="عزنا بطبعنا اليوم الوطني السعودي">
+          </div>
+          }
         </div>
       </div>
 

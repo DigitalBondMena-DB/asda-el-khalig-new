@@ -1,20 +1,12 @@
-<div class="container p-4 position-relative">
+<div class="container p-4 position-relative ">
   <div class="overflow-hidden position-relative">
     @if (!isNational) {
-      <img
-        src="./assets/images/founding-day/bg-op5.webp"
-        alt=""
-        class="animate-circle"
-      />
+    <img src="./assets/images/founding-day/bg-op5.webp" alt="" class="animate-circle" />
     }
-    <img
-      class="w-100 rounded"
-      [src]="
+    <img class="w-100 rounded" [src]="
         isNational
           ? './assets/images/national-day/home-third-banner.webp'
           : './assets/images/founding-day/founding-banner.webp'
-      "
-      [alt]="isNational ? 'يوم الوطن' : 'يوم التأسيس'"
-    />
+      " [alt]="isNational ? 'يوم الوطن' : 'يوم التأسيس'" />
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { afterNextRender, Component, HostListener } from '@angular/core';
+import { afterNextRender, Component, HostListener, signal } from '@angular/core';
 import { FoundingAboutComponent } from '../founding-layout/founding-about/founding-about.component';
 import { FoundingArticlesComponent } from '../founding-layout/founding-articles/founding-articles.component';
 import { FoundingBannerComponent } from '../founding-layout/founding-banner/founding-banner.component';
@@ -24,14 +24,14 @@ import { FoundingNewsComponent } from '../founding-layout/founding-news/founding
   styleUrl: './national-day-layout.component.scss'
 })
 export class NationalDayLayoutComponent {
-  isDesktop: boolean = true; // Default check
+  isDesktop = signal<boolean>(true); // Default check
   constructor() {
     afterNextRender(() => {
-      this.isDesktop = window.innerWidth > 992;
+      this.isDesktop.set(window.innerWidth > 992);
     });
   }
   @HostListener('window:resize')
   onResize() {
-    this.isDesktop = window.innerWidth > 992;
+    this.isDesktop.set(window.innerWidth > 992);
   }
 }

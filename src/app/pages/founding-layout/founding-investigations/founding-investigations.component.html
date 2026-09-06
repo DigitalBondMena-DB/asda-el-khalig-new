@@ -1,8 +1,8 @@
-@if (investigations ) {
+@if (investigations()) {
 <section id="Home__Investigations__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
-      @if (isNational) {
+      @if (isNational()) {
       <h2 style="color: #002225" class="section__title fs-30">
         تحقيقات يوم الوطني
       </h2>
@@ -14,28 +14,28 @@
     </header>
     @if (isDesktop()) {
     <div class="row">
-      @for (item of investigations.blogs.data | paginate: { id:'some_id3',
-      itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems }|
+      @for (item of (investigations()?.blogs?.data ?? []) | paginate: { id:'some_id3',
+      itemsPerPage: 9, currentPage: currentPage(), totalItems: totalItems() }|
       slice:0:1; track $index) {
       <div class="col-12 col-md-6">
         <div class="pt-2">
           <a [routerLink]="[
-              investigations.blogs.data[0].old_status
+              investigations()?.blogs?.data?.[0]?.old_status
                 ? '/archives'
                 : '/article',
-              investigations.blogs.data[0].post_id
+              investigations()?.blogs?.data?.[0]?.post_id
             ]" href="#">
             <figure class="Logo_Water_Mark small cr">
   <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
-              <img class="w-100 object-fit-cover border-radius-10 h-300" [src]="investigations.blogs.data[0].post_image"
-                [alt]="investigations.blogs.data[0].post_title" loading="lazy" decoding="async" />
+              <img class="w-100 object-fit-cover border-radius-10 h-300" [src]="investigations()?.blogs?.data?.[0]?.post_image"
+                [alt]="investigations()?.blogs?.data?.[0]?.post_title" loading="lazy" decoding="async" />
             </figure>
             <div>
               <h3 [ngClass]="{
-                  isNational: isNational,
-                  notNational: !isNational
+                  isNational: isNational(),
+                  notNational: !isNational()
                 }" class="big-title fs-13 text-main fw-bold mb-2 cr title_section_slider_home_Titles">
-                {{ investigations.blogs.data[0].post_title }}
+                {{ investigations()?.blogs?.data?.[0]?.post_title }}
               </h3>
             </div>
           </a>
@@ -44,83 +44,81 @@
       <div class="col-12 col-md-6">
         <div>
           <div class="row">
+            @if (investigations()?.blogs?.data?.[1]) {
             <div class="col-12 col-md-6">
               <div>
                 <a [routerLink]="[
-                    investigations.blogs.data[1].old_status,
-                    investigations.blogs.data[1].post_id
+                    investigations()?.blogs?.data?.[1]?.old_status ? '/archives' : '/article',
+                    investigations()?.blogs?.data?.[1]?.post_id
                   ]" href="#">
                   <figure class="Logo_Water_Mark small cr">
   <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[1].post_image" [alt]="investigations.blogs.data[1].post_title"
+                      [src]="investigations()?.blogs?.data?.[1]?.post_image" [alt]="investigations()?.blogs?.data?.[1]?.post_title"
                       loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 [ngClass]="{
-                        isNational: isNational,
-                        notNational: !isNational
+                        isNational: isNational(),
+                        notNational: !isNational()
                       }" class="fs-13 text-main fw-bold mb-2 cr title_section_slider_home_Titles">
-                      {{ investigations.blogs.data[1].post_title }}
+                      {{ investigations()?.blogs?.data?.[1]?.post_title }}
                     </h3>
                   </div>
                 </a>
               </div>
             </div>
+            }
+            @if (investigations()?.blogs?.data?.[2]) {
             <div class="col-12 col-md-6">
               <a [routerLink]="[
-                  investigations.blogs.data[2].old_status,
-                  investigations.blogs.data[2].post_id
+                  investigations()?.blogs?.data?.[2]?.old_status ? '/archives' : '/article',
+                  investigations()?.blogs?.data?.[2]?.post_id
                 ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
   <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[2].post_image" [alt]="investigations.blogs.data[2].post_title"
+                      [src]="investigations()?.blogs?.data?.[2]?.post_image" [alt]="investigations()?.blogs?.data?.[2]?.post_title"
                       loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 [ngClass]="{
-                        isNational: isNational,
-                        notNational: !isNational
+                        isNational: isNational(),
+                        notNational: !isNational()
                       }" class="fs-13 text-main fw-bold mb-2 cr title_section_slider_home_Titles">
-                      {{ investigations.blogs.data[2].post_title }}
+                      {{ investigations()?.blogs?.data?.[2]?.post_title }}
                     </h3>
                   </div>
                 </div>
               </a>
             </div>
+            }
+            @if (investigations()?.blogs?.data?.[3]) {
             <div class="col-12">
               <a [routerLink]="[
-                  investigations.blogs.data[3].old_status,
-                  investigations.blogs.data[3].post_id
+                  investigations()?.blogs?.data?.[3]?.old_status ? '/archives' : '/article',
+                  investigations()?.blogs?.data?.[3]?.post_id
                 ]" href="#">
                 <div>
                   <figure class="Logo_Water_Mark small cr">
   <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
                     <img class="w-100 object-fit-cover border-radius-10 h-md-120"
-                      [src]="investigations.blogs.data[3].post_image" [alt]="investigations.blogs.data[3].post_title"
+                      [src]="investigations()?.blogs?.data?.[3]?.post_image" [alt]="investigations()?.blogs?.data?.[3]?.post_title"
                       loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <h3 [ngClass]="{
-                        isNational: isNational,
-                        notNational: !isNational
+                        isNational: isNational(),
+                        notNational: !isNational()
                       }" class="fs-13 text-main fw-bold mb-2 cr title_section_slider_home_Titles">
-                      {{ investigations.blogs.data[3].post_title }}
+                      {{ investigations()?.blogs?.data?.[3]?.post_title }}
                     </h3>
-                    <!-- <p
-                            class="fs-13 text-lighter fw-semibold title_section_slider_home_Titles"
-                            [innerHTML]="
-                              investigations.blogs.data[3].post_content
-                                | stringSlice
-                                | safeHtml
-                            "
-                          ></p> -->
                   </div>
                 </div>
               </a>
             </div>
+            }
           </div>
         </div>
       </div>
@@ -128,13 +126,13 @@
     </div>
     } @else {
     <div class="row">
-      @for (item of investigations.blogs.data | paginate: { id:'some_id3',
-      itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems }|
+      @for (item of (investigations()?.blogs?.data ?? []) | paginate: { id:'some_id3',
+      itemsPerPage: 9, currentPage: currentPage(), totalItems: totalItems() }|
       slice:0:1; track $index) {
       <div class="col-12 col-md-6">
         <div>
           <div class="row">
-            @for (invest of investigations.blogs.data | slice:0:8; track $index)
+            @for (invest of (investigations()?.blogs?.data ?? []) | slice:0:8; track $index)
             {
             <div class="col-6">
               <div>
@@ -164,7 +162,7 @@
     }
   </div>
 </section>
-} @defer { @if (!investigations) {
+} @defer { @if (!investigations()) {
 <section id="Home__Investigations__News" class="py-4">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -292,11 +290,11 @@
     }
   </div>
 </section>
-} } @if (investigations && investigations!.blogs!.last_page > 1) {
+} } @if (investigations() && (investigations()?.blogs?.last_page ?? 0) > 1) {
 
 <div [ngClass]="{
-    isNational: isNational,
-    notNational: !isNational
+    isNational: isNational(),
+    notNational: !isNational()
   }" class="d-flex justify-content-center py-4">
   <pagination-controls id="some_id3" (pageChange)="pageChanged($event)" [directionLinks]="true" [autoHide]="false"
     [maxSize]="8" [responsive]="true" previousLabel="السابق" nextLabel="التالي" screenReaderPaginationLabel="Pagination"

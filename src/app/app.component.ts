@@ -2,7 +2,7 @@ import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { filter } from 'rxjs/operators';
-import { isFoundingDay } from './core/constants/WEB_SITE_BASE_UTL';
+import { isFoundingDay, isNationalDay } from './core/constants/WEB_SITE_BASE_UTL';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,7 @@ import { isFoundingDay } from './core/constants/WEB_SITE_BASE_UTL';
 })
 export class AppComponent implements OnInit {
   isFoundingDay = isFoundingDay;
+  isNationalDay = isNationalDay
   private readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
 

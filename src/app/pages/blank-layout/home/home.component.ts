@@ -15,6 +15,7 @@ import { NationalNewsComponent } from './national-news/national-news.component';
 import { fromEvent, startWith, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformServer } from '@angular/common';
+import { isNationalDay } from '../../../core/constants/WEB_SITE_BASE_UTL';
 
 @Component({
   selector: 'app-home',
@@ -41,6 +42,7 @@ export class HomeComponent {
   private _MetaTagsHandleService = inject(MetaTagsHandleService);
   private platformId = inject(PLATFORM_ID);
   isDesktop = signal(false);
+  isNationalDay = isNationalDay
 
   constructor() {
     afterNextRender(() => {

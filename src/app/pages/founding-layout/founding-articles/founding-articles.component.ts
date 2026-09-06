@@ -1,5 +1,5 @@
 import { NgClass, SlicePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, linkedSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -25,42 +25,41 @@ import { CategoriesService } from '../../../core/services/content/categories.ser
   styleUrl: './founding-articles.component.scss'
 })
 export class FoundingArticlesComponent {
-  @Input({ required: true }) isNational: boolean = true;
-  specificCategory!: ISpecificCategory | undefined;
-  currentSlugId: string = this.isNational
-    ? 'nation_day_blogs'
-    : 'foundation_day_blogs';
+  isNational = input<boolean>(true);
+  specificCategory = signal<ISpecificCategory | null>(null);
+  currentSlugId = linkedSignal(() => this.isNational() ? 'nation_day_blogs' : 'foundation_day_blogs');
 
   constructor(private _CategoriesService: CategoriesService) { }
-  currentPage: number = 1;
-  totalItems: number = 0;
+  currentPage = signal<number>(1);
+  totalItems = signal<number>(0);
   article: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
   ngOnInit(): void {
-    this.currentSlugId = this.isNational
+    const slugId = this.isNational()
       ? 'nation_day_blogs'
       : 'foundation_day_blogs';
+    this.currentSlugId.set(slugId);
     this.getArticles();
   }
   pageChanged(e: number) {
-    this.specificCategory = undefined;
-    this.currentPage = e;
+    this.specificCategory.set(null);
+    this.currentPage.set(e);
 
     this._CategoriesService
-      .getCurrentCategories(this.currentSlugId, this.currentPage)
+      .getCurrentCategories(this.currentSlugId(), this.currentPage())
       .subscribe({
         next: (response) => {
-          this.specificCategory = response as ISpecificCategory;
-          this.totalItems = response?.blogs.total as number;
+          this.specificCategory.set(response as ISpecificCategory);
+          this.totalItems.set(response?.blogs.total as number);
         },
       });
   }
 
   getArticles() {
-    this._CategoriesService.getCurrentCategories(this.currentSlugId).subscribe({
+    this._CategoriesService.getCurrentCategories(this.currentSlugId()).subscribe({
       next: (response) => {
-        this.totalItems = response?.blogs.total as number;
-        this.specificCategory = response as ISpecificCategory;
+        this.totalItems.set(response?.blogs.total as number);
+        this.specificCategory.set(response as ISpecificCategory);
       },
     });
   }

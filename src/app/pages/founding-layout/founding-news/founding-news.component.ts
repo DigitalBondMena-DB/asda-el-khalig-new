@@ -1,26 +1,21 @@
 import { NgClass, SlicePipe } from '@angular/common';
 import {
   Component,
-  ElementRef,
-  Input,
   input,
-  QueryList,
-  ViewChild,
-  ViewChildren,
+  linkedSignal,
+  signal,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import {
-  IBlogs,
   ISpecificCategory,
 } from '../../../core/interfaces/ISpecificCategory';
 import { HijriDatePipe } from '../../../core/pipes/date-hijri.pipe';
 import { ImagesSrcPipe } from '../../../core/pipes/images-src.pipe';
 import { StringSpliterPipe } from '../../../core/pipes/string-spliter.pipe';
 import { CategoriesService } from '../../../core/services/content/categories.service';
-import { HomeContentService } from '../../../core/services/content/home/home-content.service';
 
 @Component({
   selector: 'app-founding-news',
@@ -39,49 +34,39 @@ import { HomeContentService } from '../../../core/services/content/home/home-con
   styleUrl: './founding-news.component.scss'
 })
 export class FoundingNewsComponent {
-  @Input({ required: true }) isNational: boolean = true;
-  allNews!: ISpecificCategory | undefined;
-  blogs!: IBlogs;
-  newsTitle: string = 'الأخبار';
-  currentCategoryId!: string;
-  currentSlugId: string = this.isNational ? 'nation_day' : 'foundation_day';
-  currentPage = 1;
-  totalItems = 0;
+  isNational = input<boolean>(true);
+  allNews = signal<ISpecificCategory | null>(null);
+  isLoading = signal<boolean>(true);
+  currentSlugId = linkedSignal<string>(() => this.isNational() ? 'nation_day' : 'foundation_day');
+  currentPage = signal(1);
+  totalItems = signal(0);
   isDesktop = input();
-  @ViewChild('PlaceHolder') PlaceHolder!: ElementRef;
-  @ViewChildren('categoryBtn') navBtns!: QueryList<ElementRef>;
+
   constructor(
-    private _HomeContentService: HomeContentService,
     private _CategoriesService: CategoriesService,
-    private _Router: Router
   ) { }
 
   ngOnInit(): void {
-    if (this.PlaceHolder)
-      this.PlaceHolder.nativeElement.classList.add('d-none');
-    this.currentSlugId = this.isNational ? 'nation_day' : 'foundation_day';
-    this.getAnotherCategories(this.currentSlugId, this.currentPage);
-  }
-  ngOnDestroy(): void {
-    if (this.PlaceHolder)
-      this.PlaceHolder.nativeElement.classList.add('d-none');
+    const slugId = this.isNational() ? 'nation_day' : 'foundation_day';
+    this.currentSlugId.set(slugId);
+    this.getAnotherCategories(this.currentSlugId(), this.currentPage());
   }
 
   pageChanged(page: number): void {
-    this.currentPage = page;
-    this.getAnotherCategories(this.currentSlugId, this.currentPage);
-    this.allNews = {} as ISpecificCategory;
+    this.currentPage.set(page);
+    this.getAnotherCategories(this.currentSlugId(), this.currentPage());
   }
 
   getAnotherCategories(categoryId: string, page: number): void {
-    if (this.PlaceHolder)
-      this.PlaceHolder.nativeElement.classList.remove('d-none');
+    this.isLoading.set(true);
     this._CategoriesService.getCurrentCategories(categoryId, page).subscribe({
       next: (response) => {
-        this.allNews = response as ISpecificCategory;
-        this.totalItems = response?.blogs.total as number;
-        if (this.PlaceHolder)
-          this.PlaceHolder.nativeElement.classList.add('d-none');
+        this.allNews.set(response as ISpecificCategory);
+        this.totalItems.set(response?.blogs?.total as number ?? 0);
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.isLoading.set(false);
       },
     });
   }

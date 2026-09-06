@@ -24,3 +24,46 @@ $gutter: 1rem; //for primeflex grid system
     content-visibility: auto;
     contain-intrinsic-size: 1000px;
 }
+
+.national-day-pattern {
+    position: relative;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    touch-action: none;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        left: 0;
+
+        &.right {
+            right: 0;
+            left: auto;
+        }
+
+        height: 100%;
+        width: 32px;
+        background-image: url('/assets/images/national-day/national-pattern.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: repeat-y;
+    }
+
+    @media (max-width: 640px) {
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.national-day-pattern.right {
+    &::after {
+        right: 0;
+        left: auto;
+    }
+}

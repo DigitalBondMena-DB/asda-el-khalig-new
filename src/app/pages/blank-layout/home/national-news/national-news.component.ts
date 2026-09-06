@@ -7,6 +7,7 @@ import { StringSlicePipe } from '../../../../core/pipes/string-slice.pipe';
 import { HomeContentService } from '../../../../core/services/content/home/home-content.service';
 import { AdvertisingAreaComponent } from '../../../../shared/components/advertising-area/advertising-area.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { isNationalDay } from '../../../../core/constants/WEB_SITE_BASE_UTL';
 
 @Component({
   selector: 'app-national-news',
@@ -22,6 +23,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NationalNewsComponent implements OnInit {
+  isNationalDay = isNationalDay
   private _HomeContentService = inject(HomeContentService);
   private destroyRef = inject(DestroyRef);
   nationalNews = signal<ISpecificCategory | null>(null);

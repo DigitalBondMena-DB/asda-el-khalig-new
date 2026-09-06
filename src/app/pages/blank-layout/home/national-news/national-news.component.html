@@ -1,5 +1,6 @@
 @if (nationalNews()) {
-<section id="Home__Articles" class="bg-white position-relative py-5 content-section-visibility">
+<section id="Home__Articles" class="bg-white position-relative py-5 content-section-visibility"
+  [class.national-day-pattern]="isNationalDay">
   <img src="/assets/images/pages/home/pattern03.webp" loading="lazy" decoding="async" class="bg-image" alt="">
   <div class="container">
     <header class="d-flex justify-content-between">
@@ -19,7 +20,8 @@
             href="#">
             <div class="mt-1">
               <figure class="Logo_Water_Mark small cr">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+                <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                  role="presentation" alt="" />
                 <img style="object-position: top" class="w-100 object-fit-cover h-250 border-radius-10"
                   [src]="nationalNews()?.blogs?.data?.[3]?.post_image"
                   [alt]="nationalNews()?.blogs?.data?.[3]?.post_title" loading="lazy" decoding="async" />
@@ -43,7 +45,8 @@
           href="#">
           <div>
             <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <img style="object-position: top; height: 520px" class="w-100 object-fit-cover border-radius-10"
                 [src]="nationalNews()?.blogs?.data?.[0]?.post_image"
                 [alt]="nationalNews()?.blogs?.data?.[0]?.post_title" loading="lazy" decoding="async" />
@@ -66,7 +69,8 @@
           href="#">
           <div class="mb-2">
             <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <img style="object-position: top; height: 225px" class="w-100 object-fit-cover border-radius-10"
                 [src]="nationalNews()?.blogs?.data?.[1]?.post_image" loading="lazy" decoding="async"
                 [alt]="nationalNews()?.blogs?.data?.[1]?.post_title" />
@@ -87,7 +91,8 @@
           href="#">
           <div>
             <figure class="Logo_Water_Mark small cr">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <img style="object-position: top; height: 225px" class="w-100 object-fit-cover border-radius-10"
                 [src]="nationalNews()?.blogs?.data?.[2]?.post_image" loading="lazy" decoding="async"
                 [alt]="nationalNews()?.blogs?.data?.[2]?.post_title" />
@@ -121,7 +126,8 @@
         <a [routerLink]="[item.old_status?'/archives':'/article', item.post_id]" href="#">
           <div>
             <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <img style="object-position: top" class="w-100 object-fit-cover h-250 border-radius-10"
                 [src]="item.post_image" [alt]="item.post_title" loading="lazy" decoding="async" />
             </figure>
@@ -157,7 +163,8 @@
 
           <div class="mt-2">
             <figure class="Logo_Water_Mark small cr">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+              <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+                role="presentation" alt="" />
               <ngx-skeleton-loader ngSkipHydration [theme]="{
                   width: '100%',
                   height: '110px',
@@ -184,7 +191,8 @@
       <div class="col-12 col-lg-6">
         <div>
           <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '370px',
@@ -210,7 +218,8 @@
       <div class="col-12 col-lg-3">
         <div>
           <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '130px',
@@ -234,7 +243,8 @@
         </div>
         <div>
           <figure class="Logo_Water_Mark small cr">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '130px',
@@ -264,7 +274,8 @@
       <div class="col-6">
         <div>
           <figure class="cr Logo_Water_Mark small">
-  <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async" role="presentation" alt="" />
+            <img src="/assets/images/logo_light.webp" class="watermark-img" loading="lazy" decoding="async"
+              role="presentation" alt="" />
             <ngx-skeleton-loader ngSkipHydration [theme]="{
                 width: '100%',
                 height: '370px',

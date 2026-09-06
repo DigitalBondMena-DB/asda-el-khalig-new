@@ -1,5 +1,5 @@
 import { NgClass, SlicePipe } from '@angular/common';
-import { Component, Input, input } from '@angular/core';
+import { Component, input, linkedSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -19,32 +19,38 @@ import { CategoriesService } from '../../../core/services/content/categories.ser
   styleUrl: './founding-investigations.component.scss'
 })
 export class FoundingInvestigationsComponent {
-  @Input({ required: true }) isNational: boolean = true;
-  investigations!: ISpecificCategory | undefined;
-  currentPage = 1;
-  totalItems = 0;
-  isDesktop = input();
+  isNational = input<boolean>(true);
+  investigations = signal<ISpecificCategory | null>(null);
+  currentPage = signal<number>(1);
+  totalItems = signal<number>(0);
+  isDesktop = input<boolean>(true);
   skeleton: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
-  // currentSlugId: string = 'foundation_day_investigations';
-  currentSlugId: string = this.isNational ? 'nation_day_investigations' : 'i';
+  currentSlugId = linkedSignal<string>(() =>
+    this.isNational() ? 'nation_day_investigations' : 'foundation_day_investigations'
+  );
+
   constructor(private _CategoriesService: CategoriesService) { }
 
   ngOnInit(): void {
-    this.currentSlugId = this.isNational ? 'nation_day_investigations' : 'i';
-    this.getLocalNews(this.currentSlugId, this.currentPage);
+    const slugId = this.isNational()
+      ? 'nation_day_investigations'
+      : 'foundation_day_investigations';
+    this.currentSlugId.set(slugId);
+    this.getLocalNews(this.currentSlugId(), this.currentPage());
   }
+
   pageChanged(page: number): void {
-    this.investigations = undefined;
-    this.currentPage = page;
-    this.getLocalNews(this.currentSlugId, this.currentPage);
+    this.investigations.set(null);
+    this.currentPage.set(page);
+    this.getLocalNews(this.currentSlugId(), this.currentPage());
   }
 
   getLocalNews(categoryId: string, page: number) {
     this._CategoriesService.getCurrentCategories(categoryId, page).subscribe({
       next: (response) => {
-        this.investigations = response as ISpecificCategory;
-        this.totalItems = response?.blogs.total as number;
+        this.investigations.set(response as ISpecificCategory);
+        this.totalItems.set(response?.blogs?.total as number ?? 0);
       },
     });
   }

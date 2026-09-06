@@ -3,39 +3,29 @@
   <app-founding-hero [isNational]="true"></app-founding-hero>
 
   <div class="position-relative z-1">
-    <div class="position-relative z-2 first-bg">
+    <div class="position-relative z-2 first-bg national-day-pattern founding-about">
       <app-founding-about [isNational]="true"></app-founding-about>
     </div>
-    <div class="position-relative z-2">
+    <div class="position-relative z-2 national-day-pattern right founding-banner">
       <app-founding-banner [isNational]="true"></app-founding-banner>
     </div>
 
-    <img
-      class="bg-image"
-      src="./assets/images/national-day/left-pattern.webp"
-      alt="يوم الوطن"
-    />
+    <img class="bg-image" src="./assets/images/national-day/left-pattern.webp" alt="يوم الوطن" />
   </div>
 
   <div class="position-relative overflow-hidden">
-    <app-founding-news
-      [isNational]="true"
-      [isDesktop]="isDesktop"
-    ></app-founding-news>
+    <div class="national-day-pattern founding-news">
+      <app-founding-news [isNational]="true" [isDesktop]="isDesktop()"></app-founding-news>
+    </div>
 
-    <div class="position-relative">
-      <app-founding-articles [isNational]="true"></app-founding-articles>
-      <app-founding-investigations
-        [isNational]="true"
-        [isDesktop]="isDesktop"
-      ></app-founding-investigations>
+    <div class="position-relative ">
+      <div class="national-day-pattern right founding-articles">
+        <app-founding-articles [isNational]="true"></app-founding-articles>
+        <app-founding-investigations [isNational]="true" [isDesktop]="isDesktop()"></app-founding-investigations>
+      </div>
       <app-founding-footer [isNational]="true"></app-founding-footer>
     </div>
 
-    <img
-      class="bg-image-right"
-      src="./assets/images/national-day/right-pattern.webp"
-      alt="يوم الوطن"
-    />
+    <img class="bg-image-right" src="./assets/images/national-day/right-pattern.webp" alt="يوم الوطن" />
   </div>
 </div>
