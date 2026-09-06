@@ -45,6 +45,10 @@
             ],
             "server": "src/main.server.ts",
             "prerender": false,
+            "allowedCommonJsDependencies": [
+              "moment-hijri",
+              "google-libphonenumber"
+            ],
             "ssr": {
               "entry": "server.ts"
             }

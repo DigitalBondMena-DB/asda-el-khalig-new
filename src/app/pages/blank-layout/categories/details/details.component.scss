@@ -1,3 +1,9 @@
+::ng-deep .content {
+  word-break: break-word !important;
+  min-width: 0;
+
+}
+
 ::ng-deep .content img,
 ::ng-deep .content iframe,
 content img,
@@ -23,9 +29,11 @@ h2 {
   text-align: justify !important;
   // word-spacing: 0.2em;
 }
+
 h1 {
   font-size: 26px !important;
 }
+
 input,
 input:focus,
 input:active {
@@ -33,6 +41,7 @@ input:active {
   box-shadow: none;
   font-size: 16px !important;
 }
+
 ::ng-deep #main_section_bg .content *:not(br),
 ::ng-deep #main_section_bg .content p,
 ::ng-deep #main_section_bg .content span,
@@ -43,6 +52,7 @@ input:active {
   line-height: 2.4 !important;
   font-size: 20px !important;
 }
+
 .commentInput {
   padding-left: 150px;
 }
@@ -59,32 +69,41 @@ input:active {
   text-decoration: none;
   transition: opacity 0.3s ease;
 }
+
 .social-icons-custom a:hover {
   opacity: 0.8;
   color: white;
 }
+
 .social-icons-custom a svg {
   width: 18px;
   height: 18px;
 }
+
 .social-icons-custom a.link-icon {
   background-color: #6c8695;
 }
+
 .social-icons-custom a.email-icon {
   background-color: #f89a1f;
 }
+
 .social-icons-custom a.whatsapp-icon {
   background-color: #25d366;
 }
+
 .social-icons-custom a.messenger-icon {
   background-color: #0084ff;
 }
+
 .social-icons-custom a.telegram-icon {
   background-color: #0088cc;
 }
+
 .social-icons-custom a.x-icon {
   background-color: #000000;
 }
+
 .social-icons-custom a.facebook-icon {
   background-color: #3b5998;
 }
@@ -99,15 +118,19 @@ input:active {
   color: white;
   text-decoration: none;
 }
+
 .social-icons a.facebook-icon {
   background-color: #4267b2;
 }
+
 .social-icons a.twitter-icon {
   background-color: #1da1f2;
 }
+
 .social-icons a.whatsapp-icon {
   background-color: #25d366;
 }
+
 .social-icons a:hover {
   opacity: 0.8;
 }
@@ -131,38 +154,44 @@ share-buttons ::ng-deep button {
 }
 
 @media screen and (max-width:767px) {
+
   ::ng-deep .content p,
-::ng-deep .content strong,
-.content strong p,
-h2 {
-  line-height: 2.4 !important;
-  font-size: 16px !important;
-  text-align: justify !important;
-  // word-spacing: 0.2em;
+  ::ng-deep .content strong,
+  .content strong p,
+  h2 {
+    line-height: 2.4 !important;
+    font-size: 16px !important;
+    text-align: justify !important;
+    // word-spacing: 0.2em;
+  }
+
+  h1 {
+    font-size: 16px !important;
+  }
+
+  input,
+  input:focus,
+  input:active {
+    border: 1px solid #494848;
+    box-shadow: none;
+    font-size: 14px !important;
+  }
+
+  ::ng-deep #main_section_bg .content *:not(br),
+  ::ng-deep #main_section_bg .content p,
+  ::ng-deep #main_section_bg .content span,
+  #main_section_bg .content *:not(br),
+  #main_section_bg .content p,
+  #main_section_bg .content span {
+    background-color: transparent !important;
+    line-height: 2.4 !important;
+    font-size: 14px !important;
+  }
 }
-h1 {
-  font-size: 16px !important;
-}
-input,
-input:focus,
-input:active {
-  border: 1px solid #494848;
-  box-shadow: none;
-  font-size: 14px !important;
-}
-::ng-deep #main_section_bg .content *:not(br),
-::ng-deep #main_section_bg .content p,
-::ng-deep #main_section_bg .content span,
-#main_section_bg .content *:not(br),
-#main_section_bg .content p,
-#main_section_bg .content span {
-  background-color: transparent !important;
-  line-height: 2.4 !important;
-  font-size: 14px !important;
-}
-}
+
 .article-image {
   height: 300px;
+
   @media screen and (min-width:992px) {
     height: 600px;
   }

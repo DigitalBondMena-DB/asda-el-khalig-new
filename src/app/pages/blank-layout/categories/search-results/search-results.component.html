@@ -1,8 +1,8 @@
-@if (!isShowSkeleton && specificCategories) {
+@if (!isShowSkeleton() && specificCategories()) {
 <section>
   <div class="row g-4">
-    @for (card of specificCategories.blogs.data | paginate: { id:'some_id',
-    itemsPerPage: 9, currentPage: currentPage,totalItems: totalItems }; track
+    @for (card of specificCategories()!.blogs.data | paginate: { id:'some_id',
+    itemsPerPage: 9, currentPage: currentPage(),totalItems: totalItems() }; track
     $index) {
     <div class="col-12 col-md-6 col-lg-4">
       <a [routerLink]="[card.old_status?'/archives':'/article', card.post_id]" href="#">
@@ -18,7 +18,7 @@
               (load)="imageLoaded($event)"
               alt="card.author"
             />
-            @if (!imageLoadedFlag) {
+            @if (!imageLoadedFlag()) {
             <div
               class="placeholder opacity-100 bd-placeholder-img card-img-top position-absolute top-0 start-0 w-100 border-radius-10"
               style="height: 250px; background-color: #868e96"
@@ -81,7 +81,7 @@
     </pagination-controls>
   </div>
 </section>
-} @defer { @if (isShowSkeleton) {
+} @defer { @if (isShowSkeleton()) {
 <section>
   <div class="row g-4">
     <div class="col-12 col-md-6 col-lg-4">

@@ -51,6 +51,9 @@ function run(): void {
 }
 
 run();
+
+// Export the Express API to be used by the Angular CLI dev-server
+export const reqHandler = app();
 // import { AngularAppEngine, createRequestHandler } from '@angular/ssr'
 // import { getAllowedHosts, getContext, getTrustProxyHeaders } from '@netlify/angular-runtime/app-engine.js'
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CategoriesService } from '../../../../core/services/content/categories.service';
 
@@ -25,63 +26,64 @@ import { SearchBlogsService } from '../../../../core/services/content/home/searc
     templateUrl: './search-results.component.html',
     styleUrl: './search-results.component.scss'
 })
-export class SearchResultsComponent {
-  currentId!: string;
-  specificCategories!: ISpecificCategory | null;
-  imageLoadedFlag = false;
-  currentPage: number = 1;
-  totalItems: number = 0;
-  isShowSkeleton = true;
-  pageChanged(e: number) {
-    this.isShowSkeleton = true;
-    window.scrollTo(0, 0);
-    this.currentPage = e;
-    this._SearchBlogsService
-      .getSearchResults(this.currentId, this.currentPage)
+export class SearchResultsComponent implements OnInit {
+  private readonly _SearchBlogsService = inject(SearchBlogsService);
+  private readonly _ActivatedRoute = inject(ActivatedRoute);
+  private readonly _destroyRef = inject(DestroyRef);
+
+  currentId = signal<string>('');
+  specificCategories = signal<ISpecificCategory | null>(null);
+  imageLoadedFlag = signal<boolean>(false);
+  currentPage = signal<number>(1);
+  totalItems = signal<number>(0);
+  isShowSkeleton = signal<boolean>(true);
+
+  ngOnInit(): void {
+    // Extract 'id' from the current route on page load
+    this._ActivatedRoute.paramMap
+      .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
-        next: (response) => {
-          this.specificCategories = response as ISpecificCategory;
-          this.totalItems = response?.blogs.total as number;
-          this.isShowSkeleton = false;
+        next: (params) => {
+          let id = params.get('id');
+          if (id) {
+            this.currentId.set(id);
+            this.getCurrentCategory(id);
+          }
         },
       });
   }
 
-  constructor(
-    private _SearchBlogsService: SearchBlogsService,
-    private _ActivatedRoute: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    // Handle the active route on reload
-    this.getInitialId();
-  }
-
-  getInitialId(): void {
-    // Extract 'id' from the current route on page load
-    const id = this._ActivatedRoute.paramMap.subscribe({
-      next: (params) => {
-        let id = params.get('id');
-        if (id) {
-          this.currentId = id;
-          this.getCurrentCategory(this.currentId);
-        }
-      },
-    });
+  pageChanged(e: number) {
+    this.isShowSkeleton.set(true);
+    window.scrollTo(0, 0);
+    this.currentPage.set(e);
+    this._SearchBlogsService
+      .getSearchResults(this.currentId(), this.currentPage())
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (response) => {
+          this.specificCategories.set(response as ISpecificCategory);
+          this.totalItems.set(response?.blogs.total as number);
+          this.isShowSkeleton.set(false);
+        },
+      });
   }
 
   getCurrentCategory(blogId: string): void {
-    this.isShowSkeleton = true;
-    this._SearchBlogsService.getSearchResults(blogId).subscribe({
-      next: (response) => {
-        this.specificCategories = response as ISpecificCategory;
-        this.totalItems = response?.blogs.total as number;
-        this.isShowSkeleton = false;
-      },
-    });
+    this.isShowSkeleton.set(true);
+    this._SearchBlogsService
+      .getSearchResults(blogId)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe({
+        next: (response) => {
+          this.specificCategories.set(response as ISpecificCategory);
+          this.totalItems.set(response?.blogs.total as number);
+          this.isShowSkeleton.set(false);
+        },
+      });
   }
 
-  imageLoaded(e: any) {
+  imageLoaded(e: Event) {
     let targetImage = e.target as HTMLElement;
     targetImage.nextElementSibling?.classList.add('d-none');
   }
