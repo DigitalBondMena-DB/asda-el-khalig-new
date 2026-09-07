@@ -13,6 +13,18 @@ header .header-bg {
   pointer-events: none;
 }
 
+header .national-bg-header {
+  position: absolute;
+  inset: 0;
+
+
+  z-index: -1;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  pointer-events: none;
+}
+
 @media screen and (min-width:1024px) {
   header .header-bg {
     width: 400px;

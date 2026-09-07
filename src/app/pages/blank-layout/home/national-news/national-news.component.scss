@@ -39,13 +39,14 @@ section {
     rotate: 180deg;
     background-image: url("/assets/images/national-day/national-pattern-horizontal.png");
     background-repeat: repeat-x;
+    background-size: 440px 32px;
   }
 
   &::before {
     content: "";
     position: absolute;
     bottom: 0;
-    background-size: contain;
+
     background-position: center;
 
     @media screen and (max-width: 640px) {

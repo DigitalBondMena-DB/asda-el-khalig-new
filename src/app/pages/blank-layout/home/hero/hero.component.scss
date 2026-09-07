@@ -114,3 +114,14 @@ img {
     transform: translateX(100%);
   }
 }
+
+::ng-deep .Logo_Water_Mark .image-decore {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 23px;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+  object-position: center;
+  height: 100%;
+}
