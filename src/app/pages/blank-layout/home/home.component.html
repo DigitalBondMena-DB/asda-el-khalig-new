@@ -26,10 +26,10 @@
 <div [class.national-day-pattern]="isNationalDay" class="right foundin-news">
   <div class="main-bg pb-5" [class.national-day-pattern]="isNationalDay">
     @if(isNationalDay) {
-    <div class="national-day-banner">
+    <a class="national-day-banner" routerLink="/national-day">
       <img loading="lazy" decoding="async" src="/assets/images/national-day/national-day-home-banner.png" width="1034"
         height="100" alt="كل عام و السعودية شامخة بالعز و المجد">
-    </div>
+    </a>
     }
     <img src="/assets/images/pages/home/2.webp" width="952" height="700" loading="lazy" decoding="async" alt=""
       role="presentation" class="main-bg-img">
