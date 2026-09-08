@@ -49,13 +49,13 @@
 }
 
 
-@defer (on viewport) {
 <div class="d-none d-lg-block">
-  <app-home-local-news [isDesktop]="isDesktop()" />
+  @defer (on viewport) {
+    <app-home-local-news [isDesktop]="isDesktop()" />
+  } @placeholder {
+    <div style="min-height: 200px"></div>
+  }
 </div>
-} @placeholder {
-<div style="min-height: 200px"></div>
-}
 
 @defer (on viewport) {
 <app-national-news [isDesktop]="isDesktop()" />
@@ -63,13 +63,13 @@
 <div style="min-height: 200px"></div>
 }
 
-@defer (on viewport) {
 <div class="d-none d-lg-block">
-  <app-home-articles />
+  @defer (on viewport) {
+    <app-home-articles />
+  } @placeholder {
+    <div style="min-height: 200px"></div>
+  }
 </div>
-} @placeholder {
-<div style="min-height: 200px"></div>
-}
 
 <!-- Custom Category -->
 <div [class.national-day-pattern]="isNationalDay">
