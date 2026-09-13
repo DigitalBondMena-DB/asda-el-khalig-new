@@ -15,39 +15,81 @@ img {
   object-position: top;
 }
 
-/* Handle owl Carousel */
-::ng-deep .owl-dots {
+/* Custom Slider Engine */
+.custom-slider-container {
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+
+  &.is-dragging {
+    cursor: grabbing !important;
+
+    * {
+      cursor: grabbing !important;
+    }
+  }
+
+  * {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+.custom-slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  direction: ltr;
+  will-change: transform;
+}
+
+.custom-slider-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  direction: rtl;
+}
+
+/* Slider Dots (matching original Owl dots) */
+.slider-dots {
   position: absolute;
   z-index: 99;
   bottom: 20px;
   left: 20px;
-  margin: 3px;
-  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-::ng-deep .owl-dot.active span {
-  background-color: $main-color !important;
-}
-
-::ng-deep .owl-dot {
+.slider-dot {
   background-color: $third-color;
-  padding: 2px;
+  border: none;
   border-radius: 50%;
   width: 14px;
   height: 14px;
-  margin: 3px !important;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &.active {
+    background-color: $main-color !important;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
 }
 
-::ng-deep .owl-dot span {
-  padding: 0px !important;
-  margin: 0px !important;
-  background-color: $third-color !important;
-}
-
-::ng-deep .owl-stage {
-  position: relative;
-}
-
+/* Card and Content Overlay */
 ::ng-deep .carousel__content {
   position: relative;
 }
@@ -73,7 +115,7 @@ img {
   }
 }
 
-
+/* Breaking News Bar */
 .breaking-news-bar {
   display: flex;
   align-items: center;
@@ -121,6 +163,5 @@ img {
   left: 0;
   width: 23px;
   mix-blend-mode: multiply;
-
   height: 100%;
 }
