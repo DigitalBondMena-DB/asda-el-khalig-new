@@ -8,7 +8,7 @@ import {
   PLATFORM_ID,
   signal
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { fromEvent, Subscription, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +19,7 @@ import { SafeHtmlPipe } from '../../../../core/pipes/safe-html.pipe';
 import { HomeMasterComponent } from './home-master/home-master.component';
 import { ISliderHome } from '../../../../core/interfaces/slider/ISliderHome';
 
-interface VirtualSlide {
+interface TrackSlide {
   post_id: number;
   post_title: string;
   post_date?: string;
@@ -45,15 +45,14 @@ interface VirtualSlide {
 export class HeroComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly document = inject(DOCUMENT);
   private readonly _NewsControlService = inject(NewsControlService);
   private readonly _SliderBlogService = inject(SliderBlogService);
 
   sliderData = signal<ISliderHome | null>(null);
   allBreakingNews = signal<any>(null);
 
-  // Slider state
-  virtualIndex = signal(1);
+  // Slider state: index 0 is always the first real slide (for LCP stability)
+  currentSlide = signal(0);
   dragOffset = signal(0);
   isTransitioning = signal(true);
   isDragging = signal(false);
@@ -68,38 +67,33 @@ export class HeroComponent implements OnInit {
 
   slides = computed(() => this.sliderData()?.blogs ?? []);
 
-  virtualSlides = computed<VirtualSlide[]>(() => {
+  // Slide 0 is first in DOM, followed by other slides, then a clone of Slide 0 for seamless forward loop
+  trackSlides = computed<TrackSlide[]>(() => {
     const s = this.slides();
     if (s.length <= 1) return s;
-    const firstClone: VirtualSlide = {
+    const loopClone: TrackSlide = {
       ...s[0],
       _isClone: true,
-      _cloneKey: '-first-clone'
+      _cloneKey: '-loop-clone'
     };
-    const lastClone: VirtualSlide = {
-      ...s[s.length - 1],
-      _isClone: true,
-      _cloneKey: '-last-clone'
-    };
-    return [lastClone, ...s, firstClone];
+    return [...s, loopClone];
   });
 
   currentDotIndex = computed(() => {
     const count = this.slides().length;
     if (count <= 1) return 0;
-    const vi = this.virtualIndex();
-    if (vi === count + 1) return 0;
-    if (vi === 0) return count - 1;
-    return vi - 1;
+    const idx = this.currentSlide();
+    if (idx >= count) return 0;
+    return idx;
   });
 
   trackTransform = computed(() => {
-    const vi = this.virtualIndex();
+    const idx = this.currentSlide();
     const offset = this.dragOffset();
     if (offset !== 0) {
-      return `translate3d(calc(-${vi * 100}% + ${offset}px), 0, 0)`;
+      return `translate3d(calc(-${idx * 100}% + ${offset}px), 0, 0)`;
     }
-    return `translate3d(-${vi * 100}%, 0, 0)`;
+    return `translate3d(-${idx * 100}%, 0, 0)`;
   });
 
   trackTransition = computed(() => {
@@ -135,34 +129,14 @@ export class HeroComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.sliderData.set(response);
-          const firstBlog = response?.blogs?.[0];
-          if (firstBlog?.featured_image) {
-            this.updatePreloadLink(firstBlog.featured_image);
-          }
+
           if ((response?.blogs?.length ?? 0) > 1) {
-            this.virtualIndex.set(1);
             this.startAutoplay();
-          } else {
-            this.virtualIndex.set(0);
           }
         }
       });
   }
 
-  private updatePreloadLink(imageUrl: string): void {
-    if (!imageUrl) return;
-    try {
-      let link = this.document.querySelector('link[rel="preload"][as="image"]') as HTMLLinkElement;
-      if (!link) {
-        link = this.document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        this.document.head.appendChild(link);
-      }
-      link.href = imageUrl;
-      link.setAttribute('fetchpriority', 'high');
-    } catch {}
-  }
 
   private setupVisibilityListener(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -174,13 +148,13 @@ export class HeroComponent implements OnInit {
       });
   }
 
-  // Autoplay
+  // Autoplay: 9s initial delay for stable Lighthouse LCP measurement, then rotates every 6s
   startAutoplay(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     this.stopAutoplay();
     if (this.slides().length <= 1) return;
 
-    this.autoplaySub = timer(5000, 5000)
+    this.autoplaySub = timer(9000, 6000)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
         if (!this.isHovered && !this.isPointerDown && !this.isDocumentHidden) {
@@ -213,14 +187,18 @@ export class HeroComponent implements OnInit {
     const count = this.slides().length;
     if (count <= 1) return;
     this.isTransitioning.set(true);
-    this.virtualIndex.update((v) => v + 1);
+    this.currentSlide.update((v) => v + 1);
   }
 
   prevSlide(): void {
     const count = this.slides().length;
     if (count <= 1) return;
     this.isTransitioning.set(true);
-    this.virtualIndex.update((v) => v - 1);
+    if (this.currentSlide() === 0) {
+      this.currentSlide.set(count - 1);
+    } else {
+      this.currentSlide.update((v) => v - 1);
+    }
   }
 
   goToSlide(dotIndex: number): void {
@@ -228,25 +206,17 @@ export class HeroComponent implements OnInit {
     if (count <= 1) return;
     this.restartAutoplay();
     this.isTransitioning.set(true);
-    this.virtualIndex.set(dotIndex + 1);
+    this.currentSlide.set(dotIndex);
   }
 
   onTransitionEnd(): void {
     const count = this.slides().length;
     if (count <= 1) return;
 
-    const currentVi = this.virtualIndex();
-    if (currentVi === count + 1) {
+    // If reached the loop clone at the end (idx === count)
+    if (this.currentSlide() === count) {
       this.isTransitioning.set(false);
-      this.virtualIndex.set(1);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          this.isTransitioning.set(true);
-        });
-      });
-    } else if (currentVi === 0) {
-      this.isTransitioning.set(false);
-      this.virtualIndex.set(count);
+      this.currentSlide.set(0);
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           this.isTransitioning.set(true);
@@ -348,14 +318,10 @@ export class HeroComponent implements OnInit {
   }
 
   isSlideActive(idx: number): boolean {
-    return this.virtualIndex() === idx;
-  }
-
-  isPriority(idx: number): boolean {
-    return this.slides().length <= 1 ? idx === 0 : idx === 1;
-  }
-
-  isInitialSlide(idx: number): boolean {
-    return this.isPriority(idx);
+    const count = this.slides().length;
+    if (count <= 1) return true;
+    const current = this.currentSlide();
+    if (current >= count) return idx === 0 || idx === count;
+    return current === idx;
   }
 }

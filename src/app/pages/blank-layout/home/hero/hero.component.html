@@ -4,41 +4,23 @@
       <div class="col-12 col-lg-8 order-1 order-lg-1">
         <div>
           <div class="hero_height border-radius-10 overflow-hidden position-relative custom-slider-container"
-            #sliderContainer
-            [class.is-dragging]="isDragging()"
-            (mouseenter)="pauseAutoplay()"
-            (mouseleave)="resumeAutoplay()"
-            (pointerdown)="onPointerDown($event)"
-            (dragstart)="$event.preventDefault()"
+            #sliderContainer [class.is-dragging]="isDragging()" (mouseenter)="pauseAutoplay()"
+            (mouseleave)="resumeAutoplay()" (pointerdown)="onPointerDown($event)" (dragstart)="$event.preventDefault()"
             (transitionend)="onTransitionEnd()">
 
             @if (slides().length > 0) {
-            <div class="custom-slider-track"
-              [style.transform]="trackTransform()"
+            <div class="custom-slider-track" [style.transform]="trackTransform()"
               [style.transition]="trackTransition()">
-              @for (slide of virtualSlides(); track slide.post_id + (slide._cloneKey ?? ''); let idx = $index) {
+              @for (slide of trackSlides(); track slide.post_id + (slide._cloneKey ?? ''); let idx = $index) {
               <div class="custom-slider-slide" [attr.aria-hidden]="!isSlideActive(idx)">
                 <a [routerLink]="shouldNavigate() ? [slide.old_status ? '/archives' : '/article', slide.post_id] : null"
-                  [class.disabled]="!shouldNavigate()"
-                  (click)="onSlideClick($event)"
-                  draggable="false"
-                  (dragstart)="$event.preventDefault()"
-                  class="d-block h-100 text-decoration-none"
-                  href="#">
+                  [class.disabled]="!shouldNavigate()" (click)="onSlideClick($event)" draggable="false"
+                  (dragstart)="$event.preventDefault()" class="d-block h-100 text-decoration-none" href="#">
                   <figure class="my-0 h-100 Logo_Water_Mark card cr position-relative" draggable="false">
 
-                    <img [src]="slide.featured_image"
-                      [alt]="slide.post_title"
-                      width="860"
-                      height="460"
-                      draggable="false"
-                      (dragstart)="$event.preventDefault()"
-                      [attr.priority]="isPriority(idx) ? '' : null"
-                      [attr.fetchpriority]="isPriority(idx) ? 'high' : 'low'"
-                      [attr.loading]="isPriority(idx) ? 'eager' : 'lazy'"
-                      decoding="async"
-                      class="w-100 object-fit-cover hero_height"
-                      style="object-position: top" />
+                    <img [src]="slide.featured_image" [alt]="slide.post_title" width="860" height="460"
+                      draggable="false" (dragstart)="$event.preventDefault()" decoding="async" fetchpriority="low"
+                      loading="lazy" class="w-100 object-fit-cover hero_height" style="object-position: top" />
 
                     <figcaption class="card-img-overlay d-flex align-items-end" draggable="false">
                       <div
@@ -48,8 +30,8 @@
                           {{ slide.post_title }}
                         </p>
                         <div [innerHTML]="slide.post_content | removeInlineStyles | safeHtml"
-                          class="d-none d-md-block title_section_slider font-light content_container"
-                          draggable="false"></div>
+                          class="d-none d-md-block title_section_slider font-light content_container" draggable="false">
+                        </div>
                         <div class="text-start" draggable="false">
                           <span class="btn-show-all btn text-light" draggable="false">
                             المزيد
@@ -67,11 +49,8 @@
             @if (slides().length > 1) {
             <div class="slider-dots" role="tablist">
               @for (slide of slides(); track $index; let dotIdx = $index) {
-              <button type="button"
-                class="slider-dot"
-                [class.active]="dotIdx === currentDotIndex()"
-                [attr.aria-label]="'انتقال إلى الخبر ' + (dotIdx + 1)"
-                (click)="goToSlide(dotIdx)">
+              <button type="button" class="slider-dot" [class.active]="dotIdx === currentDotIndex()"
+                [attr.aria-label]="'انتقال إلى الخبر ' + (dotIdx + 1)" (click)="goToSlide(dotIdx)">
               </button>
               }
             </div>

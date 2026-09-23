@@ -14,7 +14,7 @@ import { HomeVideosComponent } from './home-videos/home-videos.component';
 import { NationalNewsComponent } from './national-news/national-news.component';
 import { fromEvent, startWith, throttleTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { isPlatformServer } from '@angular/common';
+import { isPlatformServer, NgOptimizedImage } from '@angular/common';
 import { isNationalDay } from '../../../core/constants/WEB_SITE_BASE_UTL';
 
 @Component({
@@ -32,7 +32,8 @@ import { isNationalDay } from '../../../core/constants/WEB_SITE_BASE_UTL';
     NationalNewsComponent,
     HomeMasterComponent,
     RouterLink,
-  ],
+    NgOptimizedImage,
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
